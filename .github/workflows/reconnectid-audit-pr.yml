@@ -25,3 +25,11 @@ jobs:
 
       - name: Run guide-signal audit when present
         run: python scripts/08_audit_guide_signal.py
+
+      - name: Upload audit outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: reconnectid-guide-signal-audit
+          path: |
+            results/GUIDE_SIGNAL_AUDIT.md
+            results/tables/guide_signal_audit.csv

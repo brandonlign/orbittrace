@@ -1,0 +1,27 @@
+name: ReconnectID results audit
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out pull request
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install lightweight dependencies
+        run: python -m pip install --upgrade pip pandas pyarrow numpy tabulate
+
+      - name: Run guide-signal audit when present
+        run: python scripts/08_audit_guide_signal.py

@@ -1,0 +1,91 @@
+{
+  "internal_id": "GhostStream-April-36.9",
+  "status": "high_confidence_uncatalogued_stream_candidate",
+  "official_iau_designation": null,
+  "official_name": null,
+  "claim_boundary": "Candidate identified in a blind GMN search and supported by independent CAMS and SonotaCo archives; not yet submitted to or recognized by the IAU Meteor Data Center.",
+  "epoch": {
+    "solar_longitude_deg": 36.901963,
+    "approximate_calendar_timing": "late April"
+  },
+  "geocentric_radiant": {
+    "sun_centered_ecliptic_longitude_deg": -149.3763247,
+    "ecliptic_latitude_deg": 7.3230377,
+    "approximate_right_ascension_deg": 247.06,
+    "approximate_declination_deg": -14.22,
+    "geocentric_speed_km_s": 37.641692
+  },
+  "radiant_speed_drift_per_solar_longitude_degree": {
+    "sun_centered_ecliptic_longitude_deg": -0.1029483,
+    "ecliptic_latitude_deg": -0.0230546,
+    "geocentric_speed_km_s": -0.0293492
+  },
+  "residual_dispersion": {
+    "sun_centered_ecliptic_longitude_sigma_deg": 0.7369,
+    "ecliptic_latitude_sigma_deg": 0.6250,
+    "geocentric_speed_sigma_km_s": 1.1596
+  },
+  "refined_orbit": {
+    "perihelion_distance_au": 0.079202,
+    "eccentricity": 0.946296,
+    "inclination_deg": 24.709376,
+    "argument_of_perihelion_deg": 333.493819,
+    "encounter_node_deg": 37.937477,
+    "semimajor_axis_au": 1.4747877253,
+    "orbital_period_years": 1.7909945796,
+    "tisserand_parameter_jupiter": 3.8416041641
+  },
+  "gmn_evidence": {
+    "deduplicated_selected_members_2019_2026": 101,
+    "members_in_significant_years_2022_2026": 95,
+    "significant_years": [2022, 2023, 2024, 2025, 2026],
+    "untouched_confirmation_years": [2022, 2023],
+    "pooled_untouched_activity_p": 0.00001857134041807409,
+    "pooled_untouched_shifted_window_p": 0.017543859649122806,
+    "pooled_untouched_orbit_null_p": 0.0001,
+    "overall_median_orbital_distance": 0.0439834,
+    "overall_q90_orbital_distance": 0.0923211,
+    "maximum_cross_year_medoid_distance": 0.0504401,
+    "uncertainty_clone_trials": 1000,
+    "uncertainty_clone_passes": 1000
+  },
+  "independent_archive_evidence": {
+    "catalogs": ["CAMS", "SonotaCo"],
+    "strict_members": 10,
+    "years": [2011, 2012, 2022, 2023, 2025],
+    "member_counts": {
+      "CAMS-2011": 2,
+      "CAMS-2012": 4,
+      "SonotaCo-2022": 2,
+      "SonotaCo-2023": 1,
+      "SonotaCo-2025": 1
+    },
+    "pooled_activity_p_posthoc": 0.0001621843884718582,
+    "pooled_shifted_window_p_posthoc": 0.02040816326530612,
+    "pooled_median_orbital_distance": 0.0487914089007297,
+    "pooled_q90_orbital_distance": 0.07708080241916682,
+    "pooled_orbit_null_p": 0.00005,
+    "pooled_medoid_distance_to_gmn_orbit": 0.017230503215407457,
+    "interpretation": "Exploratory pooled support. Archive-specific tests were frozen first, but pooling was motivated by their sparse outcomes and is therefore explicitly post-hoc."
+  },
+  "novelty_audit": {
+    "iau_solutions_parsed": 2174,
+    "hard_iau_matches": 0,
+    "nearest_official_orbit": {
+      "code": "NOP",
+      "name": "Northern May Ophiuchids",
+      "orbit_distance_approx": 0.235,
+      "active_at_candidate_epoch": false
+    },
+    "jpl_small_bodies_screened": 6284,
+    "jpl_objects_with_orbit_distance_le_0_15": 0,
+    "parent_body_claimed": false
+  },
+  "next_required_actions": [
+    "Independent meteor-network team applies its own preregistered pipeline",
+    "Complete IAU MDC shower-mean submission template",
+    "Prepare and submit a methods-and-discovery manuscript",
+    "Expert duplicate-shower and orbit-convention review",
+    "Parent-body dynamics only after a credible orbital candidate exists"
+  ]
+}

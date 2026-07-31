@@ -1,0 +1,36 @@
+{
+  "pilot": "GhostStream",
+  "overall_verdict": "GO",
+  "primary_result": {
+    "iau_code": "NMV",
+    "name": "Northern March gamma-Virginids",
+    "iau_status": "working list",
+    "finding": "Independent multi-year confirmation in GMN meteors labeled sporadic",
+    "significant_years": [2021, 2022, 2023, 2024, 2025],
+    "untouched_significant_years": [2021, 2022, 2023],
+    "significant_year_count": 5,
+    "untouched_significant_year_count": 3,
+    "selected_members_all_years": 112,
+    "uncertainty_clone_iterations": 500,
+    "uncertainty_clone_pass_fraction": 1.0
+  },
+  "secondary_result": {
+    "iau_code": "EOC",
+    "name": "eta1-Coronae Australids",
+    "iau_status": "working list",
+    "significant_years": [2023, 2024, 2025],
+    "untouched_significant_year_count": 1,
+    "selected_members_all_years": 60,
+    "frozen_multiyear_gate_passed": false
+  },
+  "method_validation": {
+    "untouched_known_showers_recovered": 3,
+    "untouched_known_showers_tested": 3,
+    "injection_recovery": {
+      "20_members": "4/9",
+      "40_members": "7/9",
+      "80_members": "8/9"
+    }
+  },
+  "claim_limit": "This supports independent confirmation and refinement of an IAU working-list shower; it is not an official establishment or a brand-new shower discovery."
+}

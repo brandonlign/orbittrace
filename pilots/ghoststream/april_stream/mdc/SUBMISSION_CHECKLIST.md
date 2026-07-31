@@ -11,9 +11,11 @@
 - [x] Full current IAU-solution audit found no hard match.
 - [x] CAMS and SonotaCo support documented.
 - [x] NASA/JPL parent screen completed.
+- [x] March–May source-normalized activity profile replaces raw month-boundary interpretation.
+- [x] Three disjoint GMN geographic station groups independently pass activity and orbit gates.
 - [ ] External meteor expert reviews coordinate and orbit conventions.
 - [ ] Independent network reruns the frozen solution or its own preregistered search.
-- [ ] Activity profile is exposure-corrected rather than selection-window limited.
+- [ ] Absolute exposure/flux profile models station uptime, weather, limiting magnitude, radiant elevation, and collecting area.
 - [ ] Final duplicate search includes any newly added MDC solutions immediately before submission.
 
 ## Data checks

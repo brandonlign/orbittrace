@@ -55,6 +55,18 @@ A second bootstrap retained every observed year exactly once and resampled night
 | dDec/dλ⊙ | −0.182 | −0.114 |
 | dVg/dλ⊙ | −0.058 | −0.002 |
 
+## Independent raw-catalogue reproduction
+
+The analysis was rerun from the original GMN April catalogues rather than the downloaded candidate CSV. The script required exactly 95 frozen members before bootstrapping and recovered:
+
+- 2022: 10 members;
+- 2023: 8;
+- 2024: 14;
+- 2025: 34;
+- 2026: 29.
+
+GitHub Actions workflow run `30673906207` completed successfully. Its machine-readable artifact has SHA-256 `148e440510d220acfc68b342a22b781a15c858e471295bfc8a5eb9ec2590398a` and reproduced the same qualitative verdict for all three drift terms.
+
 ## Interpretation boundary
 
 The paper may report the measured positive RA drift and negative declination drift as resolved. The speed slope should be reported as a fitted value whose clustered confidence interval includes zero, not as a detected physical deceleration.

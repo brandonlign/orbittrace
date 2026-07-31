@@ -1,0 +1,61 @@
+{
+  "submission_status": "DRAFT_NOT_SUBMITTED",
+  "schema_note": "Matches the field structure of the current IAU MDC streamfulldata.json. The MDC assigns LP, IAUNo, Code, and provisional designation.",
+  "source": "Global Meteor Network trajectory catalogue",
+  "generated": "2026-07-31",
+  "data": {
+    "LP": null,
+    "IAUNo": "-",
+    "Code": "",
+    "s": " 0",
+    "Name": null,
+    "ProvName": null,
+    "internal_label": "GhostStream-April-36.9",
+    "solution": [
+      {
+        "AdNo": "000",
+        "sub.date": "2026-07-31",
+        "s": " 0",
+        "activity": "annual",
+        "LoSb": 32.95845,
+        "LoSe": 40.269068,
+        "LoS": 37.14952,
+        "Ra": 247.169746,
+        "De": -14.342743,
+        "dRa": 0.887078,
+        "dDe": -0.157506,
+        "Vg": 37.617513,
+        "LoR": 247.725997,
+        "S_LoR": 210.576476,
+        "LaR": 7.338829,
+        "theta": null,
+        "phi": null,
+        "Flags": "  A    ",
+        "a": 1.420296,
+        "q": 0.080114,
+        "e": 0.943593,
+        "peri": 333.636995,
+        "node": 37.157321,
+        "inc": 24.37003,
+        "N": 95,
+        "Group": "00000",
+        "CG": "00",
+        "Parent body": "",
+        "Remarks": "Blind GMN identification; significant annually in 2022-2026; supported by legacy CAMS and SonotaCo meteors; no parent body claimed.",
+        "Ote": "T",
+        "LT": "GhostStream_April_95_GMN_lookup.csv",
+        "References": [
+          null,
+          "Li, B. et al., manuscript in preparation"
+        ]
+      }
+    ]
+  },
+  "calculation": {
+    "membership": "95 deduplicated GMN members in the five independently significant years 2022-2026",
+    "mean_type": "unweighted arithmetic mean; angular variables do not cross 0/360 in this sample",
+    "semimajor_axis": "derived from mean q/(1-mean e) for internal consistency",
+    "radiant_daily_motion": "ordinary least-squares slope versus solar longitude",
+    "selection_warning": "LoSb and LoSe are the observed bounds of the frozen selection window, not an exposure-corrected activity duration."
+  }
+}

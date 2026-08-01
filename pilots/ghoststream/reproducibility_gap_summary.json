@@ -1,0 +1,74 @@
+{
+  "verdict": "CORE_ANALYSIS_NOT_REPRODUCIBLE_FROM_CURRENT_BRANCH",
+  "audit_date_utc": "2026-08-01",
+  "branch": "agent/ghoststream-pilot",
+  "scientific_candidate_status": "high_confidence_uncatalogued_stream_candidate_preserved_outputs",
+  "publication_status": "hold",
+  "formal_mdc_submission_status": "blocked",
+  "expert_review_bundle_status": "superseded_do_not_send_as_complete_reproducibility_package",
+  "branch_comparison": {
+    "changed_files": 82,
+    "all_changed_files_added": true,
+    "core_analysis_scripts_deleted_from_branch": false,
+    "interpretation": "The core implementation was not removed from this branch; it was never committed here or exists elsewhere."
+  },
+  "reproducible_bounded_stages": [
+    "current linked EDMOND recovery and integrity audit",
+    "current linked EDMOND frozen-template evaluation",
+    "live IAU MDC novelty refresh",
+    "exact official MDC consistency checker rerun",
+    "MDC package internal consistency audit",
+    "flux handoff tools",
+    "deterministic evidence bundle construction",
+    "read-only local workspace recovery inventory"
+  ],
+  "missing_core_stages": [
+    "GMN source catalogue acquisition and immutable manifests",
+    "GMN parsing and quality filtering",
+    "coordinate transformations",
+    "exact-time deduplication",
+    "known-shower and weak-injection controls",
+    "blind candidate generation",
+    "frozen April membership selection",
+    "expanded antihelion source-preserving activity test",
+    "shifted-window audit",
+    "source/time-matched post-selection orbital null",
+    "measurement-uncertainty clone trials",
+    "year/night hierarchical bootstrap",
+    "geographic station split",
+    "March-May source-normalized activity profile",
+    "81-cell specification curve",
+    "original CAMS and SonotaCo acquisition and selection",
+    "parent-body screen",
+    "end-to-end report and figure generation"
+  ],
+  "missing_provenance": [
+    "exact source files and URLs",
+    "source byte counts and SHA-256 hashes",
+    "catalogue schemas and access dates",
+    "station-country mapping",
+    "random seeds",
+    "dependency environment",
+    "intermediate event tables",
+    "frozen machine-readable configurations"
+  ],
+  "allowed_current_claim": "Internally consistent and extensively audited results package for a high-confidence uncatalogued April meteor-stream candidate; core discovery and validation pipeline not yet computationally reproducible from the committed branch.",
+  "forbidden_until_resolution": [
+    "journal submission",
+    "formal IAU MDC submission",
+    "public reproducibility DOI",
+    "claim of end-to-end computational reproducibility",
+    "sending the superseded expert bundle as a complete code/data package"
+  ],
+  "resolution_gate": [
+    "recover or independently reconstruct core source code",
+    "preserve exact input manifests, hashes, schemas, seeds, and environment",
+    "clean fail-closed rerun from source catalogues",
+    "regenerate 95-member lookup and primary statistics",
+    "document every discrepancy without retuning",
+    "add persistent end-to-end CI",
+    "rerun package and official checker audits",
+    "build a new code-inclusive expert review bundle",
+    "obtain external scientific review of the reproducible pipeline"
+  ]
+}

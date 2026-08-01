@@ -1,0 +1,4157 @@
+{
+  "stage": "frozen_april_2026_candidate_audit",
+  "verdict": "APRIL_STREAM_DISCOVERY_CANDIDATE_SURVIVES_AUDIT",
+  "discovery_candidate_passed": true,
+  "frozen_template": {
+    "center": [
+      -149.297555,
+      7.45007,
+      37.42224,
+      36.901963
+    ],
+    "sigma": [
+      0.881190723,
+      0.579296298,
+      1.099081032,
+      1.329624591
+    ],
+    "orbit_medoid": [
+      0.950783,
+      0.073747,
+      25.286643,
+      334.338586,
+      37.363391
+    ],
+    "temporal_width_deg": 3.988873773,
+    "radiant_radius_squared": 9.0,
+    "orbit_member_d": 0.15
+  },
+  "deduplication": {
+    "per_year": {
+      "2019": {
+        "before": 757,
+        "after": 756,
+        "removed": 1,
+        "duplicate_groups": 1,
+        "examples": [
+          {
+            "event_key": "20190410080801",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20190410080801_KsCDb",
+              "20190410080801_xGaC9"
+            ],
+            "station_strings": [
+              "['US0001', 'US0002', 'US0003']",
+              "['US0004', 'US0008']"
+            ]
+          }
+        ],
+        "raw_month_rows": 876,
+        "quality_sporadic_rows": 757
+      },
+      "2020": {
+        "before": 5772,
+        "after": 5485,
+        "removed": 287,
+        "duplicate_groups": 279,
+        "examples": [
+          {
+            "event_key": "20200414221450",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20200414221450_9nO1T",
+              "20200414221450_G525m",
+              "20200414221450_rAD3x"
+            ],
+            "station_strings": [
+              "['BE0002', 'NL0006']",
+              "['BE0001', 'NL0006']",
+              "['DE0001', 'NL0006']"
+            ]
+          },
+          {
+            "event_key": "20200414233153",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20200414233153_ccdGh",
+              "20200414233153_I8nqH",
+              "20200414233153_X3oUI"
+            ],
+            "station_strings": [
+              "['HR000P', 'HR000Z']",
+              "['HR0007', 'HR000G', 'HR000N']",
+              "['HR0007', 'HR000G', 'HR000N']"
+            ]
+          },
+          {
+            "event_key": "20200416020929",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20200416020929_2wlwS",
+              "20200416020929_7db61",
+              "20200416020929_MVkOd"
+            ],
+            "station_strings": [
+              "['HR000V', 'SI0001']",
+              "['HR000G', 'HR000M']",
+              "['FR0006', 'FR000G']"
+            ]
+          },
+          {
+            "event_key": "20200428054844",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20200428054844_4eSoC",
+              "20200428054844_5uLr2",
+              "20200428054844_CFC33"
+            ],
+            "station_strings": [
+              "['US0001', 'US000H', 'US000J']",
+              "['US0007', 'US000A']",
+              "['US0001', 'US000J']"
+            ]
+          },
+          {
+            "event_key": "20200429083713",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20200429083713_woJQK",
+              "20200429083713_G8aMW",
+              "20200429083713_2ghv3"
+            ],
+            "station_strings": [
+              "['US000C', 'US000H']",
+              "['US000C', 'US000H']",
+              "['US000M', 'US000R']"
+            ]
+          },
+          {
+            "event_key": "20200428110259",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20200428110259_ZF04o",
+              "20200428110259_UBOpW",
+              "20200428110259_6e5SY"
+            ],
+            "station_strings": [
+              "['US0007', 'US0008', 'US000A', 'US000H']",
+              "['US0007', 'US000L']",
+              "['US0001', 'US000J']"
+            ]
+          },
+          {
+            "event_key": "20200428045346",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20200428045346_OSHQE",
+              "20200428045346_SWDby",
+              "20200428045346_AC8RF"
+            ],
+            "station_strings": [
+              "['US000A', 'US000H', 'US000P']",
+              "['US0001', 'US000A', 'US000H', 'US000P']",
+              "['US0001', 'US000J']"
+            ]
+          },
+          {
+            "event_key": "20200427004933",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20200427004933_1mAfL",
+              "20200427004933_3QAOF",
+              "20200427004933_J3nyL"
+            ],
+            "station_strings": [
+              "['HR000P', 'HR000S', 'HR000V']",
+              "['HR000M', 'HR000P', 'HR000S', 'HR000V']",
+              "['HR000G', 'HR000M']"
+            ]
+          },
+          {
+            "event_key": "20200429061500",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20200429061500_zsLMB",
+              "20200429061500_YGP5c"
+            ],
+            "station_strings": [
+              "['US000D', 'US000H']",
+              "['US000D', 'US000H', 'US000J']"
+            ]
+          },
+          {
+            "event_key": "20200402105549",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20200402105549_A4d1y",
+              "20200402105549_13T5G"
+            ],
+            "station_strings": [
+              "['US0004', 'US000P']",
+              "['US000H', 'US000J', 'US000L']"
+            ]
+          },
+          {
+            "event_key": "20200425003935",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20200425003935_2cgxS",
+              "20200425003935_4mfpq"
+            ],
+            "station_strings": [
+              "['HR000N', 'HR000Z', 'SI0001']",
+              "['HR000G', 'HR000N', 'HR000Z', 'SI0001']"
+            ]
+          },
+          {
+            "event_key": "20200427070431",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20200427070431_eG7u2",
+              "20200427070431_dv3Cf"
+            ],
+            "station_strings": [
+              "['US0005', 'US000C']",
+              "['US0005', 'US000C']"
+            ]
+          },
+          {
+            "event_key": "20200416102906",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20200416102906_dUvly",
+              "20200416102906_Wv6So"
+            ],
+            "station_strings": [
+              "['US0007', 'US000A']",
+              "['US0004', 'US0008', 'US000C', 'US000H', 'US000L']"
+            ]
+          },
+          {
+            "event_key": "20200429060412",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20200429060412_lxFwv",
+              "20200429060412_XxZ4e"
+            ],
+            "station_strings": [
+              "['US0005', 'US000A', 'US000C', 'US000E']",
+              "['US0005', 'US000A', 'US000C', 'US000E']"
+            ]
+          },
+          {
+            "event_key": "20200412005124",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20200412005124_WlhN0",
+              "20200412005124_ctCed"
+            ],
+            "station_strings": [
+              "['HR000P', 'HR000Z']",
+              "['HR000G', 'HR000M']"
+            ]
+          },
+          {
+            "event_key": "20200429061143",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20200429061143_Y8sKL",
+              "20200429061143_PC3T8"
+            ],
+            "station_strings": [
+              "['US0005', 'US000C', 'US000H']",
+              "['US0005', 'US000C', 'US000H']"
+            ]
+          },
+          {
+            "event_key": "20200414224200",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20200414224200_zP7WK",
+              "20200414224200_xYeMe"
+            ],
+            "station_strings": [
+              "['DE0002', 'DE0007']",
+              "['BE0003', 'DE0006']"
+            ]
+          },
+          {
+            "event_key": "20200402090347",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20200402090347_i2IYd",
+              "20200402090347_SpRy7"
+            ],
+            "station_strings": [
+              "['US000H', 'US000M']",
+              "['US0004', 'US000A', 'US000C']"
+            ]
+          },
+          {
+            "event_key": "20200429064434",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20200429064434_t49e3",
+              "20200429064434_ZoZkr"
+            ],
+            "station_strings": [
+              "['US0005', 'US000C', 'US000H', 'US000M']",
+              "['US0005', 'US000C', 'US000H']"
+            ]
+          },
+          {
+            "event_key": "20200429061605",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20200429061605_36inY",
+              "20200429061605_g0zm8"
+            ],
+            "station_strings": [
+              "['US000J', 'US000R']",
+              "['US0002', 'US000H']"
+            ]
+          }
+        ],
+        "raw_month_rows": 7213,
+        "quality_sporadic_rows": 5772
+      },
+      "2021": {
+        "before": 7883,
+        "after": 7811,
+        "removed": 72,
+        "duplicate_groups": 72,
+        "examples": [
+          {
+            "event_key": "20210401000033",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210401000033_f8Lxq",
+              "20210401000033_jl2UG"
+            ],
+            "station_strings": [
+              "['HR0007', 'HR000D', 'HR000K', 'HR000P', 'HR000R', 'HR000S', 'IT0001', 'SI0001']",
+              "['HR000M', 'HR001A']"
+            ]
+          },
+          {
+            "event_key": "20210410062603",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210410062603_6cYIk",
+              "20210410062603_hXLJo"
+            ],
+            "station_strings": [
+              "['US0004', 'US0008', 'US000C']",
+              "['US0001', 'US0002', 'US000A']"
+            ]
+          },
+          {
+            "event_key": "20210416102650",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210416102650_1G234",
+              "20210416102650_Ao6jR"
+            ],
+            "station_strings": [
+              "['US0001', 'US0006', 'US0007', 'US0008']",
+              "['US000H', 'US000J']"
+            ]
+          },
+          {
+            "event_key": "20210407192632",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210407192632_3RcLp",
+              "20210407192632_e4t3Q"
+            ],
+            "station_strings": [
+              "['HR000K', 'SI0001']",
+              "['HR000D', 'HR000N']"
+            ]
+          },
+          {
+            "event_key": "20210415023816",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210415023816_Y4pXF",
+              "20210415023816_NXGr7"
+            ],
+            "station_strings": [
+              "['HR000W', 'HR001D']",
+              "['HR0002', 'HR000D', 'HR0010']"
+            ]
+          },
+          {
+            "event_key": "20210404113343",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210404113343_FKBq8",
+              "20210404113343_JJl7r"
+            ],
+            "station_strings": [
+              "['US000J', 'US000R']",
+              "['US0004', 'US0006']"
+            ]
+          },
+          {
+            "event_key": "20210416110635",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210416110635_CICBJ",
+              "20210416110635_Bh9aU"
+            ],
+            "station_strings": [
+              "['US0002', 'US0003', 'US0004', 'US0005', 'US000C', 'US000E']",
+              "['US000H', 'US000M']"
+            ]
+          },
+          {
+            "event_key": "20210410044804",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210410044804_HY3zo",
+              "20210410044804_7cNZA"
+            ],
+            "station_strings": [
+              "['USL005', 'USL00C']",
+              "['USL00B', 'USL00K']"
+            ]
+          },
+          {
+            "event_key": "20210416111605",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210416111605_ym2xy",
+              "20210416111605_jjN6n"
+            ],
+            "station_strings": [
+              "['US0004', 'US0005', 'US000C']",
+              "['US000H', 'US000M']"
+            ]
+          },
+          {
+            "event_key": "20210410045012",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210410045012_ExHel",
+              "20210410045012_9KMh5"
+            ],
+            "station_strings": [
+              "['USL005', 'USL00C']",
+              "['USL006', 'USL00L']"
+            ]
+          },
+          {
+            "event_key": "20210417095924",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210417095924_pcKwi",
+              "20210417095924_an5dM"
+            ],
+            "station_strings": [
+              "['US000K', 'US000R']",
+              "['US0006', 'US000J', 'US000L']"
+            ]
+          },
+          {
+            "event_key": "20210423000603",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210423000603_bgFm5",
+              "20210423000603_uLgS9"
+            ],
+            "station_strings": [
+              "['UK000J', 'UK000Z', 'UK001T', 'UK001Y']",
+              "['BE0001', 'BE0006']"
+            ]
+          },
+          {
+            "event_key": "20210417093054",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210417093054_48Q1E",
+              "20210417093054_tjhR6"
+            ],
+            "station_strings": [
+              "['USL003', 'USL008', 'USL00Q']",
+              "['US000A', 'US000C', 'US000N']"
+            ]
+          },
+          {
+            "event_key": "20210417092203",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210417092203_pHrAH",
+              "20210417092203_qaPmI"
+            ],
+            "station_strings": [
+              "['USL00B', 'USL00C', 'USL00K']",
+              "['US000A', 'US000C']"
+            ]
+          },
+          {
+            "event_key": "20210419235007",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210419235007_McVHQ",
+              "20210419235007_kGMCf"
+            ],
+            "station_strings": [
+              "['HR001N', 'HR001P', 'HR001V']",
+              "['HR001A', 'IT0001']"
+            ]
+          },
+          {
+            "event_key": "20210410062040",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210410062040_I9hSv",
+              "20210410062040_A43oh"
+            ],
+            "station_strings": [
+              "['USL006', 'USL00M']",
+              "['USL005', 'USL00C']"
+            ]
+          },
+          {
+            "event_key": "20210410063752",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210410063752_H2iZE",
+              "20210410063752_3Z24e"
+            ],
+            "station_strings": [
+              "['US0001', 'US0007', 'US000A', 'US000L']",
+              "['US0008', 'US000H', 'US000R']"
+            ]
+          },
+          {
+            "event_key": "20210408014954",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210408014954_x855Z",
+              "20210408014954_aWVWQ"
+            ],
+            "station_strings": [
+              "['HR000D', 'IT0001']",
+              "['HR000K', 'HR000U']"
+            ]
+          },
+          {
+            "event_key": "20210410070753",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210410070753_dPMF1",
+              "20210410070753_CwvrO"
+            ],
+            "station_strings": [
+              "['CA0009', 'CA000P']",
+              "['CA000C', 'CA000D']"
+            ]
+          },
+          {
+            "event_key": "20210424023835",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20210424023835_LuP9I",
+              "20210424023835_tDc7T"
+            ],
+            "station_strings": [
+              "['HR0004', 'HR001Q', 'HR001S']",
+              "['UK000S', 'UK001Y']"
+            ]
+          }
+        ],
+        "raw_month_rows": 9655,
+        "quality_sporadic_rows": 7883
+      },
+      "2022": {
+        "before": 12733,
+        "after": 12229,
+        "removed": 504,
+        "duplicate_groups": 486,
+        "examples": [
+          {
+            "event_key": "20220425010722",
+            "solutions": 4,
+            "trajectory_ids": [
+              "20220425010722_Hpq0B",
+              "20220425010722_gTqqv",
+              "20220425010722_qN5kN",
+              "20220425010722_12bg2"
+            ],
+            "station_strings": [
+              "['ES000C', 'ES000F']",
+              "['UK0042', 'UK004M']",
+              "['UK0042', 'UK004M']",
+              "['ES000C', 'ES000F', 'ES000N']"
+            ]
+          },
+          {
+            "event_key": "20220406083907",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220406083907_i2vto",
+              "20220406083907_pE86d",
+              "20220406083907_11Uym"
+            ],
+            "station_strings": [
+              "['USL002', 'USL003', 'USL00B', 'USL00D', 'USL00E']",
+              "['USL00J', 'USL00P']",
+              "['USL002', 'USL003', 'USL007', 'USL00D', 'USL00E']"
+            ]
+          },
+          {
+            "event_key": "20220408040953",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220408040953_AxOmw",
+              "20220408040953_uBnUa",
+              "20220408040953_3ST2o"
+            ],
+            "station_strings": [
+              "['USL002', 'USL003', 'USL00J', 'USL00P', 'USL00Q']",
+              "['USL002', 'USL003', 'USL00Q']",
+              "['USL00J', 'USL00P']"
+            ]
+          },
+          {
+            "event_key": "20220403023955",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220403023955_cOo4r",
+              "20220403023955_XjN4O",
+              "20220403023955_2dUnM"
+            ],
+            "station_strings": [
+              "['IE0004', 'UK0050']",
+              "['UK000S', 'UK001Z', 'UK0027', 'UK002Z', 'UK0030', 'UK0031', 'UK0033', 'UK003F', 'UK003G', 'UK003R', 'UK003T', 'UK003X', 'UK0067']",
+              "['IE0004', 'UK000S', 'UK001Z', 'UK0027', 'UK002Z', 'UK0030', 'UK0031', 'UK0033', 'UK003F', 'UK003G', 'UK003R', 'UK003T', 'UK003X', 'UK0050', 'UK0067']"
+            ]
+          },
+          {
+            "event_key": "20220406033847",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220406033847_w2HCj",
+              "20220406033847_nLV0y",
+              "20220406033847_s82pX"
+            ],
+            "station_strings": [
+              "['UK000J', 'UK001Y']",
+              "['ES0002', 'ES0003']",
+              "['USL001', 'USL005', 'USL008', 'USL00C', 'USL00G']"
+            ]
+          },
+          {
+            "event_key": "20220408004812",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220408004812_xXhBJ",
+              "20220408004812_Jzg3O",
+              "20220408004812_L13yg"
+            ],
+            "station_strings": [
+              "['IE0004', 'UK002S', 'UK002U']",
+              "['UK000U', 'UK001L', 'UK001N', 'UK001Y', 'UK0035', 'UK003B', 'UK003R', 'UK003T', 'UK003U', 'UK004D', 'UK004N', 'UK0050', 'UK006L']",
+              "['IE0004', 'UK000U', 'UK001L', 'UK001Y', 'UK002S', 'UK002U', 'UK0035', 'UK003B', 'UK003R', 'UK003T', 'UK003U', 'UK004D', 'UK004N', 'UK0050', 'UK006L']"
+            ]
+          },
+          {
+            "event_key": "20220408204004",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220408204004_qIGiH",
+              "20220408204004_YaBWw",
+              "20220408204004_I9oHd"
+            ],
+            "station_strings": [
+              "['UK002S', 'UK003U']",
+              "['UK004N', 'UK005V']",
+              "['UK003U', 'UK004N', 'UK005V']"
+            ]
+          },
+          {
+            "event_key": "20220409000955",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220409000955_WgxI4",
+              "20220409000955_hQ7qM",
+              "20220409000955_VoR0O"
+            ],
+            "station_strings": [
+              "['UK001Y', 'UK002Z', 'UK003B', 'UK005H', 'UK006L']",
+              "['UK001Y', 'UK002Z', 'UK003B', 'UK005H', 'UK006L']",
+              "['UK002U', 'UK003U']"
+            ]
+          },
+          {
+            "event_key": "20220405231519",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220405231519_NGqAN",
+              "20220405231519_8hJXk",
+              "20220405231519_spT96"
+            ],
+            "station_strings": [
+              "['HR000K', 'IT0001', 'SI0001']",
+              "['HR000K', 'HR000P', 'SI0001']",
+              "['HR0007', 'HR001A']"
+            ]
+          },
+          {
+            "event_key": "20220424090841",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220424090841_2Dnye",
+              "20220424090841_gUq2H",
+              "20220424090841_OU4hY"
+            ],
+            "station_strings": [
+              "['US0002', 'US000C', 'US000J']",
+              "['US0002', 'US0005', 'US000C', 'US000J']",
+              "['US0002', 'US000A', 'US000C', 'US000J']"
+            ]
+          },
+          {
+            "event_key": "20220412005022",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220412005022_RkgPE",
+              "20220412005022_WyhZO",
+              "20220412005022_BLfSt"
+            ],
+            "station_strings": [
+              "['HR0001', 'HR0004', 'HR000Q', 'HR001M']",
+              "['HR0001', 'HR0004', 'HR000Q']",
+              "['HR001M', 'HR001S', 'IT0001']"
+            ]
+          },
+          {
+            "event_key": "20220408230416",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220408230416_hVPJU",
+              "20220408230416_Scupa",
+              "20220408230416_FYGSF"
+            ],
+            "station_strings": [
+              "['UK000X', 'UK0050']",
+              "['UK000X', 'UK003U', 'UK0050']",
+              "['UK000S', 'UK0031', 'UK0033', 'UK003F', 'UK003L', 'UK003U', 'UK004N', 'UK005S', 'UK005V', 'UK0067']"
+            ]
+          },
+          {
+            "event_key": "20220430091438",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220430091438_O9ypJ",
+              "20220430091438_7Kmlu",
+              "20220430091438_4NzEm"
+            ],
+            "station_strings": [
+              "['USL001', 'USL00C', 'USL00G']",
+              "['USL005', 'USL00C', 'USL00G']",
+              "['USL00C', 'USL00F']"
+            ]
+          },
+          {
+            "event_key": "20220408235405",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220408235405_awh0I",
+              "20220408235405_9hXq9",
+              "20220408235405_tmddN"
+            ],
+            "station_strings": [
+              "['UK001P', 'UK002T']",
+              "['UK001P', 'UK001Y', 'UK002T', 'UK003L']",
+              "['UK001Y', 'UK003L', 'UK003X']"
+            ]
+          },
+          {
+            "event_key": "20220404051011",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220404051011_ht2wG",
+              "20220404051011_2v2zl",
+              "20220404051011_tU5p1"
+            ],
+            "station_strings": [
+              "['USL00P', 'USL012']",
+              "['USL00P', 'USL012']",
+              "['USL00A', 'USL00E', 'USL00J']"
+            ]
+          },
+          {
+            "event_key": "20220409013623",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220409013623_vExPp",
+              "20220409013623_ggHgb",
+              "20220409013623_b8y2G"
+            ],
+            "station_strings": [
+              "['UK002S', 'UK003U']",
+              "['UK002S', 'UK003U']",
+              "['UK003T', 'UK003U', 'UK005V']"
+            ]
+          },
+          {
+            "event_key": "20220403030605",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20220403030605_OkaJg",
+              "20220403030605_zVXSf",
+              "20220403030605_Fu4PU"
+            ],
+            "station_strings": [
+              "['IE0004', 'UK002V']",
+              "['IE0004', 'UK001L', 'UK001X', 'UK002V', 'UK003F', 'UK0042', 'UK004M', 'UK0050', 'UK0067']",
+              "['UK001X', 'UK003F', 'UK0042', 'UK004M', 'UK0067']"
+            ]
+          },
+          {
+            "event_key": "20220401215824",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20220401215824_pHctL",
+              "20220401215824_ib6hl"
+            ],
+            "station_strings": [
+              "['NL0001', 'UK000C', 'UK001Y', 'UK002F', 'UK0031', 'UK0041']",
+              "['NL0001', 'UK000F', 'UK001Y']"
+            ]
+          },
+          {
+            "event_key": "20220408104348",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20220408104348_jLb33",
+              "20220408104348_ymQfh"
+            ],
+            "station_strings": [
+              "['US0002', 'US0004', 'US0005', 'US000A', 'US000M']",
+              "['US0002', 'US0004', 'US0005', 'US000A', 'US000N']"
+            ]
+          },
+          {
+            "event_key": "20220405040605",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20220405040605_BngGl",
+              "20220405040605_Fz6hI"
+            ],
+            "station_strings": [
+              "['US000U', 'USL004', 'USL00M']",
+              "['USL008', 'USL00C', 'USL00F']"
+            ]
+          }
+        ],
+        "raw_month_rows": 15656,
+        "quality_sporadic_rows": 12733
+      },
+      "2023": {
+        "before": 18432,
+        "after": 18204,
+        "removed": 228,
+        "duplicate_groups": 224,
+        "examples": [
+          {
+            "event_key": "20230426173002",
+            "solutions": 4,
+            "trajectory_ids": [
+              "20230426173002_LbGUi",
+              "20230426173002_bCvN1",
+              "20230426173002_J5ZGo",
+              "20230426173002_WX4ds"
+            ],
+            "station_strings": [
+              "['NZ0015', 'NZ0020']",
+              "['KR0007', 'KR0018']",
+              "['KR0001', 'KR0002', 'KR000A', 'KR000H', 'KR000Z', 'KR0010', 'KR0012']",
+              "['NZ0002', 'NZ001N']"
+            ]
+          },
+          {
+            "event_key": "20230422072503",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20230422072503_uRB2h",
+              "20230422072503_W3Dql",
+              "20230422072503_1bdDz"
+            ],
+            "station_strings": [
+              "['NZ0003', 'NZ000K', 'NZ000N', 'NZ000V', 'NZ0020']",
+              "['BR000J', 'BR0013']",
+              "['NZ0009', 'NZ002E']"
+            ]
+          },
+          {
+            "event_key": "20230422101007",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20230422101007_QgSoR",
+              "20230422101007_uFasw",
+              "20230422101007_39Z5U"
+            ],
+            "station_strings": [
+              "['USL002', 'USL006', 'USL00G', 'USL00M']",
+              "['NZ000D', 'NZ000K', 'NZ0020']",
+              "['NZ0009', 'NZ0011']"
+            ]
+          },
+          {
+            "event_key": "20230420020733",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230420020733_xFyN6",
+              "20230420020733_GPeRr"
+            ],
+            "station_strings": [
+              "['BE000B', 'BE000C']",
+              "['UK001N', 'UK001Q', 'UK003V']"
+            ]
+          },
+          {
+            "event_key": "20230415033903",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230415033903_JtPAn",
+              "20230415033903_Qk2A1"
+            ],
+            "station_strings": [
+              "['CA000F', 'CA000R']",
+              "['ES000E', 'ES000T', 'ES000V']"
+            ]
+          },
+          {
+            "event_key": "20230404015336",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230404015336_Zpkau",
+              "20230404015336_mAcKk"
+            ],
+            "station_strings": [
+              "['UK000R', 'UK0032']",
+              "['UK005H', 'UK005M', 'UK006Z']"
+            ]
+          },
+          {
+            "event_key": "20230413221835",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230413221835_sM99M",
+              "20230413221835_XaeRA"
+            ],
+            "station_strings": [
+              "['BE000C', 'FR000X']",
+              "['BE0001', 'BE0005', 'BE0008', 'BE000B', 'BE000G']"
+            ]
+          },
+          {
+            "event_key": "20230416164813",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230416164813_li84n",
+              "20230416164813_53Mn6"
+            ],
+            "station_strings": [
+              "['AU000B', 'AU000Q', 'AU000S']",
+              "['NZ000D', 'NZ000M', 'NZ001Z', 'NZ0020']"
+            ]
+          },
+          {
+            "event_key": "20230426194320",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230426194320_EEjJf",
+              "20230426194320_c43zN"
+            ],
+            "station_strings": [
+              "['KR0008', 'KR000L']",
+              "['KR0002', 'KR0005']"
+            ]
+          },
+          {
+            "event_key": "20230422115149",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230422115149_pslmZ",
+              "20230422115149_LRWRa"
+            ],
+            "station_strings": [
+              "['NZ0009', 'NZ0011']",
+              "['NZ0003', 'NZ000K', 'NZ000Q', 'NZ0020']"
+            ]
+          },
+          {
+            "event_key": "20230404013948",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230404013948_HX4bE",
+              "20230404013948_nAXGQ"
+            ],
+            "station_strings": [
+              "['DE000R', 'FR0011']",
+              "['DE0002', 'DE0007']"
+            ]
+          },
+          {
+            "event_key": "20230411105559",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230411105559_FDFVe",
+              "20230411105559_b1AxA"
+            ],
+            "station_strings": [
+              "['US000U', 'USL001', 'USL002', 'USL008', 'USL00C', 'USL00M', 'USL01D']",
+              "['US0002', 'US0003', 'US000C', 'US000J', 'US000K']"
+            ]
+          },
+          {
+            "event_key": "20230426203842",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230426203842_JUHIk",
+              "20230426203842_N7JIT"
+            ],
+            "station_strings": [
+              "['BE0005', 'BE000A']",
+              "['NL000M', 'UK0034']"
+            ]
+          },
+          {
+            "event_key": "20230401194510",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230401194510_WT1HL",
+              "20230401194510_AP7T6"
+            ],
+            "station_strings": [
+              "['AU0002', 'AU0003']",
+              "['AU0007', 'AU0009', 'AU0010', 'AU0011']"
+            ]
+          },
+          {
+            "event_key": "20230422114159",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230422114159_eXA2l",
+              "20230422114159_TNlNr"
+            ],
+            "station_strings": [
+              "['AU0003', 'AU001B']",
+              "['US000U', 'USL00C', 'USL00G', 'USL00M']"
+            ]
+          },
+          {
+            "event_key": "20230413225344",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230413225344_vK8Jb",
+              "20230413225344_yfDSy"
+            ],
+            "station_strings": [
+              "['BE0009', 'BE000C']",
+              "['BE000B', 'BE000G']"
+            ]
+          },
+          {
+            "event_key": "20230420160239",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230420160239_jBTan",
+              "20230420160239_akcJ6"
+            ],
+            "station_strings": [
+              "['KR0001', 'KR000H']",
+              "['KR0002', 'KR000A', 'KR000Z']"
+            ]
+          },
+          {
+            "event_key": "20230420020314",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230420020314_vVylh",
+              "20230420020314_lgKBw"
+            ],
+            "station_strings": [
+              "['BE000E', 'FR000Y']",
+              "['UK002L', 'UK0057', 'UK0066', 'UK007J', 'UK007Z']"
+            ]
+          },
+          {
+            "event_key": "20230413230127",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230413230127_mtoFV",
+              "20230413230127_0qMeB"
+            ],
+            "station_strings": [
+              "['BE000C', 'FR000X']",
+              "['BE0001', 'BE0003', 'BE0005', 'BE0008', 'BE000B', 'BE000G', 'UK004E']"
+            ]
+          },
+          {
+            "event_key": "20230423154550",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20230423154550_BGT0o",
+              "20230423154550_n5drJ"
+            ],
+            "station_strings": [
+              "['MY0005', 'MY0006']",
+              "['MY0002', 'MY000B']"
+            ]
+          }
+        ],
+        "raw_month_rows": 22713,
+        "quality_sporadic_rows": 18432
+      },
+      "2024": {
+        "before": 33191,
+        "after": 32424,
+        "removed": 767,
+        "duplicate_groups": 756,
+        "examples": [
+          {
+            "event_key": "20240402085411",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20240402085411_E4cSy",
+              "20240402085411_FbgiE",
+              "20240402085411_PFaCj"
+            ],
+            "station_strings": [
+              "['CA000Y', 'CA002L']",
+              "['US0003', 'US0007']",
+              "['US0001', 'US000J', 'US000L', 'US000P']"
+            ]
+          },
+          {
+            "event_key": "20240406150146",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20240406150146_LtNQc",
+              "20240406150146_95LsH",
+              "20240406150146_mbltC"
+            ],
+            "station_strings": [
+              "['NZ0002', 'NZ000F', 'NZ001B', 'NZ001N', 'NZ001V', 'NZ0026', 'NZ002C', 'NZ0032', 'NZ0035', 'NZ003F']",
+              "['NZ0012', 'NZ002A']",
+              "['NZ0009', 'NZ000D', 'NZ0019', 'NZ001C', 'NZ002F', 'NZ003V']"
+            ]
+          },
+          {
+            "event_key": "20240428143236",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20240428143236_s9rgU",
+              "20240428143236_ZGN8K",
+              "20240428143236_5JAay"
+            ],
+            "station_strings": [
+              "['AU000C', 'AU002A']",
+              "['NZ0002', 'NZ000W', 'NZ0012', 'NZ0018', 'NZ001A', 'NZ001N', 'NZ002B', 'NZ002C', 'NZ0038', 'NZ003B', 'NZ003C']",
+              "['NZ0002', 'NZ0012', 'NZ001A', 'NZ002C', 'NZ0035', 'NZ0038', 'NZ003B', 'NZ003C']"
+            ]
+          },
+          {
+            "event_key": "20240415160441",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20240415160441_76DRi",
+              "20240415160441_hJmBk",
+              "20240415160441_5ledm"
+            ],
+            "station_strings": [
+              "['AU001W', 'AU0029', 'AU002C']",
+              "['AU0030', 'AU003E']",
+              "['NZ002S', 'NZ002V']"
+            ]
+          },
+          {
+            "event_key": "20240401182519",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20240401182519_bhun0",
+              "20240401182519_fWtDj",
+              "20240401182519_NF2iB"
+            ],
+            "station_strings": [
+              "['AU000X', 'AU0010', 'AU001F']",
+              "['KR0001', 'KR000H']",
+              "['AU000C', 'AU001X', 'AU001Y', 'AU002A']"
+            ]
+          },
+          {
+            "event_key": "20240427105953",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20240427105953_p2i1R",
+              "20240427105953_kdSdn",
+              "20240427105953_X3LQq"
+            ],
+            "station_strings": [
+              "['NZ0017', 'NZ0034', 'NZ004M']",
+              "['NZ0018', 'NZ001A', 'NZ002B']",
+              "['NZ0018', 'NZ002B', 'NZ0035', 'NZ0038']"
+            ]
+          },
+          {
+            "event_key": "20240406134704",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20240406134704_hvy35",
+              "20240406134704_a7QaI",
+              "20240406134704_3Gv2e"
+            ],
+            "station_strings": [
+              "['NZ001X', 'NZ0035', 'NZ003F', 'NZ003U']",
+              "['NZ0012', 'NZ002A']",
+              "['NZ0022', 'NZ003T']"
+            ]
+          },
+          {
+            "event_key": "20240420201856",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20240420201856_ULa7D",
+              "20240420201856_or3bC",
+              "20240420201856_gm0gi"
+            ],
+            "station_strings": [
+              "['AU001B', 'AU001S']",
+              "['AU000G', 'AU001W', 'AU002B']",
+              "['AU001E', 'AU002F']"
+            ]
+          },
+          {
+            "event_key": "20240418013242",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20240418013242_TDwOj",
+              "20240418013242_TwelE",
+              "20240418013242_d3UFn"
+            ],
+            "station_strings": [
+              "['UK000H', 'UK0025', 'UK002J', 'UK003C', 'UK006H', 'UK006S', 'UK008E', 'UK008Q']",
+              "['UK00A2', 'UK00AU', 'UK00B5']",
+              "['UK000J', 'UK002F', 'UK003T', 'UK003X', 'UK005E', 'UK005M', 'UK006G', 'UK006L', 'UK0098', 'UK00A0', 'UK00A3', 'UK00AT', 'UK00C2']"
+            ]
+          },
+          {
+            "event_key": "20240429103040",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20240429103040_d1o24",
+              "20240429103040_J2Q0c",
+              "20240429103040_t8LU0"
+            ],
+            "station_strings": [
+              "['NZ002P', 'NZ002W', 'NZ002X', 'NZ0038']",
+              "['USL004', 'USL008', 'USL01C']",
+              "['NZ0022', 'NZ002C', 'NZ002D', 'NZ0030']"
+            ]
+          },
+          {
+            "event_key": "20240401164333",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20240401164333_ZVSj7",
+              "20240401164333_sZ7yJ",
+              "20240401164333_nPSN3"
+            ],
+            "station_strings": [
+              "['AU000G', 'AU001W', 'AU002B']",
+              "['AU001S', 'AU003C']",
+              "['AU001E', 'AU0028']"
+            ]
+          },
+          {
+            "event_key": "20240406164406",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20240406164406_SiP2X",
+              "20240406164406_fLS8s"
+            ],
+            "station_strings": [
+              "['AU001W', 'AU002B']",
+              "['AU001S', 'AU0030']"
+            ]
+          },
+          {
+            "event_key": "20240416165524",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20240416165524_FJNJE",
+              "20240416165524_eM90o"
+            ],
+            "station_strings": [
+              "['AU000U', 'AU0042']",
+              "['NZ001G', 'NZ001L', 'NZ0036', 'NZ003R', 'NZ003W', 'NZ0041']"
+            ]
+          },
+          {
+            "event_key": "20240426134824",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20240426134824_34L22",
+              "20240426134824_mJRwv"
+            ],
+            "station_strings": [
+              "['NZ0002', 'NZ0008', 'NZ002A']",
+              "['NZ003B', 'NZ003C', 'NZ003U', 'NZ004H']"
+            ]
+          },
+          {
+            "event_key": "20240429103229",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20240429103229_B3YXJ",
+              "20240429103229_I3o4H"
+            ],
+            "station_strings": [
+              "['AU001E', 'AU0028']",
+              "['NZ000S', 'NZ0011']"
+            ]
+          },
+          {
+            "event_key": "20240426134403",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20240426134403_D9m9w",
+              "20240426134403_GSfmU"
+            ],
+            "station_strings": [
+              "['NZ0004', 'NZ001Q', 'NZ0022', 'NZ0023', 'NZ0037']",
+              "['NZ0017', 'NZ001J', 'NZ0024', 'NZ0037', 'NZ004M']"
+            ]
+          },
+          {
+            "event_key": "20240403145528",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20240403145528_D6IcB",
+              "20240403145528_M35Up"
+            ],
+            "station_strings": [
+              "['NZ002N', 'NZ003R', 'NZ0042']",
+              "['NZ0014', 'NZ001R']"
+            ]
+          },
+          {
+            "event_key": "20240421203823",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20240421203823_9t7Xa",
+              "20240421203823_29IBc"
+            ],
+            "station_strings": [
+              "['UK009G', 'UK009K']",
+              "['UK0006', 'UK0009', 'UK001E', 'UK001Z', 'UK002J', 'UK003Z', 'UK007L', 'UK007V', 'UK008W', 'UK00A5', 'UK00BW']"
+            ]
+          },
+          {
+            "event_key": "20240429102415",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20240429102415_IIU0F",
+              "20240429102415_RD6Xe"
+            ],
+            "station_strings": [
+              "['US0021', 'USL00Z']",
+              "['USL004', 'USL008', 'USL014']"
+            ]
+          },
+          {
+            "event_key": "20240417204804",
+            "solutions": 2,
+            "trajectory_ids": [
+              "20240417204804_e9IQ4",
+              "20240417204804_AfZmv"
+            ],
+            "station_strings": [
+              "['UK00A5', 'UK00AE', 'UK00B1', 'UK00B2']",
+              "['UK000S', 'UK002W', 'UK003X', 'UK007L', 'UK0084', 'UK009G']"
+            ]
+          }
+        ],
+        "raw_month_rows": 38029,
+        "quality_sporadic_rows": 33191
+      },
+      "2025": {
+        "before": 46875,
+        "after": 43927,
+        "removed": 2948,
+        "duplicate_groups": 2837,
+        "examples": [
+          {
+            "event_key": "20250424173815",
+            "solutions": 4,
+            "trajectory_ids": [
+              "20250424173815_5HgNh",
+              "20250424173815_Nzsx4",
+              "20250424173815_T90Bi",
+              "20250424173815_lVx2u"
+            ],
+            "station_strings": [
+              "['AU001S', 'AU001W']",
+              "['NZ001N', 'NZ002K']",
+              "['AU0002', 'AU0010', 'AU001P']",
+              "['NZ0018', 'NZ001A', 'NZ0022', 'NZ0023', 'NZ002X', 'NZ0037', 'NZ0038', 'NZ003C', 'NZ0040']"
+            ]
+          },
+          {
+            "event_key": "20250406032832",
+            "solutions": 4,
+            "trajectory_ids": [
+              "20250406032832_w4m21",
+              "20250406032832_1zDN2",
+              "20250406032832_C8yQw",
+              "20250406032832_jwKHj"
+            ],
+            "station_strings": [
+              "['BE000D', 'FR000X']",
+              "['DE000K', 'NL000P']",
+              "['BE0005', 'BE000E', 'NL0010']",
+              "['USL004', 'USL00D']"
+            ]
+          },
+          {
+            "event_key": "20250417002038",
+            "solutions": 4,
+            "trajectory_ids": [
+              "20250417002038_dLBTy",
+              "20250417002038_inqHq",
+              "20250417002038_b8KGi",
+              "20250417002038_6dZJE"
+            ],
+            "station_strings": [
+              "['UK000T', 'UK0060']",
+              "['UK0009', 'UK000D', 'UK000H', 'UK000T', 'UK002J']",
+              "['UK00BK', 'UK00BW']",
+              "['UK0006', 'UK001S', 'UK007Q', 'UK008X', 'UK009K', 'UK00A5', 'UK00AP']"
+            ]
+          },
+          {
+            "event_key": "20250405031541",
+            "solutions": 4,
+            "trajectory_ids": [
+              "20250405031541_w6ODF",
+              "20250405031541_J3s3c",
+              "20250405031541_KYnLn",
+              "20250405031541_oWQwP"
+            ],
+            "station_strings": [
+              "['BE000D', 'BE000P']",
+              "['UK0006', 'UK001M', 'UK001Z', 'UK0062', 'UK0067', 'UK007A', 'UK007P', 'UK0084', 'UK008B']",
+              "['IE0004', 'UK0020', 'UK008X', 'UK009G', 'UK009K', 'UK009P', 'UK009S', 'UK00B0', 'UK00BK', 'UK00BL']",
+              "['IE0004', 'UK0020', 'UK008X', 'UK009G', 'UK009K', 'UK009P', 'UK009S', 'UK00B0', 'UK00BA', 'UK00BK', 'UK00BL', 'UK00BW', 'UK00C1']"
+            ]
+          },
+          {
+            "event_key": "20250424104227",
+            "solutions": 4,
+            "trajectory_ids": [
+              "20250424104227_3eMOf",
+              "20250424104227_s8FXs",
+              "20250424104227_imeM9",
+              "20250424104227_LZJXV"
+            ],
+            "station_strings": [
+              "['NZ0035', 'NZ004Y']",
+              "['US000U', 'US005A', 'USL00F', 'USL00L', 'USL00M']",
+              "['US000U', 'US005A', 'USL00C', 'USL00F', 'USL00L', 'USL00M']",
+              "['NZ0012', 'NZ003U']"
+            ]
+          },
+          {
+            "event_key": "20250423161943",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250423161943_GMrS4",
+              "20250423161943_YF4DW",
+              "20250423161943_txWNE"
+            ],
+            "station_strings": [
+              "['NZ002P', 'NZ0037']",
+              "['NZ0022', 'NZ002J', 'NZ002W', 'NZ0030', 'NZ003A']",
+              "['NZ002K', 'NZ004B']"
+            ]
+          },
+          {
+            "event_key": "20250423142144",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250423142144_4mxoH",
+              "20250423142144_mHIJe",
+              "20250423142144_qdkcP"
+            ],
+            "station_strings": [
+              "['NZ0023', 'NZ003T', 'NZ0040']",
+              "['NZ0036', 'NZ0041']",
+              "['NZ001L', 'NZ0033', 'NZ003H']"
+            ]
+          },
+          {
+            "event_key": "20250404030408",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250404030408_ObNOP",
+              "20250404030408_hr8wf",
+              "20250404030408_wT3mx"
+            ],
+            "station_strings": [
+              "['BE0014', 'UK0041']",
+              "['BE0014', 'UK0034', 'UK0035']",
+              "['BE0014', 'UK0034', 'UK0035', 'UK009J', 'UK00AN', 'UK00AT']"
+            ]
+          },
+          {
+            "event_key": "20250429191617",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250429191617_WK9Cf",
+              "20250429191617_143ER",
+              "20250429191617_JQXZi"
+            ],
+            "station_strings": [
+              "['KR0004', 'KR001P', 'KR0020', 'KR0025', 'KR002C', 'KR002H', 'KR002Q']",
+              "['KR0006', 'KR001A']",
+              "['KR0002', 'KR001A', 'KR001E', 'KR001F', 'KR0023', 'KR002F', 'KR002G', 'KR003C', 'KR003S']"
+            ]
+          },
+          {
+            "event_key": "20250407030011",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250407030011_szXnL",
+              "20250407030011_5s30P",
+              "20250407030011_sAch6"
+            ],
+            "station_strings": [
+              "['UK000D', 'UK000H', 'UK000T', 'UK002J', 'UK006S', 'UK008Q', 'UK00AU', 'UK00B5']",
+              "['DE000X', 'DE0013']",
+              "['DE000B', 'NL000D', 'NL000Q']"
+            ]
+          },
+          {
+            "event_key": "20250407130440",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250407130440_74sOh",
+              "20250407130440_7la32",
+              "20250407130440_SsSwi"
+            ],
+            "station_strings": [
+              "['NZ002C', 'NZ002K']",
+              "['NZ0013', 'NZ001X', 'NZ004E', 'NZ004Y']",
+              "['NZ0012', 'NZ0017', 'NZ0030', 'NZ004D']"
+            ]
+          },
+          {
+            "event_key": "20250417000647",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250417000647_57u4I",
+              "20250417000647_LmEpX",
+              "20250417000647_Pw257"
+            ],
+            "station_strings": [
+              "['UK0067', 'UK009P']",
+              "['UK001L', 'UK0029', 'UK0050']",
+              "['UK00BA', 'UK00BK', 'UK00CQ']"
+            ]
+          },
+          {
+            "event_key": "20250405040114",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250405040114_uScbq",
+              "20250405040114_MQ0af",
+              "20250405040114_6omP7"
+            ],
+            "station_strings": [
+              "['UK000H', 'UK000T']",
+              "['UK0025', 'UK00AB']",
+              "['UK003X', 'UK0099', 'UK00AE', 'UK00BF', 'UK00C2']"
+            ]
+          },
+          {
+            "event_key": "20250412151411",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250412151411_GQD2w",
+              "20250412151411_K6fOa",
+              "20250412151411_OTall"
+            ],
+            "station_strings": [
+              "['NZ001P', 'NZ002L', 'NZ003R', 'NZ004L', 'NZ004T']",
+              "['NZ000Z', 'NZ001J', 'NZ002R', 'NZ003Y']",
+              "['NZ000Y', 'NZ001S']"
+            ]
+          },
+          {
+            "event_key": "20250420201113",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250420201113_lOuZj",
+              "20250420201113_lHry9",
+              "20250420201113_2Jt2E"
+            ],
+            "station_strings": [
+              "['AU000D', 'AU002B']",
+              "['AU001B', 'AU001W']",
+              "['AU0002', 'AU0030']"
+            ]
+          },
+          {
+            "event_key": "20250423143013",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250423143013_tUQn0",
+              "20250423143013_OAGJP",
+              "20250423143013_QKGMG"
+            ],
+            "station_strings": [
+              "['NZ001P', 'NZ004L', 'NZ004N']",
+              "['NZ000F', 'NZ000G', 'NZ000T', 'NZ0015', 'NZ0027', 'NZ002T']",
+              "['NZ004E', 'NZ005M']"
+            ]
+          },
+          {
+            "event_key": "20250404223127",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250404223127_D533T",
+              "20250404223127_oKdVG",
+              "20250404223127_rIkg6"
+            ],
+            "station_strings": [
+              "['UK0099', 'UK00CC']",
+              "['UK0099', 'UK009L', 'UK00A4', 'UK00AL', 'UK00AT', 'UK00B1', 'UK00C2']",
+              "['UK000J', 'UK002F', 'UK003X', 'UK005V', 'UK006L', 'UK006P', 'UK007A']"
+            ]
+          },
+          {
+            "event_key": "20250429014656",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250429014656_KnHKE",
+              "20250429014656_Oo0aX",
+              "20250429014656_n4Lwm"
+            ],
+            "station_strings": [
+              "['UK003N', 'UK0045', 'UK005P', 'UK0079', 'UK007U', 'UK008T', 'UK009X', 'UK00AF']",
+              "['HU0003', 'SK0006']",
+              "['UK000T', 'UK008X']"
+            ]
+          },
+          {
+            "event_key": "20250420160959",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250420160959_Vx9RD",
+              "20250420160959_wPy2F",
+              "20250420160959_g18Bb"
+            ],
+            "station_strings": [
+              "['AU000F', 'AU000Y']",
+              "['AU000G', 'AU001Y']",
+              "['AU000Z', 'AU003H']"
+            ]
+          },
+          {
+            "event_key": "20250417210807",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20250417210807_60xi1",
+              "20250417210807_srZ0j",
+              "20250417210807_NFgEI"
+            ],
+            "station_strings": [
+              "['UK000S', 'UK003X', 'UK004D', 'UK0099']",
+              "['UK002F', 'UK003X', 'UK0041', 'UK0049', 'UK007R', 'UK008B', 'UK0092', 'UK00A5', 'UK00AE', 'UK00AL', 'UK00B1', 'UK00B2', 'UK00BH', 'UK00CC']",
+              "['UK000S', 'UK003X', 'UK0041', 'UK004D', 'UK004G', 'UK00BH']"
+            ]
+          }
+        ],
+        "raw_month_rows": 55227,
+        "quality_sporadic_rows": 46875
+      },
+      "2026": {
+        "before": 52506,
+        "after": 50005,
+        "removed": 2501,
+        "duplicate_groups": 2416,
+        "examples": [
+          {
+            "event_key": "20260409151804",
+            "solutions": 4,
+            "trajectory_ids": [
+              "20260409151804_c0i2K",
+              "20260409151804_vlMFB",
+              "20260409151804_I3o39",
+              "20260409151804_V2g3I"
+            ],
+            "station_strings": [
+              "['NZ005G', 'NZ005R']",
+              "['NZ0004', 'NZ001Q', 'NZ004H']",
+              "['NZ0004', 'NZ002D', 'NZ004H']",
+              "['AU0002', 'AU001A', 'AU001S']"
+            ]
+          },
+          {
+            "event_key": "20260409031006",
+            "solutions": 4,
+            "trajectory_ids": [
+              "20260409031006_KRJPG",
+              "20260409031006_kg8Dg",
+              "20260409031006_XKgsT",
+              "20260409031006_w5aMV"
+            ],
+            "station_strings": [
+              "['UK004D', 'UK0099']",
+              "['UK00AL', 'UK00AT']",
+              "['UK005M', 'UK0070']",
+              "['CA0037', 'CAWEC6']"
+            ]
+          },
+          {
+            "event_key": "20260422133600",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260422133600_WSNKA",
+              "20260422133600_3oxFz",
+              "20260422133600_mS3qX"
+            ],
+            "station_strings": [
+              "['NZ0040', 'NZ004T']",
+              "['NZ001L', 'NZ0033', 'NZ0041', 'NZ004U', 'NZ005E']",
+              "['NZ001L', 'NZ0041', 'NZ004U', 'NZ005E', 'NZ005Z']"
+            ]
+          },
+          {
+            "event_key": "20260430111917",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260430111917_sgqc1",
+              "20260430111917_e363M",
+              "20260430111917_HplcZ"
+            ],
+            "station_strings": [
+              "['NZ0037', 'NZ0059']",
+              "['NZ000Y', 'NZ000Z']",
+              "['NZ001J', 'NZ002L', 'NZ003A', 'NZ003H']"
+            ]
+          },
+          {
+            "event_key": "20260412160735",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260412160735_OAZgC",
+              "20260412160735_wnHhG",
+              "20260412160735_kwGU8"
+            ],
+            "station_strings": [
+              "['NZ002J', 'NZ002X', 'NZ0040', 'NZ005C', 'NZ005U']",
+              "['NZ0009', 'NZ004R']",
+              "['NZ000M', 'NZ0020', 'NZ005N', 'NZ0063', 'NZ0068']"
+            ]
+          },
+          {
+            "event_key": "20260409171725",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260409171725_e2wjj",
+              "20260409171725_IGnfJ",
+              "20260409171725_ou17I"
+            ],
+            "station_strings": [
+              "['NZ0022', 'NZ005U']",
+              "['NZ0017', 'NZ0018', 'NZ002X', 'NZ0038']",
+              "['NZ0012', 'NZ0017', 'NZ0018', 'NZ002X', 'NZ0030', 'NZ0038']"
+            ]
+          },
+          {
+            "event_key": "20260428082341",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260428082341_vXJcp",
+              "20260428082341_WBsK8",
+              "20260428082341_bYd9T"
+            ],
+            "station_strings": [
+              "['NZ005L', 'NZ005Q', 'NZ006M']",
+              "['NZ000Z', 'NZ0017', 'NZ001R', 'NZ002R', 'NZ003E', 'NZ003H', 'NZ004A']",
+              "['NZ000Y', 'NZ002D', 'NZ004A']"
+            ]
+          },
+          {
+            "event_key": "20260430172808",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260430172808_iQgng",
+              "20260430172808_AUzGG",
+              "20260430172808_wtNuV"
+            ],
+            "station_strings": [
+              "['NZ004L', 'NZ0059']",
+              "['NZ0042', 'NZ004T']",
+              "['NZ000Y', 'NZ000Z']"
+            ]
+          },
+          {
+            "event_key": "20260430111742",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260430111742_y4WwE",
+              "20260430111742_w8Dh5",
+              "20260430111742_eP3bb"
+            ],
+            "station_strings": [
+              "['NZ000Y', 'NZ000Z']",
+              "['NZ0017', 'NZ005E']",
+              "['NZ001S', 'NZ002L', 'NZ003E', 'NZ003H']"
+            ]
+          },
+          {
+            "event_key": "20260424010647",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260424010647_SmtTx",
+              "20260424010647_0mm6a",
+              "20260424010647_aIzOO"
+            ],
+            "station_strings": [
+              "['CZ000M', 'CZ000Y', 'CZ000Z', 'DE001B']",
+              "['UK0001', 'UK0022']",
+              "['DK0007', 'DK000K', 'DK000R', 'PL0005']"
+            ]
+          },
+          {
+            "event_key": "20260420013444",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260420013444_unZcb",
+              "20260420013444_SkHFy",
+              "20260420013444_OgxxZ"
+            ],
+            "station_strings": [
+              "['BE000L', 'FR0006', 'FR000Y']",
+              "['UK000H', 'UK000T', 'UK002Q', 'UK003Z', 'UK00A2', 'UK00A6', 'UK00AP', 'UK00B5', 'UK00CE']",
+              "['BE000V', 'DE0005']"
+            ]
+          },
+          {
+            "event_key": "20260430010727",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260430010727_AY28z",
+              "20260430010727_mITLb",
+              "20260430010727_ZXyvn"
+            ],
+            "station_strings": [
+              "['UK001H', 'UK004B', 'UK00DD']",
+              "['DE000M', 'DK000D']",
+              "['DK0003', 'DK000F', 'DK000G', 'DK000S']"
+            ]
+          },
+          {
+            "event_key": "20260407024542",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260407024542_BE3Lp",
+              "20260407024542_kacAH",
+              "20260407024542_Vs2BZ"
+            ],
+            "station_strings": [
+              "['DE0016', 'SK0005']",
+              "['NL000Q', 'NL001B']",
+              "['HR0004', 'HR000P', 'HR000V', 'HR001Z', 'HR002X']"
+            ]
+          },
+          {
+            "event_key": "20260415221005",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260415221005_vc9yY",
+              "20260415221005_lzX5L",
+              "20260415221005_neTHU"
+            ],
+            "station_strings": [
+              "['UK003D', 'UK0041', 'UK0049', 'UK007R', 'UK008B', 'UK0092', 'UK009J', 'UK00AT', 'UK00B2']",
+              "['BE0009', 'UK000F', 'UK0035']",
+              "['BE0014', 'IE0004', 'UK003X', 'UK005N', 'UK007B', 'UK00AT']"
+            ]
+          },
+          {
+            "event_key": "20260430174552",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260430174552_3Gpha",
+              "20260430174552_7XXdB",
+              "20260430174552_weKwS"
+            ],
+            "station_strings": [
+              "['NZ000Z', 'NZ001H']",
+              "['NZ003N', 'NZ004L']",
+              "['NZ001H', 'NZ003E', 'NZ0042', 'NZ004T']"
+            ]
+          },
+          {
+            "event_key": "20260415133228",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260415133228_h7pdn",
+              "20260415133228_1VhXc",
+              "20260415133228_Bat30"
+            ],
+            "station_strings": [
+              "['AU000Y', 'AU001Y']",
+              "['AU001S', 'AU001W']",
+              "['AU000G', 'AU000X', 'AU003H']"
+            ]
+          },
+          {
+            "event_key": "20260415142603",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260415142603_QRl4O",
+              "20260415142603_rZYav",
+              "20260415142603_bPaa9"
+            ],
+            "station_strings": [
+              "['NZ0009', 'NZ0069']",
+              "['KR000A', 'KR000N']",
+              "['KR0012', 'KR0036']"
+            ]
+          },
+          {
+            "event_key": "20260404031925",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260404031925_Zrm39",
+              "20260404031925_T5CM9",
+              "20260404031925_eGRRQ"
+            ],
+            "station_strings": [
+              "['UK003T', 'UK004D']",
+              "['UK0008', 'UK002Z']",
+              "['UK004B', 'UK0087', 'UK00AM', 'UK00C2', 'UK00CC']"
+            ]
+          },
+          {
+            "event_key": "20260409124640",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260409124640_3Hr6r",
+              "20260409124640_y2tng",
+              "20260409124640_cnVg2"
+            ],
+            "station_strings": [
+              "['NZ0015', 'NZ0021', 'NZ0051']",
+              "['NZ004E', 'NZ0065', 'NZ0069']",
+              "['NZ004E', 'NZ005M', 'NZ0065', 'NZ0069', 'NZ007B']"
+            ]
+          },
+          {
+            "event_key": "20260408000139",
+            "solutions": 3,
+            "trajectory_ids": [
+              "20260408000139_LshTK",
+              "20260408000139_pMD85",
+              "20260408000139_Ao3V3"
+            ],
+            "station_strings": [
+              "['LU0002', 'NL000Z']",
+              "['BE000K', 'BE000L', 'BE000Q']",
+              "['DE0016', 'SK0003']"
+            ]
+          }
+        ],
+        "raw_month_rows": 63041,
+        "quality_sporadic_rows": 52506
+      }
+    },
+    "global": {
+      "before": 101,
+      "after": 101,
+      "removed": 0,
+      "duplicate_groups": 0,
+      "examples": []
+    },
+    "rule": "one best-quality solution per 14-digit UTC prefix"
+  },
+  "yearly": {
+    "2019": {
+      "selected_count": 1,
+      "local_pool_count": 1,
+      "nights": 1,
+      "stations": 2,
+      "countries": 1,
+      "station_ids": [
+        "US0004",
+        "US0007"
+      ],
+      "country_codes": [
+        "US"
+      ],
+      "station_counts": {
+        "US0004": 1,
+        "US0007": 1
+      },
+      "country_counts": {
+        "US": 1
+      },
+      "night_counts": {
+        "2019-04-26 00:00:00+00:00": 1
+      },
+      "top_night_fraction": 1.0,
+      "top_station_fraction": 1.0,
+      "orbit": null,
+      "temporal_null": {
+        "p": 0.331,
+        "null_q99": 1.0,
+        "null_max": 1
+      },
+      "significant": false,
+      "jackknife": {
+        "night_min_members": 0,
+        "station_min_members": 0,
+        "minimum_retained_fraction": 0.0,
+        "passed": false
+      }
+    },
+    "2020": {
+      "selected_count": 4,
+      "local_pool_count": 4,
+      "nights": 3,
+      "stations": 7,
+      "countries": 2,
+      "station_ids": [
+        "HR0006",
+        "HR000U",
+        "US0004",
+        "US0005",
+        "US000C",
+        "US000H",
+        "US000M"
+      ],
+      "country_codes": [
+        "HR",
+        "US"
+      ],
+      "station_counts": {
+        "US000M": 2,
+        "US0005": 3,
+        "US000C": 1,
+        "HR0006": 1,
+        "HR000U": 1,
+        "US000H": 1,
+        "US0004": 1
+      },
+      "country_counts": {
+        "US": 3,
+        "HR": 1
+      },
+      "night_counts": {
+        "2020-04-26 00:00:00+00:00": 2,
+        "2020-04-27 00:00:00+00:00": 1,
+        "2020-04-30 00:00:00+00:00": 1
+      },
+      "top_night_fraction": 0.5,
+      "top_station_fraction": 0.75,
+      "orbit": {
+        "medoid": [
+          0.954172,
+          0.068336,
+          23.234583,
+          335.356949,
+          36.869517
+        ],
+        "median_d": 0.05532240494493595,
+        "q90_d": 0.10985086993645891
+      },
+      "temporal_null": {
+        "p": 0.011,
+        "null_q99": 3.019999999999982,
+        "null_max": 4
+      },
+      "significant": false,
+      "jackknife": {
+        "night_min_members": 2,
+        "station_min_members": 1,
+        "minimum_retained_fraction": 0.25,
+        "passed": false
+      }
+    },
+    "2021": {
+      "selected_count": 1,
+      "local_pool_count": 1,
+      "nights": 1,
+      "stations": 2,
+      "countries": 1,
+      "station_ids": [
+        "UK000R",
+        "UK001Y"
+      ],
+      "country_codes": [
+        "UK"
+      ],
+      "station_counts": {
+        "UK000R": 1,
+        "UK001Y": 1
+      },
+      "country_counts": {
+        "UK": 1
+      },
+      "night_counts": {
+        "2021-04-25 00:00:00+00:00": 1
+      },
+      "top_night_fraction": 1.0,
+      "top_station_fraction": 1.0,
+      "orbit": null,
+      "temporal_null": {
+        "p": 0.155,
+        "null_q99": 1.0,
+        "null_max": 1
+      },
+      "significant": false,
+      "jackknife": {
+        "night_min_members": 0,
+        "station_min_members": 0,
+        "minimum_retained_fraction": 0.0,
+        "passed": false
+      }
+    },
+    "2022": {
+      "selected_count": 10,
+      "local_pool_count": 11,
+      "nights": 4,
+      "stations": 27,
+      "countries": 5,
+      "station_ids": [
+        "BR000F",
+        "BR000Q",
+        "HR000G",
+        "HR000V",
+        "HR001H",
+        "HR0025",
+        "MX000B",
+        "MX000C",
+        "RU000M",
+        "RU0013",
+        "US000U",
+        "US0022",
+        "USL004",
+        "USL005",
+        "USL008",
+        "USL00A",
+        "USL00B",
+        "USL00C",
+        "USL00E",
+        "USL00G",
+        "USL00J",
+        "USL00M",
+        "USL00X",
+        "USL00Y",
+        "USL011",
+        "USL012",
+        "USV003"
+      ],
+      "country_codes": [
+        "BR",
+        "HR",
+        "MX",
+        "RU",
+        "US"
+      ],
+      "station_counts": {
+        "USL005": 1,
+        "USL00C": 1,
+        "USL00G": 1,
+        "USL004": 1,
+        "USL00M": 1,
+        "US000U": 1,
+        "USL008": 1,
+        "RU0013": 2,
+        "RU000M": 2,
+        "MX000B": 1,
+        "MX000C": 1,
+        "BR000Q": 1,
+        "BR000F": 1,
+        "USV003": 1,
+        "USL00E": 1,
+        "US0022": 1,
+        "USL012": 2,
+        "USL00B": 1,
+        "USL00A": 2,
+        "HR000G": 1,
+        "HR001H": 1,
+        "HR0025": 1,
+        "HR000V": 1,
+        "USL011": 1,
+        "USL00J": 2,
+        "USL00X": 1,
+        "USL00Y": 1
+      },
+      "country_counts": {
+        "US": 4,
+        "RU": 2,
+        "MX": 1,
+        "BR": 1,
+        "HR": 2
+      },
+      "night_counts": {
+        "2022-04-28 00:00:00+00:00": 3,
+        "2022-04-30 00:00:00+00:00": 3,
+        "2022-04-25 00:00:00+00:00": 2,
+        "2022-04-27 00:00:00+00:00": 2
+      },
+      "top_night_fraction": 0.3,
+      "top_station_fraction": 0.2,
+      "orbit": {
+        "medoid": [
+          0.939618,
+          0.082719,
+          23.51063,
+          333.451406,
+          37.304363
+        ],
+        "median_d": 0.03759614971749117,
+        "q90_d": 0.060988752901532876
+      },
+      "temporal_null": {
+        "p": 0.001,
+        "null_q99": 7.019999999999982,
+        "null_max": 9
+      },
+      "significant": true,
+      "jackknife": {
+        "night_min_members": 7,
+        "station_min_members": 8,
+        "minimum_retained_fraction": 0.7,
+        "passed": true
+      }
+    },
+    "2023": {
+      "selected_count": 8,
+      "local_pool_count": 9,
+      "nights": 6,
+      "stations": 26,
+      "countries": 5,
+      "station_ids": [
+        "AU000A",
+        "AU000G",
+        "AU0010",
+        "CA000B",
+        "CA002L",
+        "NZ000A",
+        "NZ000D",
+        "NZ000K",
+        "NZ000L",
+        "NZ000M",
+        "NZ000N",
+        "NZ000V",
+        "NZ0011",
+        "NZ0015",
+        "NZ001Z",
+        "NZ0020",
+        "UK000F",
+        "UK003N",
+        "UK0045",
+        "UK004E",
+        "UK005P",
+        "UK006D",
+        "UK006U",
+        "UK008T",
+        "USL00B",
+        "USL00D"
+      ],
+      "country_codes": [
+        "AU",
+        "CA",
+        "NZ",
+        "UK",
+        "US"
+      ],
+      "station_counts": {
+        "UK000F": 1,
+        "UK0045": 1,
+        "UK006D": 1,
+        "UK003N": 1,
+        "UK006U": 1,
+        "UK008T": 1,
+        "UK004E": 1,
+        "UK005P": 1,
+        "NZ000D": 2,
+        "NZ0015": 1,
+        "NZ000A": 1,
+        "NZ000V": 3,
+        "NZ001Z": 1,
+        "NZ0011": 2,
+        "CA002L": 1,
+        "CA000B": 1,
+        "AU0010": 1,
+        "AU000G": 1,
+        "AU000A": 1,
+        "USL00D": 1,
+        "USL00B": 1,
+        "NZ000M": 1,
+        "NZ0020": 1,
+        "NZ000K": 1,
+        "NZ000N": 1,
+        "NZ000L": 1
+      },
+      "country_counts": {
+        "UK": 1,
+        "NZ": 4,
+        "CA": 1,
+        "AU": 1,
+        "US": 1
+      },
+      "night_counts": {
+        "2023-04-28 00:00:00+00:00": 2,
+        "2023-04-29 00:00:00+00:00": 2,
+        "2023-04-25 00:00:00+00:00": 1,
+        "2023-04-26 00:00:00+00:00": 1,
+        "2023-04-27 00:00:00+00:00": 1,
+        "2023-04-30 00:00:00+00:00": 1
+      },
+      "top_night_fraction": 0.25,
+      "top_station_fraction": 0.375,
+      "orbit": {
+        "medoid": [
+          0.944744,
+          0.083782,
+          23.22196,
+          332.517617,
+          38.765124
+        ],
+        "median_d": 0.04530568597404866,
+        "q90_d": 0.06939924027131093
+      },
+      "temporal_null": {
+        "p": 0.002,
+        "null_q99": 6.0,
+        "null_max": 8
+      },
+      "significant": true,
+      "jackknife": {
+        "night_min_members": 6,
+        "station_min_members": 5,
+        "minimum_retained_fraction": 0.625,
+        "passed": true
+      }
+    },
+    "2024": {
+      "selected_count": 14,
+      "local_pool_count": 15,
+      "nights": 4,
+      "stations": 44,
+      "countries": 8,
+      "station_ids": [
+        "BE0005",
+        "CA000E",
+        "CA001R",
+        "CA002H",
+        "CA002L",
+        "CA0032",
+        "CZ0009",
+        "CZ000F",
+        "FR000X",
+        "KR000R",
+        "KR000Y",
+        "NZ0007",
+        "NZ0009",
+        "NZ000B",
+        "NZ000M",
+        "NZ0010",
+        "NZ0014",
+        "NZ0019",
+        "NZ0020",
+        "NZ0029",
+        "NZ002F",
+        "NZ002N",
+        "NZ003E",
+        "NZ003R",
+        "NZ003V",
+        "NZ003Z",
+        "UK002F",
+        "UK003W",
+        "UK005E",
+        "UK005G",
+        "UK006B",
+        "UK006D",
+        "UK00AN",
+        "UK00B1",
+        "UK00BC",
+        "US002X",
+        "US002Y",
+        "US0038",
+        "US0039",
+        "US003N",
+        "US003P",
+        "US004C",
+        "USL008",
+        "USL00D"
+      ],
+      "country_codes": [
+        "BE",
+        "CA",
+        "CZ",
+        "FR",
+        "KR",
+        "NZ",
+        "UK",
+        "US"
+      ],
+      "station_counts": {
+        "CA000E": 1,
+        "CA0032": 1,
+        "CA002L": 1,
+        "CA002H": 1,
+        "CA001R": 1,
+        "NZ003V": 1,
+        "NZ002F": 1,
+        "NZ0010": 1,
+        "NZ0019": 1,
+        "KR000R": 1,
+        "KR000Y": 1,
+        "FR000X": 1,
+        "BE0005": 1,
+        "USL00D": 1,
+        "USL008": 1,
+        "NZ0014": 1,
+        "NZ003R": 1,
+        "NZ002N": 1,
+        "NZ003E": 1,
+        "NZ0029": 1,
+        "NZ0007": 1,
+        "NZ000B": 1,
+        "NZ000M": 1,
+        "NZ0020": 2,
+        "NZ0009": 1,
+        "CZ000F": 1,
+        "CZ0009": 1,
+        "UK002F": 1,
+        "UK00BC": 1,
+        "UK00B1": 1,
+        "UK003W": 1,
+        "UK005G": 1,
+        "UK006B": 1,
+        "UK005E": 1,
+        "UK006D": 1,
+        "UK00AN": 1,
+        "US0039": 1,
+        "US003N": 1,
+        "US003P": 1,
+        "US0038": 1,
+        "NZ003Z": 1,
+        "US002Y": 1,
+        "US002X": 1,
+        "US004C": 1
+      },
+      "country_counts": {
+        "CA": 2,
+        "NZ": 5,
+        "KR": 1,
+        "BE": 1,
+        "FR": 1,
+        "US": 3,
+        "CZ": 1,
+        "UK": 1
+      },
+      "night_counts": {
+        "2024-04-26 00:00:00+00:00": 5,
+        "2024-04-28 00:00:00+00:00": 4,
+        "2024-04-29 00:00:00+00:00": 4,
+        "2024-04-30 00:00:00+00:00": 1
+      },
+      "top_night_fraction": 0.35714285714285715,
+      "top_station_fraction": 0.14285714285714285,
+      "orbit": {
+        "medoid": [
+          0.943397,
+          0.083294,
+          22.667321,
+          332.811834,
+          38.419003
+        ],
+        "median_d": 0.029347583537351563,
+        "q90_d": 0.08325078121110421
+      },
+      "temporal_null": {
+        "p": 0.001,
+        "null_q99": 7.0,
+        "null_max": 9
+      },
+      "significant": true,
+      "jackknife": {
+        "night_min_members": 9,
+        "station_min_members": 12,
+        "minimum_retained_fraction": 0.6428571428571429,
+        "passed": true
+      }
+    },
+    "2025": {
+      "selected_count": 34,
+      "local_pool_count": 36,
+      "nights": 7,
+      "stations": 101,
+      "countries": 12,
+      "station_ids": [
+        "AU0002",
+        "AU000D",
+        "AU001E",
+        "AU001P",
+        "AU001W",
+        "AU002C",
+        "AU003E",
+        "AU003J",
+        "BR000T",
+        "BR001T",
+        "BR001U",
+        "BR0029",
+        "CZ000A",
+        "CZ000P",
+        "ES0004",
+        "ES000D",
+        "ES000F",
+        "ES000U",
+        "KR0004",
+        "KR000P",
+        "KR001P",
+        "KR002R",
+        "MY000C",
+        "MY000E",
+        "NZ000D",
+        "NZ000L",
+        "NZ000M",
+        "NZ000N",
+        "NZ000V",
+        "NZ0011",
+        "NZ0013",
+        "NZ0016",
+        "NZ001X",
+        "NZ001Z",
+        "NZ0020",
+        "NZ0023",
+        "NZ0029",
+        "NZ002E",
+        "NZ002Y",
+        "NZ0033",
+        "NZ003C",
+        "NZ003T",
+        "NZ003U",
+        "NZ003W",
+        "NZ003Z",
+        "NZ004E",
+        "NZ004Y",
+        "PT0002",
+        "RU0001",
+        "RU0003",
+        "RU0008",
+        "RU000M",
+        "UK000F",
+        "UK0025",
+        "UK003N",
+        "UK0045",
+        "UK005P",
+        "UK006U",
+        "UK0079",
+        "UK008Q",
+        "UK008T",
+        "UK00A2",
+        "UK00AB",
+        "UK00AF",
+        "UK00AK",
+        "UK00CA",
+        "US0002",
+        "US0003",
+        "US0004",
+        "US0005",
+        "US0008",
+        "US0009",
+        "US000C",
+        "US000E",
+        "US000H",
+        "US000J",
+        "US000K",
+        "US000M",
+        "US000N",
+        "US000S",
+        "US0020",
+        "US0022",
+        "US0027",
+        "US002D",
+        "US0035",
+        "US003P",
+        "US003Q",
+        "US005C",
+        "US005Q",
+        "USL004",
+        "USL00F",
+        "USL00L",
+        "USL00M",
+        "USL00X",
+        "USL011",
+        "USL012",
+        "USL015",
+        "USL01C",
+        "USL01E",
+        "ZA0001",
+        "ZA000C"
+      ],
+      "country_codes": [
+        "AU",
+        "BR",
+        "CZ",
+        "ES",
+        "KR",
+        "MY",
+        "NZ",
+        "PT",
+        "RU",
+        "UK",
+        "US",
+        "ZA"
+      ],
+      "station_counts": {
+        "ES000U": 1,
+        "PT0002": 1,
+        "NZ003T": 1,
+        "NZ002Y": 1,
+        "NZ0023": 1,
+        "NZ003C": 1,
+        "MY000C": 1,
+        "MY000E": 1,
+        "US0003": 1,
+        "US000H": 2,
+        "US0005": 1,
+        "US0009": 2,
+        "USL015": 1,
+        "US0020": 1,
+        "USL011": 1,
+        "USL01E": 1,
+        "USL012": 1,
+        "USL00X": 1,
+        "USL004": 1,
+        "USL01C": 1,
+        "US000J": 1,
+        "NZ0029": 1,
+        "NZ000L": 2,
+        "KR000P": 1,
+        "KR002R": 1,
+        "NZ003U": 1,
+        "NZ004Y": 1,
+        "NZ0013": 1,
+        "NZ004E": 1,
+        "NZ001X": 1,
+        "CZ000A": 1,
+        "CZ000P": 1,
+        "NZ000V": 1,
+        "US000S": 1,
+        "US0027": 1,
+        "NZ000M": 1,
+        "NZ001Z": 1,
+        "NZ0011": 1,
+        "NZ002E": 1,
+        "NZ003Z": 1,
+        "NZ000D": 1,
+        "NZ0020": 1,
+        "NZ000N": 1,
+        "AU003J": 1,
+        "AU002C": 1,
+        "ES000D": 2,
+        "ES0004": 1,
+        "UK0025": 1,
+        "UK00AB": 1,
+        "UK008Q": 1,
+        "UK00A2": 1,
+        "UK000F": 1,
+        "UK0045": 1,
+        "UK00AK": 1,
+        "UK00AF": 1,
+        "UK0079": 1,
+        "UK003N": 1,
+        "UK006U": 1,
+        "UK008T": 1,
+        "UK00CA": 1,
+        "UK005P": 1,
+        "ZA0001": 1,
+        "ZA000C": 1,
+        "US0035": 1,
+        "US002D": 1,
+        "US003Q": 1,
+        "US005Q": 1,
+        "US003P": 1,
+        "US000N": 1,
+        "US0002": 1,
+        "US000K": 1,
+        "US000C": 1,
+        "US000E": 1,
+        "US000M": 1,
+        "US0004": 1,
+        "US0008": 1,
+        "NZ0016": 1,
+        "NZ003W": 1,
+        "NZ0033": 1,
+        "KR001P": 1,
+        "KR0004": 1,
+        "AU001P": 1,
+        "AU0002": 1,
+        "RU0001": 1,
+        "RU0003": 1,
+        "USL00M": 1,
+        "USL00L": 1,
+        "USL00F": 1,
+        "BR0029": 1,
+        "BR000T": 1,
+        "US005C": 1,
+        "US0022": 1,
+        "BR001U": 1,
+        "BR001T": 1,
+        "AU003E": 1,
+        "AU001E": 1,
+        "ES000F": 1,
+        "RU0008": 1,
+        "RU000M": 1,
+        "AU001W": 1,
+        "AU000D": 1
+      },
+      "country_counts": {
+        "PT": 1,
+        "ES": 3,
+        "NZ": 6,
+        "MY": 1,
+        "US": 10,
+        "KR": 2,
+        "CZ": 1,
+        "AU": 4,
+        "UK": 2,
+        "ZA": 1,
+        "RU": 2,
+        "BR": 2
+      },
+      "night_counts": {
+        "2025-04-28 00:00:00+00:00": 10,
+        "2025-04-29 00:00:00+00:00": 8,
+        "2025-04-25 00:00:00+00:00": 6,
+        "2025-04-27 00:00:00+00:00": 4,
+        "2025-04-24 00:00:00+00:00": 3,
+        "2025-04-26 00:00:00+00:00": 2,
+        "2025-04-30 00:00:00+00:00": 1
+      },
+      "top_night_fraction": 0.29411764705882354,
+      "top_station_fraction": 0.058823529411764705,
+      "orbit": {
+        "medoid": [
+          0.948516,
+          0.078737,
+          25.32748,
+          333.323063,
+          37.889123
+        ],
+        "median_d": 0.04116154600257671,
+        "q90_d": 0.0901504873497082
+      },
+      "temporal_null": {
+        "p": 0.001,
+        "null_q99": 20.0,
+        "null_max": 22
+      },
+      "significant": true,
+      "jackknife": {
+        "night_min_members": 24,
+        "station_min_members": 32,
+        "minimum_retained_fraction": 0.7058823529411765,
+        "passed": true
+      }
+    },
+    "2026": {
+      "selected_count": 29,
+      "local_pool_count": 37,
+      "nights": 8,
+      "stations": 98,
+      "countries": 12,
+      "station_ids": [
+        "AU000A",
+        "AU000Q",
+        "AU000R",
+        "AU000S",
+        "AU001A",
+        "AU001C",
+        "AU001D",
+        "AU001E",
+        "AU001X",
+        "AU0029",
+        "AU002A",
+        "AU002C",
+        "AU0030",
+        "AU004L",
+        "CA002V",
+        "CA003E",
+        "CZ0008",
+        "CZ000C",
+        "CZ000K",
+        "CZ000Q",
+        "CZ000R",
+        "DE0016",
+        "HU000C",
+        "IE000N",
+        "IL0002",
+        "IL000A",
+        "NZ0004",
+        "NZ000H",
+        "NZ0010",
+        "NZ0012",
+        "NZ0014",
+        "NZ0017",
+        "NZ001G",
+        "NZ001J",
+        "NZ001Q",
+        "NZ001S",
+        "NZ001X",
+        "NZ0021",
+        "NZ0024",
+        "NZ002F",
+        "NZ002J",
+        "NZ002K",
+        "NZ002L",
+        "NZ002P",
+        "NZ002Q",
+        "NZ002V",
+        "NZ002Z",
+        "NZ0033",
+        "NZ003B",
+        "NZ003C",
+        "NZ003E",
+        "NZ003K",
+        "NZ003N",
+        "NZ003Q",
+        "NZ003V",
+        "NZ003W",
+        "NZ003Z",
+        "NZ004A",
+        "NZ004B",
+        "NZ004F",
+        "NZ004H",
+        "NZ004J",
+        "NZ004L",
+        "NZ004N",
+        "NZ004U",
+        "NZ005A",
+        "NZ005B",
+        "NZ005C",
+        "NZ005F",
+        "NZ005G",
+        "NZ005R",
+        "NZ005T",
+        "NZ0061",
+        "NZ006L",
+        "NZ006M",
+        "NZ006P",
+        "NZ007B",
+        "RO0002",
+        "RO0003",
+        "RO0007",
+        "RO000C",
+        "SK0003",
+        "SK0004",
+        "SK0006",
+        "UK003X",
+        "UK007A",
+        "UK00A4",
+        "UK00B1",
+        "US000C",
+        "US000E",
+        "US000H",
+        "US000M",
+        "US000N",
+        "US0030",
+        "US005D",
+        "US005Z",
+        "US006L",
+        "USL00F"
+      ],
+      "country_codes": [
+        "AU",
+        "CA",
+        "CZ",
+        "DE",
+        "HU",
+        "IE",
+        "IL",
+        "NZ",
+        "RO",
+        "SK",
+        "UK",
+        "US"
+      ],
+      "station_counts": {
+        "US005D": 1,
+        "USL00F": 1,
+        "US005Z": 1,
+        "AU001E": 1,
+        "AU0029": 2,
+        "IL0002": 1,
+        "IL000A": 1,
+        "AU001A": 1,
+        "AU000A": 1,
+        "NZ0061": 1,
+        "NZ001X": 1,
+        "NZ005G": 1,
+        "NZ0004": 1,
+        "NZ004H": 1,
+        "NZ003B": 1,
+        "NZ001Q": 1,
+        "NZ003C": 1,
+        "NZ004N": 1,
+        "NZ0014": 1,
+        "NZ005B": 1,
+        "NZ003K": 1,
+        "NZ005R": 1,
+        "NZ003Z": 1,
+        "NZ0021": 1,
+        "NZ000H": 1,
+        "NZ0010": 1,
+        "NZ003V": 1,
+        "NZ002F": 1,
+        "AU0030": 1,
+        "AU001D": 1,
+        "AU001C": 1,
+        "AU002C": 1,
+        "AU001X": 1,
+        "AU002A": 1,
+        "NZ001G": 2,
+        "NZ002Q": 2,
+        "NZ002Z": 2,
+        "NZ001S": 4,
+        "NZ004U": 2,
+        "NZ003Q": 1,
+        "NZ002V": 1,
+        "NZ006P": 1,
+        "AU000S": 1,
+        "AU004L": 1,
+        "AU000R": 1,
+        "AU000Q": 1,
+        "IE000N": 1,
+        "UK007A": 1,
+        "US000N": 2,
+        "US000H": 1,
+        "US000C": 2,
+        "US000M": 2,
+        "US0030": 1,
+        "US006L": 1,
+        "US000E": 1,
+        "NZ003E": 1,
+        "NZ006L": 1,
+        "NZ003N": 1,
+        "NZ005A": 1,
+        "NZ004J": 1,
+        "NZ005F": 2,
+        "NZ002L": 1,
+        "NZ006M": 1,
+        "NZ001J": 1,
+        "NZ002J": 1,
+        "NZ0024": 2,
+        "NZ0017": 1,
+        "RO0007": 1,
+        "HU000C": 1,
+        "RO000C": 1,
+        "RO0002": 2,
+        "SK0006": 1,
+        "RO0003": 1,
+        "CZ000C": 1,
+        "CZ000R": 1,
+        "CZ000Q": 1,
+        "UK003X": 1,
+        "UK00A4": 1,
+        "UK00B1": 1,
+        "SK0003": 1,
+        "DE0016": 1,
+        "CZ000K": 1,
+        "SK0004": 1,
+        "CZ0008": 1,
+        "NZ003W": 1,
+        "NZ0033": 1,
+        "NZ005T": 1,
+        "NZ005C": 1,
+        "CA002V": 1,
+        "CA003E": 1,
+        "NZ004A": 1,
+        "NZ004F": 1,
+        "NZ0012": 1,
+        "NZ007B": 1,
+        "NZ004B": 1,
+        "NZ002K": 1,
+        "NZ002P": 1,
+        "NZ004L": 1
+      },
+      "country_counts": {
+        "US": 3,
+        "AU": 5,
+        "IL": 1,
+        "NZ": 14,
+        "UK": 2,
+        "IE": 1,
+        "RO": 2,
+        "HU": 1,
+        "CZ": 2,
+        "SK": 2,
+        "DE": 1,
+        "CA": 1
+      },
+      "night_counts": {
+        "2026-04-27 00:00:00+00:00": 8,
+        "2026-04-25 00:00:00+00:00": 4,
+        "2026-04-29 00:00:00+00:00": 4,
+        "2026-04-23 00:00:00+00:00": 3,
+        "2026-04-24 00:00:00+00:00": 3,
+        "2026-04-26 00:00:00+00:00": 3,
+        "2026-04-28 00:00:00+00:00": 3,
+        "2026-04-30 00:00:00+00:00": 1
+      },
+      "top_night_fraction": 0.27586206896551724,
+      "top_station_fraction": 0.13793103448275862,
+      "orbit": {
+        "medoid": [
+          0.950783,
+          0.073747,
+          25.286643,
+          334.338586,
+          37.363391
+        ],
+        "median_d": 0.04628840298045198,
+        "q90_d": 0.10438621295984168
+      },
+      "temporal_null": {
+        "p": 0.001,
+        "null_q99": 17.0,
+        "null_max": 18
+      },
+      "significant": true,
+      "jackknife": {
+        "night_min_members": 21,
+        "station_min_members": 25,
+        "minimum_retained_fraction": 0.7241379310344828,
+        "passed": true
+      }
+    }
+  },
+  "total_unique_members": 101,
+  "significant_years": [
+    2022,
+    2023,
+    2024,
+    2025,
+    2026
+  ],
+  "untouched_significant_years": [
+    2022,
+    2023
+  ],
+  "overall_orbit": {
+    "medoid": [
+      0.946296,
+      0.079202,
+      24.709376,
+      333.493819,
+      37.937477
+    ],
+    "median_d": 0.04398340177742451,
+    "q90_d": 0.09232109305637388
+  },
+  "cross_year_medoid_distances": [
+    {
+      "year_a": 2022,
+      "year_b": 2023,
+      "d": 0.015489981288045797
+    },
+    {
+      "year_a": 2022,
+      "year_b": 2024,
+      "d": 0.018155872339804764
+    },
+    {
+      "year_a": 2022,
+      "year_b": 2025,
+      "d": 0.03808663561382127
+    },
+    {
+      "year_a": 2022,
+      "year_b": 2026,
+      "d": 0.03978201475027804
+    },
+    {
+      "year_a": 2023,
+      "year_b": 2024,
+      "d": 0.011813375876598234
+    },
+    {
+      "year_a": 2023,
+      "year_b": 2025,
+      "d": 0.039248317522627175
+    },
+    {
+      "year_a": 2023,
+      "year_b": 2026,
+      "d": 0.04077520923767825
+    },
+    {
+      "year_a": 2024,
+      "year_b": 2025,
+      "d": 0.049960106986179746
+    },
+    {
+      "year_a": 2024,
+      "year_b": 2026,
+      "d": 0.05044011767558817
+    },
+    {
+      "year_a": 2025,
+      "year_b": 2026,
+      "d": 0.011805567565153195
+    }
+  ],
+  "maximum_cross_year_medoid_d": 0.05044011767558817,
+  "radiant_speed_drift": {
+    "sun_centered_longitude": {
+      "value_at_center": -149.37632469989083,
+      "slope_per_solar_degree": -0.10294826531516005,
+      "slope_ci95": [
+        -0.2069335331196992,
+        -0.010797798342165406
+      ],
+      "residual_sigma": 0.7368842905918609
+    },
+    "ecliptic_latitude": {
+      "value_at_center": 7.323037736608161,
+      "slope_per_solar_degree": -0.0230546185603814,
+      "slope_ci95": [
+        -0.09363568033329021,
+        0.03831220528934114
+      ],
+      "residual_sigma": 0.6250293993548808
+    },
+    "geocentric_speed": {
+      "value_at_center": 37.64169204941792,
+      "slope_per_solar_degree": -0.029349225174798693,
+      "slope_ci95": [
+        -0.16591515902459647,
+        0.12335439545586496
+      ],
+      "residual_sigma": 1.159565945692777
+    }
+  },
+  "uncertainty_clones": {
+    "draws": 1000,
+    "pass_fraction": 1.0,
+    "median_clone_median_d": 0.049234991133886165,
+    "median_clone_q90_d": 0.10508888729795829,
+    "passed": true
+  },
+  "iau_catalog": {
+    "url": "https://www.ta3.sk/IAUC22DB/MDC2022/Etc/streamfulldata2026.txt",
+    "solutions_parsed": 2143,
+    "candidate_ra_deg": 247.06226859488163,
+    "candidate_dec_deg": -14.22364310505168,
+    "hard_match_count": 0,
+    "hard_matches": [],
+    "nearest_combined": [
+      {
+        "iau_no": "00055",
+        "code": "ASC",
+        "name": "alpha-Scorpiids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 18.698037,
+        "sky_distance_with_drift_deg": 8.510426902127765,
+        "speed_delta_km_s": 0.9222400000000022,
+        "orbit_d": 0.41955739301535633,
+        "combined_score": 11.331825857808454,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00055",
+        "code": "ASC",
+        "name": "alpha-Scorpiids",
+        "status": -6,
+        "active": true,
+        "solar_delta_from_mean": 5.098037000000005,
+        "sky_distance_with_drift_deg": 11.406306140331148,
+        "speed_delta_km_s": 2.422240000000002,
+        "orbit_d": 0.6076618084159353,
+        "combined_score": 14.670164490565366,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00033",
+        "code": "NIA",
+        "name": "Northern iota-Aquariids",
+        "status": -2,
+        "active": false,
+        "solar_delta_from_mean": 108.198037,
+        "sky_distance_with_drift_deg": 18.41444355572021,
+        "speed_delta_km_s": 9.82224,
+        "orbit_d": null,
+        "combined_score": 22.422725203376228,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00352",
+        "code": "ZOP",
+        "name": "zeta-Ophiuchids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 10.098037000000005,
+        "sky_distance_with_drift_deg": 12.75476762756929,
+        "speed_delta_km_s": 14.622240000000001,
+        "orbit_d": 0.37787433929021425,
+        "combined_score": 22.629485401385985,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00026",
+        "code": "NDA",
+        "name": "Northern delta-Aquariids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 103.098037,
+        "sky_distance_with_drift_deg": 23.024094624087358,
+        "speed_delta_km_s": 0.877759999999995,
+        "orbit_d": null,
+        "combined_score": 26.235175835061135,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00004",
+        "code": "GEM",
+        "name": "Geminids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 135.50196300000005,
+        "sky_distance_with_drift_deg": 24.102357561138696,
+        "speed_delta_km_s": 3.922240000000002,
+        "orbit_d": null,
+        "combined_score": 28.852304264903186,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00001",
+        "code": "CAP",
+        "name": "alpha-Capricornids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 91.99803700000001,
+        "sky_distance_with_drift_deg": 19.233558467384444,
+        "speed_delta_km_s": 15.222240000000003,
+        "orbit_d": null,
+        "combined_score": 29.065854477435835,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00055",
+        "code": "ASC",
+        "name": "alpha-Scorpiids",
+        "status": -6,
+        "active": false,
+        "solar_delta_from_mean": 20.598037000000005,
+        "sky_distance_with_drift_deg": 14.641464146130588,
+        "speed_delta_km_s": 6.422240000000002,
+        "orbit_d": 0.7723917217428925,
+        "combined_score": 29.139429853824847,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00012",
+        "code": "KCG",
+        "name": "kappa-Cygnids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 103.798037,
+        "sky_distance_with_drift_deg": 19.64443433579832,
+        "speed_delta_km_s": 15.522240000000004,
+        "orbit_d": null,
+        "combined_score": 30.07374939964368,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00069",
+        "code": "SSG",
+        "name": "Southern mu-Sagittariids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 48.098037000000005,
+        "sky_distance_with_drift_deg": 16.113055536083433,
+        "speed_delta_km_s": 11.522240000000004,
+        "orbit_d": 0.6970080380637449,
+        "combined_score": 31.841208061197136,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00001",
+        "code": "CAP",
+        "name": "alpha-Capricornids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 78.298037,
+        "sky_distance_with_drift_deg": 16.798947992016046,
+        "speed_delta_km_s": 12.422240000000002,
+        "orbit_d": 0.6859364840047587,
+        "combined_score": 33.22338951246266,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00001",
+        "code": "CAP",
+        "name": "alpha-Capricornids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 88.098037,
+        "sky_distance_with_drift_deg": 20.993311337622508,
+        "speed_delta_km_s": 16.522240000000004,
+        "orbit_d": null,
+        "combined_score": 33.548141421438,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00004",
+        "code": "GEM",
+        "name": "Geminids",
+        "status": -2,
+        "active": false,
+        "solar_delta_from_mean": 135.40196300000002,
+        "sky_distance_with_drift_deg": 26.746618885613298,
+        "speed_delta_km_s": 2.842240000000004,
+        "orbit_d": null,
+        "combined_score": 33.93839800119384,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00001",
+        "code": "CAP",
+        "name": "alpha-Capricornids",
+        "status": -2,
+        "active": false,
+        "solar_delta_from_mean": 86.89803699999999,
+        "sky_distance_with_drift_deg": 22.185711256627272,
+        "speed_delta_km_s": 15.222240000000003,
+        "orbit_d": null,
+        "combined_score": 33.95689498320152,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00001",
+        "code": "CAP",
+        "name": "alpha-Capricornids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 89.198037,
+        "sky_distance_with_drift_deg": 22.382899200474426,
+        "speed_delta_km_s": 15.022240000000004,
+        "orbit_d": null,
+        "combined_score": 34.06647484944796,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00026",
+        "code": "NDA",
+        "name": "Northern delta-Aquariids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 110.098037,
+        "sky_distance_with_drift_deg": 27.331271409246686,
+        "speed_delta_km_s": 1.5777599999999978,
+        "orbit_d": null,
+        "combined_score": 34.97950893854021,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00047",
+        "code": "DLI",
+        "name": "mu-Virginids",
+        "status": 2,
+        "active": true,
+        "solar_delta_from_mean": 0.398036999999988,
+        "sky_distance_with_drift_deg": 20.304478000474703,
+        "speed_delta_km_s": 8.122240000000001,
+        "orbit_d": 0.79949310691424,
+        "combined_score": 35.10943507965906,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00047",
+        "code": "DLI",
+        "name": "mu-Virginids",
+        "status": 2,
+        "active": true,
+        "solar_delta_from_mean": 4.801963000000001,
+        "sky_distance_with_drift_deg": 21.073293367169157,
+        "speed_delta_km_s": 6.722240000000003,
+        "orbit_d": 0.8198024185270011,
+        "combined_score": 36.372788293823035,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00047",
+        "code": "DLI",
+        "name": "mu-Virginids",
+        "status": 2,
+        "active": true,
+        "solar_delta_from_mean": 2.7980369999999937,
+        "sky_distance_with_drift_deg": 19.941171591604526,
+        "speed_delta_km_s": 9.122240000000001,
+        "orbit_d": 0.8425943479305495,
+        "combined_score": 36.98375436164932,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00066",
+        "code": "NSC",
+        "name": "Northern omega-Scorpiids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 36.698037,
+        "sky_distance_with_drift_deg": 1.0957416096981851,
+        "speed_delta_km_s": 17.82224,
+        "orbit_d": 0.918059267677406,
+        "combined_score": 37.82413600592233,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00001",
+        "code": "CAP",
+        "name": "alpha-Capricornids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 88.89803699999999,
+        "sky_distance_with_drift_deg": 16.921973365592695,
+        "speed_delta_km_s": 14.722240000000003,
+        "orbit_d": 0.7513287969493441,
+        "combined_score": 38.23627535627086,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00069",
+        "code": "SSG",
+        "name": "Southern mu-Sagittariids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 48.99803700000001,
+        "sky_distance_with_drift_deg": 22.409473287078697,
+        "speed_delta_km_s": 11.122240000000001,
+        "orbit_d": 0.6831107643735067,
+        "combined_score": 40.70155653494966,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00020",
+        "code": "COM",
+        "name": "Comae Berenicids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 131.20196299999998,
+        "sky_distance_with_drift_deg": 16.363997842213344,
+        "speed_delta_km_s": 25.577759999999998,
+        "orbit_d": null,
+        "combined_score": 41.88008927990251,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00016",
+        "code": "HYD",
+        "name": "sigma-Hydrids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 132.10196299999996,
+        "sky_distance_with_drift_deg": 22.923954036133203,
+        "speed_delta_km_s": 20.577759999999998,
+        "orbit_d": null,
+        "combined_score": 42.95807501073391,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00001",
+        "code": "CAP",
+        "name": "alpha-Capricornids",
+        "status": 1,
+        "active": false,
+        "solar_delta_from_mean": 86.598037,
+        "sky_distance_with_drift_deg": 19.959406805697284,
+        "speed_delta_km_s": 15.222240000000003,
+        "orbit_d": 0.7503765768139743,
+        "combined_score": 43.280405601893065,
+        "hard_match": false
+      }
+    ],
+    "nearest_orbit": [
+      {
+        "iau_no": "00149",
+        "code": "NOP",
+        "name": "Northern May Ophiuchids",
+        "status": 2,
+        "active": false,
+        "solar_delta_from_mean": 21.698037,
+        "sky_distance_with_drift_deg": 11.397385734597725,
+        "speed_delta_km_s": 1.4222400000000022,
+        "orbit_d": 0.23482799185596248,
+        "combined_score": 10.655531372010067,
+        "hard_match": false
+      },
+      {
+        "iau_no": "01060",
+        "code": "NSE",
+        "name": "Northern nu-Serpentids",
+        "status": -2,
+        "active": false,
+        "solar_delta_from_mean": 24.49803700000001,
+        "sky_distance_with_drift_deg": 12.728113798516764,
+        "speed_delta_km_s": 1.622240000000005,
+        "orbit_d": 0.24745575254675242,
+        "combined_score": 12.116320476135705,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00809",
+        "code": "USG",
+        "name": "phi-Ophiuchids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 13.798036999999994,
+        "sky_distance_with_drift_deg": 3.0723682174306193,
+        "speed_delta_km_s": 1.6922400000000053,
+        "orbit_d": 0.35539511953562886,
+        "combined_score": 7.649767181986711,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00352",
+        "code": "ZOP",
+        "name": "zeta-Ophiuchids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 10.098037000000005,
+        "sky_distance_with_drift_deg": 12.75476762756929,
+        "speed_delta_km_s": 14.622240000000001,
+        "orbit_d": 0.37787433929021425,
+        "combined_score": 22.629485401385985,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00055",
+        "code": "ASC",
+        "name": "alpha-Scorpiids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 18.698037,
+        "sky_distance_with_drift_deg": 8.510426902127765,
+        "speed_delta_km_s": 0.9222400000000022,
+        "orbit_d": 0.41955739301535633,
+        "combined_score": 11.331825857808454,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00149",
+        "code": "NOP",
+        "name": "Northern May Ophiuchids",
+        "status": 2,
+        "active": false,
+        "solar_delta_from_mean": 21.398036999999988,
+        "sky_distance_with_drift_deg": 7.127513945445682,
+        "speed_delta_km_s": 8.922240000000002,
+        "orbit_d": 0.43374311051401665,
+        "combined_score": 13.91964001436427,
+        "hard_match": false
+      },
+      {
+        "iau_no": "01061",
+        "code": "EPO",
+        "name": "epsilon-Ophiuchids",
+        "status": 0,
+        "active": true,
+        "solar_delta_from_mean": 7.398036999999988,
+        "sky_distance_with_drift_deg": 8.606100083024748,
+        "speed_delta_km_s": 1.9777599999999964,
+        "orbit_d": 0.4411938537819078,
+        "combined_score": 7.985360145638827,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00140",
+        "code": "XLI",
+        "name": "April chi-Librids",
+        "status": 0,
+        "active": true,
+        "solar_delta_from_mean": 8.301963,
+        "sky_distance_with_drift_deg": 10.530799568148925,
+        "speed_delta_km_s": 3.2222399999999993,
+        "orbit_d": 0.4637547361658146,
+        "combined_score": 10.22793418939063,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00167",
+        "code": "NSS",
+        "name": "Northern sigma-Sagittariids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 48.99803700000001,
+        "sky_distance_with_drift_deg": 32.06437000797926,
+        "speed_delta_km_s": 10.922240000000002,
+        "orbit_d": 0.4696229396360922,
+        "combined_score": 55.410408660859105,
+        "hard_match": false
+      },
+      {
+        "iau_no": "01201",
+        "code": "MSA",
+        "name": "mu-Sagittariids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 43.39803699999999,
+        "sky_distance_with_drift_deg": 22.956848594202604,
+        "speed_delta_km_s": 7.944240000000001,
+        "orbit_d": 0.5105637089153547,
+        "combined_score": 34.12199638372476,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00861",
+        "code": "JXS",
+        "name": "June xi1-Sagittariids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 55.39803699999999,
+        "sky_distance_with_drift_deg": 20.730358999280565,
+        "speed_delta_km_s": 7.822240000000001,
+        "orbit_d": 0.5233989585902338,
+        "combined_score": 30.486070660599637,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00861",
+        "code": "JXS",
+        "name": "June xi1-Sagittariids",
+        "status": -2,
+        "active": false,
+        "solar_delta_from_mean": 55.298036999999994,
+        "sky_distance_with_drift_deg": 35.35155226836966,
+        "speed_delta_km_s": 7.822240000000001,
+        "orbit_d": 0.5242860984333526,
+        "combined_score": 63.30868528129655,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00128",
+        "code": "MKA",
+        "name": "Daytime kappa-Aquariids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 53.201963000000035,
+        "sky_distance_with_drift_deg": 111.12475630949527,
+        "speed_delta_km_s": 1.8222400000000007,
+        "orbit_d": 0.5273207387957052,
+        "combined_score": 505.0329599775936,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00214",
+        "code": "BCP",
+        "name": "beta-Capricornids",
+        "status": -3,
+        "active": false,
+        "solar_delta_from_mean": 110.098037,
+        "sky_distance_with_drift_deg": 56.1754935249871,
+        "speed_delta_km_s": 0.42224000000000217,
+        "orbit_d": 0.5323088855280587,
+        "combined_score": 137.3183931160418,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00448",
+        "code": "AAL",
+        "name": "April alpha-Librids",
+        "status": -6,
+        "active": false,
+        "solar_delta_from_mean": 23.301963,
+        "sky_distance_with_drift_deg": 26.61736987141232,
+        "speed_delta_km_s": 3.2777600000000007,
+        "orbit_d": 0.5396882058462079,
+        "combined_score": 40.050707567804196,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00806",
+        "code": "SGI",
+        "name": "June Sagittariids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 35.89803699999999,
+        "sky_distance_with_drift_deg": 10.543586640782799,
+        "speed_delta_km_s": 0.08775999999999584,
+        "orbit_d": 0.5444951544171706,
+        "combined_score": 15.8588711723662,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00115",
+        "code": "DCS",
+        "name": "Daytime Capricornids-Sagittariids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 82.90196300000002,
+        "sky_distance_with_drift_deg": 50.887095798370886,
+        "speed_delta_km_s": 8.022240000000004,
+        "orbit_d": 0.5642378395381398,
+        "combined_score": 118.11322262557373,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00358",
+        "code": "TOP",
+        "name": "tau-Ophiuchids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 18.098037000000005,
+        "sky_distance_with_drift_deg": 27.905741220753423,
+        "speed_delta_km_s": 0.42224000000000217,
+        "orbit_d": 0.5750294356642969,
+        "combined_score": 43.42281848490026,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00448",
+        "code": "AAL",
+        "name": "April alpha-Librids",
+        "status": -6,
+        "active": false,
+        "solar_delta_from_mean": 22.50196299999999,
+        "sky_distance_with_drift_deg": 26.606982179034734,
+        "speed_delta_km_s": 0.2777600000000007,
+        "orbit_d": 0.5890519443017144,
+        "combined_score": 40.99490087886362,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00168",
+        "code": "SSS",
+        "name": "Southern sigma-Sagittariids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 50.49803700000001,
+        "sky_distance_with_drift_deg": 31.54663326543764,
+        "speed_delta_km_s": 8.122240000000001,
+        "orbit_d": 0.5969737391333904,
+        "combined_score": 55.3558752504372,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00055",
+        "code": "ASC",
+        "name": "alpha-Scorpiids",
+        "status": -6,
+        "active": true,
+        "solar_delta_from_mean": 5.098037000000005,
+        "sky_distance_with_drift_deg": 11.406306140331148,
+        "speed_delta_km_s": 2.422240000000002,
+        "orbit_d": 0.6076618084159353,
+        "combined_score": 14.670164490565366,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00139",
+        "code": "GLI",
+        "name": "gamma-Librids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 21.00196299999999,
+        "sky_distance_with_drift_deg": 21.489680027299812,
+        "speed_delta_km_s": 11.422240000000002,
+        "orbit_d": 0.6107791235403293,
+        "combined_score": 37.017235015550455,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00115",
+        "code": "DCS",
+        "name": "Daytime Capricornids-Sagittariids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 71.801963,
+        "sky_distance_with_drift_deg": 64.44964483098506,
+        "speed_delta_km_s": 10.622240000000001,
+        "orbit_d": 0.6112520466639237,
+        "combined_score": 184.0042746720797,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00115",
+        "code": "DCS",
+        "name": "Daytime Capricornids-Sagittariids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 72.20196300000003,
+        "sky_distance_with_drift_deg": 66.25913142292066,
+        "speed_delta_km_s": 8.512240000000002,
+        "orbit_d": 0.6163208397655889,
+        "combined_score": 192.0055135077329,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00100",
+        "code": "XSA",
+        "name": "Daytime xi-Sagittariids",
+        "status": 0,
+        "active": false,
+        "solar_delta_from_mean": 91.301963,
+        "sky_distance_with_drift_deg": 36.26552636055296,
+        "speed_delta_km_s": 13.022240000000004,
+        "orbit_d": 0.6244798015265196,
+        "combined_score": 73.1400610358875,
+        "hard_match": false
+      }
+    ],
+    "nearest_active_radiant": [
+      {
+        "iau_no": "01061",
+        "code": "EPO",
+        "name": "epsilon-Ophiuchids",
+        "status": 0,
+        "active": true,
+        "solar_delta_from_mean": 7.398036999999988,
+        "sky_distance_with_drift_deg": 8.606100083024748,
+        "speed_delta_km_s": 1.9777599999999964,
+        "orbit_d": 0.4411938537819078,
+        "combined_score": 7.985360145638827,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00140",
+        "code": "XLI",
+        "name": "April chi-Librids",
+        "status": 0,
+        "active": true,
+        "solar_delta_from_mean": 8.301963,
+        "sky_distance_with_drift_deg": 10.530799568148925,
+        "speed_delta_km_s": 3.2222399999999993,
+        "orbit_d": 0.4637547361658146,
+        "combined_score": 10.22793418939063,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00055",
+        "code": "ASC",
+        "name": "alpha-Scorpiids",
+        "status": -6,
+        "active": true,
+        "solar_delta_from_mean": 5.098037000000005,
+        "sky_distance_with_drift_deg": 11.406306140331148,
+        "speed_delta_km_s": 2.422240000000002,
+        "orbit_d": 0.6076618084159353,
+        "combined_score": 14.670164490565366,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00456",
+        "code": "MPS",
+        "name": "May psi-Scorpiids",
+        "status": 2,
+        "active": true,
+        "solar_delta_from_mean": 33.698037,
+        "sky_distance_with_drift_deg": 17.076555227772737,
+        "speed_delta_km_s": 14.422240000000002,
+        "orbit_d": 0.8511932781592814,
+        "combined_score": 38.097639722179494,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00826",
+        "code": "ILI",
+        "name": "iota1-Librids",
+        "status": 0,
+        "active": true,
+        "solar_delta_from_mean": 6.298036999999994,
+        "sky_distance_with_drift_deg": 18.370106352122686,
+        "speed_delta_km_s": 6.322240000000001,
+        "orbit_d": 0.8180394806208139,
+        "combined_score": 31.826975836595203,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00826",
+        "code": "ILI",
+        "name": "iota1-Librids",
+        "status": 0,
+        "active": true,
+        "solar_delta_from_mean": 0.19803699999999935,
+        "sky_distance_with_drift_deg": 19.1973256679632,
+        "speed_delta_km_s": 5.322240000000001,
+        "orbit_d": 0.8052958148181395,
+        "combined_score": 32.08707579086783,
+        "hard_match": false
+      },
+      {
+        "iau_no": "01111",
+        "code": "AQI",
+        "name": "Aquilids",
+        "status": 0,
+        "active": true,
+        "solar_delta_from_mean": 55.948037,
+        "sky_distance_with_drift_deg": 19.881598704879686,
+        "speed_delta_km_s": 2.31776,
+        "orbit_d": 1.0358882197065684,
+        "combined_score": 42.85260923235004,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00047",
+        "code": "DLI",
+        "name": "mu-Virginids",
+        "status": 2,
+        "active": true,
+        "solar_delta_from_mean": 2.7980369999999937,
+        "sky_distance_with_drift_deg": 19.941171591604526,
+        "speed_delta_km_s": 9.122240000000001,
+        "orbit_d": 0.8425943479305495,
+        "combined_score": 36.98375436164932,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00047",
+        "code": "DLI",
+        "name": "mu-Virginids",
+        "status": 2,
+        "active": true,
+        "solar_delta_from_mean": 0.398036999999988,
+        "sky_distance_with_drift_deg": 20.304478000474703,
+        "speed_delta_km_s": 8.122240000000001,
+        "orbit_d": 0.79949310691424,
+        "combined_score": 35.10943507965906,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00047",
+        "code": "DLI",
+        "name": "mu-Virginids",
+        "status": 2,
+        "active": true,
+        "solar_delta_from_mean": 4.801963000000001,
+        "sky_distance_with_drift_deg": 21.073293367169157,
+        "speed_delta_km_s": 6.722240000000003,
+        "orbit_d": 0.8198024185270011,
+        "combined_score": 36.372788293823035,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00916",
+        "code": "ATH",
+        "name": "April 21-Herculids",
+        "status": 0,
+        "active": true,
+        "solar_delta_from_mean": 2.1980369999999994,
+        "sky_distance_with_drift_deg": 22.323674494105752,
+        "speed_delta_km_s": 5.077759999999998,
+        "orbit_d": 1.0366733661848757,
+        "combined_score": 47.83249528538255,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00011",
+        "code": "EVI",
+        "name": "eta-Virginids",
+        "status": -7,
+        "active": true,
+        "solar_delta_from_mean": 39.90196300000002,
+        "sky_distance_with_drift_deg": 24.96448845574844,
+        "speed_delta_km_s": 10.82224,
+        "orbit_d": 1.412309876744098,
+        "combined_score": 79.47934219771511,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00839",
+        "code": "PSR",
+        "name": "phi-Serpentids",
+        "status": 0,
+        "active": true,
+        "solar_delta_from_mean": 11.801963,
+        "sky_distance_with_drift_deg": 28.63102401667086,
+        "speed_delta_km_s": 8.877759999999995,
+        "orbit_d": 1.404414636477095,
+        "combined_score": 85.25151813320862,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00454",
+        "code": "MPV",
+        "name": "May phi-Virginids",
+        "status": -6,
+        "active": true,
+        "solar_delta_from_mean": 4.698036999999999,
+        "sky_distance_with_drift_deg": 30.293943609588244,
+        "speed_delta_km_s": 15.722240000000003,
+        "orbit_d": 1.181408096223798,
+        "combined_score": 81.48960124711897,
+        "hard_match": false
+      },
+      {
+        "iau_no": "-",
+        "code": "",
+        "name": "M2023-F3",
+        "status": 2,
+        "active": true,
+        "solar_delta_from_mean": 14.79196300000001,
+        "sky_distance_with_drift_deg": 30.730179514984044,
+        "speed_delta_km_s": 28.477760000000004,
+        "orbit_d": 2.4062674725970976,
+        "combined_score": 214.96614864760042,
+        "hard_match": false
+      },
+      {
+        "iau_no": "-",
+        "code": "",
+        "name": "M2023-U7",
+        "status": 0,
+        "active": true,
+        "solar_delta_from_mean": 10.601963000000012,
+        "sky_distance_with_drift_deg": 31.451367510101452,
+        "speed_delta_km_s": 9.077759999999998,
+        "orbit_d": 1.5381385131873346,
+        "combined_score": 102.01052193867622,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00148",
+        "code": "MLV",
+        "name": "May lambda-Virginids",
+        "status": 0,
+        "active": true,
+        "solar_delta_from_mean": 6.498037000000011,
+        "sky_distance_with_drift_deg": 31.728315327839084,
+        "speed_delta_km_s": 11.862240000000003,
+        "orbit_d": 1.2407233166285472,
+        "combined_score": 84.38080796505909,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00343",
+        "code": "HVI",
+        "name": "h-Virginids",
+        "status": 1,
+        "active": true,
+        "solar_delta_from_mean": 4.901962999999995,
+        "sky_distance_with_drift_deg": 37.92327772905354,
+        "speed_delta_km_s": 16.07224,
+        "orbit_d": null,
+        "combined_score": 68.85967569330111,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00138",
+        "code": "ABO",
+        "name": "alpha-Bootids",
+        "status": -2,
+        "active": true,
+        "solar_delta_from_mean": 0.20196300000000633,
+        "sky_distance_with_drift_deg": 40.086553779067586,
+        "speed_delta_km_s": 16.522240000000004,
+        "orbit_d": null,
+        "combined_score": 76.19664833998712,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00021",
+        "code": "AVB",
+        "name": "alpha-Virginids",
+        "status": 1,
+        "active": true,
+        "solar_delta_from_mean": 4.901962999999995,
+        "sky_distance_with_drift_deg": 41.64950170681397,
+        "speed_delta_km_s": 18.62224,
+        "orbit_d": 1.442179152528464,
+        "combined_score": 135.25577030143296,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00518",
+        "code": "AHE",
+        "name": "April 102-Herculids",
+        "status": 0,
+        "active": true,
+        "solar_delta_from_mean": 3.101963000000012,
+        "sky_distance_with_drift_deg": 41.705450738876735,
+        "speed_delta_km_s": 16.17776,
+        "orbit_d": 2.0789045501751433,
+        "combined_score": 188.08868481649182,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00343",
+        "code": "HVI",
+        "name": "h-Virginids",
+        "status": 1,
+        "active": true,
+        "solar_delta_from_mean": 2.098037000000005,
+        "sky_distance_with_drift_deg": 42.11514846954421,
+        "speed_delta_km_s": 18.722240000000003,
+        "orbit_d": null,
+        "combined_score": 85.96832004917408,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00923",
+        "code": "FBO",
+        "name": "15-Bootids",
+        "status": 0,
+        "active": true,
+        "solar_delta_from_mean": 6.001962999999989,
+        "sky_distance_with_drift_deg": 42.18819876278053,
+        "speed_delta_km_s": 9.922240000000002,
+        "orbit_d": 1.415329830609937,
+        "combined_score": 125.21076169397784,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00343",
+        "code": "HVI",
+        "name": "h-Virginids",
+        "status": 1,
+        "active": true,
+        "solar_delta_from_mean": 1.098037000000005,
+        "sky_distance_with_drift_deg": 42.30979237865295,
+        "speed_delta_km_s": 20.222240000000003,
+        "orbit_d": 1.3597220292170598,
+        "combined_score": 134.18340078814674,
+        "hard_match": false
+      },
+      {
+        "iau_no": "00343",
+        "code": "HVI",
+        "name": "h-Virginids",
+        "status": 1,
+        "active": true,
+        "solar_delta_from_mean": 2.2980369999999937,
+        "sky_distance_with_drift_deg": 43.246249415772006,
+        "speed_delta_km_s": 18.522240000000004,
+        "orbit_d": 1.4468814097664588,
+        "combined_score": 140.8691038741448,
+        "hard_match": false
+      }
+    ]
+  },
+  "gate_components": {
+    "minimum_total_members": true,
+    "minimum_significant_years": true,
+    "minimum_untouched_years": true,
+    "cross_year_orbit_consistency": true,
+    "recent_year_night_station_robustness": true,
+    "uncertainty_clone_stability": true,
+    "no_hard_iau_match": true
+  }
+}

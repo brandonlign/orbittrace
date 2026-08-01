@@ -1,10 +1,6 @@
 name: GhostStream latest usable EDMOND validation
 
 on:
-  pull_request:
-    paths:
-      - "pilots/ghoststream/april_stream/edmond_2024/analyze_latest_usable_edmond.py"
-      - ".github/workflows/ghoststream-edmond-latest-usable.yml"
   workflow_dispatch:
 
 permissions:

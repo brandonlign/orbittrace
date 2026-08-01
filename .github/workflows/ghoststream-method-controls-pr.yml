@@ -1,0 +1,86 @@
+name: GhostStream recovered method controls PR check
+
+on:
+  pull_request:
+    paths:
+      - "pilots/ghoststream/reconstruction/verify_recovered_method_controls.py"
+      - ".github/workflows/ghoststream-method-controls-pr.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reproduce-method-controls:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Check out GhostStream evidence branch
+        uses: actions/checkout@v4
+
+      - name: Check out immutable recovered control source
+        uses: actions/checkout@v4
+        with:
+          repository: brandonlign/remotion-worker
+          ref: 4175e5187fcc6faf3d1befb099a9e35be96850f2
+          path: _ghoststream_control_source
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Install recovered control environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r _ghoststream_control_source/ghoststream_runner/requirements.txt
+          python -m pip freeze | sort | tee ghoststream_method_environment.txt
+
+      - name: Verify immutable control source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C _ghoststream_control_source rev-parse HEAD)" = "4175e5187fcc6faf3d1befb099a9e35be96850f2"
+          sha256sum \
+            _ghoststream_control_source/ghoststream_runner/run_gate.py \
+            _ghoststream_control_source/ghoststream_runner/run_gate_v2.py \
+            _ghoststream_control_source/ghoststream_runner/run_injection_gate.py \
+            _ghoststream_control_source/ghoststream_runner/requirements.txt \
+            | tee ghoststream_method_source_sha256.txt
+          python -m py_compile \
+            _ghoststream_control_source/ghoststream_runner/run_gate.py \
+            _ghoststream_control_source/ghoststream_runner/run_gate_v2.py \
+            _ghoststream_control_source/ghoststream_runner/run_injection_gate.py \
+            pilots/ghoststream/reconstruction/verify_recovered_method_controls.py
+
+      - name: Run untouched known-shower recovery gate
+        run: |
+          PYTHONPATH=_ghoststream_control_source/ghoststream_runner \
+            python _ghoststream_control_source/ghoststream_runner/run_gate_v2.py \
+            2>&1 | tee ghoststream_method_known_shower.log
+
+      - name: Run weak-stream injection and permutation gate
+        run: |
+          PYTHONPATH=_ghoststream_control_source/ghoststream_runner \
+            python _ghoststream_control_source/ghoststream_runner/run_injection_gate.py \
+            2>&1 | tee ghoststream_method_injection.log
+
+      - name: Verify recovered control outputs
+        run: |
+          python pilots/ghoststream/reconstruction/verify_recovered_method_controls.py \
+            --output-dir ghoststream_method_control_evidence \
+            2>&1 | tee ghoststream_method_verification.log
+
+      - name: Upload complete method-control evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ghoststream-exact-recovered-method-controls-pr
+          path: |
+            ghoststream_method_control_evidence/
+            ghoststream_results_v2/
+            ghoststream_injection_results/
+            ghoststream_method_*.log
+            ghoststream_method_environment.txt
+            ghoststream_method_source_sha256.txt
+          if-no-files-found: error
+          retention-days: 90

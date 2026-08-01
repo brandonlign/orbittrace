@@ -1,6 +1,6 @@
 # Bootstrap uncertainty
 
-The 95 confirmed meteors are spread across five years and 29 observing nights. Individual meteors from the same night are not fully independent, so the uncertainty analysis resamples years and then nights within each selected year.
+The 95 confirmed meteors are spread across five years and 29 observing nights. Meteors from the same night share observing conditions, so the uncertainty analysis resamples years and then nights within each selected year.
 
 Twenty thousand bootstrap samples were generated. Each sample retained all meteors from the nights it selected. Circular means were used for angular quantities, and semimajor axis was recalculated from each sample’s mean q and e.
 
@@ -27,7 +27,7 @@ Twenty thousand bootstrap samples were generated. Each sample retained all meteo
 | dDec/dλ⊙ | −0.158°/° | −0.248 to −0.037 | negative drift is resolved |
 | dVg/dλ⊙ | −0.029 km/s/° | −0.178 to +0.221 | interval includes zero |
 
-A second bootstrap that kept every year exactly once and resampled nights only gave the same qualitative result. The mean radiant and orbit are stable, the angular radiant drifts are supported, and the geocentric-speed drift is not.
+A second bootstrap that kept every year exactly once and resampled nights only gave the same qualitative result. The mean radiant and orbit are stable, the angular radiant drifts are supported, and the geocentric-speed drift remains unresolved.
 
 ## Leave-one-year-out ranges
 

@@ -1,9 +1,12 @@
 name: GhostStream MDC package consistency audit
 
 on:
-  pull_request:
+  push:
+    branches:
+      - agent/ghoststream-pilot
     paths:
       - "pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py"
+      - "pilots/ghoststream/april_stream/mdc/audit_recovered_mdc_package.py"
       - "pilots/ghoststream/april_stream/mdc/GhostStream_April_95_GMN_lookup.csv"
       - "pilots/ghoststream/april_stream/mdc/GhostStream_April_mean_submission.json"
       - "pilots/ghoststream/april_stream/mdc/GhostStream_April_mean_legacy.txt"
@@ -14,46 +17,74 @@ on:
       - "pilots/ghoststream/april_stream/candidate_solution.json"
       - "pilots/ghoststream/april_stream/edmond_2024/linked_v601_frozen_summary.json"
       - "pilots/ghoststream/results/ghoststream_final_summary.json"
+      - "pilots/ghoststream/reproducibility_gap_summary.json"
+      - "pilots/ghoststream/recovery/CURRENT_RECOVERY_STATUS.md"
+      - "pilots/ghoststream/recovered_pipeline/SOURCE_MANIFEST.json"
+      - "pilots/ghoststream/reconstruction/exact_recovered/**"
+      - "pilots/ghoststream/reconstruction/exact_downstream/**"
+      - "pilots/ghoststream/reconstruction/exact_external/**"
       - "pilots/ghoststream/RESULTS.md"
       - "pilots/ghoststream/april_stream/mdc/MANUSCRIPT_DRAFT.md"
       - "pilots/ghoststream/april_stream/mdc/README.md"
       - "pilots/ghoststream/april_stream/mdc/SUBMISSION_CHECKLIST.md"
       - ".github/workflows/ghoststream-mdc-package-audit.yml"
+  pull_request:
+    paths:
+      - "pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py"
+      - "pilots/ghoststream/april_stream/mdc/audit_recovered_mdc_package.py"
+      - "pilots/ghoststream/april_stream/mdc/**"
+      - "pilots/ghoststream/april_stream/candidate_solution.json"
+      - "pilots/ghoststream/april_stream/edmond_2024/linked_v601_frozen_summary.json"
+      - "pilots/ghoststream/results/ghoststream_final_summary.json"
+      - "pilots/ghoststream/reproducibility_gap_summary.json"
+      - "pilots/ghoststream/recovery/CURRENT_RECOVERY_STATUS.md"
+      - "pilots/ghoststream/recovered_pipeline/SOURCE_MANIFEST.json"
+      - "pilots/ghoststream/reconstruction/exact_recovered/**"
+      - "pilots/ghoststream/reconstruction/exact_downstream/**"
+      - "pilots/ghoststream/reconstruction/exact_external/**"
+      - "pilots/ghoststream/RESULTS.md"
+      - ".github/workflows/ghoststream-mdc-package-audit.yml"
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   audit-mdc-package:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: agent/ghoststream-pilot
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Compile package audit
+      - name: Compile package audits
         run: |
           python -m py_compile \
-            pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
+            pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py \
+            pilots/ghoststream/april_stream/mdc/audit_recovered_mdc_package.py
 
-      - name: Run package audit
+      - name: Run recovered package audit
         shell: bash
         run: |
           set -euo pipefail
-          python pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py \
+          python pilots/ghoststream/april_stream/mdc/audit_recovered_mdc_package.py \
             --output-dir mdc_package_audit 2>&1 | tee mdc_package_audit.log
 
-      - name: Display audit summary
+      - name: Validate audit summary
         if: always()
         run: |
-          if [[ -f mdc_package_audit/mdc_package_consistency_audit.json ]]; then
-            python - <<'PY'
+          test -s mdc_package_audit/mdc_package_consistency_audit.json
+          test -s mdc_package_audit/MDC_PACKAGE_CONSISTENCY_AUDIT.md
+          python - <<'PY'
           import json
           from pathlib import Path
+
           result = json.loads(Path("mdc_package_audit/mdc_package_consistency_audit.json").read_text())
           failed = [item for item in result["checks"] if not item["passed"]]
           print(json.dumps({
@@ -63,17 +94,44 @@ jobs:
               "failed_checks": result["failed_checks"],
               "failure_names": [item["name"] for item in failed],
               "recomputed_from_lookup": result["recomputed_from_lookup"],
+              "recovered_analysis": result["recovered_analysis"],
           }, indent=2))
+          assert result["verdict"] == "PASS_RECOVERED_MDC_PACKAGE_INTERNALLY_CONSISTENT"
+          assert result["failed_checks"] == 0
+          assert result["check_count"] > 111
+          assert result["recovered_analysis"]["analysis_chain_clean_rerun_completed"] is True
+          assert result["recovered_analysis"]["submission_allowed"] is False
           PY
-          fi
 
       - name: Upload package-audit evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ghoststream-mdc-package-consistency-audit
+          name: ghoststream-recovered-mdc-package-consistency-audit
           path: |
             mdc_package_audit/
             mdc_package_audit.log
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 90
+
+      - name: Commit canonical recovered package audit
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp mdc_package_audit/mdc_package_consistency_audit.json \
+            pilots/ghoststream/april_stream/mdc/mdc_package_consistency_summary.json
+          cp mdc_package_audit/MDC_PACKAGE_CONSISTENCY_AUDIT.md \
+            pilots/ghoststream/april_stream/mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            pilots/ghoststream/april_stream/mdc/mdc_package_consistency_summary.json \
+            pilots/ghoststream/april_stream/mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md
+          if git diff --cached --quiet; then
+            echo "Canonical recovered package audit already matches."
+            exit 0
+          fi
+          git commit -m "Regenerate recovered GhostStream package audit"
+          git pull --rebase origin agent/ghoststream-pilot
+          git push origin HEAD:agent/ghoststream-pilot

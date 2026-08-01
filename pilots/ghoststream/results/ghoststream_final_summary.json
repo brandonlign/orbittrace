@@ -1,6 +1,6 @@
 {
   "pilot": "GhostStream",
-  "overall_verdict": "GO",
+  "overall_verdict": "GO_SCIENTIFIC_CANDIDATE_PUBLICATION_HOLD",
   "primary_result": {
     "internal_id": "GhostStream-April-36.9",
     "status": "high_confidence_uncatalogued_stream_candidate",
@@ -120,5 +120,14 @@
       "80_members": "8/9"
     }
   },
-  "claim_limit": "This supports a high-confidence uncatalogued annual April meteor-stream candidate. It is not official IAU recognition, an established shower, a complete current EDMOND v6.01 replication, a fully independent third-network replication, an absolute-flux measurement, or a parent-body identification."
+  "reproducibility_status": {
+    "core_gmn_analysis_code_committed": false,
+    "exact_core_input_manifests_committed": false,
+    "end_to_end_clean_rerun_completed": false,
+    "later_archive_mdc_and_package_audits_reproducible": true,
+    "current_branch_status": "internally_consistent_results_package_core_pipeline_missing",
+    "publication_or_formal_mdc_submission_allowed": false,
+    "resolution_required": "Recover or independently reconstruct the original source-to-result pipeline, commit exact inputs/manifests/seeds/environment, and reproduce the 95-member lookup and primary statistics in a clean fail-closed rerun."
+  },
+  "claim_limit": "This supports a high-confidence uncatalogued annual April meteor-stream candidate, but the core GMN discovery and validation software is not presently preserved in the branch. The package is not yet fully computationally reproducible and must not be submitted to a journal or formally reported to the MDC until the pipeline is recovered or independently reconstructed and rerun. It is also not official IAU recognition, an established shower, a complete current EDMOND v6.01 replication, a fully independent third-network replication, an absolute-flux measurement, or a parent-body identification."
 }

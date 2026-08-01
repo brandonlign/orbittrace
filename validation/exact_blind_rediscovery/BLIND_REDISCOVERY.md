@@ -20,6 +20,4 @@ The April survivor contained 26 discovery members. Its regenerated center matche
 
 The recovered search then validated the candidate in 2025 and 2024, yielding 36 and 14 members respectively, with p = 0.002 in each validation year. The measurement-uncertainty check passed in all 500 discovery-stage clone trials.
 
-April was the only full-gate survivor.
-
-This establishes the discovery lineage: the original blind search independently recovers the April structure. Historical shower comparison remains a separate expert-review question.
+April was the only full-gate survivor, reproducing the original discovery path without supplying the final month or event list.

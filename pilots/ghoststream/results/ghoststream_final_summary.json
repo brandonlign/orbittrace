@@ -27,7 +27,12 @@
     "uncertainty_clone_passes": 1000,
     "uncertainty_clone_trials": 1000,
     "iau_solutions_parsed": 2174,
-    "hard_iau_matches": 0
+    "hard_iau_matches": 0,
+    "iau_catalogue_version": "2026-06-25",
+    "iau_catalogue_shower_records": 1072,
+    "iau_catalogue_sha256": "821fa09734314e2796388c4f2fc94bb770998f2f2b08d6a84135660849aef899",
+    "radiant_speed_activity_near_matches": 0,
+    "orbit_incomplete_near_matches": 0
   },
   "primary_external_support": {
     "catalogs": [

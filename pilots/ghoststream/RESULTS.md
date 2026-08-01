@@ -6,7 +6,7 @@
 
 A blind scan of 2026 Global Meteor Network trajectories found a compact annual April stream that:
 
-- is absent from all **2,174** parsable IAU Meteor Data Center shower solutions used in the audit;
+- has **zero hard duplicates and zero radiant–speed–activity near matches** among all **2,174** solutions in the checksum-locked official IAU Meteor Data Center catalogue version **2026-06-25**;
 - appears in GMN data from **2022–2026**;
 - survives a source-preserving antihelion-background test that does not use orbital elements to select the activity enhancement;
 - remains orbitally compact after **1,000/1,000** measurement-uncertainty clone trials;
@@ -188,9 +188,18 @@ The unchanged zero-speed-drift template was applied to every currently linked an
 
 ### Novelty and parent-body audit
 
-- IAU shower solutions checked: **2,174**
-- Hard matches: **0**
-- Nearest official orbit: Northern May Ophiuchids, D ≈ **0.235**, with the wrong activity epoch and radiant
+The official IAU MDC full shower-data JSON was refreshed and checksum-locked on 2026-08-01. Catalogue version **2026-06-25** contained **1,072 shower records** and **2,174 submitted solutions**. Under the frozen activity, drifted-radiant, speed, and complete-orbit duplicate rules:
+
+- Hard duplicate matches: **0**
+- Activity-compatible radiant–speed near matches: **0**
+- Orbit-incomplete near matches: **0**
+- Catalogue SHA-256: `821fa09734314e2796388c4f2fc94bb770998f2f2b08d6a84135660849aef899`
+- Nearest complete orbit: Northern May Ophiuchids solution 004, D_SH = **0.23445**
+- NOP activity interval: solar longitude **45°–75°**, which does not overlap the candidate interval
+- NOP drifted-radiant separation: **9.59°**
+
+The current official catalogue therefore contains no duplicate or incomplete-orbit near match hidden by missing elements.
+
 - JPL small bodies screened: **6,284**
 - Credible objects at D ≤ 0.15: **0**
 - Nearest object: D ≈ 0.159, but uncertainty code 8 and only an 11-day observational arc

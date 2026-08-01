@@ -19,40 +19,39 @@ jobs:
           ref: agent/ghoststream-pilot
           fetch-depth: 0
 
-      - name: Apply exact audit fixes
+      - name: Apply syntax-aware audit fixes
         run: |
           python - <<'PY'
           from pathlib import Path
 
           audit = Path("pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py")
-          text = audit.read_text()
-          old = '''    for key in ("q", "e", "peri", "node", "incl", "a"):
-              close(f"calculation audit -> mean JSON {key}", calc_means[key], mean[key], 5e-6)
-          '''
-          new = '''    for calc_key, mean_key in (("q", "q"), ("e", "e"), ("peri", "peri"), ("node", "node"), ("incl", "inc"), ("a", "a")):
-              close(f"calculation audit -> mean JSON {calc_key}", calc_means[calc_key], mean[mean_key], 5e-6)
-          '''
-          if text.count(old) != 1:
-              raise SystemExit(f"audit mapping block count={text.count(old)}")
-          audit.write_text(text.replace(old, new, 1))
+          lines = audit.read_text().splitlines()
+          target = 'for key in ("q", "e", "peri", "node", "incl", "a"):'
+          matches = [i for i, line in enumerate(lines) if line.strip() == target]
+          if len(matches) != 1:
+              raise SystemExit(f"audit mapping line matches={matches}")
+          i = matches[0]
+          indent = lines[i][: len(lines[i]) - len(lines[i].lstrip())]
+          if i + 1 >= len(lines) or 'calculation audit -> mean JSON' not in lines[i + 1]:
+              raise SystemExit("unexpected audit mapping body")
+          lines[i] = indent + 'for calc_key, mean_key in (("q", "q"), ("e", "e"), ("peri", "peri"), ("node", "node"), ("incl", "inc"), ("a", "a")):'
+          lines[i + 1] = indent + '    close(f"calculation audit -> mean JSON {calc_key}", calc_means[calc_key], mean[mean_key], 5e-6)'
+          audit.write_text("\n".join(lines) + "\n")
 
           workflow = Path(".github/workflows/ghoststream-mdc-package-audit.yml")
-          text = workflow.read_text()
-          old = '''      - name: Run package audit
-                  run: |
-                    python pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py \\
-                      --output-dir mdc_package_audit 2>&1 | tee mdc_package_audit.log
-          '''
-          new = '''      - name: Run package audit
-                  shell: bash
-                  run: |
-                    set -euo pipefail
-                    python pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py \\
-                      --output-dir mdc_package_audit 2>&1 | tee mdc_package_audit.log
-          '''
-          if text.count(old) != 1:
-              raise SystemExit(f"workflow run block count={text.count(old)}")
-          workflow.write_text(text.replace(old, new, 1))
+          lines = workflow.read_text().splitlines()
+          matches = [i for i, line in enumerate(lines) if line.strip() == '- name: Run package audit']
+          if len(matches) != 1:
+              raise SystemExit(f"workflow audit step matches={matches}")
+          i = matches[0]
+          step_indent = lines[i][: len(lines[i]) - len(lines[i].lstrip())]
+          if lines[i + 1].strip() != 'run: |':
+              raise SystemExit(f"unexpected run line: {lines[i + 1]!r}")
+          lines.insert(i + 1, step_indent + '  shell: bash')
+          run_index = i + 2
+          command_indent = lines[run_index][: len(lines[run_index]) - len(lines[run_index].lstrip())] + '  '
+          lines.insert(run_index + 1, command_indent + 'set -euo pipefail')
+          workflow.write_text("\n".join(lines) + "\n")
           PY
 
       - name: Validate fixes

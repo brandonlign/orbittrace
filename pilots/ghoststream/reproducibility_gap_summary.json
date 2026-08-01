@@ -1,8 +1,8 @@
 {
-  "verdict": "CORE_SOURCE_RECOVERED_PRIMARY_EXACT_DOWNSTREAM_PENDING",
+  "verdict": "COMPUTATIONAL_RECOVERY_AND_ANALYSIS_RERUNS_COMPLETE_PACKAGE_REVIEW_PENDING",
   "audit_date_utc": "2026-08-01",
   "branch": "agent/ghoststream-pilot",
-  "scientific_candidate_status": "high_confidence_uncatalogued_stream_candidate_primary_exactly_reproduced",
+  "scientific_candidate_status": "high_confidence_uncatalogued_stream_candidate_recovered_and_reproduced",
   "publication_status": "hold",
   "formal_mdc_submission_status": "blocked",
   "expert_review_bundle_status": "superseded_rebuild_from_recovered_implementation",
@@ -42,32 +42,65 @@
     "additional_timestamps": 0,
     "validator_verdict": "APRIL_STREAM_DISCOVERY_CANDIDATE_SURVIVES_AUDIT"
   },
+  "exact_internal_downstream_reproduction": {
+    "status": "passed",
+    "evidence_manifest": "pilots/ghoststream/reconstruction/exact_downstream/downstream_reproduction.json",
+    "source_preserving_null_verdict": "APRIL_STREAM_SURVIVES_SOURCE_PRESERVING_NULL",
+    "untouched_activity_p": 1.857134041807409e-05,
+    "untouched_shifted_window_p": 0.017543859649122806,
+    "untouched_orbit_null_p": 0.0001,
+    "bootstrap_members": 95,
+    "bootstrap_nights": 29,
+    "bootstrap_replicates_each": 20000,
+    "ra_drift_excludes_zero": true,
+    "dec_drift_excludes_zero": true,
+    "speed_drift_excludes_zero": false,
+    "activity_core_solar_longitude_deg": [35.902, 39.902],
+    "geographic_member_counts": [30, 22, 44],
+    "maximum_cross_region_medoid_d": 0.040536830930146595,
+    "specification_cells_passing": 81,
+    "specification_cells_eligible": 81
+  },
+  "exact_external_reproduction": {
+    "status": "passed",
+    "evidence_manifest": "pilots/ghoststream/reconstruction/exact_external/external_reproduction.json",
+    "cams_members": 6,
+    "sonotaco_members": 4,
+    "pooled_members": 10,
+    "pooled_member_id_set_exact": true,
+    "pooled_activity_p": 0.0001621843884718582,
+    "pooled_orbit_null_p": 5e-05,
+    "pooled_distance_to_gmn_refined_orbit": 0.017230503215407457,
+    "current_jpl_valid_orbits": 729,
+    "current_jpl_objects_at_d_le_0_15": 0,
+    "nearest_jpl_object": "2023 HJ7",
+    "nearest_jpl_d": 0.15939456567933025,
+    "parent_claimed": false
+  },
   "resolved_core_stages": [
-    "GMN monthly catalogue acquisition and parsing implementation",
+    "GMN monthly catalogue acquisition and parsing",
     "quality filtering and coordinate transformations",
     "exact-time deduplication",
     "known-shower and weak-injection controls",
     "blind candidate generation",
     "frozen April membership selection",
-    "expanded antihelion source-preserving activity test implementation",
-    "shifted-window audit implementation",
-    "source/time-matched post-selection orbital-null implementation",
+    "expanded antihelion source-preserving activity test",
+    "shifted-window audit",
+    "source/time-matched post-selection orbital null",
     "measurement-uncertainty clone trials",
-    "year/night hierarchical bootstrap implementation",
-    "geographic station split implementation",
-    "March-May source-normalized activity profile implementation",
-    "81-cell specification curve implementation",
-    "CAMS and SonotaCo acquisition and selection implementation",
-    "parent-body screen implementation",
-    "end-to-end report generation implementation"
+    "year/night hierarchical bootstrap",
+    "geographic station split",
+    "March-May source-normalized activity profile",
+    "81-cell specification curve",
+    "CAMS and SonotaCo acquisition and selection",
+    "pooled independent-archive synthesis",
+    "current JPL parent-body screen",
+    "machine-readable report generation"
   ],
   "remaining_reproducibility_work": [
-    "commit clean recovered internal GMN downstream rerun and comparison package",
-    "commit clean recovered CAMS and SonotaCo rerun and comparison package",
-    "record current live JPL parent-screen result",
     "retain EDMOND as provenance-limited supplementary evidence unless a complete current release is recovered",
-    "rerun package and official-checker audits against the rebuilt package",
-    "rebuild manuscript and code-inclusive expert-review bundle",
+    "rebuild manuscript, figures, data-availability statement, and code-inclusive expert-review bundle from recovered outputs",
+    "rerun MDC package manifest and official checker audits against the rebuilt package",
     "obtain independent scientific and duplicate review"
   ],
   "input_provenance_boundary": {
@@ -76,15 +109,16 @@
     "live_official_monthly_gmn_acquisition_reproduced": true,
     "raw_monthly_catalogue_bytes_vendored": false,
     "raw_monthly_catalogue_byte_hash_manifest_complete": false,
-    "interpretation": "The exact original implementation reproduced the primary result from the current official GMN monthly source. Long-term immutable raw-input archiving remains desirable and must not be falsely described as complete."
+    "interpretation": "The exact original implementation reproduced the primary and downstream results from the current official GMN monthly source. Long-term immutable raw-input archiving remains desirable and must not be falsely described as complete."
   },
-  "allowed_current_claim": "The original GhostStream source has been recovered and the unchanged primary GMN validator exactly regenerated all 101 members, including the committed 95-event significant-year lookup. Remaining downstream and external clean reruns are in progress; official recognition and submission readiness are not claimed.",
+  "allowed_current_claim": "The original GhostStream source was recovered, the primary 101-member and 95-member results were exactly regenerated, the internal GMN downstream analyses passed their preserved gates, and the CAMS/SonotaCo and current JPL stages were freshly rerun. The result remains an uncatalogued candidate, not official recognition or submission-ready work.",
   "forbidden_until_resolution": [
     "journal submission",
     "formal IAU MDC submission",
     "claim of official IAU recognition",
-    "claim that every downstream and external stage has completed a fresh clean rerun",
     "claim of complete current EDMOND v6.01 replication",
+    "claim of a fully independent third-network replication",
+    "claim of parent-body identification",
     "sending the superseded expert bundle as the current code-inclusive review package"
   ],
   "resolution_gate": [
@@ -93,8 +127,8 @@
     "cleanly rerun and reconcile internal downstream analyses",
     "cleanly rerun and reconcile CAMS and SonotaCo evidence",
     "record current parent-screen and catalogue-novelty results",
+    "rebuild manuscript and package from recovered outputs",
     "rerun package and official checker audits",
-    "build a new code-inclusive expert-review bundle",
     "obtain external scientific and duplicate review"
   ]
 }

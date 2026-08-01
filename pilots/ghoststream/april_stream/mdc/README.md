@@ -11,7 +11,9 @@ This folder is a **draft package**. Nothing has been submitted to the IAU Meteor
 - `GhostStream_April_mean_submission.json` — a pre-submission mean record matching the current MDC database JSON field structure.
 - `GhostStream_April_mean_legacy.txt` — a compatibility record for the February 20, 2026 legacy text template.
 - `calculation_audit.json` — exact values and rules used to generate the mean record.
-- `MDC_OFFICIAL_CHECKER_REPORT.md` — results from the official MDC radiant/orbit consistency programs; zero errors flagged.
+- `MDC_OFFICIAL_CHECKER_REPORT.md` — exact rerun of the current official MDC radiant/orbit consistency programs on the committed mean; the distributed binaries and a fresh build of the distributed Fortran source produced identical comparison files and zero errors.
+- `exact_official_checker_summary.json` — machine-readable provenance and result for that exact checker rerun.
+- `live_mdc_novelty_refresh_summary.json` — checksum-locked comparison against the official catalogue version 2026-06-25.
 - `MANUSCRIPT_DRAFT.md` — complete current manuscript draft.
 - `SUBMISSION_CHECKLIST.md` — remaining blockers before external delivery.
 
@@ -24,6 +26,7 @@ This folder is a **draft package**. Nothing has been submitted to the IAU Meteor
 - `ALL_EXTERNAL_ZERO_SPEED.md` — uniform external-archive rerun with unresolved speed drift fixed to zero.
 - `all_external_members_zero_speed.csv` — all 16 selected CAMS, SonotaCo, and Shober EDMOND events.
 - `shober_edmond/SHOBER_EDMOND_VALIDATION.md` — archive-specific EDMOND audit and provenance boundary.
+- `edmond_2024/EDMOND_CURRENT_RELEASE_AUDIT.md` — integrity audit showing that the currently linked annual files are incomplete or stale relative to the advertised v6.01 release.
 - `candidate_solution.json` — machine-readable frozen solution, bootstrap intervals, claim boundary, and evidence summary.
 - `flux/` — tested RMS handoff tools and the exact data required for an absolute flux analysis using consented GMN Level 2 station-night data.
 

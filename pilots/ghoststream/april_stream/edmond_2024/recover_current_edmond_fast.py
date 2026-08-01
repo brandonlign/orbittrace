@@ -22,27 +22,56 @@ import recover_current_edmond as audit
 
 
 def fast_probe(url: str, source: str):
-    original_request = audit.request
-
-    def short_request(
-        target: str,
-        *,
-        max_bytes: int,
-        headers=None,
-        timeout: int = 12,
-    ):
-        return original_request(
-            target,
-            max_bytes=max_bytes,
-            headers=headers,
-            timeout=min(timeout, 12),
-        )
-
-    audit.request = short_request
+    """Probe one URL without mutating shared module state."""
     try:
-        return audit.probe_url(url, source)
-    finally:
-        audit.request = original_request
+        data, status, final_url, headers = audit.request(
+            url,
+            max_bytes=audit.MAX_ZIP_BYTES,
+            timeout=12,
+        )
+        valid, _, reason = audit.valid_zip(data)
+        outcome = "VALID_ZIP" if valid else f"NOT_ZIP: {reason}"
+        probe = audit.Probe(
+            url=url,
+            source=source,
+            status=status,
+            final_url=final_url,
+            content_type=headers.get("content-type"),
+            content_length=len(data),
+            first_bytes_hex=data[:16].hex(),
+            outcome=outcome,
+        )
+        return probe, data if valid else None
+    except urllib.error.HTTPError as exc:
+        return (
+            audit.Probe(
+                url=url,
+                source=source,
+                status=exc.code,
+                final_url=exc.geturl(),
+                content_type=exc.headers.get("Content-Type") if exc.headers else None,
+                content_length=None,
+                first_bytes_hex=None,
+                outcome="HTTP_ERROR",
+                error=str(exc),
+            ),
+            None,
+        )
+    except Exception as exc:
+        return (
+            audit.Probe(
+                url=url,
+                source=source,
+                status=None,
+                final_url=None,
+                content_type=None,
+                content_length=None,
+                first_bytes_hex=None,
+                outcome="ERROR",
+                error=f"{type(exc).__name__}: {exc}",
+            ),
+            None,
+        )
 
 
 def main() -> int:

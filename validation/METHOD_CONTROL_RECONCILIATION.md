@@ -16,9 +16,4 @@ The 2024 results were:
 
 All three named showers were recovered, and no unrelated cluster approached the 0.30 limit.
 
-The honest reading is therefore:
-
-- the original overall control gate was badly specified and remains recorded as a failed gate;
-- the underlying method nevertheless recovered all three target showers;
-- a prospective correction of the contradictory rule passed in an independent year; and
-- neither result is evidence that GhostStream itself is a distinct shower.
+The original gate remains recorded as a specification error. The prospective correction passed in an independent year with the same clustering and recovery thresholds.

@@ -1,0 +1,81 @@
+name: GhostStream expert review bundle
+
+on:
+  pull_request:
+    paths:
+      - "pilots/ghoststream/april_stream/build_expert_review_bundle.py"
+      - "pilots/ghoststream/april_stream/EXPERT_REVIEW_PACKET.md"
+      - "pilots/ghoststream/april_stream/CANDIDATE_DOSSIER.md"
+      - "pilots/ghoststream/april_stream/candidate_solution.json"
+      - "pilots/ghoststream/april_stream/mdc/**"
+      - "pilots/ghoststream/april_stream/BOOTSTRAP_UNCERTAINTY.md"
+      - "pilots/ghoststream/april_stream/SPECIFICATION_CURVE.md"
+      - "pilots/ghoststream/april_stream/ACTIVITY_PROFILE.md"
+      - "pilots/ghoststream/april_stream/GEOGRAPHIC_SPLIT_VALIDATION.md"
+      - "pilots/ghoststream/april_stream/ALL_EXTERNAL_ZERO_SPEED.md"
+      - "pilots/ghoststream/april_stream/all_external_members_zero_speed.csv"
+      - "pilots/ghoststream/april_stream/shober_edmond/SHOBER_EDMOND_VALIDATION.md"
+      - "pilots/ghoststream/april_stream/edmond_2024/EDMOND_CURRENT_RELEASE_AUDIT.md"
+      - ".github/workflows/ghoststream-expert-review-bundle.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-review-bundle:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile bundle builder
+        run: |
+          python -m py_compile \
+            pilots/ghoststream/april_stream/build_expert_review_bundle.py
+
+      - name: Build deterministic bundle
+        shell: bash
+        run: |
+          set -euo pipefail
+          python pilots/ghoststream/april_stream/build_expert_review_bundle.py \
+            --output-dir expert_review_bundle \
+            --commit-sha "$GITHUB_SHA" 2>&1 | tee expert_review_bundle.log
+
+      - name: Validate bundle
+        run: |
+          python - <<'PY'
+          import json
+          import zipfile
+          from pathlib import Path
+
+          result = json.loads(Path("expert_review_bundle/expert_review_bundle_build.json").read_text())
+          assert result["verdict"] == "PASS_EXPERT_REVIEW_BUNDLE_BUILT"
+          assert result["included_files"] == 22
+          assert result["zip_members"] == 24
+          assert len(result["zip_sha256"]) == 64
+          path = Path(result["output"])
+          with zipfile.ZipFile(path) as archive:
+              assert archive.testzip() is None
+              assert "README.md" in archive.namelist()
+              assert "MANIFEST.json" in archive.namelist()
+              manifest = json.loads(archive.read("MANIFEST.json"))
+              assert manifest["source_commit"] == result["source_commit"]
+              assert manifest["file_count"] == 22
+          print(json.dumps(result, indent=2))
+          PY
+
+      - name: Upload expert review bundle
+        uses: actions/upload-artifact@v4
+        with:
+          name: ghoststream-expert-review-bundle
+          path: |
+            expert_review_bundle/GhostStream_Expert_Review_Bundle.zip
+            expert_review_bundle/expert_review_bundle_build.json
+            expert_review_bundle.log
+          if-no-files-found: error
+          retention-days: 30

@@ -70,17 +70,19 @@ jobs:
           result = json.loads(Path("expert_review_bundle/expert_review_bundle_build.json").read_text())
           assert result["verdict"] == "PASS_EXPERT_REVIEW_BUNDLE_BUILT"
           assert result["source_commit"] == branch_head
-          assert result["included_files"] == 22
-          assert result["zip_members"] == 24
+          assert result["included_files"] == 23
+          assert result["zip_members"] == 25
           assert len(result["zip_sha256"]) == 64
           path = Path(result["output"])
           with zipfile.ZipFile(path) as archive:
               assert archive.testzip() is None
-              assert "README.md" in archive.namelist()
-              assert "MANIFEST.json" in archive.namelist()
+              names = archive.namelist()
+              assert "README.md" in names
+              assert "MANIFEST.json" in names
+              assert "mdc/AI_AND_SOFTWARE_PROVENANCE.md" in names
               manifest = json.loads(archive.read("MANIFEST.json"))
               assert manifest["source_commit"] == branch_head
-              assert manifest["file_count"] == 22
+              assert manifest["file_count"] == 23
           print(json.dumps(result, indent=2))
           PY
 

@@ -1,7 +1,7 @@
 name: Finalize GhostStream repository cleanup
 
 on:
-  push:
+  pull_request:
     branches:
       - main
     paths:
@@ -45,11 +45,13 @@ jobs:
           )
           with urllib.request.urlopen(req) as response:
               refs = json.load(response)
+          keep = {'refs/heads/main', 'refs/heads/agent/ghoststream-pilot'}
           for item in refs:
               ref = item['ref']
-              if ref == 'refs/heads/main':
+              if ref in keep:
                   continue
-              encoded = urllib.parse.quote(ref, safe='')
+              api_ref = ref.removeprefix('refs/')
+              encoded = urllib.parse.quote(api_ref, safe='/')
               delete = urllib.request.Request(
                   f'https://api.github.com/repos/{repo}/git/refs/{encoded}',
                   headers=headers,

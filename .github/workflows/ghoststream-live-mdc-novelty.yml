@@ -1,10 +1,6 @@
 name: GhostStream live IAU MDC novelty refresh
 
 on:
-  pull_request:
-    paths:
-      - "pilots/ghoststream/april_stream/mdc/refresh_live_mdc_novelty.py"
-      - ".github/workflows/ghoststream-live-mdc-novelty.yml"
   workflow_dispatch:
 
 permissions:

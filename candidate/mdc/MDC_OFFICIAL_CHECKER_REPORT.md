@@ -29,6 +29,6 @@ The semimajor axis is calculated from the submitted six-decimal q and e values:
 
 `0.080114 / (1 - 0.943593) = 1.420284716... AU`.
 
-The consistency programs check whether the submitted geocentric and heliocentric quantities agree under the MDC tolerances. They do not evaluate event membership, statistical significance, novelty, or whether the candidate should be accepted as a shower.
+The programs check agreement between the submitted geocentric and heliocentric quantities under the MDC tolerances. Event membership, statistical significance, and catalogue comparison are evaluated elsewhere in the project.
 
 Exact hashes, executable provenance, and output comparisons are stored in `exact_official_checker_summary.json`.

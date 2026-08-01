@@ -1,10 +1,6 @@
 name: GhostStream reconcile EDMOND release integrity
 
 on:
-  pull_request:
-    paths:
-      - "pilots/ghoststream/april_stream/edmond_2024/reconcile_linked_release_integrity.py"
-      - ".github/workflows/ghoststream-reconcile-edmond-integrity.yml"
   workflow_dispatch:
 
 permissions:

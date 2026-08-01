@@ -6,6 +6,9 @@ on:
       - agent/ghoststream-pilot
     paths:
       - .github/workflows/ghoststream-recovered-downstream-reproduction.yml
+  pull_request:
+    paths:
+      - .github/workflows/ghoststream-recovered-downstream-reproduction.yml
   workflow_dispatch:
 
 permissions:
@@ -123,9 +126,6 @@ jobs:
                   raise AssertionError(f"{name}: expected {expected}, found {actual}")
               return actual
 
-          checks = {}
-
-          # Primary exact membership is a prerequisite for every downstream stage.
           members_path = Path("ghoststream_april_validation/april_candidate_members.csv")
           members = pd.read_csv(members_path)
           times = pd.to_datetime(members["beginning_utc_time"], errors="raise", utc=True)
@@ -140,14 +140,15 @@ jobs:
           lookup_seconds = {row["Tobs"][:10] + " " + row["Tobs"][11:] for row in lookup}
           recovered_seconds = set(times[times.dt.year >= 2022].dt.strftime("%Y-%m-%d %H:%M:%S"))
           assert recovered_seconds == lookup_seconds
-          checks["primary_membership"] = {
-              "total": 101,
-              "significant_year_members": 95,
-              "annual_counts": {str(k): v for k, v in expected_annual.items()},
-              "lookup_timestamp_set_exact": True,
+          checks = {
+              "primary_membership": {
+                  "total": 101,
+                  "significant_year_members": 95,
+                  "annual_counts": {str(k): v for k, v in expected_annual.items()},
+                  "lookup_timestamp_set_exact": True,
+              }
           }
 
-          # Source-preserving antihelion and orbit-null audit.
           source = load_json("ghoststream_april_source_null/april_source_preserving_null.json")
           assert source["verdict"] == "APRIL_STREAM_SURVIVES_SOURCE_PRESERVING_NULL"
           assert source["passed"] is True
@@ -172,7 +173,6 @@ jobs:
               "untouched_orbit_null_p": source_orbit,
           }
 
-          # Cluster bootstrap.
           boot = load_json("ghoststream_april_bootstrap/bootstrap_uncertainty.json")
           assert boot["members"] == 95
           assert boot["unique_nights"] == 29
@@ -202,7 +202,6 @@ jobs:
               "interpretation": interpretation,
           }
 
-          # Corrected exposure-normalized activity profile.
           activity = load_json("ghoststream_april_activity_v2/activity_profile.json")
           close("activity baseline rate", activity["baseline_rate_per_1000_background"], 1.604, atol=0.005)
           close("activity peak solar longitude", activity["peak_solar_longitude_deg"], 38.652, atol=0.002)
@@ -233,7 +232,6 @@ jobs:
               "aggregate_p": activity["aggregate_p"],
           }
 
-          # Three disjoint geographic groups.
           geographic = load_json("ghoststream_geographic_splits/geographic_split_validation.json")
           assert geographic["verdict"] == "APRIL_STREAM_REPLICATES_ACROSS_THREE_DISJOINT_GMN_GEOGRAPHIC_GROUPS"
           assert geographic["passed"] is True
@@ -258,7 +256,6 @@ jobs:
               "maximum_cross_region_medoid_d": geographic["maximum_cross_region_medoid_d"],
           }
 
-          # Frozen 81-cell specification curve.
           spec = load_json("ghoststream_april_specification_curve/specification_curve.json")
           assert spec["verdict"] == "APRIL_STREAM_ROBUST_ACROSS_FROZEN_SPECIFICATION_GRID"
           assert spec["passed"] is True
@@ -282,7 +279,6 @@ jobs:
               "orbit_median_d_range": spec["orbit_median_d_range_eligible"],
           }
 
-          # Preserve the complete regenerated, machine-readable evidence package.
           source_dirs = {
               "primary": Path("ghoststream_april_validation"),
               "source_null": Path("ghoststream_april_source_null"),
@@ -348,6 +344,7 @@ jobs:
           retention-days: 90
 
       - name: Commit exact downstream reproduction
+        if: github.event_name == 'push'
         shell: bash
         run: |
           set -euo pipefail

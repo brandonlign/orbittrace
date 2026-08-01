@@ -1,0 +1,1 @@
+Create a GitHub issue from ISSUE_BODY.md when connector issue creation is available.

@@ -1,0 +1,265 @@
+{
+  "status": "RECOVERED_FROM_IMMUTABLE_GITHUB_PR_COMMITS",
+  "destination_branch": "agent/ghoststream-pilot",
+  "sources": {
+    "pr56_runner": {
+      "repository": "brandonlign/remotion-worker",
+      "pull_request": 56,
+      "source_path": "ghoststream_runner",
+      "commit": "4175e5187fcc6faf3d1befb099a9e35be96850f2",
+      "file_count": 13,
+      "files": [
+        {
+          "path": "RUNNER_VERSION",
+          "bytes": 2,
+          "sha256": "1121cfccd5913f0a63fec40a6ffd44ea64f9dc135c66634ba001d10bcf4302a2"
+        },
+        {
+          "path": "final_candidate_checks.py",
+          "bytes": 13187,
+          "sha256": "2bd41bd12924c3e3972d0c9ec7a2ffea9ebed40558b8a68e8bce73c9cf4ee135"
+        },
+        {
+          "path": "final_candidate_checks_fixed.py",
+          "bytes": 562,
+          "sha256": "28f4b931f584192adc8a9f7f335ffb56685248c595fc574e4abcd4a0138bd22f"
+        },
+        {
+          "path": "inspect_gmn_columns.py",
+          "bytes": 359,
+          "sha256": "2467c2c35bb1623f04d173bd09553f287f10d7fb0716466aed49583d09de64e1"
+        },
+        {
+          "path": "multiyear_confirmation.py",
+          "bytes": 10133,
+          "sha256": "00c8f1972d2a6c711d4688969ecad5e0cecb7cb3d447d4de8e30a9f7af1284e1"
+        },
+        {
+          "path": "requirements.txt",
+          "bytes": 71,
+          "sha256": "20bc5aa8465a11a08cea6ad0b393a32866ea78343d852261fc0b2019cebd4244"
+        },
+        {
+          "path": "run_blind_scan.py",
+          "bytes": 16899,
+          "sha256": "d28d58d747b10ed47b9b6ebcf23785f57d1d5fff328c477e95468abf5f529e5d"
+        },
+        {
+          "path": "run_blind_scan_v2.py",
+          "bytes": 18632,
+          "sha256": "5bd1cefc4b04605b47c202a70889dc97ab8a645108943bdce8c6e45a23c1dc71"
+        },
+        {
+          "path": "run_blind_scan_v2_fixed.py",
+          "bytes": 759,
+          "sha256": "9f2002a6dbd976fd89aa2652430bb590dcb9a2f33fff3860812622afc39cde5c"
+        },
+        {
+          "path": "run_gate.py",
+          "bytes": 12230,
+          "sha256": "86ce3876ab0bbaa50c56d3f69f15e6937fa1f7a99dea705d22eec3c0531096d6"
+        },
+        {
+          "path": "run_gate_v2.py",
+          "bytes": 7539,
+          "sha256": "cb313228a5591c9d41c52774f44c10d89591ade8e354a3e9bd73af6f09d90954"
+        },
+        {
+          "path": "run_injection_gate.py",
+          "bytes": 9793,
+          "sha256": "e8d18c53335f69c13ba5a09b7024cf73610e2a33a01c6d4fe15d69384e6d9042"
+        },
+        {
+          "path": "validate_candidates.py",
+          "bytes": 21735,
+          "sha256": "c653ca1e72969c10f816d2bfa8ac8e0d65b77f9bae99c67b10542409ed669049"
+        }
+      ]
+    },
+    "pr57_novel": {
+      "repository": "brandonlign/remotion-worker",
+      "pull_request": 57,
+      "source_path": "ghoststream_novel",
+      "commit": "39972b5fe0cf4d47092d3caa2b3ced12bedb065e",
+      "file_count": 35,
+      "files": [
+        {
+          "path": "bootstrap_april_solution.py",
+          "bytes": 10913,
+          "sha256": "86ee54743ee77c6421362bd896d59d67ede84582fdc00df11c3aecd12eed494f"
+        },
+        {
+          "path": "estimate_april_activity_profile.py",
+          "bytes": 12441,
+          "sha256": "df715028a8cc118e551ed531d72ccd8f38d535e0f3c87349abba151d00fb59e2"
+        },
+        {
+          "path": "estimate_april_activity_profile_v2.py",
+          "bytes": 15754,
+          "sha256": "f1026274c1432c4d657f88e6db2fc607e7a353890f0974c9c934ab1caaf7d9b8"
+        },
+        {
+          "path": "fetch_mdc_templates.py",
+          "bytes": 750,
+          "sha256": "22d4b2ba41a0b920db3236de2703d2dc788d751090722c9bba0682cbfc67c8ea"
+        },
+        {
+          "path": "flux_handoff/make_ghoststream_flux_catalog.py",
+          "bytes": 3693,
+          "sha256": "eb8167ec6510da1d0e575270c8ef15935ba56fe5c504c5ec1ceb5bc570534fbd"
+        },
+        {
+          "path": "flux_handoff/preflight_level2_flux_data.py",
+          "bytes": 4582,
+          "sha256": "e6605720b93c9b674be0913abf665ad3f878ca60fdd4a206b22cd546658d0537"
+        },
+        {
+          "path": "inspect_archive_versions.py",
+          "bytes": 1284,
+          "sha256": "f109c9596f4d48c6679ec80c01354f8308710928b8bc0ab2723d63d055a62d92"
+        },
+        {
+          "path": "inspect_independent_archives.py",
+          "bytes": 1120,
+          "sha256": "09094647203e92e71f3eaa5e2f509860ff50b007e07503bac1038b957fef40e4"
+        },
+        {
+          "path": "inspect_mdc_checker.py",
+          "bytes": 824,
+          "sha256": "bfcfb7e5f6e2967aa8d82b0b8110699fe3b0dabced235928583814edef489388"
+        },
+        {
+          "path": "inspect_mdc_download_links.py",
+          "bytes": 1111,
+          "sha256": "544bd941aad5f1481695a5da04153a63383db83b2565614ab1c724910fc6451b"
+        },
+        {
+          "path": "inspect_shober_edmond.py",
+          "bytes": 4085,
+          "sha256": "068a815eae9368229da688a82111e6036abc98019b8b7a943e3bbcd617959403"
+        },
+        {
+          "path": "orbit_helpers_standalone.py",
+          "bytes": 1694,
+          "sha256": "856fcf53ef5c3eebd0bb8f1e214d1e1a05be3810d650303ae2734b9037e8ff53"
+        },
+        {
+          "path": "requirements.txt",
+          "bytes": 88,
+          "sha256": "8c9ceaf71ad2ed87bbf2141a399a582feb9a09e48e52ee740cf024d68bd54ab2"
+        },
+        {
+          "path": "resolve_edmond_2024.py",
+          "bytes": 9665,
+          "sha256": "dcf548a4613da127c202f8b5344947adf87a0cf655f4113c2463af034f658259"
+        },
+        {
+          "path": "resolve_edmond_archives.py",
+          "bytes": 15523,
+          "sha256": "db67bd066280a196660bde4c1ee81a9283563309f9b8d93881553d47a2539e1e"
+        },
+        {
+          "path": "run_month.py",
+          "bytes": 1160,
+          "sha256": "9af39cde3f384fc882028702ad9e339e3dec69022acb987bdb7cafb3cef298eb"
+        },
+        {
+          "path": "run_month_v2.py",
+          "bytes": 6240,
+          "sha256": "85ff46c2ca40ae109ebfebc94c43309eaf4e4b8d44f5cda05fc1e372783e1c1e"
+        },
+        {
+          "path": "run_month_year_v3.py",
+          "bytes": 2110,
+          "sha256": "9681b11f97546589689f39af9e2ebe956185a5956de58d37538a1bd1e74b78ed"
+        },
+        {
+          "path": "run_novel_search.py",
+          "bytes": 27349,
+          "sha256": "cda9ce7ea1e6ecb5af1656bb8ce3dc97fcce493257fda984f71ad560d232357e"
+        },
+        {
+          "path": "run_novel_search_fixed.py",
+          "bytes": 1013,
+          "sha256": "78a6ef20b586aedf9b670f56eca76b3920d276806f71e298114bbb8a85b3f548"
+        },
+        {
+          "path": "run_validate_shober_edmond_standalone.py",
+          "bytes": 625,
+          "sha256": "d8a9c8f8e10b1fb743b75e379467ac9f3ccff48853ccb113808d3b82761dd503"
+        },
+        {
+          "path": "screen_parent_and_inspect_cams.py",
+          "bytes": 8522,
+          "sha256": "190e2705da6147a2b6e4dd0bfdf6983d15bff562992ab2bccfe47edba0aa222f"
+        },
+        {
+          "path": "specification_curve_april.py",
+          "bytes": 13827,
+          "sha256": "98beee67e1c58883bf62ab121a3ab925cacb632614d5a6d61f4447fa4dcd1cd5"
+        },
+        {
+          "path": "synthesize_all_external_archives_zero_speed.py",
+          "bytes": 10745,
+          "sha256": "d1b795ca5c0fcc48b4c1f176f8b0a50ba01a9384578c171eb5e7aba7d535849c"
+        },
+        {
+          "path": "synthesize_independent_archives.py",
+          "bytes": 11652,
+          "sha256": "c6908ea82a382b04ec82dac5da788e36b51b3ae09459857295c2ae49bd668e70"
+        },
+        {
+          "path": "synthesize_three_independent_archives.py",
+          "bytes": 16036,
+          "sha256": "c977fb51a7d905295914dc5a419c281eeb055273210e21477170c7c9d84e1ae6"
+        },
+        {
+          "path": "validate_april_candidate.py",
+          "bytes": 29488,
+          "sha256": "4a29b4c3bde528be2523b627f7e8a22d3c836f45981cc77aefd7d4c694c844ac"
+        },
+        {
+          "path": "validate_april_source_null.py",
+          "bytes": 19039,
+          "sha256": "93c494ef399d782dc4c3ef887e70c356fe4ddb6c4e6a889f75c2ec9e6a6fd0be"
+        },
+        {
+          "path": "validate_cams_legacy.py",
+          "bytes": 12109,
+          "sha256": "7add5fefb8e3ac5aa6277ea96101303d33227e4fb7a9feed39d8aee985be26c4"
+        },
+        {
+          "path": "validate_cams_legacy_fixed.py",
+          "bytes": 759,
+          "sha256": "e08b9aef8e985558035a35113547ddac6cf3f0da8608d465a2ecd31b4cb6d9ab"
+        },
+        {
+          "path": "validate_geographic_network_splits.py",
+          "bytes": 11758,
+          "sha256": "5a9d81c3566753a732461395c36f793a5b73ef75f97f8807c3277a6bb91db387"
+        },
+        {
+          "path": "validate_independent_catalogs.py",
+          "bytes": 23633,
+          "sha256": "c996964cc283e1d0b4e3bc07a9f0e3881d1d32a35b9a2b0e922e80adcd3f3aec"
+        },
+        {
+          "path": "validate_independent_catalogs_v2.py",
+          "bytes": 7566,
+          "sha256": "2b335ad83a970cc20a894805cc4e128cedb0121d38dffdb8b5d5a17bd4f3fd3b"
+        },
+        {
+          "path": "validate_shober_edmond.py",
+          "bytes": 15434,
+          "sha256": "8d8e8fbc523b296aaa976d1ab3e699f7b5a8b1399cc4b61f24b9e73530b6bdd6"
+        },
+        {
+          "path": "validate_transient_outbursts.py",
+          "bytes": 22218,
+          "sha256": "1abaa2824c2a1daef8d67f6079f6ba5b49397e1101eeeda2cd5017b6d4161063"
+        }
+      ]
+    }
+  },
+  "preservation_note": "Exact snapshots of the temporary GitHub Actions runner trees that generated the GhostStream discovery, validation, and downstream audit outputs."
+}

@@ -2,9 +2,9 @@
 """Build a deterministic, bounded GhostStream expert-review bundle.
 
 The bundle contains the primary manuscript/data package, the frozen scientific
-record, and the minimum robustness reports needed for an external meteor expert
-to issue a critical verdict. It excludes raw catalogues, temporary workflows,
-and internal development logs.
+record, the AI/software provenance disclosure, and the minimum robustness
+reports needed for an external meteor expert to issue a critical verdict. It
+excludes raw catalogues, temporary workflows, and internal development logs.
 """
 from __future__ import annotations
 
@@ -12,7 +12,6 @@ import argparse
 import hashlib
 import json
 import zipfile
-from datetime import datetime, timezone
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
@@ -32,6 +31,7 @@ FILES = [
     "pilots/ghoststream/april_stream/mdc/live_mdc_novelty_refresh_summary.json",
     "pilots/ghoststream/april_stream/mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md",
     "pilots/ghoststream/april_stream/mdc/mdc_package_consistency_summary.json",
+    "pilots/ghoststream/april_stream/mdc/AI_AND_SOFTWARE_PROVENANCE.md",
     "pilots/ghoststream/april_stream/BOOTSTRAP_UNCERTAINTY.md",
     "pilots/ghoststream/april_stream/SPECIFICATION_CURVE.md",
     "pilots/ghoststream/april_stream/ACTIVITY_PROFILE.md",
@@ -91,17 +91,22 @@ Files: {len(records)}
 
 1. `EXPERT_REVIEW_PACKET.md`
 2. `mdc/MANUSCRIPT_DRAFT.md`
-3. `mdc/GhostStream_April_95_GMN_lookup.csv`
-4. `mdc/GhostStream_April_mean_submission.json`
-5. `mdc/calculation_audit.json`
-6. `mdc/LIVE_MDC_NOVELTY_REFRESH.md`
-7. `mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md`
-8. `candidate_solution.json`
-9. robustness and external-archive reports as needed
+3. `mdc/AI_AND_SOFTWARE_PROVENANCE.md`
+4. `mdc/GhostStream_April_95_GMN_lookup.csv`
+5. `mdc/GhostStream_April_mean_submission.json`
+6. `mdc/calculation_audit.json`
+7. `mdc/LIVE_MDC_NOVELTY_REFRESH.md`
+8. `mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md`
+9. `candidate_solution.json`
+10. robustness and external-archive reports as needed
 
 ## Requested outcome
 
 Please return a critical verdict using the A–E scale in `EXPERT_REVIEW_PACKET.md`, identify any fatal error or likely known-shower duplicate, and state the required work before a possible IAU Meteor Data Center submission.
+
+## AI/software transparency
+
+The package discloses substantive generative-AI assistance with research planning, code development, source discovery, auditing, organization, and manuscript preparation. AI tools were not treated as authors or independent scientific reviewers. Reviewers should consider whether the documented verification and human-responsibility controls are adequate.
 
 ## Claim boundary
 

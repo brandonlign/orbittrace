@@ -19,36 +19,58 @@ jobs:
           ref: agent/ghoststream-pilot
           fetch-depth: 0
 
-      - name: Apply syntax-aware source fix
+      - name: Apply idempotent field-mapping fixes
         run: |
           python - <<'PY'
           from pathlib import Path
 
           audit = Path("pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py")
           lines = audit.read_text().splitlines()
-          target = 'for key in ("q", "e", "peri", "node", "incl", "a"):'
-          matches = [i for i, line in enumerate(lines) if line.strip() == target]
-          if len(matches) != 1:
-              raise SystemExit(f"audit mapping line matches={matches}")
-          i = matches[0]
-          indent = lines[i][: len(lines[i]) - len(lines[i].lstrip())]
-          if i + 1 >= len(lines) or 'calculation audit -> mean JSON' not in lines[i + 1]:
-              raise SystemExit("unexpected audit mapping body")
-          lines[i] = indent + 'for calc_key, mean_key in (("q", "q"), ("e", "e"), ("peri", "peri"), ("node", "node"), ("incl", "inc"), ("a", "a")):'
-          lines[i + 1] = indent + '    close(f"calculation audit -> mean JSON {calc_key}", calc_means[calc_key], mean[mean_key], 5e-6)'
+
+          old_target = 'for key in ("q", "e", "peri", "node", "incl", "a"):'
+          new_target = 'for calc_key, mean_key in (("q", "q"), ("e", "e"), ("peri", "peri"), ("node", "node"), ("incl", "inc"), ("a", "a")):'
+          old_matches = [i for i, line in enumerate(lines) if line.strip() == old_target]
+          new_matches = [i for i, line in enumerate(lines) if line.strip() == new_target]
+          if len(old_matches) == 1 and not new_matches:
+              i = old_matches[0]
+              indent = lines[i][: len(lines[i]) - len(lines[i].lstrip())]
+              if i + 1 >= len(lines) or 'calculation audit -> mean JSON' not in lines[i + 1]:
+                  raise SystemExit("unexpected calculation mapping body")
+              lines[i] = indent + new_target
+              lines[i + 1] = indent + '    close(f"calculation audit -> mean JSON {calc_key}", calc_means[calc_key], mean[mean_key], 5e-6)'
+          elif len(new_matches) != 1:
+              raise SystemExit(f"calculation mapping old={old_matches} new={new_matches}")
+
+          legacy_target = 'close(f"legacy rounded value {key}", float(legacy[index]), float(mean[key]), tolerance)'
+          legacy_fixed = 'close(f"legacy rounded value {key}", float(legacy[index]), float(mean[mean_key]), tolerance)'
+          legacy_matches = [i for i, line in enumerate(lines) if line.strip() == legacy_target]
+          legacy_fixed_matches = [i for i, line in enumerate(lines) if line.strip() == legacy_fixed]
+          if len(legacy_matches) == 1 and not legacy_fixed_matches:
+              i = legacy_matches[0]
+              indent = lines[i][: len(lines[i]) - len(lines[i].lstrip())]
+              lines.insert(i, indent + 'mean_key = "inc" if key == "incl" else key')
+              lines[i + 1] = indent + legacy_fixed
+          elif len(legacy_fixed_matches) != 1:
+              raise SystemExit(f"legacy mapping old={legacy_matches} fixed={legacy_fixed_matches}")
+
           audit.write_text("\n".join(lines) + "\n")
           PY
 
-      - name: Validate source fix
+      - name: Validate source fixes
         run: |
           python -m py_compile pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
           grep -F '("incl", "inc")' pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
+          grep -F 'mean_key = "inc" if key == "incl" else key' pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
           git diff --check
 
-      - name: Commit source fix
+      - name: Commit source fixes
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
-          git commit -m "Fix MDC package audit field mapping"
-          git push origin HEAD:agent/ghoststream-pilot
+          if git diff --cached --quiet; then
+            echo "Audit field mappings already fixed."
+          else
+            git commit -m "Complete MDC package audit field mapping"
+            git push origin HEAD:agent/ghoststream-pilot
+          fi

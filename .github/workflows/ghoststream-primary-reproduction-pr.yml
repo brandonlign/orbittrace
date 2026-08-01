@@ -5,6 +5,7 @@ on:
     paths:
       - "pilots/ghoststream/reconstruction/RECONSTRUCTION_PROTOCOL.md"
       - "pilots/ghoststream/reconstruction/reproduce_primary_gmn.py"
+      - "pilots/ghoststream/reconstruction/run_primary_gmn_tls_compat.py"
       - "pilots/ghoststream/april_stream/mdc/GhostStream_April_95_GMN_lookup.csv"
       - ".github/workflows/ghoststream-primary-reproduction-pr.yml"
   workflow_dispatch:
@@ -24,14 +25,17 @@ jobs:
           python-version: "3.11"
 
       - name: Compile reconstruction
-        run: python -m py_compile pilots/ghoststream/reconstruction/reproduce_primary_gmn.py
+        run: |
+          python -m py_compile \
+            pilots/ghoststream/reconstruction/reproduce_primary_gmn.py \
+            pilots/ghoststream/reconstruction/run_primary_gmn_tls_compat.py
 
       - name: Run frozen primary reproduction
         id: reproduce
         shell: bash
         run: |
           set +e
-          python pilots/ghoststream/reconstruction/reproduce_primary_gmn.py \
+          python pilots/ghoststream/reconstruction/run_primary_gmn_tls_compat.py \
             2>&1 | tee ghoststream_primary_reproduction.log
           status=${PIPESTATUS[0]}
           set -e

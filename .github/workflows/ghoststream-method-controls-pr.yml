@@ -39,7 +39,9 @@ jobs:
           python-version: "3.9"
 
       - name: Install recovered control environment
+        shell: bash
         run: |
+          set -euo pipefail
           python -m pip install --upgrade pip
           python -m pip install -r _ghoststream_control_source/ghoststream_runner/requirements.txt
           python -m pip freeze | sort | tee ghoststream_method_environment.txt
@@ -61,29 +63,48 @@ jobs:
             _ghoststream_control_source/ghoststream_runner/run_injection_gate.py \
             pilots/ghoststream/reconstruction/verify_recovered_method_controls.py
 
-      - name: Run untouched known-shower recovery gate
+      - name: Run original untouched known-shower gate
+        shell: bash
         run: |
+          set -euo pipefail
           PYTHONPATH=_ghoststream_control_source/ghoststream_runner \
             python _ghoststream_control_source/ghoststream_runner/run_gate_v2.py \
             2>&1 | tee ghoststream_method_known_shower.log
 
       - name: Run weak-stream injection and permutation gate
+        shell: bash
         run: |
+          set -euo pipefail
           PYTHONPATH=_ghoststream_control_source/ghoststream_runner \
             python _ghoststream_control_source/ghoststream_runner/run_injection_gate.py \
             2>&1 | tee ghoststream_method_injection.log
 
-      - name: Verify recovered control outputs
+      - name: Audit recovered control outputs
+        shell: bash
         run: |
+          set -euo pipefail
           python pilots/ghoststream/reconstruction/verify_recovered_method_controls.py \
             --output-dir ghoststream_method_control_evidence \
             2>&1 | tee ghoststream_method_verification.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path("ghoststream_method_control_evidence/method_controls.json").read_text())
+          assert result["status"] == "RECOVERED_METHOD_CONTROL_AUDIT_NEGATIVE_GATE_INFEASIBLE"
+          assert result["scientific_gate_passed"] is False
+          assert result["corrected_prospective_holdout_required"] is True
+          assert result["known_shower_recovery"]["original_verdict"] == "NO_GO_DEGENERATE_PARENT_CLUSTER"
+          assert result["known_shower_recovery"]["untouched_recovered"] == 3
+          assert "Eta_Aquariids" in result["known_shower_recovery"]["infeasible_controls"]
+          assert result["weak_stream_injection"]["verdict"] == "INJECTION_GATE_PASS"
+          print(json.dumps(result, indent=2))
+          PY
 
       - name: Upload complete method-control evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ghoststream-exact-recovered-method-controls
+          name: ghoststream-recovered-method-control-audit
           path: |
             ghoststream_method_control_evidence/
             ghoststream_results_v2/
@@ -94,7 +115,7 @@ jobs:
           if-no-files-found: error
           retention-days: 90
 
-      - name: Commit exact method-control evidence
+      - name: Commit recovered negative-control audit
         if: github.event_name == 'push'
         shell: bash
         run: |
@@ -106,9 +127,9 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$target"
           if git diff --cached --quiet; then
-            echo "Method-control evidence already matches."
+            echo "Method-control audit evidence already matches."
             exit 0
           fi
-          git commit -m "Reproduce GhostStream method controls"
+          git commit -m "Audit GhostStream method controls"
           git pull --rebase origin agent/ghoststream-pilot
           git push origin HEAD:agent/ghoststream-pilot

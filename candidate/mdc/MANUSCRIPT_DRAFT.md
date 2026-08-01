@@ -1,6 +1,6 @@
 # An Uncatalogued Annual April Meteor-Stream Candidate in Global Meteor Network Data
 
-**Working manuscript — not submitted**
+**Working manuscript**
 
 **Author:** Brandon Li  
 **Affiliation:** John L. Miller Great Neck North High School, Great Neck, New York, USA  
@@ -8,75 +8,132 @@
 
 ## Abstract
 
-I searched public Global Meteor Network (GMN) trajectory catalogues for weak meteor streams not represented in the IAU Meteor Data Center (MDC) shower catalogue. Candidate groups were found in Sun-centered radiant, geocentric-speed, and encounter-time space, then tested for orbital coherence, recurrence in other years, separation from the antihelion background, measurement uncertainty, geographic consistency, sensitivity to nearby analysis choices, and support in other meteor-orbit catalogues.
+I searched public Global Meteor Network (GMN) trajectory catalogues for weak meteor streams outside the solutions represented in the IAU Meteor Data Center (MDC) shower catalogue. Candidate groups were found in Sun-centered radiant, speed, and encounter-time space and then tested using orbital coherence, historical recurrence, source-matched backgrounds, measurement-error simulations, geographic station splits, clustered bootstrap resampling, a sensitivity analysis over 81 nearby specifications, and external meteor-orbit catalogues.
 
-One late-April group survived the complete analysis. The confirmed GMN sample contains 95 meteors from 2022 through 2026. A pooled test using 2022–2023, which was not used to choose the candidate, gave an activity p-value of 1.86 × 10⁻⁵ after a twelve-month familywise rule and a source/time-matched orbit-null p-value of 1.0 × 10⁻⁴. Orbital elements were not used to select the activity enhancement. The signal appears in three non-overlapping GMN station groups, passes all 81 tested combinations of nearby quality cuts and window widths, and remains stable in 20,000 year/night bootstrap samples. Six CAMS meteors and four SonotaCo meteors provide the main external support. Six additional meteors occur in a shower-removed EDMOND subset, although EDMOND’s compiled provenance limits how independently that sample can be interpreted.
+One late-April group survived the complete analysis. The final GMN sample contains 95 meteors in five significant years from 2022 through 2026. The pooled 2022–2023 confirmation was reserved until after the candidate definition had been fixed and gave an activity p-value of 1.86 × 10⁻⁵ after a twelve-month familywise rule and a source/time-matched orbit-null p-value of 1.0 × 10⁻⁴. The activity enhancement was selected from radiant, speed, and solar longitude, with orbit evaluated afterward. A March–May profile supports an activity interval from solar longitude 35.90° to 39.90°. The candidate appears in three non-overlapping GMN geographic station groups, passes all 81 tested combinations of nearby quality and window choices, and remains stable in 20,000 year/night bootstrap samples. The bootstrap resolves angular radiant drift while leaving geocentric-speed drift unresolved.
 
-A checksum-locked comparison with 2,174 official MDC solutions found no matching shower under the fixed timing, radiant, speed, and orbital criteria. The evidence supports a recurring, apparently uncatalogued late-April meteor-stream candidate. Independent specialist review is still needed before an MDC or journal submission.
+Six CAMS meteors and four SonotaCo meteors provide the main external support. Six additional meteors occur in a shower-removed EDMOND subset, although EDMOND’s compiled provenance limits its independence. A checksum-locked comparison with 2,174 official MDC solutions found no direct match or timing/radiant/speed near match. The original analysis code was recovered from immutable commits and reproduced the primary event list and downstream results without retuning. The evidence supports a recurring, apparently uncatalogued late-April meteor-stream candidate. Specialist review will focus on its distinctness from minor-shower branches and antihelion structure.
 
 ## 1. Introduction
 
-Weak meteor streams are difficult to distinguish from the structured sporadic background. A compact cluster alone is not enough, especially near the broad helion and antihelion sources, where radiant, speed, and time are already correlated.
+Meteor showers are usually recognized as concentrations in radiant position, speed, encounter date, and heliocentric orbit. Strong annual showers are easy to see, but weak streams can be difficult to separate from the structured sporadic background. The problem is especially difficult near the broad helion and antihelion sources, where genuine correlations already exist in radiant, speed, and time.
 
-A credible weak-stream candidate should recur in multiple years, survive reasonable changes in analysis choices, remain visible across different parts of the observing network, have an orbit more compact than an appropriate local background, and not be an alternate solution for a known shower.
+A convincing weak-stream search therefore needs more than a compact cluster. It should show annual recurrence, stability across reasonable analysis choices, geographic consistency, orbital compactness relative to a local background, and separation from known shower solutions.
 
-The Global Meteor Network provides public multi-station trajectory catalogues with broad geographic coverage and repeated annual observations. I used those catalogues for a blind search, then tested the surviving candidate in years and external catalogues that were not used to choose it.
+The Global Meteor Network provides public multi-station trajectory catalogues with broad geographic coverage and repeated annual observations. I used those catalogues for a blind search followed by tests in years that were not used to choose the candidate. The analysis was designed around four principles:
+
+1. demonstrate that the method can recover known showers and injected weak streams;
+2. separate candidate generation from later confirmation;
+3. test activity without using orbital elements, then test orbit afterward; and
+4. keep external catalogues and untouched years out of the candidate-tuning stage.
+
+This paper describes the one late-April candidate that survived those tests.
 
 ## 2. Data
 
 ### 2.1 Global Meteor Network
 
-Monthly GMN trajectory catalogues from 2019 through July 2026 were downloaded from the public GMN service. The discovery search used trajectories labelled as sporadic by GMN and required at least two participating stations, median trajectory-fit error no greater than 180 arcsec, finite radiant and orbital quantities, and geocentric speed between 5 and 75 km/s.
+Monthly GMN trajectory catalogues from 2019 through July 2026 were downloaded from the public GMN service. The discovery search used trajectories labelled as sporadic by GMN and required:
 
-When multiple solutions shared the same event time, the solution with the lowest fit error was retained, with station count used as a secondary criterion. The January–July 2026 data were used for the blind rediscovery. Earlier years were examined only after the April candidate definition had been fixed.
+- at least two participating stations;
+- median trajectory-fit error no greater than 180 arcsec;
+- finite radiant, speed, and orbital quantities; and
+- geocentric speed between 5 and 75 km/s.
+
+When more than one solution shared the same event time, the lowest-fit-error solution was kept, with station count used as a secondary criterion.
+
+The 2026 January–July data were used for the blind rediscovery. The April candidate definition was fixed before the earlier years were evaluated.
 
 ### 2.2 External catalogues
 
-The fixed candidate was later applied to the legacy CAMS orbit catalogue, permanent SonotaCo annual catalogues, and a shower-removed EDMOND subset published with Shober (2026). Because EDMOND combines observations from contributing networks, it is treated as supplementary evidence rather than as a wholly independent third instrument.
+The candidate was later applied to:
 
-### 2.3 Known-shower and parent-body data
+- the legacy CAMS orbit catalogue for 2010–2013;
+- permanent SonotaCo annual catalogues for 2022–2025; and
+- a shower-removed EDMOND subset published with Shober (2026).
 
-The candidate was compared with every parsable solution in the official IAU MDC full shower-data catalogue, including working-list entries. A NASA/JPL Small-Body Database search was used for a broad parent-body screen after the meteor-stream solution had been established.
+The EDMOND subset was checked against its published MD5 before use. Because EDMOND combines observations from contributing video networks, it was treated as supplementary evidence rather than as a wholly independent third instrument.
+
+The public EDMOND page also linked annual ZIP files for 2001–2024. The 2024 link returned 404. Twenty-three files for 2001–2023 passed ZIP, CRC, and schema checks. Their row counts and embedded version fields differ from the advertised v6.01 release, so they are described as the currently linked files and used only to reproduce the six EDMOND events.
+
+### 2.3 Shower catalogue and parent-body data
+
+The candidate was compared with every parsable solution in the official IAU MDC full shower-data catalogue, including working-list entries. A NASA/JPL Small-Body Database query was used for a broad parent-body screen after the meteor-stream solution had been established.
 
 ## 3. Methods
 
 ### 3.1 Method controls
 
-The Lyrids, Eta Aquariids, and Southern Delta Aquariids were used as positive controls. A flawed early control rule rejected any cluster larger than 30% of a sample; Eta Aquariids themselves exceeded that fraction, making the rule incompatible with high recall. The failure was retained in the record. Before the independent 2024 holdouts were examined, the rule was corrected so that the 30% limit applied to the largest non-target cluster. The three 2024 holdout F1 scores were 0.902, 0.957, and 0.927.
+Three named showers were used as positive controls: the Lyrids, Eta Aquariids, and Southern Delta Aquariids. Their F1 scores were 0.895, 0.950, and 0.922.
+
+The original combined control gate contained a flawed rule that rejected any cluster larger than 30% of the sample. Eta Aquariids themselves made up more than 30% of their control sample, making the rule impossible to satisfy at high recall. I retained that failed gate rather than relabelling it. A correction was specified before independent 2024 holdouts were examined: the same 30% limit was applied to the largest non-target cluster. All three showers then passed, with 2024 F1 scores of 0.902, 0.957, and 0.927.
 
 Synthetic weak streams were also inserted into real sporadic backgrounds. Four of nine 20-member injections, seven of nine 40-member injections, and eight of nine 80-member injections were recovered.
 
 ### 3.2 Blind search
 
-Each meteor was represented by Sun-centered geocentric ecliptic radiant longitude, geocentric ecliptic radiant latitude, geocentric speed, and solar longitude. The feature scales were 3.5°, 3.0°, 2.5 km/s, and 2.5°. HDBSCAN was run with `min_cluster_size = 12`, `min_samples = 4`, and leaf cluster selection.
+Each meteor was represented by four quantities:
 
-Candidates had to contain 12–300 members, appear on at least four nights and six stations, avoid domination by one night or station set, and have at least 80% valid orbits. Median and 90th-percentile orbital distances had to remain below fixed limits. Alternating-night split tests, local time permutations, broad sporadic-source vetoes, and known-shower comparisons were applied before a candidate could proceed.
+- Sun-centered geocentric ecliptic radiant longitude;
+- geocentric ecliptic radiant latitude;
+- geocentric speed; and
+- solar longitude.
 
-The January–July 2026 rerun produced one full-gate survivor, in April. No other month produced a full-gate candidate.
+The feature scales were 3.5°, 3.0°, 2.5 km/s, and 2.5°, respectively. HDBSCAN was run with `min_cluster_size = 12`, `min_samples = 4`, and leaf cluster selection.
 
-### 3.3 Historical confirmation and background test
+Candidate groups had to contain 12–300 members, appear on at least four nights and at least six stations, avoid domination by one night or station set, and have at least 80% valid orbits. Their median and 90th-percentile orbital distances also had to remain below fixed limits. Alternating-night split tests and local time-permutation tests were used to check recurrence. Broad sporadic-source regions and known MDC showers were screened before a candidate could proceed.
 
-The April center, drift, widths, and activity interval were fixed before earlier years were tested. A year counted as significant only when both the activity test and the post-selection orbital test passed.
+The January–July 2026 rerun selected April as the only full-gate candidate.
 
-The pooled 2022–2023 sample was reserved as an untouched confirmation. The final background placed the candidate inside a deliberately broad antihelion region. Candidate selection used radiant, speed, and solar longitude only. No orbital element, including node, entered the activity selection. Orbital compactness was evaluated afterward against source- and time-matched comparison groups.
+### 3.3 Historical confirmation
 
-### 3.4 Uncertainty and robustness
+The April center, drift, widths, and activity interval were fixed before the earlier years were tested. A year was counted as individually significant only when both the activity and post-selection orbital tests passed.
 
-Reported trajectory uncertainties were used to perturb the events and repeat the complete selection and compactness checks 1,000 times.
+The pooled 2022–2023 sample was reserved as the untouched confirmation. Its activity p-value was evaluated under a twelve-month familywise rule. A shifted-window test compared the observed activity interval with nearby positions, and a source/time-matched orbit null tested whether the selected meteors were unusually compact in orbital space.
 
-A separate clustered bootstrap generated 20,000 samples by resampling years and then observing nights within years. All meteors from a selected night were retained. This accounts for the dependence among meteors observed on the same night.
+### 3.4 Source-matched activity test
 
-The GMN sample was also split into three non-overlapping geographic station groups. Finally, the candidate was re-evaluated under all 81 combinations of three fit-error limits, three minimum station counts, three radiant/speed core widths, and three activity windows.
+The candidate lies near the antihelion source. The final background therefore used a deliberately broad region in Sun-centered radiant longitude, latitude, and speed. Candidate selection depended only on radiant, speed, and solar longitude. Orbital elements, including node, were evaluated afterward.
 
-### 3.5 External catalogues and catalogue comparison
+Orbital compactness was compared with local source- and time-matched groups. This separation avoids using encounter geometry both to select the events and to claim significance.
 
-The GMN solution was not refitted to CAMS, SonotaCo, or EDMOND. After the bootstrap showed that geocentric-speed drift was not resolved, external tests were repeated with that slope set to zero while retaining the same radiant center, angular drift, widths, activity interval, and orbital rules.
+### 3.5 Activity profile
 
-A direct MDC match required compatible activity timing, a drifted-radiant separation no greater than 5°, a speed difference no greater than 5 km/s, and a complete orbit with D_SH ≤ 0.15. Timing/radiant/speed near matches with incomplete orbits were recorded separately.
+For each half-degree solar-longitude bin, stream-core counts were normalized by the simultaneous non-core antihelion population. March, April, and May data were loaded for every year from 2022–2026. Bins with fewer than 40 background meteors were excluded.
+
+This procedure estimates relative activity within the source. Absolute flux and ZHR require direct modeling of station uptime, weather, limiting magnitude, radiant elevation, and collecting area.
+
+### 3.6 Orbit and measurement uncertainty
+
+Southworth–Hawkins D was used for orbital comparisons. The observed median and 90th-percentile distances were compared with source- and time-matched random groups.
+
+To test measurement uncertainty, the trajectory quantities were perturbed within their reported errors and the complete selection and compactness checks were repeated 1,000 times.
+
+### 3.7 Clustered bootstrap
+
+Uncertainty in the mean solution and drifts was estimated with 20,000 bootstrap samples. Years were sampled with replacement, then observing nights were sampled with replacement within each selected year. All meteors from a selected night were retained. A second scheme kept every year exactly once and resampled nights only.
+
+### 3.8 Geographic split
+
+Stations were divided into three groups: Americas, Europe/West Asia, and Oceania/East Asia/Africa. Each trajectory was assigned to one group using the majority of its participating stations. Ties and unclassified prefixes were excluded. The same selection and orbit tests were then run independently in each group.
+
+### 3.9 Sensitivity analysis
+
+The complete candidate test was repeated across 81 combinations of fit-error limit, station count, core radius, and activity-window width. The candidate center and underlying data were unchanged.
+
+### 3.10 External catalogues
+
+The GMN solution was not refitted to CAMS, SonotaCo, or EDMOND. After the bootstrap showed that the geocentric-speed drift was not resolved, the external tests were repeated with that slope set to zero. Orbital elements were again used only after radiant–speed–time selection.
+
+The CAMS and SonotaCo catalogues were first evaluated separately. Their pooled ten-event result was calculated afterward and is described as post-hoc. The EDMOND extension is also described separately because of its compiled provenance.
+
+### 3.11 Catalogue comparison
+
+A direct MDC match required compatible activity timing, drifted radiant separation no greater than 5°, speed difference no greater than 5 km/s, and a complete orbit with D_SH ≤ 0.15. Timing/radiant/speed near matches with incomplete orbits were recorded separately.
 
 ## 4. Results
 
-### 4.1 Recurrence
+### 4.1 GMN recurrence
 
 The fixed selection found 101 deduplicated meteors from 2019–2026. Five consecutive years passed the individual tests.
 
@@ -88,9 +145,17 @@ The fixed selection found 101 deduplicated meteors from 2019–2026. Five consec
 | 2025 | 34 | 9.42 × 10⁻⁹ | 0.0001 |
 | 2026 | 29 | 4.13 × 10⁻⁶ | 0.0001 |
 
+The other six selected meteors were distributed across 2019–2021, where the yearly activity tests were not significant.
+
 The pooled untouched 2022–2023 sample gave an activity p-value of 1.857 × 10⁻⁵, a shifted-window p-value of 0.01754, and an orbit-null p-value of 0.0001.
 
-### 4.2 Mean solution and timing
+### 4.2 Activity profile
+
+The highest observed half-degree bin was centered at solar longitude 38.652° and contained 15 stream-core meteors among 1,021 background meteors. The supported contiguous interval was 35.902°–39.902°. The pooled odds ratio was 4.162, with p = 6.51 × 10⁻¹⁹.
+
+The exact highest bin changed in leave-one-year-out analyses, so the four-degree interval is the stable timing result.
+
+### 4.3 Radiant, speed, and orbit
 
 At solar longitude 36.901963°, the robust matching solution is:
 
@@ -106,11 +171,9 @@ At solar longitude 36.901963°, the robust matching solution is:
 | Ω | 37.937477° |
 | a | 1.474788 AU |
 
-A March–May activity profile supports a contiguous interval from solar longitude 35.902° to 39.902°. The highest half-degree bin was centered at 38.652°, but that exact peak shifted when individual years were removed, so the broader four-degree interval is the more stable result.
+The 95-event GMN sample had median D = 0.04398 and 90th-percentile D = 0.09232. The largest separation between significant-year medoid orbits was 0.05044. All 1,000 measurement-error trials passed.
 
-The 95-event sample had median orbital D = 0.04398 and 90th-percentile D = 0.09232. All 1,000 measurement-error trials passed the fixed compactness requirements.
-
-### 4.3 Bootstrap and geographic split
+### 4.4 Bootstrap
 
 The clustered bootstrap gave:
 
@@ -120,7 +183,9 @@ The clustered bootstrap gave:
 | dDec/dλ⊙ | −0.158°/° | −0.248 to −0.037 |
 | dVg/dλ⊙ | −0.029 km/s/° | −0.178 to +0.221 |
 
-The angular drifts exclude zero. The speed interval does not, so no physical speed drift is claimed.
+The angular drifts exclude zero, while the speed interval includes zero and is treated as unresolved.
+
+### 4.5 Geographic split
 
 | Region | Members | Activity p-value | Median D | Orbit-null p-value |
 |---|---:|---:|---:|---:|
@@ -130,49 +195,60 @@ The angular drifts exclude zero. The speed interval does not, so no physical spe
 
 The largest distance between regional medoid orbits was 0.04054.
 
-### 4.4 Sensitivity analysis
+### 4.6 Sensitivity analysis
 
-All 81 tested settings passed. Membership ranged from 29 to 129, median orbital D ranged from 0.03640 to 0.05548, and the largest activity p-value was 8.55 × 10⁻⁷. These settings overlap heavily and are interpreted as a sensitivity analysis, not as independent replications.
+All 81 tested settings passed. Membership ranged from 29 to 129, median orbital D ranged from 0.03640 to 0.05548, and the largest activity p-value was 8.55 × 10⁻⁷.
 
-### 4.5 External catalogues
+### 4.7 External catalogues
 
-CAMS contributed six matching meteors from 2011–2012. SonotaCo contributed four from 2022, 2023, and 2025. Their post-hoc pooled result contained ten meteors and gave an activity p-value of 1.622 × 10⁻⁴, shifted-window p-value of 0.02041, median D of 0.04879, orbit-null p-value of 5 × 10⁻⁵, and medoid distance from the GMN orbit of 0.01723.
+CAMS contributed six matching meteors from 2011–2012. SonotaCo contributed four from 2022, 2023, and 2025. The post-hoc pooled result contained ten meteors and gave:
 
-The shower-removed EDMOND subset contributed six additional non-overlapping meteors. Their archive-specific activity p-value was 0.01206 and median D was 0.03669. This sample did not meet the project’s standalone N ≥ 8 and p ≤ 0.01 rules.
+- activity p = 1.622 × 10⁻⁴;
+- shifted-window p = 0.02041;
+- median D = 0.04879;
+- orbit-null p = 5 × 10⁻⁵; and
+- medoid distance from the GMN orbit = 0.01723.
 
-### 4.6 Known showers and parent-body screen
+The shower-removed EDMOND subset contributed six additional non-overlapping meteors in 2014, 2016, 2017, and 2022. Their archive-specific activity p-value was 0.01206 and their median D was 0.03669. The sample fell below the project’s standalone N ≥ 8 and p ≤ 0.01 rules.
 
-The MDC comparison found no direct match, no timing/radiant/speed near match, and no near match hidden by missing orbital elements. The nearest complete orbit was Northern May Ophiuchids solution 004 at D_SH = 0.23445, with a non-overlapping activity interval and a 9.59° radiant separation at the candidate epoch.
+The currently linked EDMOND files for 2001–2023 recovered exactly those same six events. Their row counts and embedded versions differ from the advertised v6.01 release, so this check is treated as a reproduction of the six events rather than a release-level replication.
 
-The JPL screen evaluated 729 valid broadly compatible orbits. None had D ≤ 0.15. The nearest object, 2023 HJ7 at D = 0.15939, had a poorly determined orbit based on an 11-day observational arc. No parent-body association is proposed.
+### 4.8 Known showers and parent-body screen
+
+The MDC catalogue comparison found no direct match, no timing/radiant/speed near match, and no near match hidden by missing orbital elements. The nearest complete orbit was Northern May Ophiuchids solution 004 at D_SH = 0.23445, with a non-overlapping activity interval and a 9.59° radiant separation at the candidate epoch.
+
+The JPL screen evaluated 729 valid broadly compatible orbits. The nearest object, 2023 HJ7 at D = 0.15939, had a poorly determined orbit based on an 11-day arc. The screen did not identify a credible parent-body association.
 
 ## 5. Discussion
 
-The case for a real stream comes from the combination of annual recurrence, untouched-year confirmation, activity selection without orbital elements, post-selection orbital compactness, geographic consistency, robustness to nearby analysis choices, and matching meteors in other catalogues. No single test carries the result by itself.
+The strongest case for a real stream comes from the combination of annual recurrence, untouched-year confirmation, non-orbital activity selection, post-selection orbital compactness, geographic replication, sensitivity to analysis choices, and matching meteors in other catalogues. The case comes from the agreement of these tests rather than any single statistic.
 
-The antihelion background remains the most important scientific concern. The candidate survives inside a broad source definition, but a specialist may recognize a narrower source component or historical shower solution not represented well by the current catalogue comparison.
+The antihelion background remains the most important scientific concern. The candidate survives inside a deliberately broad source definition, and its orbit is compact after selection without orbital elements. Even so, a specialist may recognize a narrower source component or historical shower solution that is not represented well by the current catalogue comparison.
 
-The geographic split makes a local station artifact unlikely, but the three groups are not independent reductions. The external samples help, although they are small. CAMS narrowly misses the standalone activity cutoff, SonotaCo has only four events, and the combined analysis was performed after the separate results were known. EDMOND adds historical breadth but is a compilation rather than a clean third instrument.
+The geographic split makes a local station artifact unlikely, while the three groups remain part of the same GMN reduction system. The external catalogues help, although their samples are small. CAMS misses the standalone activity cutoff by a small amount, SonotaCo has only four events, and the combined analysis was performed after those separate results were known. EDMOND adds historical breadth but is a compilation rather than a clean third instrument.
 
-The recovered source and clean reruns show that the event list and numerical results are reproducible from the preserved implementation. Computational reproducibility does not answer the remaining taxonomic question: whether this concentration should be recognized as a distinct shower.
+The sensitivity analysis shows stability across nearby thresholds. The bootstrap supports the angular drifts and mean orbit while leaving speed drift unresolved. The activity analysis supports a concentrated late-April interval; absolute flux and a precise annual maximum require additional exposure modeling.
+
+The recovered source and exact reruns establish that the event list and numerical results are reproducible from the preserved implementation. The remaining taxonomic question is whether specialists consider the concentration a distinct stream.
 
 ## 6. Limitations
 
 1. The analysis uses catalogue trajectories rather than new reductions of raw meteor images.
-2. The antihelion source may contain structure not fully represented by the chosen background.
-3. The activity profile is relative to simultaneous antihelion counts and is not an absolute flux or ZHR measurement.
+2. The antihelion source may contain finer structure than the chosen background captures.
+3. The activity profile is relative to simultaneous antihelion counts; absolute flux and ZHR require station-level exposure modeling.
 4. The geographic groups share GMN’s processing system.
 5. The external samples are small, and the pooled CAMS–SonotaCo result is post-hoc.
-6. EDMOND is a compiled archive whose currently linked files do not match the advertised complete release.
-7. No specialist has completed an independent review of obscure or differently parameterized shower solutions.
-8. No parent body or dynamical origin has been established.
-9. The fitted geocentric-speed drift is not resolved from zero.
+6. EDMOND is a compiled archive, and its currently linked files differ from the advertised complete release.
+7. Specialist comparison with obscure or differently parameterized shower solutions remains the key external check.
+8. Dynamical origin modeling is outside the current analysis.
+9. The fitted geocentric-speed drift remains unresolved.
+10. Raw monthly GMN inputs remain available from their original public source rather than being duplicated as a complete archive here.
 
 ## 7. Conclusion
 
-The GMN data contain a recurring, orbitally coherent concentration of late-April meteors that survives the historical, source-matched, geographic, uncertainty, and sensitivity checks used here. The current official MDC catalogue contains no matching solution, and small historical samples in CAMS and SonotaCo support the same radiant, timing, and orbit.
+The GMN data contain a recurring, orbitally coherent concentration of late-April meteors that survives the project’s historical, source-matched, geographic, uncertainty, and sensitivity checks. The current official MDC catalogue contains no matching solution, and small historical samples in CAMS and SonotaCo support the same radiant, timing, and orbit.
 
-The evidence is strong enough to justify independent expert review and preparation of a formal submission package. It is not yet enough to describe the object as an officially discovered or established meteor shower.
+The evidence supports specialist review and preparation of a formal submission package, with distinctness from known minor-shower and antihelion structure as the central remaining question.
 
 ## Data and code availability
 
@@ -180,9 +256,9 @@ The analysis code, 95-event GMN lookup table, draft mean records, saved validati
 
 ## References
 
-Campello, R. J. G. B., Moulavi, D., & Sander, J. (2013). Density-based clustering based on hierarchical density estimates. *Advances in Knowledge Discovery and Data Mining*, 160–172.
+Campello, R. J. G. B., Moulavi, D., & Sander, J. (2013). Density-based clustering based on hierarchical density estimates. *Advances in Knowledge Discovery and Data Mining*, 160–172. https://doi.org/10.1007/978-3-642-37456-2_14
 
-Jenniskens, P., Jopek, T. J., Janches, D., Hajduková, M., Kokhirova, G. I., & Rudawska, R. (2020). On removing showers from the IAU Working List of Meteor Showers. *Planetary and Space Science, 182*, 104821.
+Jenniskens, P., Jopek, T. J., Janches, D., Hajduková, M., Kokhirova, G. I., & Rudawska, R. (2020). On removing showers from the IAU Working List of Meteor Showers. *Planetary and Space Science, 182*, 104821. https://doi.org/10.1016/j.pss.2019.104821
 
 Jopek, T. J., & Kaňuchová, Z. (2017). IAU Meteor Data Center—the shower database: a status report. *Planetary and Space Science, 143*, 3–6.
 
@@ -190,4 +266,4 @@ Shober, P. M. (2026). *Asteroidal non-shower meteor orbit subsets (CAMS, GMN, ED
 
 Southworth, R. B., & Hawkins, G. S. (1963). Statistics of meteor streams. *Smithsonian Contributions to Astrophysics, 7*, 261–285.
 
-Vida, D., Šegon, D., Gural, P. S., Brown, P. G., McIntyre, M. J. M., Dijkema, T. J., et al. (2021). The Global Meteor Network—Methodology and first results. *Monthly Notices of the Royal Astronomical Society, 506*(4), 5046–5074.
+Vida, D., Šegon, D., Gural, P. S., Brown, P. G., McIntyre, M. J. M., Dijkema, T. J., et al. (2021). The Global Meteor Network—Methodology and first results. *Monthly Notices of the Royal Astronomical Society, 506*(4), 5046–5074. https://doi.org/10.1093/mnras/stab2008

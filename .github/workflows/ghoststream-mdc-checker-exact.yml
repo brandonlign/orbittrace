@@ -1,0 +1,72 @@
+name: GhostStream exact official MDC checker
+
+on:
+  pull_request:
+    paths:
+      - "pilots/ghoststream/april_stream/mdc/rerun_official_mdc_checker.py"
+      - "pilots/ghoststream/april_stream/mdc/GhostStream_April_mean_submission.json"
+      - ".github/workflows/ghoststream-mdc-checker-exact.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  exact-official-checker:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install Fortran compiler
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y gfortran
+
+      - name: Compile rerun driver
+        run: |
+          python -m py_compile \
+            pilots/ghoststream/april_stream/mdc/rerun_official_mdc_checker.py
+
+      - name: Run distributed binaries and fresh source build
+        run: |
+          python pilots/ghoststream/april_stream/mdc/rerun_official_mdc_checker.py \
+            --output-dir exact_mdc_checker 2>&1 | tee exact_mdc_checker.log
+
+      - name: Validate exact result
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          p = Path("exact_mdc_checker/exact_official_checker_rerun.json")
+          result = json.loads(p.read_text())
+          assert result["verdict"] == "PASS_ZERO_ERRORS_EXACT_COMMITTED_MEAN"
+          assert result["exact_input_record"]["N"] == 95
+          assert result["distributed_static_binary_run"]["zero_orbital_errors"] is True
+          assert result["distributed_static_binary_run"]["zero_geocentric_errors"] is True
+          assert result["fresh_source_build_run"]["zero_orbital_errors"] is True
+          assert result["fresh_source_build_run"]["zero_geocentric_errors"] is True
+          assert result["static_and_fresh_build_outputs_identical"] is True
+          print(json.dumps({
+              "verdict": result["verdict"],
+              "archive_sha256": result["official_checker"]["archive_sha256"],
+              "exact_input_record": result["exact_input_record"],
+              "static_check_orb": result["distributed_static_binary_run"]["files"]["check_orb_exact.d"]["text"],
+              "static_check_geo": result["distributed_static_binary_run"]["files"]["check_geo_exact.d"]["text"],
+          }, indent=2))
+          PY
+
+      - name: Upload exact checker evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: ghoststream-exact-official-mdc-checker
+          path: |
+            exact_mdc_checker/
+            exact_mdc_checker.log
+          if-no-files-found: error
+          retention-days: 30

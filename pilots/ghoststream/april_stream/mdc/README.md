@@ -10,12 +10,14 @@ This folder is a **draft package**. Nothing has been submitted to the IAU Meteor
 - `GhostStream_April_95_GMN_lookup.csv` — the 95 GMN meteors from the five significant years, formatted to the current MDC lookup-table columns.
 - `GhostStream_April_mean_submission.json` — a pre-submission mean record matching the current MDC database JSON field structure.
 - `GhostStream_April_mean_legacy.txt` — a compatibility record for the February 20, 2026 legacy text template.
-- `calculation_audit.json` — exact values and rules used to generate the mean record.
+- `calculation_audit.json` — exact values and rules used to generate the mean record, including separate full-precision and submitted-precision semimajor-axis derivations.
 - `MDC_OFFICIAL_CHECKER_REPORT.md` — exact rerun of the current official MDC radiant/orbit consistency programs on the committed mean; the distributed binaries and a fresh build of the distributed Fortran source produced identical comparison files and zero errors.
 - `exact_official_checker_summary.json` — machine-readable provenance and result for that exact checker rerun.
 - `live_mdc_novelty_refresh_summary.json` — checksum-locked comparison against the official catalogue version 2026-06-25.
+- `MDC_PACKAGE_CONSISTENCY_AUDIT.md` — fail-closed package audit; all 111 checks passed.
+- `mdc_package_consistency_summary.json` — machine-readable package verdict, recomputed lookup quantities, semimajor-axis precision audit, hashes, and CI evidence.
 - `MANUSCRIPT_DRAFT.md` — complete current manuscript draft.
-- `SUBMISSION_CHECKLIST.md` — remaining blockers before external delivery.
+- `SUBMISSION_CHECKLIST.md` — completed internal checks and remaining external blockers.
 
 ## Supporting evidence elsewhere in `april_stream/`
 
@@ -34,7 +36,7 @@ This folder is a **draft package**. Nothing has been submitted to the IAU Meteor
 
 The mean record is calculated from exactly **95** deduplicated GMN members in 2022–2026. The lookup table contains exactly **95** data rows, satisfying the MDC N-consistency requirement.
 
-The record uses unweighted arithmetic means (`Flags = A`). Semimajor axis is derived from the mean q and e rather than averaged independently, so `q = a(1-e)` is internally consistent.
+The record uses unweighted arithmetic means (`Flags = A`). The submitted six-decimal `q = 0.080114 AU` and `e = 0.943593` imply `a = 1.420284716... AU`; the submitted record uses `a = 1.420285 AU` after six-decimal rounding. The separate full-precision means imply `a = 1.420295780... AU` and remain preserved in `calculation_audit.json`.
 
 The robust medoid orbit is used for membership and similarity tests. The arithmetic-mean orbit is used for the MDC mean record. Cluster-bootstrap intervals quantify sampling variability across years and observing nights.
 

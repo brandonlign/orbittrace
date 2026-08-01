@@ -1,5 +1,5 @@
 {
-  "verdict": "COMPUTATIONAL_RECOVERY_AND_ANALYSIS_RERUNS_COMPLETE_PACKAGE_REVIEW_PENDING",
+  "verdict": "COMPUTATIONAL_RECOVERY_AND_ANALYSIS_RERUNS_COMPLETE_BLIND_LINEAGE_AND_REVIEW_PENDING",
   "audit_date_utc": "2026-08-01",
   "branch": "agent/ghoststream-pilot",
   "scientific_candidate_status": "high_confidence_uncatalogued_stream_candidate_recovered_and_reproduced",
@@ -77,12 +77,54 @@
     "nearest_jpl_d": 0.15939456567933025,
     "parent_claimed": false
   },
+  "method_control_reconciliation": {
+    "historical_v2_verdict": "NO_GO_DEGENERATE_PARENT_CLUSTER",
+    "historical_v2_verdict_preserved": true,
+    "historical_named_showers_recovered": 3,
+    "historical_named_showers_tested": 3,
+    "weak_stream_injection_verdict": "INJECTION_GATE_PASS",
+    "v2_gate_design_problem": "The global 30% largest-cluster ceiling included the real target cluster and was infeasible for Eta Aquariids because target prevalence exceeded 30%.",
+    "corrected_holdout_status": "CORRECTED_INDEPENDENT_YEAR_CONTROL_PASS",
+    "corrected_holdout_evidence": "pilots/ghoststream/reconstruction/exact_method_controls_v3/method_controls_v3.json",
+    "correction_frozen_before_2024_holdout_run": true,
+    "clustering_setting_unchanged": true,
+    "recovery_thresholds_unchanged": true,
+    "largest_non_target_cluster_ceiling": 0.30,
+    "eligible_controls": 3,
+    "recovered_controls": 3,
+    "non_target_degeneracy_passes": 3,
+    "controls": {
+      "Lyrids_2024": {
+        "precision": 0.8210947930574098,
+        "recall": 1.0,
+        "f1": 0.9017595307917888,
+        "largest_non_target_cluster_fraction": 0.12974369163520763
+      },
+      "Eta_Aquariids_2024": {
+        "precision": 0.9173880316146029,
+        "recall": 1.0,
+        "f1": 0.95691431936402,
+        "largest_non_target_cluster_fraction": 0.15622211545061432
+      },
+      "Southern_Delta_Aquariids_2024": {
+        "precision": 0.864217776320105,
+        "recall": 1.0,
+        "f1": 0.9271639690358902,
+        "largest_non_target_cluster_fraction": 0.14026857983811628
+      }
+    }
+  },
+  "blind_discovery_lineage": {
+    "status": "running",
+    "correct_entrypoint": "ghoststream_novel/run_month_year_v3.py",
+    "discovery_matrix": "January-July 2026",
+    "validation_years": [2025, 2024],
+    "incorrect_prior_rerun": "The separate 2025 all-season search did not contain the April discovery and is retained as a negative/other-candidate result."
+  },
   "resolved_core_stages": [
     "GMN monthly catalogue acquisition and parsing",
     "quality filtering and coordinate transformations",
     "exact-time deduplication",
-    "known-shower and weak-injection controls",
-    "blind candidate generation",
     "frozen April membership selection",
     "expanded antihelion source-preserving activity test",
     "shifted-window audit",
@@ -95,12 +137,15 @@
     "CAMS and SonotaCo acquisition and selection",
     "pooled independent-archive synthesis",
     "current JPL parent-body screen",
+    "historical method-control audit",
+    "corrected independent-year method-control holdout",
     "machine-readable report generation"
   ],
   "remaining_reproducibility_work": [
+    "complete and preserve the actual January-July 2026 blind-discovery matrix",
+    "integrate blind-lineage and corrected method-control evidence into the recovered MDC package audit",
+    "build the code-inclusive expert-review bundle from the final recovered evidence",
     "retain EDMOND as provenance-limited supplementary evidence unless a complete current release is recovered",
-    "rebuild manuscript, figures, data-availability statement, and code-inclusive expert-review bundle from recovered outputs",
-    "rerun MDC package manifest and official checker audits against the rebuilt package",
     "obtain independent scientific and duplicate review"
   ],
   "input_provenance_boundary": {
@@ -111,11 +156,13 @@
     "raw_monthly_catalogue_byte_hash_manifest_complete": false,
     "interpretation": "The exact original implementation reproduced the primary and downstream results from the current official GMN monthly source. Long-term immutable raw-input archiving remains desirable and must not be falsely described as complete."
   },
-  "allowed_current_claim": "The original GhostStream source was recovered, the primary 101-member and 95-member results were exactly regenerated, the internal GMN downstream analyses passed their preserved gates, and the CAMS/SonotaCo and current JPL stages were freshly rerun. The result remains an uncatalogued candidate, not official recognition or submission-ready work.",
+  "allowed_current_claim": "The original GhostStream source was recovered; the primary, internal downstream, external archive, current JPL, and corrected independent-year method-control stages passed their documented gates. The actual 2026 blind-discovery lineage remains under clean rerun. The result remains an uncatalogued candidate, not official recognition or submission-ready work.",
   "forbidden_until_resolution": [
     "journal submission",
     "formal IAU MDC submission",
     "claim of official IAU recognition",
+    "claim that the recovered 2026 blind-discovery lineage passed before its strict verifier completes",
+    "claim that the historical v2 method-control no-go was retroactively a pass",
     "claim of complete current EDMOND v6.01 replication",
     "claim of a fully independent third-network replication",
     "claim of parent-body identification",
@@ -127,8 +174,9 @@
     "cleanly rerun and reconcile internal downstream analyses",
     "cleanly rerun and reconcile CAMS and SonotaCo evidence",
     "record current parent-screen and catalogue-novelty results",
-    "rebuild manuscript and package from recovered outputs",
-    "rerun package and official checker audits",
+    "audit and correct the method-control degeneracy rule on an independent holdout",
+    "reproduce the actual January-July 2026 blind discovery lineage",
+    "rebuild and audit the manuscript/package from final recovered outputs",
     "obtain external scientific and duplicate review"
   ]
 }

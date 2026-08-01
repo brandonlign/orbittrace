@@ -1,0 +1,89 @@
+name: GhostStream reproducibility hold
+
+on:
+  pull_request:
+    paths:
+      - "pilots/ghoststream/**"
+      - ".github/workflows/ghoststream-reproducibility-hold.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  enforce-reproducibility-hold:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile recovery inventory tool
+        run: |
+          python -m py_compile pilots/ghoststream/recovery/audit_local_workspace.py
+
+      - name: Validate machine-readable hold
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          gap = json.loads(Path("pilots/ghoststream/reproducibility_gap_summary.json").read_text())
+          final = json.loads(Path("pilots/ghoststream/results/ghoststream_final_summary.json").read_text())
+          package = json.loads(Path("pilots/ghoststream/april_stream/mdc/mdc_package_consistency_summary.json").read_text())
+
+          assert gap["verdict"] == "CORE_ANALYSIS_NOT_REPRODUCIBLE_FROM_CURRENT_BRANCH"
+          assert gap["publication_status"] == "hold"
+          assert gap["formal_mdc_submission_status"] == "blocked"
+          assert gap["expert_review_bundle_status"].startswith("superseded")
+          assert len(gap["missing_core_stages"]) >= 15
+          assert len(gap["resolution_gate"]) >= 8
+
+          repro = final["reproducibility_status"]
+          assert repro["core_gmn_analysis_code_committed"] is False
+          assert repro["exact_core_input_manifests_committed"] is False
+          assert repro["end_to_end_clean_rerun_completed"] is False
+          assert repro["publication_or_formal_mdc_submission_allowed"] is False
+          assert final["overall_verdict"] == "GO_SCIENTIFIC_CANDIDATE_PUBLICATION_HOLD"
+
+          assert package["status"] == "HISTORICAL_INTERNAL_SNAPSHOT_NOT_CURRENT_END_TO_END_REPRODUCIBILITY"
+          assert package["current_manifest_valid"] is False
+          assert package["current_reaudit_required"] is True
+          assert package["current_branch_reproducibility"]["publication_or_formal_mdc_submission_allowed"] is False
+          print(json.dumps({
+              "gap_verdict": gap["verdict"],
+              "overall_verdict": final["overall_verdict"],
+              "missing_core_stages": len(gap["missing_core_stages"]),
+              "historical_package_status": package["status"],
+          }, indent=2))
+          PY
+
+      - name: Validate human-readable boundaries
+        shell: bash
+        run: |
+          set -euo pipefail
+          grep -F 'CORE_ANALYSIS_NOT_REPRODUCIBLE_FROM_CURRENT_BRANCH' pilots/ghoststream/REPRODUCIBILITY_GAP_AUDIT.md
+          grep -F 'journal or formal MDC submission is blocked' pilots/ghoststream/REPRODUCIBILITY_GAP_AUDIT.md
+          grep -F 'Formal MDC submission remains blocked' pilots/ghoststream/april_stream/mdc/SUBMISSION_CHECKLIST.md
+          grep -F 'core GMN discovery and validation software' pilots/ghoststream/april_stream/mdc/README.md
+          grep -F 'SUPERSEDED_CORE_PIPELINE_MISSING' pilots/ghoststream/april_stream/EXPERT_REVIEW_BUNDLE.md
+          grep -F 'Publication and formal IAU Meteor Data Center submission are on hold' pilots/ghoststream/april_stream/mdc/PUBLICATION_AND_MDC_PLAN.md
+          grep -F 'HISTORICAL_INTERNAL_SNAPSHOT' pilots/ghoststream/april_stream/mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md
+
+      - name: Ensure recovery documentation exists
+        run: |
+          test -s pilots/ghoststream/recovery/README.md
+          test -s pilots/ghoststream/recovery/audit_local_workspace.py
+          test -s pilots/ghoststream/REPRODUCIBILITY_GAP_AUDIT.md
+          test -s pilots/ghoststream/reproducibility_gap_summary.json
+
+      - name: Guard against stale send-ready language
+        shell: bash
+        run: |
+          set -euo pipefail
+          ! grep -Fq 'Current sendable bundle' pilots/ghoststream/april_stream/EXPERT_REVIEW_BUNDLE.md
+          ! grep -Fq 'No outreach has been sent. No external scientific review has been completed.' pilots/ghoststream/april_stream/EXPERT_REVIEW_LOG.md
+          ! grep -Fq 'PASS_MDC_PACKAGE_INTERNALLY_CONSISTENT"' pilots/ghoststream/april_stream/mdc/mdc_package_consistency_summary.json

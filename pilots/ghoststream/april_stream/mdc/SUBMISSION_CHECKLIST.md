@@ -1,6 +1,6 @@
 # Pre-submission checklist
 
-Formal MDC submission remains blocked pending the unchecked discovery-lineage, review, authorship, data-preservation, and delivery items below. The computational recovery and primary/internal/external clean reruns are complete; this checklist does not imply official recognition or submission readiness.
+Formal MDC submission remains blocked pending the unchecked package, review, authorship, data-preservation, and delivery items below. The computational recovery, discovery lineage, primary/internal/external analyses, and corrected method controls are complete; this checklist does not imply official recognition or submission readiness.
 
 ## Computational recovery and reproducibility
 
@@ -8,6 +8,10 @@ Formal MDC submission remains blocked pending the unchecked discovery-lineage, r
 - [x] Original novel-search/downstream source preserved from immutable commit `39972b5fe0cf4d47092d3caa2b3ced12bedb065e`.
 - [x] File-level SHA-256 source manifest committed.
 - [x] Original Python environment and deterministic random seeds recovered.
+- [x] Actual January–July 2026 blind-search matrix rerun from the recovered scanner.
+- [x] April was the only full-gate survivor across January–July 2026.
+- [x] Blind April survivor passed untouched 2025 and 2024 validation, clone stability, orbital compactness, and the automated IAU veto.
+- [x] Original arbitrary-year wrapper preserved unchanged; minimal year-key/reporting repair separately documented and hashed.
 - [x] Exact primary validator rerun regenerated 101 total GMN events.
 - [x] Exact significant-year lookup rerun matched all 95 committed timestamps, with zero missing and zero additional events.
 - [x] Recovered source-preserving activity and source/time orbit-null audit passed.
@@ -21,18 +25,17 @@ Formal MDC submission remains blocked pending the unchecked discovery-lineage, r
 - [x] The v2 degeneracy-rule contradiction was documented: Eta Aquariids target prevalence exceeded the global 30% largest-cluster ceiling.
 - [x] A correction was frozen before independent 2024 holdouts, retaining the exact clustering setting, recovery thresholds, hidden labels, and 30% ceiling while applying it to non-target clusters.
 - [x] Corrected independent-year method-control holdout passed 3/3 named showers and 3/3 non-target degeneracy checks.
-- [ ] Recovered January–July 2026 blind-search matrix independently rediscovers the April survivor with untouched 2025/2024 validation.
-- [ ] Code-inclusive expert-review bundle includes the final blind-search and method-control evidence.
+- [ ] Code-inclusive expert-review bundle includes and validates the final blind-search and method-control evidence.
 
 ## Scientific checks
 
-- [x] Candidate was originally reported from a blind month/year search rather than a targeted final-template query.
-- [ ] The actual recovered January–July 2026 discovery entrypoint and lineage are independently rerun and preserved.
+- [x] Candidate originated from the recovered January–July 2026 blind month/year search rather than a targeted final-template query.
+- [x] January–July 2026 matrix produced one full-gate survivor, in April, and no additional non-April survivors.
 - [x] Frozen historical GMN replication completed.
 - [x] Exact-time duplicate solutions removed.
 - [x] Activity test repeated without orbital elements.
 - [x] Expanded antihelion-source null passed.
-- [x] Measurement-uncertainty clone gate passed: 1,000/1,000 trials.
+- [x] Measurement-uncertainty clone gate passed: 1,000/1,000 final-template trials and 500/500 blind-lineage trials.
 - [x] RA and declination drift resolved; geocentric-speed drift correctly marked unresolved.
 - [x] Checksum-locked official IAU MDC catalogue version 2026-06-25 parsed 1,072 shower records / 2,174 solutions and found zero hard duplicates, zero activity-compatible radiant–speed near matches, and zero orbit-incomplete near matches.
 - [x] CAMS and SonotaCo primary external support documented with separate archive-specific limitations.
@@ -62,6 +65,7 @@ Formal MDC submission remains blocked pending the unchecked discovery-lineage, r
 - [x] Machine-readable candidate solution records bootstrap intervals and unresolved speed drift.
 - [x] Historical 111-check package audit recomputed the lookup and identified no numerical discrepancy after the submitted semimajor-axis correction.
 - [x] Corrected 2024 method-control evidence is committed with run, artifact, source, environment, and result hashes.
+- [x] Blind-discovery evidence is committed with run, artifact, original/repaired wrapper hashes, environment, validation member IDs, and result summary.
 - [ ] Recovered package audit passes against the current source manifest, exact primary, exact downstream, exact external, method-control, blind-lineage, manuscript, and MDC files.
 - [ ] Code-inclusive expert bundle is built and checksum-validated from the current branch.
 - [ ] Confirm the preferred GMN catalogue version string and citation.

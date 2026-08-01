@@ -9,6 +9,7 @@ Updated: 2026-08-01
 - Recovery/discovery tree preserved: **13 files from commit `4175e5187fcc6faf3d1befb099a9e35be96850f2`**
 - Novel-search/downstream tree preserved: **35 files from commit `39972b5fe0cf4d47092d3caa2b3ced12bedb065e`**
 - File-level SHA-256 manifest committed: **yes**
+- Actual January–July 2026 blind-discovery matrix: **passed and committed**
 - Exact original primary validator rerun: **passed**
 - Exact 101-member annual counts: **passed**
 - Exact committed 95-event 2022–2026 timestamp set: **passed**
@@ -19,23 +20,56 @@ Updated: 2026-08-01
 - External CAMS/SonotaCo clean rerun: **passed and committed**
 - Historical v2 method-control gate: **`NO_GO_DEGENERATE_PARENT_CLUSTER` preserved**
 - Corrected independent-year 2024 method controls: **passed 3/3**
-- Actual January–July 2026 blind-discovery matrix: **running from recovered source**
 - Current JPL parent screen: **passed; zero objects at D ≤ 0.15**
-- Publication hold active: **yes, pending blind-lineage result, final package build, and independent review**
+- Publication hold active: **yes, pending final package audit, bundle validation, and independent review**
 - Formal MDC hold active: **yes**
-- Prior expert bundle sendable: **no; it must be rebuilt from the recovered implementation**
+- Prior expert bundle sendable: **no; a final code-inclusive bundle must be rebuilt and validated**
 
 ## Authoritative recovery evidence
 
 - `pilots/ghoststream/recovered_pipeline/SOURCE_MANIFEST.json`
+- `pilots/ghoststream/reconstruction/exact_blind_rediscovery/blind_rediscovery.json`
+- `pilots/ghoststream/reconstruction/exact_blind_rediscovery/BLIND_REDISCOVERY.md`
+- `pilots/ghoststream/reconstruction/blind_wrapper_fix.json`
+- `pilots/ghoststream/reconstruction/blind_wrapper_repaired/run_month_year_v3.py`
 - `pilots/ghoststream/reconstruction/exact_recovered/EXACT_REPRODUCTION.md`
 - `pilots/ghoststream/reconstruction/exact_recovered/exact_reproduction.json`
 - `pilots/ghoststream/reconstruction/exact_downstream/downstream_reproduction.json`
 - `pilots/ghoststream/reconstruction/exact_downstream/DOWNSTREAM_REPRODUCTION.md`
 - `pilots/ghoststream/reconstruction/exact_external/external_reproduction.json`
 - `pilots/ghoststream/reconstruction/exact_external/EXTERNAL_REPRODUCTION.md`
+- `pilots/ghoststream/reconstruction/exact_method_controls/method_controls.json`
 - `pilots/ghoststream/reconstruction/exact_method_controls_v3/method_controls_v3.json`
-- `pilots/ghoststream/reconstruction/exact_method_controls_v3/METHOD_CONTROLS_V3.md`
+- `pilots/ghoststream/reconstruction/METHOD_CONTROL_RECONCILIATION.md`
+
+## Recovered blind-discovery lineage
+
+The recovered arbitrary-year/month scanner was run for January through July 2026 with 2025 and 2024 as untouched validation years.
+
+| Month | Prevalidation candidates | Full-gate survivors |
+|---|---:|---:|
+| January | 0 | 0 |
+| February | 0 | 0 |
+| March | 0 | 0 |
+| April | 2 | 1 |
+| May | 0 | 0 |
+| June | 1 | 0 |
+| July | 1 | 0 |
+
+The April survivor had:
+
+- 26 discovery members in 2026;
+- 36 validation members in 2025, p = 0.002;
+- 14 validation members in 2024, p = 0.002;
+- orbit median D = `0.03798760080673734`;
+- orbit q90 D = `0.09444559233769059`;
+- source/time orbit-null p = `0.005`;
+- 500/500 clone trials passing; and
+- no automated IAU match.
+
+It was the only full-gate survivor in the seven-month matrix.
+
+The recovered arbitrary-year wrapper required a minimal year-key/reporting repair after April's scientific decision had already completed. The original wrapper remains preserved unchanged. The repair generalized hardcoded 2023/2024 report keys and cosmetic labels; it did not change catalogue acquisition, clustering, selection, validation, orbit, clone, or IAU-veto logic.
 
 ## Exact primary result
 
@@ -123,7 +157,8 @@ A separately reconstructed later radiant-speed template omitted the original val
 
 ## Remaining work
 
-1. complete and preserve the actual January–July 2026 blind-discovery matrix from `run_month_year_v3.py`;
-2. integrate the blind and corrected method-control evidence into the recovered MDC package audit and code-inclusive expert bundle;
-3. obtain independent scientific and duplicate review; and
-4. keep journal and formal MDC submission blocked until those steps pass.
+1. finalize machine-readable project metadata from the committed blind and method-control evidence;
+2. regenerate and pass the recovered MDC package consistency audit;
+3. build and checksum-lock the final code-inclusive expert-review bundle;
+4. obtain independent scientific and duplicate review; and
+5. keep journal and formal MDC submission blocked until those steps pass.

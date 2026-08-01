@@ -1,0 +1,77 @@
+name: GhostStream blind rediscovery PR check
+
+on:
+  pull_request:
+    paths:
+      - "pilots/ghoststream/reconstruction/verify_blind_rediscovery.py"
+      - ".github/workflows/ghoststream-blind-rediscovery-pr.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  blind-rediscovery:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - name: Check out GhostStream evidence branch
+        uses: actions/checkout@v4
+
+      - name: Check out immutable recovered source
+        uses: actions/checkout@v4
+        with:
+          repository: brandonlign/remotion-worker
+          ref: 39972b5fe0cf4d47092d3caa2b3ced12bedb065e
+          path: _ghoststream_exact_source
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Install recovered environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r _ghoststream_exact_source/ghoststream_novel/requirements.txt
+          python -m pip freeze | sort | tee ghoststream_blind_environment.txt
+
+      - name: Verify immutable blind-search source
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C _ghoststream_exact_source rev-parse HEAD)" = "39972b5fe0cf4d47092d3caa2b3ced12bedb065e"
+          sha256sum \
+            _ghoststream_exact_source/ghoststream_novel/run_novel_search.py \
+            _ghoststream_exact_source/ghoststream_novel/run_novel_search_fixed.py \
+            _ghoststream_exact_source/ghoststream_novel/requirements.txt \
+            | tee ghoststream_blind_source_sha256.txt
+          python -m py_compile \
+            _ghoststream_exact_source/ghoststream_novel/run_novel_search.py \
+            _ghoststream_exact_source/ghoststream_novel/run_novel_search_fixed.py \
+            pilots/ghoststream/reconstruction/verify_blind_rediscovery.py
+
+      - name: Run exact recovered all-season blind search
+        shell: bash
+        run: |
+          python _ghoststream_exact_source/ghoststream_novel/run_novel_search_fixed.py \
+            2>&1 | tee ghoststream_blind_search.log
+
+      - name: Verify April lead rediscovery
+        run: |
+          python pilots/ghoststream/reconstruction/verify_blind_rediscovery.py \
+            --output-dir ghoststream_blind_rediscovery_evidence \
+            2>&1 | tee ghoststream_blind_verification.log
+
+      - name: Upload complete blind-rediscovery evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ghoststream-exact-blind-rediscovery-pr
+          path: |
+            ghoststream_blind_rediscovery_evidence/
+            ghoststream_novel_results/
+            ghoststream_blind_*.log
+            ghoststream_blind_environment.txt
+            ghoststream_blind_source_sha256.txt
+          if-no-files-found: error
+          retention-days: 90

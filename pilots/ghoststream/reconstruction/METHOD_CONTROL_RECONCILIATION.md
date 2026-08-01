@@ -14,7 +14,7 @@ It produced:
 - weak-stream injection gate: `INJECTION_GATE_PASS`;
 - aggregate known-shower verdict: `NO_GO_DEGENERATE_PARENT_CLUSTER`.
 
-The aggregate no-go is preserved. It is not rewritten as a pass merely because all three named targets were recovered.
+The historical v2 gate remains recorded as `NO_GO_DEGENERATE_PARENT_CLUSTER`. The aggregate no-go is preserved. It is not rewritten as a pass merely because all three named targets were recovered.
 
 ## Why the v2 aggregate rule was contradictory
 

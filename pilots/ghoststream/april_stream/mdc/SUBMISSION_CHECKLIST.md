@@ -32,7 +32,7 @@
 - [x] All lookup times are UTC and unique.
 - [x] All lookup radiants are geocentric J2000 values.
 - [x] SCLO is reported in the 0–360° convention.
-- [x] Semimajor axis is internally consistent with mean q and e.
+- [x] Submitted semimajor axis is `a = 1.420285 AU`, computed from the submitted six-decimal `q = 0.080114 AU` and `e = 0.943593`, then rounded to six decimals; the separate full-precision derivation is preserved in `calculation_audit.json`.
 - [x] Exact official MDC checker rerun used the committed mean record; the distributed binaries and a fresh build of the distributed Fortran source produced identical comparison files and zero orbital/geocentric errors.
 - [x] Shober EDMOND source file MD5 verified against the Zenodo record.
 - [x] Exact cross-source duplicate audit found zero duplicate UTC events among the 16 external members.

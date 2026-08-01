@@ -24,7 +24,7 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Install frozen reconstruction environment
+      - name: Install reconstruction environment
         run: |
           python -m pip install --upgrade pip
           python -m pip install -r pilots/ghoststream/reconstruction/requirements-monthly.txt
@@ -34,7 +34,7 @@ jobs:
         run: |
           python -m py_compile pilots/ghoststream/reconstruction/reproduce_primary_gmn_monthly.py
 
-      - name: Run frozen April 2019-2026 reproduction
+      - name: Run later non-orbital template as a diagnostic only
         id: reproduce
         shell: bash
         run: |
@@ -46,7 +46,7 @@ jobs:
           printf '%s\n' "$status" > ghoststream_primary_monthly_reproduction_exit_code.txt
           echo "exit_code=$status" >> "$GITHUB_OUTPUT"
 
-      - name: Validate generated evidence
+      - name: Validate generated diagnostic evidence
         if: always()
         run: |
           test -s pilots/ghoststream/reconstruction/primary_gmn_monthly_reproduction/primary_gmn_monthly_reproduction.json
@@ -59,11 +59,11 @@ jobs:
             >/dev/null
           cat pilots/ghoststream/reconstruction/primary_gmn_monthly_reproduction/PRIMARY_GMN_MONTHLY_REPRODUCTION.md
 
-      - name: Upload complete reproduction evidence
+      - name: Upload diagnostic evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ghoststream-primary-gmn-monthly-reproduction
+          name: ghoststream-later-template-diagnostic
           path: |
             pilots/ghoststream/reconstruction/primary_gmn_monthly_reproduction/
             ghoststream_monthly_reproduction_environment.txt
@@ -72,12 +72,162 @@ jobs:
           if-no-files-found: error
           retention-days: 90
 
-      - name: Preserve fail-closed status
+  reproduce-exact-recovered-validator:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - name: Check out GhostStream evidence branch
+        uses: actions/checkout@v4
+
+      - name: Check out original runner source at immutable commit
+        uses: actions/checkout@v4
+        with:
+          repository: brandonlign/remotion-worker
+          ref: 39972b5fe0cf4d47092d3caa2b3ced12bedb065e
+          path: _ghoststream_exact_source
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Install original pinned environment
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -r _ghoststream_exact_source/ghoststream_novel/requirements.txt
+          python -m pip freeze | sort | tee ghoststream_exact_environment.txt
+
+      - name: Verify immutable source identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C _ghoststream_exact_source rev-parse HEAD)" = "39972b5fe0cf4d47092d3caa2b3ced12bedb065e"
+          sha256sum \
+            _ghoststream_exact_source/ghoststream_novel/validate_april_candidate.py \
+            _ghoststream_exact_source/ghoststream_novel/requirements.txt \
+            | tee ghoststream_exact_source_sha256.txt
+          python -m py_compile _ghoststream_exact_source/ghoststream_novel/validate_april_candidate.py
+
+      - name: Run exact recovered validator unchanged
+        id: exact
+        shell: bash
+        run: |
+          set +e
+          python _ghoststream_exact_source/ghoststream_novel/validate_april_candidate.py \
+            2>&1 | tee ghoststream_exact_validator.log
+          status=${PIPESTATUS[0]}
+          set -e
+          printf '%s\n' "$status" > ghoststream_exact_validator_exit_code.txt
+          echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+
+      - name: Compare exact recovered members to preserved package
+        id: compare
         if: always()
         shell: bash
         run: |
-          status="${{ steps.reproduce.outputs.exit_code }}"
-          if [[ -z "$status" ]]; then
+          set +e
+          python - <<'PY' 2>&1 | tee ghoststream_exact_comparison.log
+          import csv
+          import hashlib
+          import json
+          from collections import Counter
+          from pathlib import Path
+
+          import pandas as pd
+
+          output = Path("ghoststream_april_validation")
+          members_path = output / "april_candidate_members.csv"
+          validation_path = output / "april_candidate_validation.json"
+          report_path = output / "APRIL_CANDIDATE_VALIDATION.md"
+          lookup_path = Path("pilots/ghoststream/april_stream/mdc/GhostStream_April_95_GMN_lookup.csv")
+
+          required = [members_path, validation_path, report_path, lookup_path]
+          missing_files = [str(path) for path in required if not path.is_file()]
+          if missing_files:
+              result = {
+                  "verdict": "MISSING_OUTPUT",
+                  "missing_files": missing_files,
+                  "source_commit": "39972b5fe0cf4d47092d3caa2b3ced12bedb065e",
+              }
+              Path("ghoststream_exact_comparison.json").write_text(json.dumps(result, indent=2) + "\n")
+              raise SystemExit(4)
+
+          members = pd.read_csv(members_path)
+          member_times = pd.to_datetime(members["beginning_utc_time"], errors="coerce", utc=True)
+          if member_times.isna().any():
+              raise RuntimeError("Exact recovered member output contains unparseable UTC timestamps")
+          member_seconds = member_times.dt.strftime("%Y-%m-%d %H:%M:%S")
+          member_years = member_times.dt.year
+
+          with lookup_path.open(newline="", encoding="utf-8-sig") as handle:
+              lookup_rows = list(csv.DictReader(handle))
+          lookup_seconds = {
+              row["Tobs"][:10] + " " + row["Tobs"][11:]
+              for row in lookup_rows
+          }
+          recovered_95 = set(member_seconds[member_years >= 2022])
+          annual_counts = Counter(int(year) for year in member_years)
+          expected_counts = {2019: 1, 2020: 4, 2021: 1, 2022: 10, 2023: 8, 2024: 14, 2025: 34, 2026: 29}
+
+          missing = sorted(lookup_seconds - recovered_95)
+          additional = sorted(recovered_95 - lookup_seconds)
+          counts_exact = dict(sorted(annual_counts.items())) == expected_counts
+          lookup_exact = not missing and not additional
+          total_exact = len(members) == 101
+          verdict = "EXACT_REPRODUCTION" if counts_exact and lookup_exact and total_exact else "DISCREPANCY"
+
+          validation = json.loads(validation_path.read_text())
+          result = {
+              "verdict": verdict,
+              "source_commit": "39972b5fe0cf4d47092d3caa2b3ced12bedb065e",
+              "members_file_sha256": hashlib.sha256(members_path.read_bytes()).hexdigest(),
+              "validation_file_sha256": hashlib.sha256(validation_path.read_bytes()).hexdigest(),
+              "lookup_file_sha256": hashlib.sha256(lookup_path.read_bytes()).hexdigest(),
+              "total_members": int(len(members)),
+              "expected_total_members": 101,
+              "annual_counts": {str(year): int(count) for year, count in sorted(annual_counts.items())},
+              "expected_annual_counts": {str(year): count for year, count in expected_counts.items()},
+              "annual_counts_exact": counts_exact,
+              "preserved_95_exact": lookup_exact,
+              "missing_preserved_timestamps": missing,
+              "additional_timestamps": additional,
+              "validator_verdict": validation.get("verdict"),
+          }
+          Path("ghoststream_exact_comparison.json").write_text(json.dumps(result, indent=2) + "\n")
+          print(json.dumps(result, indent=2))
+          raise SystemExit(0 if verdict == "EXACT_REPRODUCTION" else 3)
+          PY
+          status=${PIPESTATUS[0]}
+          set -e
+          printf '%s\n' "$status" > ghoststream_exact_comparison_exit_code.txt
+          echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+
+      - name: Upload exact recovered reproduction evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ghoststream-exact-recovered-validator
+          path: |
+            ghoststream_april_validation/
+            ghoststream_exact_environment.txt
+            ghoststream_exact_source_sha256.txt
+            ghoststream_exact_validator.log
+            ghoststream_exact_validator_exit_code.txt
+            ghoststream_exact_comparison.json
+            ghoststream_exact_comparison.log
+            ghoststream_exact_comparison_exit_code.txt
+          if-no-files-found: warn
+          retention-days: 90
+
+      - name: Preserve exact fail-closed status
+        if: always()
+        shell: bash
+        run: |
+          validator_status="${{ steps.exact.outputs.exit_code }}"
+          comparison_status="${{ steps.compare.outputs.exit_code }}"
+          if [[ -z "$validator_status" || -z "$comparison_status" ]]; then
             exit 1
           fi
-          exit "$status"
+          if [[ "$validator_status" != "0" ]]; then
+            exit "$validator_status"
+          fi
+          exit "$comparison_status"

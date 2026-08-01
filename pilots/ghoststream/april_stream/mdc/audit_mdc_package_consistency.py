@@ -168,7 +168,8 @@ def main() -> int:
     }
     for key, index in legacy_map.items():
         tolerance = 5e-4 if key not in {"a", "q", "e"} else 5e-7
-        close(f"legacy rounded value {key}", float(legacy[index]), float(mean[key]), tolerance)
+        mean_key = "inc" if key == "incl" else key
+        close(f"legacy rounded value {key}", float(legacy[index]), float(mean[mean_key]), tolerance)
     check("legacy N", int(legacy[28]) == EXPECTED_N, int(legacy[28]), EXPECTED_N)
     check("legacy lookup filename", legacy[34] == LOOKUP.name, legacy[34], LOOKUP.name)
     check("legacy provisional IAU", legacy[0] == "PENDING" and legacy[1] == "-" and legacy[2] == "000", legacy[:3], ["PENDING", "-", "000"])

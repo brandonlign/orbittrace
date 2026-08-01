@@ -153,8 +153,8 @@ def main() -> int:
     check("calculation audit last timestamp", calc["last_time"] == timestamps[-1], calc["last_time"], timestamps[-1])
     check("calculation audit lookup rows", calc["lookup_rows"] == EXPECTED_N, calc["lookup_rows"], EXPECTED_N)
 
-    for key in ("q", "e", "peri", "node", "incl", "a"):
-        close(f"calculation audit -> mean JSON {key}", calc_means[key], mean[key], 5e-6)
+    for calc_key, mean_key in (("q", "q"), ("e", "e"), ("peri", "peri"), ("node", "node"), ("incl", "inc"), ("a", "a")):
+        close(f"calculation audit -> mean JSON {calc_key}", calc_means[calc_key], mean[mean_key], 5e-6)
     derived_a = float(mean["q"]) / (1.0 - float(mean["e"]))
     close("mean JSON semimajor identity q/(1-e)", float(mean["a"]), derived_a, 5e-6)
     close("calculation audit semimajor identity q/(1-e)", float(calc_means["a"]), float(calc_means["q"]) / (1.0 - float(calc_means["e"])), 5e-12)

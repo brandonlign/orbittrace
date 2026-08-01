@@ -1,0 +1,363 @@
+name: GhostStream recovered downstream reproduction
+
+on:
+  push:
+    branches:
+      - agent/ghoststream-pilot
+    paths:
+      - .github/workflows/ghoststream-recovered-downstream-reproduction.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reproduce-recovered-downstream:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - name: Check out GhostStream evidence branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/ghoststream-pilot
+          fetch-depth: 0
+
+      - name: Check out exact recovered source
+        uses: actions/checkout@v4
+        with:
+          repository: brandonlign/remotion-worker
+          ref: 39972b5fe0cf4d47092d3caa2b3ced12bedb065e
+          path: _ghoststream_exact_source
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Install recovered environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r _ghoststream_exact_source/ghoststream_novel/requirements.txt
+          python -m pip freeze | sort | tee ghoststream_downstream_environment.txt
+
+      - name: Verify immutable source identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C _ghoststream_exact_source rev-parse HEAD)" = "39972b5fe0cf4d47092d3caa2b3ced12bedb065e"
+          sha256sum \
+            _ghoststream_exact_source/ghoststream_novel/validate_april_candidate.py \
+            _ghoststream_exact_source/ghoststream_novel/validate_april_source_null.py \
+            _ghoststream_exact_source/ghoststream_novel/bootstrap_april_solution.py \
+            _ghoststream_exact_source/ghoststream_novel/estimate_april_activity_profile_v2.py \
+            _ghoststream_exact_source/ghoststream_novel/validate_geographic_network_splits.py \
+            _ghoststream_exact_source/ghoststream_novel/specification_curve_april.py \
+            _ghoststream_exact_source/ghoststream_novel/requirements.txt \
+            | tee ghoststream_downstream_source_sha256.txt
+          python -m py_compile \
+            _ghoststream_exact_source/ghoststream_novel/validate_april_candidate.py \
+            _ghoststream_exact_source/ghoststream_novel/validate_april_source_null.py \
+            _ghoststream_exact_source/ghoststream_novel/bootstrap_april_solution.py \
+            _ghoststream_exact_source/ghoststream_novel/estimate_april_activity_profile_v2.py \
+            _ghoststream_exact_source/ghoststream_novel/validate_geographic_network_splits.py \
+            _ghoststream_exact_source/ghoststream_novel/specification_curve_april.py
+
+      - name: Run exact recovered primary validator
+        run: |
+          python _ghoststream_exact_source/ghoststream_novel/validate_april_candidate.py \
+            2>&1 | tee ghoststream_downstream_01_primary.log
+
+      - name: Run source-preserving null audit
+        run: |
+          python _ghoststream_exact_source/ghoststream_novel/validate_april_source_null.py \
+            2>&1 | tee ghoststream_downstream_02_source_null.log
+
+      - name: Run year-and-night bootstrap
+        run: |
+          python _ghoststream_exact_source/ghoststream_novel/bootstrap_april_solution.py \
+            2>&1 | tee ghoststream_downstream_03_bootstrap.log
+
+      - name: Run corrected March-May activity profile
+        run: |
+          python _ghoststream_exact_source/ghoststream_novel/estimate_april_activity_profile_v2.py \
+            2>&1 | tee ghoststream_downstream_04_activity.log
+
+      - name: Run disjoint geographic replication
+        run: |
+          python _ghoststream_exact_source/ghoststream_novel/validate_geographic_network_splits.py \
+            2>&1 | tee ghoststream_downstream_05_geographic.log
+
+      - name: Run frozen 81-cell specification curve
+        run: |
+          python _ghoststream_exact_source/ghoststream_novel/specification_curve_april.py \
+            2>&1 | tee ghoststream_downstream_06_specification.log
+
+      - name: Compare every downstream gate to preserved evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import csv
+          import hashlib
+          import json
+          import math
+          import shutil
+          from collections import Counter
+          from pathlib import Path
+
+          import pandas as pd
+
+          ROOT = Path("pilots/ghoststream/reconstruction/exact_downstream")
+          if ROOT.exists():
+              shutil.rmtree(ROOT)
+          ROOT.mkdir(parents=True)
+
+          def load_json(path: str):
+              return json.loads(Path(path).read_text())
+
+          def close(name: str, actual: float, expected: float, *, atol: float = 0.0, rtol: float = 0.0):
+              actual = float(actual)
+              expected = float(expected)
+              if not math.isclose(actual, expected, abs_tol=atol, rel_tol=rtol):
+                  raise AssertionError(f"{name}: expected {expected}, found {actual}")
+              return actual
+
+          checks = {}
+
+          # Primary exact membership is a prerequisite for every downstream stage.
+          members_path = Path("ghoststream_april_validation/april_candidate_members.csv")
+          members = pd.read_csv(members_path)
+          times = pd.to_datetime(members["beginning_utc_time"], errors="raise", utc=True)
+          annual = Counter(int(year) for year in times.dt.year)
+          expected_annual = {2019: 1, 2020: 4, 2021: 1, 2022: 10, 2023: 8, 2024: 14, 2025: 34, 2026: 29}
+          assert len(members) == 101, len(members)
+          assert dict(sorted(annual.items())) == expected_annual, annual
+          with Path("pilots/ghoststream/april_stream/mdc/GhostStream_April_95_GMN_lookup.csv").open(
+              newline="", encoding="utf-8-sig"
+          ) as handle:
+              lookup = list(csv.DictReader(handle))
+          lookup_seconds = {row["Tobs"][:10] + " " + row["Tobs"][11:] for row in lookup}
+          recovered_seconds = set(times[times.dt.year >= 2022].dt.strftime("%Y-%m-%d %H:%M:%S"))
+          assert recovered_seconds == lookup_seconds
+          checks["primary_membership"] = {
+              "total": 101,
+              "significant_year_members": 95,
+              "annual_counts": {str(k): v for k, v in expected_annual.items()},
+              "lookup_timestamp_set_exact": True,
+          }
+
+          # Source-preserving antihelion and orbit-null audit.
+          source = load_json("ghoststream_april_source_null/april_source_preserving_null.json")
+          assert source["verdict"] == "APRIL_STREAM_SURVIVES_SOURCE_PRESERVING_NULL"
+          assert source["passed"] is True
+          assert source["untouched_years"]["individually_confirmed"] == [2022, 2023]
+          source_activity = close(
+              "untouched pooled activity p",
+              source["untouched_years"]["activity"]["p"], 1.857e-5, rtol=0.01,
+          )
+          source_shift = close(
+              "untouched shifted-window p",
+              source["untouched_years"]["shifted_windows"]["empirical_p"],
+              0.01754, atol=0.00002,
+          )
+          source_orbit = close(
+              "untouched source/time orbit-null p",
+              source["untouched_years"]["orbit"]["null_p"], 0.0001, atol=1e-12,
+          )
+          checks["source_preserving_null"] = {
+              "verdict": source["verdict"],
+              "untouched_activity_p": source_activity,
+              "untouched_shifted_window_p": source_shift,
+              "untouched_orbit_null_p": source_orbit,
+          }
+
+          # Cluster bootstrap.
+          boot = load_json("ghoststream_april_bootstrap/bootstrap_uncertainty.json")
+          assert boot["members"] == 95
+          assert boot["unique_nights"] == 29
+          assert boot["replicates_each"] == 20000
+          interpretation = boot["interpretation"]
+          assert interpretation["ra_drift_excludes_zero"] is True
+          assert interpretation["dec_drift_excludes_zero"] is True
+          assert interpretation["speed_drift_excludes_zero"] is False
+          point = boot["point_estimate"]
+          close("bootstrap solar longitude", point["solar_longitude_deg"], 37.150, atol=0.002)
+          close("bootstrap RA", point["ra_deg"], 247.170, atol=0.002)
+          close("bootstrap Dec", point["dec_deg"], -14.343, atol=0.002)
+          close("bootstrap Vg", point["vg_km_s"], 37.618, atol=0.002)
+          primary = boot["primary_year_night_bootstrap"]
+          expected_intervals = {
+              "dra_deg_per_deg": (0.672, 1.040),
+              "ddec_deg_per_deg": (-0.248, -0.037),
+              "dvg_km_s_per_deg": (-0.178, 0.221),
+          }
+          for key, (low, high) in expected_intervals.items():
+              close(f"{key} low", primary[key]["ci95_low"], low, atol=0.003)
+              close(f"{key} high", primary[key]["ci95_high"], high, atol=0.003)
+          checks["cluster_bootstrap"] = {
+              "members": 95,
+              "nights": 29,
+              "replicates_each": 20000,
+              "interpretation": interpretation,
+          }
+
+          # Corrected exposure-normalized activity profile.
+          activity = load_json("ghoststream_april_activity_v2/activity_profile.json")
+          close("activity baseline rate", activity["baseline_rate_per_1000_background"], 1.604, atol=0.005)
+          close("activity peak solar longitude", activity["peak_solar_longitude_deg"], 38.652, atol=0.002)
+          assert activity["peak_stream_count"] == 15
+          assert activity["peak_background_count"] == 1021
+          close("activity peak rate", activity["peak_rate_per_1000_background"], 15.17, atol=0.03)
+          assert activity["posterior_supported_interval_delta_deg"] == [-1.0, 3.0]
+          close("activity odds ratio", activity["aggregate_odds_ratio"], 4.162, atol=0.005)
+          close("activity aggregate p", activity["aggregate_p"], 6.51e-19, rtol=0.03)
+          expected_year_activity = {
+              "2022": (10, 1086, 6, 2239),
+              "2023": (8, 1525, 3, 4064),
+              "2024": (14, 2181, 15, 10410),
+              "2025": (35, 5277, 15, 9267),
+              "2026": (29, 4471, 25, 14366),
+          }
+          for year, expected in expected_year_activity.items():
+              item = activity["yearly"][year]
+              found = (
+                  item["stream_inside"], item["background_inside"],
+                  item["stream_baseline"], item["background_baseline"],
+              )
+              assert found == expected, (year, expected, found)
+          checks["activity_profile"] = {
+              "peak_solar_longitude_deg": activity["peak_solar_longitude_deg"],
+              "peak_counts": [15, 1021],
+              "supported_solar_longitude_interval_deg": [35.902, 39.902],
+              "aggregate_p": activity["aggregate_p"],
+          }
+
+          # Three disjoint geographic groups.
+          geographic = load_json("ghoststream_geographic_splits/geographic_split_validation.json")
+          assert geographic["verdict"] == "APRIL_STREAM_REPLICATES_ACROSS_THREE_DISJOINT_GMN_GEOGRAPHIC_GROUPS"
+          assert geographic["passed"] is True
+          expected_regions = {
+              "Americas": (30, 0.04503),
+              "Europe_WestAsia": (22, 0.03375),
+              "Oceania_EastAsia_Africa": (44, 0.04795),
+          }
+          for region, (count, median_d) in expected_regions.items():
+              item = geographic["regions"][region]
+              assert item["members"] == count
+              assert item["passed"] is True
+              close(f"{region} median D", item["orbit"]["observed"]["median_d"], median_d, atol=0.0001)
+              close(f"{region} orbit-null p", item["orbit"]["null_p"], 0.0001, atol=1e-12)
+          close(
+              "maximum cross-region medoid D",
+              geographic["maximum_cross_region_medoid_d"], 0.04054, atol=0.0001,
+          )
+          checks["geographic_replication"] = {
+              "verdict": geographic["verdict"],
+              "members": {region: count for region, (count, _) in expected_regions.items()},
+              "maximum_cross_region_medoid_d": geographic["maximum_cross_region_medoid_d"],
+          }
+
+          # Frozen 81-cell specification curve.
+          spec = load_json("ghoststream_april_specification_curve/specification_curve.json")
+          assert spec["verdict"] == "APRIL_STREAM_ROBUST_ACROSS_FROZEN_SPECIFICATION_GRID"
+          assert spec["passed"] is True
+          assert spec["grid"]["total_cells"] == 81
+          assert spec["eligible_cells"] == 81
+          assert spec["passing_cells"] == 81
+          close("specification pass fraction", spec["pass_fraction"], 1.0, atol=1e-12)
+          close("specification positive odds", spec["positive_odds_fraction"], 1.0, atol=1e-12)
+          assert spec["member_count_range_eligible"] == [29, 129]
+          close("specification minimum median D", spec["orbit_median_d_range_eligible"][0], 0.03640, atol=0.0001)
+          close("specification maximum median D", spec["orbit_median_d_range_eligible"][1], 0.05548, atol=0.0001)
+          close(
+              "specification worst activity p",
+              spec["activity_p_quantiles_eligible"]["1.0"], 8.55e-7, rtol=0.05,
+          )
+          checks["specification_curve"] = {
+              "verdict": spec["verdict"],
+              "eligible_cells": 81,
+              "passing_cells": 81,
+              "member_count_range": [29, 129],
+              "orbit_median_d_range": spec["orbit_median_d_range_eligible"],
+          }
+
+          # Preserve the complete regenerated, machine-readable evidence package.
+          source_dirs = {
+              "primary": Path("ghoststream_april_validation"),
+              "source_null": Path("ghoststream_april_source_null"),
+              "bootstrap": Path("ghoststream_april_bootstrap"),
+              "activity": Path("ghoststream_april_activity_v2"),
+              "geographic": Path("ghoststream_geographic_splits"),
+              "specification": Path("ghoststream_april_specification_curve"),
+          }
+          for name, source_dir in source_dirs.items():
+              if not source_dir.is_dir():
+                  raise RuntimeError(f"Missing regenerated output directory: {source_dir}")
+              shutil.copytree(source_dir, ROOT / name)
+
+          shutil.copy2("ghoststream_downstream_environment.txt", ROOT / "environment.txt")
+          shutil.copy2("ghoststream_downstream_source_sha256.txt", ROOT / "source_sha256.txt")
+
+          files = []
+          for path in sorted(item for item in ROOT.rglob("*") if item.is_file()):
+              payload = path.read_bytes()
+              files.append({
+                  "path": path.relative_to(ROOT).as_posix(),
+                  "bytes": len(payload),
+                  "sha256": hashlib.sha256(payload).hexdigest(),
+              })
+          manifest = {
+              "status": "EXACT_RECOVERED_DOWNSTREAM_REPRODUCTION",
+              "source_repository": "brandonlign/remotion-worker",
+              "source_commit": "39972b5fe0cf4d47092d3caa2b3ced12bedb065e",
+              "python": "3.9",
+              "checks": checks,
+              "files": files,
+          }
+          (ROOT / "downstream_reproduction.json").write_text(json.dumps(manifest, indent=2) + "\n")
+
+          lines = [
+              "# GhostStream recovered downstream reproduction", "",
+              "**Verdict:** `EXACT_RECOVERED_DOWNSTREAM_REPRODUCTION`", "",
+              "The original recovered source was run unchanged from immutable commit "
+              "`39972b5fe0cf4d47092d3caa2b3ced12bedb065e`. Every primary internal-GMN "
+              "downstream result matched the previously preserved evidence boundary.", "",
+              "- Primary membership: 101 total; exact 95-event 2022–2026 lookup",
+              f"- Untouched pooled activity p: {source_activity:.8g}",
+              f"- Untouched shifted-window p: {source_shift:.8g}",
+              f"- Untouched source/time orbit-null p: {source_orbit:.8g}",
+              "- Bootstrap: 95 members, 29 nights, 20,000 replicates per scheme; RA/Dec drift resolved, speed drift unresolved",
+              f"- Activity core: solar longitude 35.902°–39.902°; aggregate p={activity['aggregate_p']:.8g}",
+              f"- Geographic replication: 30 / 22 / 44 members; maximum medoid D={geographic['maximum_cross_region_medoid_d']:.6f}",
+              "- Specification curve: 81/81 eligible cells passed", "",
+              "This resolves the internal GMN downstream reproducibility gap. External archive and parent-body stages remain separate claim-boundary checks.", "",
+          ]
+          (ROOT / "DOWNSTREAM_REPRODUCTION.md").write_text("\n".join(lines))
+          print(json.dumps(checks, indent=2))
+          PY
+
+      - name: Upload exact downstream evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: ghoststream-exact-recovered-downstream
+          path: |
+            pilots/ghoststream/reconstruction/exact_downstream/
+            ghoststream_downstream_*.log
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Commit exact downstream reproduction
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pilots/ghoststream/reconstruction/exact_downstream
+          if git diff --cached --quiet; then
+            echo "Exact downstream evidence already matches the committed package."
+            exit 0
+          fi
+          git commit -m "Reproduce GhostStream downstream evidence"
+          git pull --rebase origin agent/ghoststream-pilot
+          git push origin HEAD:agent/ghoststream-pilot

@@ -38,4 +38,4 @@ The total was 101 deduplicated events. The 95 events from 2022–2026 matched th
 
 An earlier reconstruction returned 103 events because it used a later radiant/speed template and omitted the original orbit-distance membership cuts. Running the recovered validator resolved the difference and restored the exact 101-event set.
 
-This rerun establishes that the published event set can be regenerated from the recovered implementation. Scientific review addresses the separate question of stream distinctness.
+The published event set is therefore reproducible from the recovered implementation.

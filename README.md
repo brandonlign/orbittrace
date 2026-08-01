@@ -6,12 +6,12 @@ The result is a **meteor-stream discovery candidate**, not an officially recogni
 
 ## Repository layout
 
-- `pipeline/pr57_novel/` — final discovery, validation, external-archive, activity-profile, and submission-support code
-- `pipeline/pr56_runner/` — the original blind-search and method-gate implementation preserved for exact reproducibility
+- `pipeline/pr57_novel/` — discovery, validation, external-archive, activity-profile, and submission-support source
+- `pipeline/pr56_runner/` — the original blind-search and method-gate source preserved for exact reproducibility
 - `candidate/` — final candidate solution, event lookup table, orbit solution, manuscript materials, and review documents
 - `validation/` — exact reproduction, blind rediscovery, external-support, and method-control results
 - `results/ghoststream_final_summary.json` — canonical machine-readable project summary
-- `scripts/verify_repository.py` — lightweight structural and consistency check
+- `scripts/verify_repository.py` — structural, scientific-consistency, and repository-hygiene checks
 
 ## Current scientific result
 
@@ -29,6 +29,12 @@ Key evidence includes:
 - 81/81 passing specification-grid cells;
 - supporting CAMS and SonotaCo events;
 - no hard automated match in the checked IAU Meteor Data Center catalogue.
+
+## Repository hygiene
+
+The active repository contains no tracked logs, caches, editor files, ZIP archives, temporary files, or abandoned cleanup workflows. The verifier rejects these artifacts if they are introduced later.
+
+Some files under `pipeline/` have versioned names or end in `_fixed.py`. They are not unfinished temporary files. That directory is an immutable source snapshot of the exact historical execution trees, and those names document which compatibility or determinism fixes were actually applied. Renaming or deleting them would weaken the computational provenance.
 
 ## Verification
 

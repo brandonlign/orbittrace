@@ -1,0 +1,128 @@
+name: GhostStream corrected method-control holdout
+
+on:
+  push:
+    branches:
+      - agent/ghoststream-pilot
+    paths:
+      - "pilots/ghoststream/reconstruction/run_corrected_method_holdout.py"
+      - ".github/workflows/ghoststream-method-controls-v3.yml"
+  pull_request:
+    paths:
+      - "pilots/ghoststream/reconstruction/run_corrected_method_holdout.py"
+      - ".github/workflows/ghoststream-method-controls-v3.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  corrected-independent-year-holdout:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - name: Check out GhostStream branch
+        uses: actions/checkout@v4
+        with:
+          ref: agent/ghoststream-pilot
+          fetch-depth: 0
+
+      - name: Check out immutable recovered control source
+        uses: actions/checkout@v4
+        with:
+          repository: brandonlign/remotion-worker
+          ref: 4175e5187fcc6faf3d1befb099a9e35be96850f2
+          path: _ghoststream_control_source
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+
+      - name: Install frozen control environment
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m pip install --upgrade pip
+          python -m pip install -r _ghoststream_control_source/ghoststream_runner/requirements.txt
+          python -m pip freeze | sort | tee ghoststream_method_v3_environment.txt
+
+      - name: Verify source and corrected rule identity
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$(git -C _ghoststream_control_source rev-parse HEAD)" = "4175e5187fcc6faf3d1befb099a9e35be96850f2"
+          sha256sum \
+            _ghoststream_control_source/ghoststream_runner/run_gate.py \
+            _ghoststream_control_source/ghoststream_runner/run_gate_v2.py \
+            _ghoststream_control_source/ghoststream_runner/requirements.txt \
+            pilots/ghoststream/reconstruction/run_corrected_method_holdout.py \
+            | tee ghoststream_method_v3_source_sha256.txt
+          python -m py_compile \
+            _ghoststream_control_source/ghoststream_runner/run_gate.py \
+            _ghoststream_control_source/ghoststream_runner/run_gate_v2.py \
+            pilots/ghoststream/reconstruction/run_corrected_method_holdout.py
+
+      - name: Run prospective 2024 independent-year controls
+        shell: bash
+        run: |
+          set -euo pipefail
+          PYTHONPATH=_ghoststream_control_source/ghoststream_runner \
+            python pilots/ghoststream/reconstruction/run_corrected_method_holdout.py \
+            --output-dir ghoststream_method_controls_v3 \
+            --environment ghoststream_method_v3_environment.txt \
+            --source-hashes ghoststream_method_v3_source_sha256.txt \
+            2>&1 | tee ghoststream_method_v3.log
+
+      - name: Validate corrected holdout evidence
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s ghoststream_method_controls_v3/method_controls_v3.json
+          test -s ghoststream_method_controls_v3/METHOD_CONTROLS_V3.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path("ghoststream_method_controls_v3/method_controls_v3.json").read_text())
+          print(json.dumps(result, indent=2))
+          assert result["status"] == "CORRECTED_INDEPENDENT_YEAR_CONTROL_PASS"
+          assert result["correction_frozen_before_2024_holdout_run"] is True
+          assert result["setting_unchanged_from_v2"]["cluster_selection_method"] == "eom"
+          assert result["corrected_pass_rule"]["maximum_largest_non_target_cluster_fraction"] == 0.30
+          assert result["eligible_controls"] == 3
+          assert result["recovered_controls"] == 3
+          assert result["non_target_degeneracy_passes"] == 3
+          assert result["passed"] is True
+          PY
+
+      - name: Upload corrected holdout evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ghoststream-corrected-method-control-holdout
+          path: |
+            ghoststream_method_controls_v3/
+            ghoststream_method_v3.log
+            ghoststream_method_v3_environment.txt
+            ghoststream_method_v3_source_sha256.txt
+          if-no-files-found: error
+          retention-days: 90
+
+      - name: Commit corrected holdout evidence
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          target="pilots/ghoststream/reconstruction/exact_method_controls_v3"
+          rm -rf "$target"
+          cp -a ghoststream_method_controls_v3 "$target"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$target"
+          if git diff --cached --quiet; then
+            echo "Corrected method-control evidence already matches."
+            exit 0
+          fi
+          git commit -m "Validate corrected GhostStream method controls"
+          git pull --rebase origin agent/ghoststream-pilot
+          git push origin HEAD:agent/ghoststream-pilot

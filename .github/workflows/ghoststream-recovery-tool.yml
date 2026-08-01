@@ -1,0 +1,115 @@
+name: GhostStream local recovery tool
+
+on:
+  pull_request:
+    paths:
+      - "pilots/ghoststream/recovery/**"
+      - ".github/workflows/ghoststream-recovery-tool.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test-recovery-tool:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile recovery tool
+        run: |
+          python -m py_compile pilots/ghoststream/recovery/audit_local_workspace.py
+
+      - name: Build isolated recovery fixture
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p fixture/project fixture/search/OpenCode fixture/home
+          git -C fixture/project init
+          git -C fixture/project config user.name fixture
+          git -C fixture/project config user.email fixture@example.invalid
+          cat > fixture/project/README.md <<'EOF'
+          fixture
+          EOF
+          git -C fixture/project add README.md
+          git -C fixture/project commit -m initial
+
+          cat > fixture/project/ghoststream_bootstrap.py <<'PY'
+          # source-preserving antihelion year/night bootstrap fixture
+          print("fixture")
+          PY
+          cat > fixture/search/OpenCode/session-export.json <<'EOF'
+          {"project":"GhostStream", "analysis":"geographic split and specification curve"}
+          EOF
+          printf 'archive fixture' > fixture/search/ghoststream-analysis.zip
+          cat > fixture/home/.zsh_history <<'EOF'
+          python ghoststream_bootstrap.py --antihelion
+          export API_KEY=must_not_appear
+          EOF
+          touch -t 202607301200 fixture/project/ghoststream_bootstrap.py
+          touch -t 202607301201 fixture/search/OpenCode/session-export.json
+          touch -t 202607301202 fixture/search/ghoststream-analysis.zip
+
+      - name: Run read-only fixture audit
+        shell: bash
+        env:
+          HOME: ${{ github.workspace }}/fixture/home
+        run: |
+          set -euo pipefail
+          before=$(git -C fixture/project status --porcelain=v1 --untracked-files=all | sha256sum)
+          python pilots/ghoststream/recovery/audit_local_workspace.py \
+            --repo "$GITHUB_WORKSPACE/fixture/project" \
+            --root "$GITHUB_WORKSPACE/fixture/search" \
+            --output-dir "$GITHUB_WORKSPACE/recovery_output" \
+            --start 2026-07-20T00:00:00+00:00 \
+            --end 2026-08-05T00:00:00+00:00 2>&1 | tee recovery_tool.log
+          after=$(git -C fixture/project status --porcelain=v1 --untracked-files=all | sha256sum)
+          test "$before" = "$after"
+
+      - name: Validate recovery report
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          root = Path("recovery_output")
+          report = json.loads((root / "ghoststream_local_recovery_audit.json").read_text())
+          paths = {item["path"]: item for item in report["file_hits"]}
+          source = [item for item in paths.values() if item["path"].endswith("ghoststream_bootstrap.py")]
+          session = [item for item in paths.values() if item["path"].endswith("session-export.json")]
+          archives = [item for item in paths.values() if item["path"].endswith("ghoststream-analysis.zip")]
+          assert len(source) == 1
+          assert "antihelion" in source[0]["content_terms"]
+          assert len(session) == 1
+          assert "ghoststream" in session[0]["content_terms"]
+          assert len(archives) == 1
+          assert report["privacy"]["network_used"] is False
+          assert report["privacy"]["files_modified"] is False
+          assert report["privacy"]["files_copied"] is False
+          history = report["history_results"]
+          assert history and history[0]["match_count"] >= 1
+          assert all("must_not_appear" not in match["text"] for item in history for match in item["matches"])
+          assert (root / "GHOSTSTREAM_LOCAL_RECOVERY_AUDIT.md").is_file()
+          assert (root / "git_results.json").is_file()
+          print(json.dumps({
+              "file_candidates": len(paths),
+              "source_hits": len(source),
+              "session_hits": len(session),
+              "archive_hits": len(archives),
+          }, indent=2))
+          PY
+
+      - name: Upload fixture evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: ghoststream-recovery-tool-test
+          path: |
+            recovery_output/
+            recovery_tool.log
+          if-no-files-found: error
+          retention-days: 14

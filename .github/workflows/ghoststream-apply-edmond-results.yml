@@ -1,10 +1,6 @@
 name: GhostStream integrate linked EDMOND result
 
 on:
-  pull_request:
-    paths:
-      - "pilots/ghoststream/april_stream/edmond_2024/apply_linked_v601_result_updates.py"
-      - ".github/workflows/ghoststream-apply-edmond-results.yml"
   workflow_dispatch:
 
 permissions:

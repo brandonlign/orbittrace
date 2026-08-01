@@ -1,0 +1,79 @@
+name: Finalize GhostStream repository cleanup
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - .github/workflows/ghoststream-final-repository-cleanup.yml
+
+permissions:
+  contents: write
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Delete all obsolete branch refs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          import json
+          import os
+          import urllib.parse
+          import urllib.request
+
+          repo = os.environ['GITHUB_REPOSITORY']
+          token = os.environ['GH_TOKEN']
+          headers = {
+              'Authorization': f'Bearer {token}',
+              'Accept': 'application/vnd.github+json',
+              'X-GitHub-Api-Version': '2022-11-28',
+          }
+          req = urllib.request.Request(
+              f'https://api.github.com/repos/{repo}/git/matching-refs/heads/',
+              headers=headers,
+          )
+          with urllib.request.urlopen(req) as response:
+              refs = json.load(response)
+          for item in refs:
+              ref = item['ref']
+              if ref == 'refs/heads/main':
+                  continue
+              encoded = urllib.parse.quote(ref, safe='')
+              delete = urllib.request.Request(
+                  f'https://api.github.com/repos/{repo}/git/refs/{encoded}',
+                  headers=headers,
+                  method='DELETE',
+              )
+              with urllib.request.urlopen(delete) as response:
+                  assert response.status == 204
+              print(f'Deleted {ref}')
+          PY
+
+      - name: Attempt repository rename
+        id: rename
+        continue-on-error: true
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh api -X PATCH "repos/${GITHUB_REPOSITORY}" -f name=ghoststream
+
+      - name: Remove one-time workflow
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git rm .github/workflows/ghoststream-final-repository-cleanup.yml
+          git commit -m "Remove one-time repository cleanup workflow"
+          git push origin HEAD:main

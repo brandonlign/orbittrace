@@ -6,6 +6,9 @@ on:
       - agent/ghoststream-pilot
     paths:
       - ".github/workflows/ghoststream-final-package-canonical.yml"
+  pull_request:
+    paths:
+      - ".github/workflows/ghoststream-final-package-canonical.yml"
   workflow_dispatch:
 
 permissions:

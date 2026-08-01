@@ -14,6 +14,6 @@ The pooled ten-event sample was also reproduced exactly:
 - orbit-null p-value: 5 × 10⁻⁵; and
 - medoid distance from the GMN orbit: 0.01723.
 
-The current JPL parent screen again found no object at D ≤ 0.15.
+The current JPL parent screen again placed the nearest object above D = 0.15.
 
-EDMOND is kept as separate supplementary evidence because it is a compiled archive and cannot be assumed to provide a fully independent third observing system.
+EDMOND is kept as separate supplementary evidence because it is a compiled archive with possible shared upstream provenance.

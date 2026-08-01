@@ -55,7 +55,7 @@ The checks target the main ways a false stream could appear.
 
 **External catalogues.** CAMS and SonotaCo contain ten matching meteors in five historical years. A shower-removed EDMOND subset contains six more, although EDMOND’s compiled provenance limits how independently that sample can be interpreted.
 
-**Known showers.** The current official IAU MDC catalogue contains no solution that matches the candidate in activity, drifted radiant, speed, and orbit under the project’s comparison rules.
+**Known showers.** The current official IAU MDC catalogue contains no solution that matches the candidate in activity, drifted radiant, speed, and orbit under the project’s comparison rules. Two unnamed single-station IMO sequences (#181 and #182) overlap in date, but their public summaries do not provide enough radiant, speed, or orbital detail for a direct comparison. GhostStream adds a five-year, multi-station orbital characterization that those preliminary detections do not provide.
 
 ## Main uncertainty
 

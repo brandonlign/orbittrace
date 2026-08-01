@@ -19,7 +19,7 @@ jobs:
           ref: agent/ghoststream-pilot
           fetch-depth: 0
 
-      - name: Apply syntax-aware audit fixes
+      - name: Apply syntax-aware source fix
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -37,36 +37,18 @@ jobs:
           lines[i] = indent + 'for calc_key, mean_key in (("q", "q"), ("e", "e"), ("peri", "peri"), ("node", "node"), ("incl", "inc"), ("a", "a")):'
           lines[i + 1] = indent + '    close(f"calculation audit -> mean JSON {calc_key}", calc_means[calc_key], mean[mean_key], 5e-6)'
           audit.write_text("\n".join(lines) + "\n")
-
-          workflow = Path(".github/workflows/ghoststream-mdc-package-audit.yml")
-          lines = workflow.read_text().splitlines()
-          matches = [i for i, line in enumerate(lines) if line.strip() == '- name: Run package audit']
-          if len(matches) != 1:
-              raise SystemExit(f"workflow audit step matches={matches}")
-          i = matches[0]
-          step_indent = lines[i][: len(lines[i]) - len(lines[i].lstrip())]
-          if lines[i + 1].strip() != 'run: |':
-              raise SystemExit(f"unexpected run line: {lines[i + 1]!r}")
-          lines.insert(i + 1, step_indent + '  shell: bash')
-          run_index = i + 2
-          command_indent = lines[run_index][: len(lines[run_index]) - len(lines[run_index].lstrip())] + '  '
-          lines.insert(run_index + 1, command_indent + 'set -euo pipefail')
-          workflow.write_text("\n".join(lines) + "\n")
           PY
 
-      - name: Validate fixes
+      - name: Validate source fix
         run: |
           python -m py_compile pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
-          grep -F 'set -euo pipefail' .github/workflows/ghoststream-mdc-package-audit.yml
           grep -F '("incl", "inc")' pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
           git diff --check
 
-      - name: Commit fixes
+      - name: Commit source fix
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py \
-            .github/workflows/ghoststream-mdc-package-audit.yml
-          git commit -m "Fix MDC package audit execution"
+          git add pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
+          git commit -m "Fix MDC package audit field mapping"
           git push origin HEAD:agent/ghoststream-pilot

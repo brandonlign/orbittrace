@@ -1,4 +1,4 @@
-name: GhostStream blind rediscovery PR check
+name: GhostStream 2026 blind rediscovery
 
 on:
   push:
@@ -39,47 +39,80 @@ jobs:
           python-version: "3.9"
 
       - name: Install recovered environment
+        shell: bash
         run: |
+          set -euo pipefail
           python -m pip install --upgrade pip
           python -m pip install -r _ghoststream_exact_source/ghoststream_novel/requirements.txt
           python -m pip freeze | sort | tee ghoststream_blind_environment.txt
 
-      - name: Verify immutable blind-search source
+      - name: Verify immutable discovery source
         shell: bash
         run: |
           set -euo pipefail
           test "$(git -C _ghoststream_exact_source rev-parse HEAD)" = "39972b5fe0cf4d47092d3caa2b3ced12bedb065e"
           sha256sum \
             _ghoststream_exact_source/ghoststream_novel/run_novel_search.py \
-            _ghoststream_exact_source/ghoststream_novel/run_novel_search_fixed.py \
+            _ghoststream_exact_source/ghoststream_novel/run_month_v2.py \
+            _ghoststream_exact_source/ghoststream_novel/run_month_year_v3.py \
             _ghoststream_exact_source/ghoststream_novel/requirements.txt \
+            pilots/ghoststream/reconstruction/verify_blind_rediscovery.py \
             | tee ghoststream_blind_source_sha256.txt
           python -m py_compile \
             _ghoststream_exact_source/ghoststream_novel/run_novel_search.py \
-            _ghoststream_exact_source/ghoststream_novel/run_novel_search_fixed.py \
+            _ghoststream_exact_source/ghoststream_novel/run_month_v2.py \
+            _ghoststream_exact_source/ghoststream_novel/run_month_year_v3.py \
             pilots/ghoststream/reconstruction/verify_blind_rediscovery.py
 
-      - name: Run exact recovered all-season blind search
+      - name: Run January-July 2026 discovery matrix
         shell: bash
         run: |
-          python _ghoststream_exact_source/ghoststream_novel/run_novel_search_fixed.py \
-            2>&1 | tee ghoststream_blind_search.log
+          set -euo pipefail
+          rm -rf ghoststream_blind_2026
+          mkdir -p ghoststream_blind_2026
+          for month in 1 2 3 4 5 6 7; do
+            month2=$(printf '%02d' "$month")
+            rm -rf ghoststream_novel_results
+            echo "=== 2026-${month2} ==="
+            GHOSTSTREAM_YEAR=2026 GHOSTSTREAM_MONTH="$month" \
+              python _ghoststream_exact_source/ghoststream_novel/run_month_year_v3.py \
+              2>&1 | tee "ghoststream_blind_2026_${month2}.log"
+            test -s ghoststream_novel_results/ghoststream_novel_search.json
+            mv ghoststream_novel_results "ghoststream_blind_2026/2026-${month2}"
+          done
 
-      - name: Verify April lead rediscovery
+      - name: Verify April lead from the recovered matrix
+        shell: bash
         run: |
+          set -euo pipefail
           python pilots/ghoststream/reconstruction/verify_blind_rediscovery.py \
+            --search-root ghoststream_blind_2026 \
             --output-dir ghoststream_blind_rediscovery_evidence \
+            --environment ghoststream_blind_environment.txt \
+            --source-hashes ghoststream_blind_source_sha256.txt \
             2>&1 | tee ghoststream_blind_verification.log
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path("ghoststream_blind_rediscovery_evidence/blind_rediscovery.json").read_text())
+          assert result["status"] == "EXACT_2026_BLIND_REDISCOVERY"
+          assert result["months_scanned"] == [1, 2, 3, 4, 5, 6, 7]
+          assert result["validation_years"] == [2025, 2024]
+          assert result["full_gate_survivors_across_matrix"] == 1
+          assert result["additional_non_april_survivors"] == []
+          print(json.dumps(result, indent=2))
+          PY
 
       - name: Upload complete blind-rediscovery evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ghoststream-exact-blind-rediscovery
+          name: ghoststream-exact-2026-blind-rediscovery
           path: |
             ghoststream_blind_rediscovery_evidence/
-            ghoststream_novel_results/
-            ghoststream_blind_*.log
+            ghoststream_blind_2026/
+            ghoststream_blind_2026_*.log
+            ghoststream_blind_verification.log
             ghoststream_blind_environment.txt
             ghoststream_blind_source_sha256.txt
           if-no-files-found: error
@@ -100,6 +133,6 @@ jobs:
             echo "Blind-rediscovery evidence already matches."
             exit 0
           fi
-          git commit -m "Reproduce GhostStream blind discovery"
+          git commit -m "Reproduce GhostStream 2026 blind discovery"
           git pull --rebase origin agent/ghoststream-pilot
           git push origin HEAD:agent/ghoststream-pilot

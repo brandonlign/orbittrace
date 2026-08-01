@@ -1,6 +1,6 @@
 # Comparison with the IAU Meteor Data Center catalogue
 
-The candidate was compared with the official IAU MDC full shower-data catalogue downloaded on 2026-08-01. The catalogue identified itself as version 2026-06-25.
+I compared the candidate with the official IAU MDC full shower-data catalogue downloaded on 2026-08-01. The file identifies itself as version 2026-06-25.
 
 ## Catalogue used
 
@@ -9,7 +9,7 @@ The candidate was compared with the official IAU MDC full shower-data catalogue 
 - Download size: 3,308,032 bytes
 - SHA-256: `821fa09734314e2796388c4f2fc94bb770998f2f2b08d6a84135660849aef899`
 
-The file passed the expected count and schema checks before comparison.
+Before matching, the file passed the expected count and schema checks.
 
 ## Matching rule
 
@@ -38,6 +38,6 @@ The nearest complete orbit was Northern May Ophiuchids solution 004:
 
 Its speed is similar, but its timing, radiant, and orbit do not satisfy the comparison rule.
 
-The current official catalogue contains no matching solution under the fixed criteria used here. The next comparison is a specialist search of older literature, alternate coordinate conventions, removed solutions, and locally used shower lists.
+No current catalogue solution met the fixed criteria. A specialist should next compare the candidate with older literature, alternate coordinate conventions, removed solutions, and local shower lists.
 
-The machine-readable result is in `live_mdc_novelty_refresh_summary.json`.
+The full machine-readable output is in `live_mdc_novelty_refresh_summary.json`.

@@ -1,6 +1,6 @@
 # Corrected independent-year controls
 
-The corrected control keeps the same HDBSCAN settings, recovery thresholds, hidden labels, and 30% ceiling. The only change is that the ceiling is applied to the largest **non-target** cluster rather than to the true shower cluster itself.
+The corrected control keeps the HDBSCAN settings, recovery thresholds, hidden labels, and 30% ceiling unchanged. It applies the ceiling to the largest **non-target** cluster instead of the true shower cluster.
 
 That correction was set before the independent 2024 holdout data were examined.
 
@@ -12,4 +12,4 @@ That correction was set before the independent 2024 holdout data were examined.
 
 All three showers were recovered, and every non-target cluster remained below 30%.
 
-The corrected holdout resolves the specific contradiction in the earlier gate. Its role is narrow: it shows that the unchanged clustering and recovery thresholds work on independent known-shower data when the degeneracy rule measures the intended failure mode. The earlier result remains part of the record.
+The independent holdout shows that the unchanged clustering and recovery thresholds work when the degeneracy rule measures the intended failure mode. The earlier failed gate remains in the record because it documents the original flaw.

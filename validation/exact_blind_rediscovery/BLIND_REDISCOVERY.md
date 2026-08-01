@@ -1,8 +1,8 @@
 # Blind rediscovery
 
-The January–July 2026 search was rerun from the recovered all-season source. The runner received only the year and month and independently selected the April structure.
+The January–July 2026 search was rerun from the recovered all-season source. Given only a year and month, the runner selected the April structure on its own.
 
-A small wrapper repair was needed because the original report code used fixed historical year labels. The repair changed only output keys and labels; it did not change candidate generation, scoring, thresholds, known-shower comparison, or validation logic. The original and repaired source hashes are recorded in `../blind_wrapper_fix.json`.
+The report wrapper used fixed historical year labels, so it needed a small repair before it could run for an arbitrary year. The change affected only output keys and labels. Candidate generation, scoring, thresholds, known-shower comparison, and validation logic were untouched. Both source hashes are recorded in `../blind_wrapper_fix.json`.
 
 ## Month-by-month outcome
 
@@ -20,4 +20,6 @@ The April survivor contained 26 discovery members. Its regenerated center matche
 
 The recovered search then validated the candidate in 2025 and 2024, yielding 36 and 14 members respectively, with p = 0.002 in each validation year. The measurement-uncertainty check passed in all 500 discovery-stage clone trials.
 
-April was the only full-gate survivor, reproducing the original discovery path without supplying the final month or event list.
+April was the only full-gate survivor.
+
+The rerun reproduces the discovery path: April is recovered without supplying the final month or member list.

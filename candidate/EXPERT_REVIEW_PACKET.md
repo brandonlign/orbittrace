@@ -1,17 +1,15 @@
 # Notes for reviewers
 
-Thank you for taking the time to look at this project. I am seeking a critical technical review of a late-April meteor-stream candidate found in public GMN trajectory data.
+I am looking for a critical technical review of a late-April meteor-stream candidate found in public GMN trajectory data. The main things I need checked are the event selection, coordinate conventions, orbit treatment, background model, and possible historical duplicates.
 
-I would especially value a check of the event selection, coordinate conventions, orbit treatment, background model, and possible historical duplicates.
-
-## The questions I most need answered
+## Main questions
 
 1. Does the 95-event GMN sample look like a real recurring meteor stream rather than structured antihelion background?
 2. Is there a known, working-list, removed, or historically published shower that is a plausible match despite the current catalogue comparison?
 3. Are the radiant, drift, solar-longitude, node, and orbital conventions used consistently?
 4. What additional analysis or data would most strengthen the interpretation?
 
-A brief answer focused on the main scientific issue would be very useful; a detailed code review is optional.
+A brief answer on the main scientific issue is enough for an initial review. A detailed code review is welcome but not necessary.
 
 ## What was found
 
@@ -27,7 +25,7 @@ The confirmed sample contains 95 meteors:
 | 2025 | 34 |
 | 2026 | 29 |
 
-The pooled 2022–2023 confirmation was reserved until after the candidate definition had been fixed and gave:
+The 2022–2023 pooled sample was kept untouched until the candidate definition had been fixed. It gave:
 
 - activity p = 1.857 × 10⁻⁵ after the twelve-month familywise rule;
 - shifted-window p = 0.01754; and
@@ -69,7 +67,7 @@ The draft MDC record uses the unweighted arithmetic mean of the 95 submitted row
 | a | 1.420285 AU |
 | N | 95 |
 
-I would especially appreciate advice on whether this distinction between a robust matching solution and an arithmetic-mean submission record is appropriate for MDC practice.
+I would also like to know whether using a robust solution for matching and an arithmetic mean for the MDC record is appropriate.
 
 ## Checks already completed
 
@@ -80,12 +78,12 @@ I would especially appreciate advice on whether this distinction between a robus
 - 20,000 year/night bootstrap replicates.
 - Three disjoint GMN geographic station groups.
 - Eighty-one combinations of nearby analysis choices, all passing.
-- Six CAMS and four SonotaCo matches; the pooled ten-event result is explicitly post-hoc.
+- Six CAMS and four SonotaCo matches; the ten-event pooled result was calculated after the separate results were known.
 - Six additional events in a shower-removed EDMOND subset, treated as supplementary because EDMOND is a compilation.
 - Comparison with 2,174 current IAU MDC solutions, with no match under the fixed comparison rules.
 - Official MDC radiant/orbit checker run on the draft mean record, with no flagged inconsistencies.
 
-## Most important limitations
+## Main limitations
 
 The discovery and confirmation use catalogue trajectories rather than new raw-image reductions. The antihelion source is structured, and the present source-matched null may miss a narrow component. The three geographic samples share GMN’s processing pipeline. The external catalogues are sparse, and their pooled result was decided after the separate outcomes were known.
 
@@ -98,4 +96,4 @@ The discovery and confirmation use catalogue trajectories rather than new raw-im
 5. `../validation/` — records from the clean reruns.
 6. `../pipeline/` — executable code.
 
-The repository’s top-level README explains the code history and assistance used in preparing the project.
+The top-level README explains the code history and the assistance used to prepare the project.

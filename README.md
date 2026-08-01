@@ -1,16 +1,16 @@
 # GhostStream
 
-GhostStream is a search for weak meteor streams in public meteor-trajectory catalogues. The project began as a blind search of Global Meteor Network (GMN) data and found one recurring concentration of meteors in late April. The same radiant, timing, speed, and orbital pattern appears in GMN data from 2022 through 2026, with smaller supporting samples in CAMS, SonotaCo, and EDMOND.
+GhostStream searches public meteor-trajectory catalogues for weak streams that may have been missed. A blind search of Global Meteor Network (GMN) data found a recurring late-April group with similar radiants, speeds, timing, and orbits in every year from 2022 through 2026. Smaller matching samples also appear in CAMS, SonotaCo, and EDMOND.
 
-The result is best described as an **apparently uncatalogued meteor-stream candidate**. The main scientific question is whether it is a distinct stream or a narrow component of a known shower complex or the antihelion source.
+The analysis points to an **apparently uncatalogued meteor-stream candidate**. The open question is whether it is a distinct stream or a narrow part of a known shower complex or the antihelion source.
 
 ## Start here
 
-- [`candidate/EXPERT_REVIEW_PACKET.md`](candidate/EXPERT_REVIEW_PACKET.md) gives a reviewer the shortest useful route through the project.
-- [`candidate/CANDIDATE_DOSSIER.md`](candidate/CANDIDATE_DOSSIER.md) explains the candidate and the evidence in plain scientific language.
-- [`RESULTS.md`](RESULTS.md) collects the main numerical results.
-- [`candidate/mdc/MANUSCRIPT_DRAFT.md`](candidate/mdc/MANUSCRIPT_DRAFT.md) is the working paper draft.
-- [`candidate/mdc/GhostStream_April_95_GMN_lookup.csv`](candidate/mdc/GhostStream_April_95_GMN_lookup.csv) contains the 95 GMN meteors used for the draft mean solution.
+- [`candidate/EXPERT_REVIEW_PACKET.md`](candidate/EXPERT_REVIEW_PACKET.md): the quickest route for a reviewer.
+- [`candidate/CANDIDATE_DOSSIER.md`](candidate/CANDIDATE_DOSSIER.md): a short explanation of the candidate and the evidence.
+- [`RESULTS.md`](RESULTS.md): the main numerical results.
+- [`candidate/mdc/MANUSCRIPT_DRAFT.md`](candidate/mdc/MANUSCRIPT_DRAFT.md): the working paper.
+- [`candidate/mdc/GhostStream_April_95_GMN_lookup.csv`](candidate/mdc/GhostStream_April_95_GMN_lookup.csv): the 95-event GMN sample used for the draft mean solution.
 
 ## Repository guide
 
@@ -34,11 +34,11 @@ The final GMN sample contains 95 meteors from five consecutive significant years
 | 2025 | 34 |
 | 2026 | 29 |
 
-The candidate also survived an untouched-year test, a source-matched background test, orbital null tests, measurement-error simulations, geographic splits, clustered bootstrap resampling, and an 81-setting sensitivity analysis. The current IAU Meteor Data Center catalogue contains no matching shower solution under the project’s comparison rules.
+The same group appears in untouched years and remains compact under source-matched null tests, measurement-error simulations, geographic splits, clustered bootstrap resampling, and 81 nearby analysis settings. None of the 2,174 solutions in the checked IAU Meteor Data Center catalogue matched it under the fixed comparison rules.
 
 ## Check the repository
 
-The lightweight check verifies the expected files, fixed result metadata, source provenance, Python syntax, and repository hygiene. The full search uses the public catalogues and the analysis scripts in `pipeline/`.
+The lightweight check covers the file set, result metadata, source hashes, Python syntax, and repository hygiene. The catalogue downloads and full search use the scripts under `pipeline/`.
 
 ```bash
 python scripts/verify_repository.py
@@ -48,4 +48,4 @@ The analysis dependencies are listed in `requirements.txt`.
 
 ## Use of AI
 
-OpenAI ChatGPT assisted with research planning, code drafting and debugging, source discovery, reproducibility checks, organization, and editing. Brandon Li reviewed the final methods, code, sources, numerical results, and interpretations and takes responsibility for the work.
+OpenAI ChatGPT assisted with research planning, code drafting and debugging, source discovery, reproducibility checks, organization, and editing. Brandon Li reviewed the methods, code, sources, numerical results, and interpretations and is responsible for the final work.

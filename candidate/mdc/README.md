@@ -1,6 +1,6 @@
 # Draft MDC material
 
-This folder contains the event table, mean records, catalogue comparison, consistency checks, manuscript, and checklist prepared for a possible IAU Meteor Data Center submission.
+This folder collects the event table, mean records, catalogue comparison, consistency checks, manuscript, and submission checklist.
 
 ## Main files
 
@@ -11,9 +11,9 @@ This folder contains the event table, mean records, catalogue comparison, consis
 - `LIVE_MDC_NOVELTY_REFRESH.md` records the comparison with the current official shower catalogue.
 - `MDC_OFFICIAL_CHECKER_REPORT.md` records the official radiant/orbit consistency check.
 - `MDC_PACKAGE_CONSISTENCY_AUDIT.md` summarizes the internal consistency check.
-- `SUBMISSION_CHECKLIST.md` lists completed preparation and remaining work.
+- `SUBMISSION_CHECKLIST.md` tracks the remaining work.
 
-The numerical code, provisional designation, shower name, journal reference, and corresponding-author email are fields completed during the appropriate submission process.
+The numerical code, provisional designation, shower name, journal reference, and corresponding-author email remain blank until the submission process supplies them.
 
 ## Two related solutions
 
@@ -22,8 +22,8 @@ The project keeps two representations of the candidate:
 1. A robust solution used for event matching and orbital-distance comparisons.
 2. An unweighted arithmetic mean of the 95 lookup rows, prepared in the format expected for a draft MDC record.
 
-The draft six-decimal values q = 0.080114 AU and e = 0.943593 imply a = 1.420285 AU after rounding. The full-precision means imply a = 1.420296 AU. Both calculations are preserved in `calculation_audit.json`.
+Using the six-decimal draft values q = 0.080114 AU and e = 0.943593 gives a = 1.420285 AU. Using the full-precision means gives a = 1.420296 AU. Both calculations are recorded in `calculation_audit.json`.
 
-## Next steps
+## Remaining work
 
-The event table, mean records, official consistency check, and current catalogue comparison are prepared. The remaining work is specialist review, confirmation of GMN data-use and acknowledgment language, and revision of the manuscript in response to that review.
+The remaining work is specialist review, confirmation of GMN data-use and acknowledgment language, and revision of the manuscript in response to that review.

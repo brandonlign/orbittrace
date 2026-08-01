@@ -1,6 +1,6 @@
 # Results
 
-A blind search of GMN trajectories found one late-April structure that remained convincing after the candidate definition was fixed and tested in other years. The project refers to it internally as `GhostStream-April-36.9`.
+A blind search of GMN trajectories found one compact late-April group. After its center and selection rules were fixed, the same pattern appeared in earlier years. The internal label is `GhostStream-April-36.9`.
 
 ## Candidate at a glance
 
@@ -19,11 +19,11 @@ A blind search of GMN trajectories found one late-April structure that remained 
 | Official MDC solutions checked | 2,174 |
 | Matching official solutions | 0 |
 
-The evidence supports a recurring meteor stream. The remaining scientific question is whether specialists agree that it is distinct from every known minor shower and from narrower structure within the antihelion source.
+The recurrence and orbital coherence make a random grouping unlikely. The main unresolved issue is classification: a distinct stream, a branch of a known minor shower, or narrow structure within the antihelion source.
 
 ## Discovery and recurrence
 
-The search used public GMN trajectories labelled as sporadic. Meteors were represented by Sun-centered radiant longitude, radiant latitude, geocentric speed, and solar longitude. HDBSCAN generated candidate clusters, and candidates then had to pass requirements for observing nights, participating stations, compactness, orbital coherence, split-sample recurrence, and separation from known showers.
+The search used public GMN trajectories labelled as sporadic. Each meteor was represented by Sun-centered radiant longitude, radiant latitude, geocentric speed, and solar longitude. HDBSCAN found candidate groups, which then had to span enough nights and stations, remain compact in orbit, recur in split samples, and avoid known-shower matches.
 
 A January–July 2026 blind rerun independently selected April as the only full-gate survivor. The fixed April definition was then evaluated in earlier years.
 
@@ -60,13 +60,13 @@ The robust solution used for matching is evaluated near solar longitude 36.902°
 | Orbital period | 1.79 years |
 | Tisserand parameter with respect to Jupiter | 3.84 |
 
-The 95-member arithmetic mean prepared for the draft MDC record is slightly different because it is a direct unweighted mean of the submitted rows. Both forms are kept, with their separate uses explained in the manuscript and MDC folder.
+The draft MDC record uses a direct unweighted mean of the 95 event rows, so its values differ slightly from the robust matching solution. The manuscript and MDC notes explain where each version is used.
 
 ## Timing and uncertainty
 
 A March–May profile normalized stream-core counts by the simultaneous non-core antihelion population. The supported activity interval is solar longitude 35.902°–39.902°. The highest half-degree bin occurred at 38.652°, but that exact peak shifted when individual years were removed, so the four-degree interval is the more stable description.
 
-A 20,000-replicate bootstrap resampled years and observing nights. The mean radiant and orbit remained stable. Right-ascension and declination drift were resolved, while the fitted speed drift remained unresolved. External-catalogue tests were therefore repeated with the speed drift set to zero.
+A 20,000-replicate bootstrap resampled years and observing nights. The mean radiant and orbit were stable. Right-ascension and declination drift were resolved; the speed drift was not, so the external-catalogue tests were repeated with that slope set to zero.
 
 ## Geographic checks
 
@@ -95,7 +95,7 @@ All 81 settings passed. Membership ranged from 29 to 129, while median orbital D
 
 The GMN solution was fixed before the external catalogues were examined.
 
-CAMS contributed six matches from 2011–2012. SonotaCo contributed four from 2022, 2023, and 2025. Each catalogue is individually small: CAMS narrowly missed the activity cutoff, while SonotaCo was below the minimum member count. Their combined ten-event result is therefore useful supporting evidence, but the pooled test is post-hoc.
+CAMS contributed six matches from 2011–2012, and SonotaCo contributed four from 2022, 2023, and 2025. CAMS narrowly missed the activity cutoff; SonotaCo was below the minimum member count. The pooled ten-event result is useful support, but it was calculated after the separate sparse results were known.
 
 | External result | Value |
 |---|---:|
@@ -115,9 +115,9 @@ A checksum-locked copy of IAU MDC catalogue version 2026-06-25 contained 1,072 s
 
 A NASA/JPL search evaluated 729 broadly compatible valid orbits. The nearest object, 2023 HJ7, had D = 0.15939, an uncertainty code of 8, and an observational arc of only 11 days. The search did not identify a credible parent-body candidate.
 
-## What remains uncertain
+## Main uncertainty
 
-The main limitations are straightforward:
+The main limitations are:
 
 - the analysis uses catalogue trajectories rather than new reductions of raw images;
 - the antihelion source has real internal structure that may not be fully captured by the background model;
@@ -126,4 +126,4 @@ The main limitations are straightforward:
 - EDMOND is a compiled archive with incomplete currently linked release files;
 - specialist comparison with obscure or differently parameterized shower literature remains the most important external check.
 
-The next step is independent scientific review of the coordinate conventions, antihelion background, event table, and possible historical shower matches.
+Expert review should focus on the coordinate conventions, antihelion background, event table, and possible historical shower matches.

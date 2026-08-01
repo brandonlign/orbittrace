@@ -1,6 +1,6 @@
 # Package check
 
-The draft submission files were checked against the recovered analysis records and the 95-row lookup table. The automated check completed 151 tests without a failure.
+An automated audit compared the draft submission files with the recovered analysis records and the 95-row lookup table. All 151 checks passed.
 
 The checks covered:
 
@@ -15,6 +15,6 @@ The checks covered:
 - the CAMS and SonotaCo member sets; and
 - the recovered source manifest.
 
-The underlying machine-generated report was produced before the repository was reorganized, so some stored paths refer to the earlier canonical layout. The hashes and numerical comparisons refer to that frozen evidence package, while the current repository uses the cleaned folder structure and wording.
+The machine-generated report predates the repository reorganization, so some stored paths use the earlier layout. Its hashes and numerical comparisons still refer to the frozen evidence package.
 
-The check shows that the draft files agree with one another and with the preserved computations. Scientific interpretation is addressed in the manuscript and expert review.
+The draft files agree with one another and with the preserved computations.

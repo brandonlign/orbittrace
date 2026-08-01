@@ -1,8 +1,8 @@
 # Candidate overview
 
-GhostStream-April-36.9 is a recurring group of meteors active in late April. It was found in a blind search of public GMN trajectories rather than by starting with a known shower date or radiant.
+GhostStream-April-36.9 is a recurring late-April group found in a blind search of public GMN trajectories. The search was not given a shower date or radiant.
 
-The candidate is strongest in 2025 and 2026, but the same pattern is present in GMN data from 2022, 2023, and 2024. A total of 95 meteors from those five years form the confirmed sample used in the draft MDC record.
+The signal is strongest in 2025 and 2026, with the same pattern also present in 2022, 2023, and 2024. Those five years contribute the 95 meteors used in the draft MDC record.
 
 ## What makes the group look like a stream
 
@@ -39,7 +39,7 @@ The 95-member arithmetic mean in the draft MDC record differs slightly because i
 
 ## How it was tested
 
-The main checks were designed to address different ways a false stream could appear.
+The checks target the main ways a false stream could appear.
 
 **Recurrence.** The candidate passes the year-level test in 2022–2026. The pooled 2022–2023 result was kept untouched until the candidate definition had been fixed.
 
@@ -57,12 +57,10 @@ The main checks were designed to address different ways a false stream could app
 
 **Known showers.** The current official IAU MDC catalogue contains no solution that matches the candidate in activity, drifted radiant, speed, and orbit under the project’s comparison rules.
 
-## Open questions
+## Main uncertainty
 
-The main open question is whether the group is best interpreted as a distinct stream, a branch of a known minor shower, or narrow structure within the antihelion source. A specialist literature and catalogue review is the most direct way to resolve that question.
+The strongest alternative explanations are a branch of a known minor shower or narrow structure within the antihelion source. Resolving that requires a specialist comparison with older literature, removed solutions, and alternate shower lists.
 
-The external samples are small. CAMS narrowly misses the project’s standalone activity cutoff, SonotaCo is below the minimum event count, and the pooled result was calculated after those separate outcomes were known. Dynamical origin modeling is outside the current analysis.
+The external samples are also small. CAMS narrowly misses the standalone activity cutoff, SonotaCo is below the minimum event count, and the pooled result was calculated after those separate outcomes were known. Dynamical origin modeling was not part of this analysis.
 
-## Current interpretation
-
-The data support a real, recurring, orbitally coherent late-April concentration with no matching solution in the current IAU MDC catalogue.
+The data show a real, recurring, orbitally coherent late-April concentration with no matching solution in the current IAU MDC catalogue.

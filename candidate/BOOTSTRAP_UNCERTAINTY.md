@@ -2,7 +2,7 @@
 
 The 95 confirmed meteors are spread across five years and 29 observing nights. Meteors from the same night share observing conditions, so the uncertainty analysis resamples years and then nights within each selected year.
 
-Twenty thousand bootstrap samples were generated. Each sample retained all meteors from the nights it selected. Circular means were used for angular quantities, and semimajor axis was recalculated from each sample’s mean q and e.
+I generated 20,000 bootstrap samples. Each sample kept all meteors from every selected night. Angular quantities used circular means, and semimajor axis was recalculated from the sample means of q and e.
 
 ## Mean solution
 
@@ -27,7 +27,7 @@ Twenty thousand bootstrap samples were generated. Each sample retained all meteo
 | dDec/dλ⊙ | −0.158°/° | −0.248 to −0.037 | negative drift is resolved |
 | dVg/dλ⊙ | −0.029 km/s/° | −0.178 to +0.221 | interval includes zero |
 
-A second bootstrap that kept every year exactly once and resampled nights only gave the same qualitative result. The mean radiant and orbit are stable, the angular radiant drifts are supported, and the geocentric-speed drift remains unresolved.
+A second bootstrap kept every year exactly once and resampled only the nights. It gave the same result: a stable mean radiant and orbit, resolved angular drift, and no resolved geocentric-speed drift.
 
 ## Leave-one-year-out ranges
 
@@ -47,4 +47,4 @@ A second bootstrap that kept every year exactly once and resampled nights only g
 
 The bootstrap was also rerun from the original GMN catalogues rather than from a prepared candidate table. It recovered the required 10, 8, 14, 34, and 29 members for 2022–2026 before resampling.
 
-These intervals describe variation across the observed years and nights. They are separate from the 1,000 event-level measurement perturbations used to test membership and orbital compactness.
+These intervals describe variation across years and nights. The separate 1,000-trial perturbation test addresses event-level measurement uncertainty.

@@ -1,10 +1,10 @@
 # How the two method-control results fit together
 
-Two control results are kept because they answer different questions.
+The repository keeps both control results because the first exposed a flaw in the gate and the second tested the corrected rule.
 
 The first control recovered the Lyrids, Eta Aquariids, and Southern Delta Aquariids with strong F1 scores, but the overall gate returned a negative result. Its largest-cluster rule counted the true shower itself. Eta Aquariids occupied more than 30% of the sampled data, so a successful high-recall cluster could not satisfy the 30% ceiling.
 
-The corrected control changed only the object to which that ceiling applied. Instead of limiting the target shower, it limited the largest unrelated cluster. This was specified before the independent 2024 holdouts were examined.
+The correction changed only what the ceiling measured: the largest unrelated cluster instead of the target shower. That change was fixed before the independent 2024 holdouts were examined.
 
 The 2024 results were:
 
@@ -16,4 +16,4 @@ The 2024 results were:
 
 All three named showers were recovered, and no unrelated cluster approached the 0.30 limit.
 
-The original gate remains recorded as a specification error. The prospective correction passed in an independent year with the same clustering and recovery thresholds.
+The original gate failed because its 30% rule was incompatible with the true prevalence of Eta Aquariids, even though all three target showers were recovered. After the rule was corrected, the same clustering and recovery thresholds passed on independent 2024 data.

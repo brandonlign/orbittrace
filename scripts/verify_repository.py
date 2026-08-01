@@ -53,7 +53,7 @@ for path in ROOT.rglob("*"):
     if path.is_file() and path.name.lower().endswith(junk_suffixes):
         raise AssertionError(f"Temporary file is tracked: {path.relative_to(ROOT)}")
 
-# The public disclosure belongs in the top-level README and nowhere else in the repository prose.
+# Keep the public assistance disclosure in the top-level README only.
 terms = ("chat" + "gpt", "open" + "ai", "generative " + "ai", "ai" + "-assisted", "use of " + "ai")
 for path in ROOT.rglob("*"):
     if not path.is_file() or path == ROOT / "README.md" or path.suffix.lower() not in {".md", ".txt", ".py", ".yml", ".yaml"}:
@@ -64,4 +64,4 @@ for path in ROOT.rglob("*"):
         raise AssertionError(f"Assistance disclosure appears outside README.md: {path.relative_to(ROOT)} ({hits})")
 
 print("GhostStream repository check passed.")
-print("The event counts, catalogue comparison, blind rediscovery, and source history are present and consistent.")
+print("Event counts, catalogue comparison, blind rediscovery, and source history are present and consistent.")

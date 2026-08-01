@@ -1,6 +1,6 @@
 # External-catalogue comparison
 
-The year/night bootstrap left the geocentric-speed drift unresolved, so the external analyses were repeated with dVg/dλ⊙ set to zero. The radiant center, angular drift, dispersions, activity interval, and orbital rules were unchanged.
+The year/night bootstrap did not resolve a geocentric-speed drift. I therefore repeated the external analyses with dVg/dλ⊙ set to zero while leaving the radiant center, angular drift, dispersions, activity interval, and orbital rules unchanged.
 
 ## CAMS and SonotaCo
 
@@ -17,7 +17,7 @@ The main external sample combines six CAMS meteors from 2011–2012 with four So
 | Orbit-null p-value | 5 × 10⁻⁵ |
 | Medoid distance from the GMN orbit | 0.01723 |
 
-CAMS and SonotaCo were examined separately first. CAMS narrowly missed the project’s activity cutoff, while SonotaCo had too few events to meet the minimum count. Their pooled result was calculated afterward, so it is supporting evidence rather than a planned independent discovery test.
+CAMS and SonotaCo were tested separately first. CAMS narrowly missed the activity cutoff, and SonotaCo had too few events to meet the minimum count. The pooled result was calculated afterward and is treated as supporting evidence.
 
 ## EDMOND extension
 
@@ -33,7 +33,7 @@ A shower-removed EDMOND subset adds six non-overlapping events in 2014, 2016, 20
 | Orbit-null p-value | 5 × 10⁻⁵ |
 | Exact UTC duplicate groups across sources | 0 |
 
-EDMOND is a compilation of historical video-meteor data and may share upstream observations or reduction history with other catalogues. The selected events contain no exact UTC duplicates. The three archive labels are treated as sources with possible shared provenance rather than fully independent instruments.
+EDMOND compiles historical video-meteor data and may share observations or reduction history with other catalogues. The selected events have no exact UTC duplicates, but the archive labels still cannot be treated as fully independent instruments.
 
 ## Currently linked EDMOND files
 
@@ -49,4 +49,4 @@ The surviving links cover only part of the advertised v6.01 release:
 
 The linked files selected exactly the same six EDMOND events. Their one-sided activity p-value was 3.379 × 10⁻⁴, the median D_SH was 0.03601, and the orbit-null p-value was 5.0 × 10⁻⁵. The shifted-window p-value was 0.06122, and the sample remained below the project’s minimum N = 8 rule.
 
-The external evidence is therefore unchanged when the unsupported speed slope is removed. CAMS and SonotaCo provide the main cross-catalogue support; EDMOND adds useful but provenance-limited evidence.
+Removing the unsupported speed slope did not change the external result. CAMS and SonotaCo provide the main cross-catalogue support, while EDMOND adds a smaller sample with less certain provenance.

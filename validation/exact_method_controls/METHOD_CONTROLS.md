@@ -1,6 +1,6 @@
 # Original method controls
 
-The early control run recovered all three named showers, but its combined pass rule failed. That failure exposed a problem in the way the control gate had been written.
+The early control run recovered all three named showers, but the combined gate still failed. The failure exposed a problem in the gate itself.
 
 ## Named-shower recovery
 
@@ -20,6 +20,4 @@ The early control run recovered all three named showers, but its combined pass r
 
 ## Why the combined rule failed
 
-The original rule rejected any result whose largest cluster contained more than 30% of the sampled rows. Eta Aquariids themselves made up 33.149% of their sample. At full recall, a correct Eta Aquariid cluster therefore had to exceed the limit.
-
-The negative gate came from that contradiction, while the clustering still recovered the target shower with F1 = 0.950. A corrected rule was specified before a separate 2024 holdout was examined; that run is documented in `../exact_method_controls_v3/`.
+The rule rejected any result whose largest cluster contained more than 30% of the sampled rows. Eta Aquariids made up 33.149% of their sample, so a correct full-recall cluster had to exceed the limit. The contradiction was in the gate, even though the clustering recovered the shower. The corrected 2024 holdout is documented in `../exact_method_controls_v3/`.

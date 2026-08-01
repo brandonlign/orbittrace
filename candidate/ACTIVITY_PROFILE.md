@@ -1,8 +1,8 @@
 # Activity profile
 
-The activity profile asks when the candidate is most common relative to the surrounding antihelion population.
+This analysis measures when the candidate is most common relative to the surrounding antihelion population.
 
-An earlier version used April files only. That left bins after the end of April with no exposure, so the result was discarded. The final run loads March, April, and May data for 2022–2026 and excludes bins with fewer than 40 simultaneous non-core antihelion meteors.
+The first version used April files only, leaving the final bins with no exposure. That run was discarded. The corrected version uses March through May data for 2022–2026 and drops bins with fewer than 40 simultaneous non-core antihelion meteors.
 
 Stream-core counts are divided by simultaneous non-core counts in the same expanded antihelion region, producing a relative activity profile. Absolute flux and ZHR require station-level exposure calibration.
 
@@ -20,7 +20,7 @@ Stream-core counts are divided by simultaneous non-core counts in the same expan
 | Pooled odds ratio | 4.162 |
 | Pooled p-value | 6.51 × 10⁻¹⁹ |
 
-The raw half-maximum width is one half-degree bin, but the identity of the highest bin changes when individual years are omitted. The broader four-degree interval is the stable timing result.
+The raw half-maximum width is one half-degree bin, but a different bin becomes the maximum when some years are omitted. The four-degree interval is therefore the more stable timing estimate.
 
 ## Year-by-year comparison
 
@@ -34,6 +34,6 @@ The raw half-maximum width is one half-degree bin, but the identity of the highe
 
 The pooled result remains significant when any one year is removed; the leave-one-year-out p-values range from 2.17 × 10⁻¹³ to 2.30 × 10⁻¹⁷.
 
-## Limits of this profile
+## What this profile measures
 
-Normalizing by simultaneous antihelion meteors helps control changes in catalogue exposure. Weather, limiting magnitude, radiant elevation, station uptime, and collecting area would be needed for absolute flux, ZHR, and a precise physical FWHM. This analysis supports a concentrated late-April relative activity interval.
+Normalizing by simultaneous antihelion meteors helps control changes in catalogue exposure. Absolute flux, ZHR, and a precise physical FWHM would also require weather, limiting magnitude, radiant elevation, station uptime, and collecting area. Here, the supported result is a concentrated late-April interval in relative activity.

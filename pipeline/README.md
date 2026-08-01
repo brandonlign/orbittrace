@@ -1,11 +1,11 @@
 # Preserved analysis code
 
-This directory preserves the executable source used across the discovery and validation stages.
+This directory contains the executable source used for discovery and validation.
 
 The `pr56_runner/` snapshot contains the early method controls and blind-search code. The `pr57_novel/` snapshot contains the all-season search, candidate validation, uncertainty tests, external-catalogue work, and submission-support scripts.
 
-The programs were written as standalone scripts. The exact file list and hashes are recorded in `SOURCE_MANIFEST.json`; the clean reproduction records under `validation/` show which entry points were rerun.
+The programs are standalone scripts. `SOURCE_MANIFEST.json` records the exact files and hashes, and the reproduction notes under `validation/` identify the entry points that were rerun.
 
 The scripts expect public catalogue downloads and can be computationally expensive. `scripts/verify_repository.py` only checks repository structure, fixed metadata, and Python syntax.
 
-These snapshots remain unchanged for provenance. Small compatibility repairs used in later reruns are documented separately under `validation/`.
+The snapshots are kept unchanged. Small compatibility repairs used in later reruns are documented separately under `validation/`.

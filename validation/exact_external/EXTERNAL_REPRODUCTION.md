@@ -1,6 +1,6 @@
 # External analysis reproduction
 
-The recovered external-catalogue code regenerated the saved CAMS and SonotaCo member lists exactly.
+The recovered external-catalogue code reproduced the saved CAMS and SonotaCo member lists exactly.
 
 | Catalogue | Members | Activity p-value | Orbit-null p-value | Interpretation |
 |---|---:|---:|---:|---|
@@ -14,6 +14,6 @@ The pooled ten-event sample was also reproduced exactly:
 - orbit-null p-value: 5 × 10⁻⁵; and
 - medoid distance from the GMN orbit: 0.01723.
 
-The current JPL parent screen again placed the nearest object above D = 0.15.
+The repeated JPL parent screen again placed the nearest object above D = 0.15.
 
-EDMOND is kept as separate supplementary evidence because it is a compiled archive with possible shared upstream provenance.
+EDMOND is reported separately because it is a compiled archive with possible shared upstream provenance.

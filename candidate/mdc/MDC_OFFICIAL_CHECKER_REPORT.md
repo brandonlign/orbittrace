@@ -1,13 +1,13 @@
 # Official MDC consistency check
 
-The draft 95-member mean record was tested with the radiant and orbital consistency programs distributed by the IAU Meteor Data Center.
+I tested the 95-member draft mean record with the radiant and orbital consistency programs distributed by the IAU Meteor Data Center.
 
 Two executable forms were used:
 
 1. the distributed Linux binaries; and
 2. a fresh GNU Fortran build of the distributed `elements.f` and `radiants.f` source.
 
-Both forms produced byte-identical comparison outputs and reported no inconsistencies in the submitted radiant, speed, solar longitude, or orbital elements.
+Both forms produced byte-identical output and found the submitted radiant, speed, solar longitude, and orbital elements internally consistent.
 
 ## Record checked
 
@@ -29,6 +29,6 @@ The semimajor axis is calculated from the submitted six-decimal q and e values:
 
 `0.080114 / (1 - 0.943593) = 1.420284716... AU`.
 
-The programs check agreement between the submitted geocentric and heliocentric quantities under the MDC tolerances. Event membership, statistical significance, and catalogue comparison are evaluated elsewhere in the project.
+The programs check internal agreement between the submitted geocentric and heliocentric quantities under the MDC tolerances. Their scope is the consistency of the mean record.
 
 Exact hashes, executable provenance, and output comparisons are stored in `exact_official_checker_summary.json`.

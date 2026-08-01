@@ -1,6 +1,6 @@
 # Submission checklist
 
-This list separates completed preparation from work that still requires outside input.
+This checklist separates finished preparation from the work that still needs outside input.
 
 ## Prepared
 
@@ -26,12 +26,13 @@ This list separates completed preparation from work that still requires outside 
 - [ ] Revision of the manuscript in response to expert comments.
 - [ ] Regeneration of the final submission package and hashes after those revisions.
 
-## Fields completed during submission
+## Fields left blank
 
-The MDC or publication process supplies the following fields:
+The MDC or publication process supplies these fields:
 
 - official numerical shower code;
 - three-letter code;
 - provisional designation;
 - official shower name; and
 - final publication reference.
+

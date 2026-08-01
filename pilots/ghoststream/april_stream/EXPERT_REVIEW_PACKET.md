@@ -4,15 +4,15 @@ Last updated: 2026-08-01
 
 ## Purpose
 
-This packet requests a critical meteor-science review of an uncatalogued annual late-April meteor-stream candidate identified blindly in Global Meteor Network (GMN) trajectories.
+This packet requests a critical meteor-science review of an uncatalogued annual late-April meteor-stream candidate identified blindly in public Global Meteor Network (GMN) trajectories.
 
-The requested decision is not whether the analysis is impressive. It is whether the evidence and coordinate/orbit conventions support:
+The requested decision is not whether the analysis is impressive. It is whether the evidence, coordinate conventions, orbit conventions, null models, and duplicate-shower audit support:
 
 1. a provisional submission to the IAU Meteor Data Center (MDC);
 2. preparation of a peer-reviewed discovery paper; and
-3. the present claim boundary.
+3. the claim boundary stated below.
 
-Please identify any fatal error, likely duplicate shower, or analysis that must be completed before external submission.
+Please identify any fatal error, likely known-shower duplicate, hidden circularity, or analysis that must be completed before external submission.
 
 ## Requested reviewer verdict
 
@@ -28,13 +28,61 @@ Please state the specific evidence supporting the verdict.
 
 ## Claim being reviewed
 
-> A blind, uncertainty-aware analysis of public GMN trajectories identified a high-confidence uncatalogued annual meteor-stream candidate active in late April. It recurs in five GMN years, survives source-preserving and post-selection orbital null tests, reproduces across three disjoint GMN geographic station groups, and receives historical support from CAMS and SonotaCo. It is not yet an official IAU discovery or an established shower.
+> A blind, uncertainty-aware analysis of public GMN trajectories identified a high-confidence uncatalogued annual meteor-stream candidate active in late April. It recurs in five GMN years, survives source-preserving and post-selection orbital null tests, reproduces across three disjoint GMN geographic station groups, passes a frozen 81-cell specification grid, and receives historical support from CAMS and SonotaCo. It is not yet an official IAU discovery or an established shower.
 
 No official name, IAU code, established status, absolute flux, parent body, or detected physical geocentric-speed drift is claimed.
 
+## Recovered implementation and clean reruns
+
+The original executable analysis was initially absent from the main project branch, but it had survived in two immutable temporary runner commits. Those exact source trees are now preserved in the review bundle with file-level SHA-256 provenance:
+
+- recovery/discovery controls: 13 files from commit `4175e5187fcc6faf3d1befb099a9e35be96850f2`;
+- novel-search/downstream analysis: 35 files from commit `39972b5fe0cf4d47092d3caa2b3ced12bedb065e`.
+
+The recovered implementation was rerun without retuning.
+
+### Exact primary reproduction
+
+- selected GMN events from 2019–2026: **101**;
+- exact annual counts: **1, 4, 1, 10, 8, 14, 34, 29**;
+- significant-year events from 2022–2026: **95**;
+- committed lookup timestamps recovered: **95/95**;
+- missing preserved timestamps: **0**;
+- additional timestamps: **0**;
+- validator verdict: `APRIL_STREAM_DISCOVERY_CANDIDATE_SURVIVES_AUDIT`.
+
+### Exact internal downstream reproduction
+
+The recovered source regenerated and passed:
+
+- untouched 2022–2023 source-preserving activity p = **1.857134 × 10⁻⁵**;
+- shifted-window p = **0.0175439**;
+- source/time-matched orbit-null p = **0.0001**;
+- year/night bootstrap: **95 members, 29 nights, 20,000 replicates per scheme**;
+- resolved RA and Dec drift, unresolved speed drift;
+- corrected activity core: solar longitude **35.902°–39.902°**;
+- geographic member counts: **30 / 22 / 44**;
+- maximum cross-region medoid distance: **D = 0.0405368**;
+- frozen specification grid: **81/81 eligible cells passed**.
+
+### Exact external reproduction
+
+The recovered archive scripts regenerated the preserved member sets:
+
+- CAMS: **6** events in 2011–2012;
+- SonotaCo: **4** events in 2022, 2023, and 2025;
+- pooled CAMS + SonotaCo synthesis: exact preserved **10-event ID set**;
+- pooled activity p = **1.6218438847 × 10⁻⁴**;
+- pooled shifted-window p = **0.0204082**;
+- pooled median orbital distance = **0.0487914**;
+- pooled orbit-null p = **5 × 10⁻⁵**;
+- pooled medoid distance from the refined GMN orbit = **0.0172305**.
+
+CAMS narrowly misses its standalone activity threshold, and SonotaCo is below the frozen minimum member count. Their pooled result is explicitly post-hoc and is supporting evidence, not a preregistered independent discovery.
+
 ## Two orbit representations used for different purposes
 
-The project deliberately distinguishes the **frozen robust candidate solution** used for membership/similarity testing from the **arithmetic-mean MDC submission record** calculated from the 95 confirmed GMN members.
+The project distinguishes the **frozen robust candidate solution** used for membership and similarity testing from the **arithmetic-mean MDC draft record** calculated from the 95 confirmed GMN members.
 
 ### Frozen robust solution at solar longitude 36.901963°
 
@@ -78,14 +126,14 @@ The submitted semimajor axis is calculated from the submitted six-decimal q and 
 
 `0.080114 / (1 − 0.943593) = 1.420284716... AU`, rounded to `1.420285 AU`.
 
-The separate full-precision means imply `a = 1.420295780... AU` and remain preserved in the calculation audit. Please advise whether this submitted-precision convention is the correct MDC practice.
+The separate full-precision means imply `a = 1.420295780... AU` and remain preserved in the calculation audit. Please advise whether this submitted-precision convention is appropriate for the MDC.
 
 ## Main evidence
 
 ### Blind discovery and recurrence
 
-- Candidate generated in an untouched January–July 2026 scan.
-- Frozen template selected 101 deduplicated GMN events from 2019–2026.
+- The candidate arose from an all-season discovery search rather than a targeted April query.
+- The frozen template selected 101 deduplicated GMN events from 2019–2026.
 - Five consecutive years passed the individual confirmation gate:
   - 2022: 10
   - 2023: 8
@@ -93,10 +141,12 @@ The separate full-precision means imply `a = 1.420295780... AU` and remain prese
   - 2025: 34
   - 2026: 29
 - The 95 events in those five significant years form the MDC lookup table.
-- Untouched 2022–2023 pooled activity p = **1.857×10⁻⁵** after the twelve-month familywise rule.
+- Untouched 2022–2023 pooled activity p = **1.857 × 10⁻⁵** after the twelve-month familywise rule.
 - Untouched source/time-matched orbit-null p = **0.0001**.
 
-### Source-preserving and non-circular selection
+A clean blind-rediscovery rerun is included separately when available. Its gate requires the recovered all-season search to find the April survivor and validate it in 2024 and 2023 without being supplied the final month or 95-event lookup.
+
+### Non-circular source-preserving selection
 
 The final activity selection uses only:
 
@@ -105,23 +155,15 @@ The final activity selection uses only:
 - geocentric speed; and
 - solar longitude.
 
-No eccentricity, perihelion distance, inclination, argument of perihelion, or node is used to select the activity enhancement. Orbital coherence is evaluated afterward inside a deliberately expanded antihelion-source background.
+No eccentricity, perihelion distance, inclination, argument of perihelion, or node is used to select the activity enhancement. Orbital coherence is evaluated afterward inside an expanded antihelion-source background.
 
-### Orbit and measurement uncertainty
+### Orbit and uncertainty
 
 - GMN median orbital distance = **0.04398**.
 - GMN q90 orbital distance = **0.09232**.
 - Maximum significant-year medoid separation = **0.05044**.
 - Measurement-error clone trials: **1,000/1,000 passed**.
-
-### Sampling and analytical robustness
-
-- Hierarchical year/night bootstrap: **20,000 replicates**.
-- RA drift 95% interval: **+0.672 to +1.040° per degree of solar longitude**.
-- Dec drift 95% interval: **−0.248 to −0.037° per degree**.
-- Vg drift 95% interval: **−0.178 to +0.221 km/s per degree**; unresolved.
 - Frozen specification curve: **81/81 cells passed**.
-- The grid varies trajectory-fit error, minimum station count, radiant-core radius, and activity-window width.
 
 ### Geographic replication within GMN
 
@@ -131,177 +173,114 @@ No eccentricity, perihelion distance, inclination, argument of perihelion, or no
 | Europe / West Asia | 22 | 2.26×10⁻⁴ | 0.03375 | 0.0001 |
 | Oceania / East Asia / Africa | 44 | 2.16×10⁻¹⁰ | 0.04795 | 0.0001 |
 
-Maximum regional-medoid separation: **D = 0.04054**.
+These trajectory sets are disjoint but share the GMN reduction system; they are not represented as independent reductions.
 
-These groups are trajectory-disjoint but share the GMN reduction system; they are not represented as independent reductions.
+## EDMOND evidence and release limitation
 
-### Primary external historical support
+A shower-removed EDMOND subset contributes six non-overlapping orbitally compact events in 2014, 2016, 2017, and 2022. Its standalone activity p = **0.01206** and N = **6**, so it is supporting rather than independently decisive.
 
-CAMS + SonotaCo under the uniform zero-speed-drift rule:
+The unchanged template was also applied to every annual file currently linked by the public EDMOND page. It recovered exactly the same six events and no additional events. However:
 
-- 10 events across 2011, 2012, 2022, 2023, and 2025;
-- activity p = **1.622×10⁻⁴**;
-- shifted-window p = **0.02041**;
-- median orbital distance = **0.04879**;
-- q90 orbital distance = **0.07708**;
-- orbit-null p = **5×10⁻⁵**;
-- external medoid distance from the GMN orbit = **0.01723**.
-
-The pooled synthesis is explicitly post-hoc because it was motivated by sparse archive-specific outcomes.
-
-### EDMOND evidence and release limitation
-
-A shower-removed Shober EDMOND subset contributes six non-overlapping orbitally compact events in 2014, 2016, 2017, and 2022. Its standalone activity p = **0.01206** and N = **6**, so it is supporting rather than independently decisive.
-
-The unchanged frozen template was also applied to all annual files currently linked by the public EDMOND page. It recovered exactly the same six events and no additional events. However, a release-integrity audit shows that the linked files are incomplete or stale relative to the advertised v6.01 release:
-
-- 23 readable annual ZIPs for 2001–2023;
-- 2024 linked ZIP returns HTTP 404;
-- 481,252 linked rows versus 614,758 advertised for 2001–2023 (**78.283%**);
+- 23 readable annual ZIPs cover 2001–2023;
+- the advertised 2024 ZIP returns HTTP 404;
+- linked rows for 2001–2023: **481,252**;
+- advertised rows for those years: **614,758**;
+- coverage: **78.283%**;
 - annual row-count matches: **0/23**;
 - embedded versions are predominantly **513/516**, not 601.
 
-For the currently linked files:
-
-- activity p = **3.3785×10⁻⁴**;
-- odds ratio = **7.455**;
-- shifted-window p = **0.06122**;
-- median Southworth–Hawkins D = **0.03601**;
-- q90 D = **0.07344**;
-- 20,000-trial orbit-null p = **4.99975×10⁻⁵**.
-
 This is not described as a complete v6.01 replication or as a fully independent third instrument.
 
-## What has already been mechanically verified
+## Novelty and current parent screen
 
-### Live official IAU MDC catalogue refresh
+The checksum-locked official IAU MDC refresh used catalogue version **2026-06-25**:
 
-The official full shower-data JSON was downloaded and checksum-locked on 2026-08-01:
-
-- catalogue version: **2026-06-25**;
 - shower records: **1,072**;
 - submitted solutions: **2,174**;
-- SHA-256: `821fa09734314e2796388c4f2fc94bb770998f2f2b08d6a84135660849aef899`;
 - hard duplicate matches: **0**;
 - activity-compatible radiant–speed near matches: **0**;
-- orbit-incomplete near matches: **0**.
+- orbit-incomplete near matches: **0**;
+- catalogue SHA-256: `821fa09734314e2796388c4f2fc94bb770998f2f2b08d6a84135660849aef899`.
 
-The nearest complete orbit is Northern May Ophiuchids solution 004 at `D_SH = 0.23445`. Its published activity interval is solar longitude 45°–75°, its mean epoch is 21.70° after the candidate, and its drifted radiant is separated by 9.59°.
+The nearest complete catalogue orbit is Northern May Ophiuchids solution 004 at `D_SH = 0.23445`, with a non-overlapping activity interval and a 9.59° drifted-radiant separation.
 
-This automated result does not replace expert review of historical literature or alternate coordinate conventions.
+The freshly rerun JPL screen returned:
 
-### Exact official MDC consistency checker
+- broad-compatible objects fetched and evaluated: **729/729**;
+- objects at D ≤ 0.15: **0**;
+- objects at D ≤ 0.25: **2**;
+- nearest: **2023 HJ7**, D = **0.1593946**;
+- nearest condition code: **8**;
+- nearest observational arc: **11 days**.
 
-The current official checker archive was downloaded and CRC-verified. The exact committed 95-member mean record was run through:
+No parent body is claimed.
 
-1. the distributed official Linux binaries; and
-2. a fresh GNU Fortran build of the distributed `elements.f` and `radiants.f` source.
+## Official checker and package audit
 
-Both produced byte-identical comparison files and **zero orbital/geocentric error records**. This validates internal radiant/orbit consistency only, not novelty or membership.
+The exact committed 95-member mean record was run through both the distributed official MDC Linux binaries and a fresh GNU Fortran build of the distributed source. Both produced byte-identical comparison files and zero orbital/geocentric error records. This validates internal radiant/orbit consistency only, not novelty or membership.
 
-### Package-wide consistency audit
-
-A fail-closed audit recomputed the lookup-table quantities and cross-checked the mean JSON, legacy record, calculation audit, checker inputs, catalogue provenance, EDMOND claim boundary, manuscript, and final summary.
-
-- Checks: **111**
-- Passed: **111**
-- Failed: **0**
-
-The audit caught and corrected the submitted semimajor-axis rounding inconsistency described above.
-
-## Novelty and parent-body audit
-
-- Current official IAU MDC solutions parsed: **2,174**.
-- Hard matches: **0**.
-- Radiant–speed–activity near matches: **0**.
-- Orbit-incomplete near matches: **0**.
-- Nearest official complete orbit: Northern May Ophiuchids, `D_SH = 0.23445`, with mismatched activity and radiant.
-- JPL small bodies screened: **6,284**.
-- Credible parent candidates at D ≤ 0.15: **0**.
-
-No official name, established status, or parent body is claimed.
+The recovered package audit recomputes lookup-table quantities, checks the mean JSON, legacy record, calculation audit, official checker inputs, live catalogue provenance, EDMOND boundary, manuscript and final summary, and verifies the recovered source plus primary, downstream, and external clean-rerun evidence. Its machine-readable report and complete file-hash manifest are included in the bundle.
 
 ## Questions requiring expert judgment
 
-### 1. Coordinate and orbit conventions
+### Coordinate and orbit conventions
 
 - Are the geocentric J2000 radiant, Sun-centered ecliptic radiant, encounter-node, and argument-of-perihelion conventions internally correct?
 - Is the 180° node/perihelion normalization used for historical video archives appropriate in every source?
 - Is the frozen robust/medoid solution appropriate for membership and similarity testing?
-- Is the arithmetic-mean 95-member solution the correct representation for MDC submission?
-- Is calculating submitted `a` from the submitted rounded q and e the preferred MDC convention, or should more precision be supplied for all three fields?
+- Is the arithmetic-mean 95-member solution appropriate for MDC submission?
+- Should q, e, and a be supplied with more precision or with a different semimajor-axis convention?
 
-### 2. Duplicate-shower risk
+### Duplicate-shower risk
 
-- Does any established, working-list, removed, or historically published shower plausibly match this epoch, drifted radiant, speed, and orbit despite failing the current automated veto?
-- Is Northern May Ophiuchids or another Ophiuchid/Virginid/antihelion-complex solution credible under a different element or node convention?
-- Are there important historical catalogues or papers absent from the current MDC JSON that should be checked manually?
+- Does any established, working-list, removed, or literature-only shower plausibly match this epoch, drifted radiant, speed, and orbit despite failing the current automated veto?
+- Is Northern May Ophiuchids or another Ophiuchid/Virginid/antihelion-complex solution credible under another convention?
+- Which historical catalogues or papers should be checked manually?
 
-### 3. Antihelion-source interpretation
+### Antihelion-source interpretation
 
 - Is the expanded antihelion null sufficiently conservative?
-- Does the four-degree activity enhancement plus post-selection orbital compactness justify treating the structure as a stream rather than a transient substructure of the antihelion source?
-- Is the Fisher inside/outside-window formulation appropriate for this source geometry?
+- Does the four-degree activity enhancement plus post-selection orbital compactness justify treating the structure as a stream rather than antihelion-source substructure?
 - What alternative source-preserving null would be strongest?
 
-### 4. External evidence
+### External evidence
 
-- Is pooling CAMS and SonotaCo scientifically defensible when explicitly labeled post-hoc?
-- Should the EDMOND evidence remain in the paper, be relegated to supplementary material, or be omitted because the currently linked release is incomplete/stale and upstream provenance may overlap?
-- Is the exact six-event reproduction across the currently linked EDMOND files meaningful provenance support despite adding no new events?
-- Is a fresh independent reduction mandatory before MDC submission, or can it follow provisional submission?
+- Is pooling CAMS and SonotaCo defensible when explicitly labeled post-hoc?
+- Should EDMOND remain in the paper, move to supplementary material, or be omitted because the linked release is incomplete/stale and its upstream provenance may overlap?
+- Is a fresh independent reduction mandatory before MDC submission?
 
-### 5. MDC package and publication strategy
+### Submission strategy
 
-- Is the current evidence sufficient for a provisional MDC submission?
-- Should the MDC receive the current-structure JSON record, legacy text record, or both?
-- Which journal is appropriate for the methods-and-discovery paper?
-- What GMN acknowledgment, data-use statement, and collaborator invitation are expected?
-- Should GMN or other network representatives be invited as collaborators before submission?
+- Is the current evidence sufficient for a provisional MDC submission after revisions?
+- Which files and precision should be supplied to the MDC?
+- Which journal, collaborators, network acknowledgments, and data-use statements are appropriate?
 
-## Known limitations disclosed to the reviewer
+## Known limitations
 
 - Public catalogue-level trajectories were used; no raw-image re-reduction was performed.
+- Raw monthly GMN source bytes were not vendored as a complete immutable archive, although source code, environments, selected tables, and clean-rerun evidence are preserved.
 - Absolute flux, ZHR, and mass index are unavailable from public Level 3 trajectories.
 - Geographic splits share the GMN reduction system.
 - CAMS–SonotaCo pooling is post-hoc.
-- EDMOND is a compilation with possible upstream network overlap.
-- The currently linked EDMOND files are incomplete/stale relative to the advertised v6.01 release.
-- The advertised EDMOND 2024 attachment is unavailable; no inference is drawn from its absence.
-- No parent-body dynamics were performed because no credible parent shortlist exists.
-- The fitted geocentric-speed drift is unresolved.
+- EDMOND is a compilation with possible upstream-network overlap, and the linked files are incomplete/stale relative to advertised v6.01.
+- No credible parent shortlist exists for dynamical integration.
+- The fitted speed drift is unresolved.
 - Automated catalogue matching cannot exclude an obscure literature-only duplicate under an alternate convention.
+- Substantive generative-AI assistance is disclosed in `mdc/AI_AND_SOFTWARE_PROVENANCE.md`; AI tools are not treated as authors or independent reviewers.
 
-## Files to review
+## Highest-priority files
 
-### Highest priority
-
-1. `mdc/MANUSCRIPT_DRAFT.md`
-2. `mdc/GhostStream_April_95_GMN_lookup.csv`
-3. `mdc/GhostStream_April_mean_submission.json`
-4. `mdc/calculation_audit.json`
-5. `mdc/MDC_OFFICIAL_CHECKER_REPORT.md`
-6. `mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md`
-7. `mdc/LIVE_MDC_NOVELTY_REFRESH.md`
-8. `candidate_solution.json`
-9. `CANDIDATE_DOSSIER.md`
-
-### Robustness and external evidence
-
-10. `BOOTSTRAP_UNCERTAINTY.md`
-11. `SPECIFICATION_CURVE.md`
-12. `ACTIVITY_PROFILE.md`
-13. `GEOGRAPHIC_SPLIT_VALIDATION.md`
-14. `ALL_EXTERNAL_ZERO_SPEED.md`
-15. `all_external_members_zero_speed.csv`
-16. `shober_edmond/SHOBER_EDMOND_VALIDATION.md`
-17. `edmond_2024/EDMOND_CURRENT_RELEASE_AUDIT.md`
-
-### Machine-readable audit records
-
-18. `mdc/exact_official_checker_summary.json`
-19. `mdc/live_mdc_novelty_refresh_summary.json`
-20. `mdc/mdc_package_consistency_summary.json`
+1. `april_stream/mdc/MANUSCRIPT_DRAFT.md`
+2. `april_stream/mdc/GhostStream_April_95_GMN_lookup.csv`
+3. `april_stream/mdc/GhostStream_April_mean_submission.json`
+4. `reconstruction/exact_recovered/EXACT_REPRODUCTION.md`
+5. `reconstruction/exact_downstream/DOWNSTREAM_REPRODUCTION.md`
+6. `reconstruction/exact_external/EXTERNAL_REPRODUCTION.md`
+7. `recovered_pipeline/SOURCE_MANIFEST.json`
+8. `april_stream/mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md`
+9. `april_stream/mdc/MDC_OFFICIAL_CHECKER_REPORT.md`
+10. `april_stream/mdc/LIVE_MDC_NOVELTY_REFRESH.md`
+11. `april_stream/mdc/AI_AND_SOFTWARE_PROVENANCE.md`
 
 ## Requested response format
 

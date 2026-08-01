@@ -1,11 +1,11 @@
 {
-  "verdict": "COMPUTATIONAL_RECOVERY_AND_ANALYSIS_RERUNS_COMPLETE_BLIND_LINEAGE_AND_REVIEW_PENDING",
+  "verdict": "COMPUTATIONAL_RECOVERY_AND_DISCOVERY_LINEAGE_COMPLETE_REVIEW_PENDING",
   "audit_date_utc": "2026-08-01",
   "branch": "agent/ghoststream-pilot",
   "scientific_candidate_status": "high_confidence_uncatalogued_stream_candidate_recovered_and_reproduced",
   "publication_status": "hold",
   "formal_mdc_submission_status": "blocked",
-  "expert_review_bundle_status": "superseded_rebuild_from_recovered_implementation",
+  "expert_review_bundle_status": "rebuild_and_validate_from_final_recovered_evidence",
   "original_gap": {
     "core_analysis_absent_from_isef_branch": true,
     "core_analysis_scripts_deleted_from_isef_branch": false,
@@ -85,6 +85,7 @@
     "weak_stream_injection_verdict": "INJECTION_GATE_PASS",
     "v2_gate_design_problem": "The global 30% largest-cluster ceiling included the real target cluster and was infeasible for Eta Aquariids because target prevalence exceeded 30%.",
     "corrected_holdout_status": "CORRECTED_INDEPENDENT_YEAR_CONTROL_PASS",
+    "historical_evidence": "pilots/ghoststream/reconstruction/exact_method_controls/method_controls.json",
     "corrected_holdout_evidence": "pilots/ghoststream/reconstruction/exact_method_controls_v3/method_controls_v3.json",
     "correction_frozen_before_2024_holdout_run": true,
     "clustering_setting_unchanged": true,
@@ -115,16 +116,36 @@
     }
   },
   "blind_discovery_lineage": {
-    "status": "running",
+    "status": "EXACT_2026_BLIND_REDISCOVERY",
+    "evidence": "pilots/ghoststream/reconstruction/exact_blind_rediscovery/blind_rediscovery.json",
     "correct_entrypoint": "ghoststream_novel/run_month_year_v3.py",
     "discovery_matrix": "January-July 2026",
+    "months_scanned": [1, 2, 3, 4, 5, 6, 7],
     "validation_years": [2025, 2024],
+    "full_gate_survivors": 1,
+    "additional_non_april_survivors": 0,
+    "april_discovery_members": 26,
+    "validation_2025_members": 36,
+    "validation_2024_members": 14,
+    "validation_2025_p": 0.002,
+    "validation_2024_p": 0.002,
+    "clone_pass_fraction": 1.0,
+    "automated_iau_match": false,
+    "wrapper_repair": {
+      "status": "MINIMAL_RECOVERED_WRAPPER_REPAIR",
+      "original_source_sha256": "9681b11f97546589689f39af9e2ebe956185a5956de58d37538a1bd1e74b78ed",
+      "repaired_source_sha256": "94f04270aca54d1056841390fd6bbb0cdfc25187c065c6bf886307c8effab217",
+      "scientific_logic_changed": false,
+      "interpretation": "The recovered arbitrary-year wrapper had hardcoded 2023/2024 report keys. The separately preserved repair generalized those keys and cosmetic year labels without changing scientific logic."
+    },
     "incorrect_prior_rerun": "The separate 2025 all-season search did not contain the April discovery and is retained as a negative/other-candidate result."
   },
   "resolved_core_stages": [
     "GMN monthly catalogue acquisition and parsing",
     "quality filtering and coordinate transformations",
     "exact-time deduplication",
+    "blind January-July 2026 candidate generation",
+    "untouched 2025 and 2024 discovery validation",
     "frozen April membership selection",
     "expanded antihelion source-preserving activity test",
     "shifted-window audit",
@@ -142,9 +163,9 @@
     "machine-readable report generation"
   ],
   "remaining_reproducibility_work": [
-    "complete and preserve the actual January-July 2026 blind-discovery matrix",
-    "integrate blind-lineage and corrected method-control evidence into the recovered MDC package audit",
-    "build the code-inclusive expert-review bundle from the final recovered evidence",
+    "finalize machine-readable summary and candidate metadata from the recovered evidence",
+    "regenerate and pass the recovered MDC package audit",
+    "build and checksum-lock the code-inclusive expert-review bundle",
     "retain EDMOND as provenance-limited supplementary evidence unless a complete current release is recovered",
     "obtain independent scientific and duplicate review"
   ],
@@ -154,29 +175,31 @@
     "live_official_monthly_gmn_acquisition_reproduced": true,
     "raw_monthly_catalogue_bytes_vendored": false,
     "raw_monthly_catalogue_byte_hash_manifest_complete": false,
-    "interpretation": "The exact original implementation reproduced the primary and downstream results from the current official GMN monthly source. Long-term immutable raw-input archiving remains desirable and must not be falsely described as complete."
+    "interpretation": "The recovered implementation reproduced the blind discovery lineage, primary membership, and downstream results from the current official GMN monthly source. Long-term immutable raw-input archiving remains desirable and must not be falsely described as complete."
   },
-  "allowed_current_claim": "The original GhostStream source was recovered; the primary, internal downstream, external archive, current JPL, and corrected independent-year method-control stages passed their documented gates. The actual 2026 blind-discovery lineage remains under clean rerun. The result remains an uncatalogued candidate, not official recognition or submission-ready work.",
+  "allowed_current_claim": "The original GhostStream source was recovered; the January-July 2026 blind discovery lineage, primary result, internal downstream analyses, external archive evidence, current JPL screen, and corrected independent-year method controls passed their documented gates. The historical v2 method-control no-go remains disclosed. The result remains an uncatalogued candidate, not official recognition or submission-ready work.",
   "forbidden_until_resolution": [
     "journal submission",
     "formal IAU MDC submission",
     "claim of official IAU recognition",
-    "claim that the recovered 2026 blind-discovery lineage passed before its strict verifier completes",
     "claim that the historical v2 method-control no-go was retroactively a pass",
+    "claim that the blind wrapper ran entirely unchanged",
     "claim of complete current EDMOND v6.01 replication",
     "claim of a fully independent third-network replication",
     "claim of parent-body identification",
-    "sending the superseded expert bundle as the current code-inclusive review package"
+    "sending an expert bundle before its final checksum and package audit pass"
   ],
   "resolution_gate": [
     "preserve original source snapshots and hashes",
+    "reproduce the January-July 2026 blind discovery lineage",
     "exactly regenerate the primary 101-member and 95-member results",
     "cleanly rerun and reconcile internal downstream analyses",
     "cleanly rerun and reconcile CAMS and SonotaCo evidence",
     "record current parent-screen and catalogue-novelty results",
     "audit and correct the method-control degeneracy rule on an independent holdout",
-    "reproduce the actual January-July 2026 blind discovery lineage",
-    "rebuild and audit the manuscript/package from final recovered outputs",
+    "finalize machine-readable status from evidence",
+    "rebuild and pass the recovered package audit",
+    "build the final code-inclusive expert-review bundle",
     "obtain external scientific and duplicate review"
   ]
 }

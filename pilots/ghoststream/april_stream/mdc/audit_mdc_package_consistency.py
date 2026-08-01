@@ -145,8 +145,28 @@ def main() -> int:
     calc = load_json(CALC)
     calc_means = calc["means"]
 
+    lookup_quantization_tolerance = {
+        "LoSb": 5e-7,
+        "LoSe": 5e-7,
+        "LoS": 5e-7,
+        "Ra": 5e-7,
+        "De": 5e-7,
+        "Vg": 5e-7,
+        "LoR": 5e-7,
+        "S_LoR": 5e-7,
+        "LaR": 5e-7,
+        "dRa": 1e-6,
+        "dDe": 1e-6,
+    }
     for key in ("LoSb", "LoSe", "LoS", "Ra", "De", "Vg", "LoR", "S_LoR", "LaR", "dRa", "dDe"):
-        close(f"lookup recomputation -> calculation audit {key}", recomputed[key], calc_means[key], 5e-10)
+        tolerance = lookup_quantization_tolerance[key]
+        close(
+            f"lookup recomputation -> calculation audit {key}",
+            recomputed[key],
+            calc_means[key],
+            tolerance,
+            "The lookup serializes source columns to six decimals; this is a quantization bound, not a scientific threshold.",
+        )
         close(f"lookup recomputation -> mean JSON {key}", recomputed[key], mean[key], 5e-6)
     check("lookup recomputation -> N", recomputed["N"] == calc_means["N"] == mean["N"] == EXPECTED_N, [recomputed["N"], calc_means["N"], mean["N"]], [95, 95, 95])
     check("calculation audit first timestamp", calc["first_time"] == timestamps[0], calc["first_time"], timestamps[0])
@@ -155,9 +175,34 @@ def main() -> int:
 
     for calc_key, mean_key in (("q", "q"), ("e", "e"), ("peri", "peri"), ("node", "node"), ("incl", "inc"), ("a", "a")):
         close(f"calculation audit -> mean JSON {calc_key}", calc_means[calc_key], mean[mean_key], 5e-6)
-    derived_a = float(mean["q"]) / (1.0 - float(mean["e"]))
-    close("mean JSON semimajor identity q/(1-e)", float(mean["a"]), derived_a, 5e-6)
-    close("calculation audit semimajor identity q/(1-e)", float(calc_means["a"]), float(calc_means["q"]) / (1.0 - float(calc_means["e"])), 5e-12)
+    semimajor = calc["semimajor_axis_derivation"]
+    full_precision_derived_a = float(calc_means["q"]) / (1.0 - float(calc_means["e"]))
+    close(
+        "calculation audit full-precision semimajor identity q/(1-e)",
+        float(semimajor["a_from_full_precision_means"]),
+        full_precision_derived_a,
+        5e-12,
+    )
+    submitted_derived_a = float(mean["q"]) / (1.0 - float(mean["e"]))
+    close(
+        "calculation audit exact submitted semimajor derivation",
+        float(semimajor["exact_a_from_submitted_q_e"]),
+        submitted_derived_a,
+        5e-12,
+    )
+    close(
+        "mean JSON semimajor identity at six-decimal precision",
+        float(mean["a"]),
+        submitted_derived_a,
+        5e-7,
+        "The submitted a is q/(1-e) rounded to six decimals from the submitted six-decimal q and e.",
+    )
+    close(
+        "calculation audit submitted semimajor value",
+        float(calc_means["a"]),
+        float(mean["a"]),
+        5e-12,
+    )
 
     legacy = parse_legacy(LEGACY)
     legacy_map = {

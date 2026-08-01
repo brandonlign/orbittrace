@@ -38,6 +38,10 @@ The nearest complete orbit was Northern May Ophiuchids solution 004:
 
 Its speed is similar, but its timing, radiant, and orbit do not satisfy the comparison rule.
 
-No current catalogue solution met the fixed criteria. A specialist should next compare the candidate with older literature, alternate coordinate conventions, removed solutions, and local shower lists.
+No current catalogue solution met the fixed criteria.
+
+An IMO single-station survey lists two unnamed late-April radiant sequences, #181 and #182, whose activity dates overlap the candidate. Their public summaries do not provide enough radiant, speed, or orbital detail for a direct match, and neither is a current MDC shower solution. They remain useful historical comparison targets; GhostStream provides a five-year, multi-station orbital characterization that those preliminary detections do not.
+
+A specialist should next compare the candidate with older literature, alternate coordinate conventions, removed solutions, local shower lists, and the underlying records for IMO #181 and #182.
 
 The full machine-readable output is in `live_mdc_novelty_refresh_summary.json`.

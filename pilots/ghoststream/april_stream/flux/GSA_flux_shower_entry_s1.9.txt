@@ -1,3 +1,0 @@
-# Internal RMS flux-shower entry for sensitivity run s=1.9.
-# GSA is not an official IAU code. The ZHR and activity-shape fields are operational placeholders.
-    0|GSA |GhostStream April candidate      |35.902|38.652|39.902|248.502564|0.887078|-14.579393|-0.157506|37.573416|-0.029349|annual|38.652|1.0|0.0|0.0|2.29086765|0.0|3.00|{'all_years': {'min_tap': 30, 'min_meteors': 20, 'min_bin_duration': 6, 'max_bin_duration': 48}, 'yearly': {'min_tap': 10, 'min_meteors': 8, 'min_bin_duration': 6, 'max_bin_duration': 48}}

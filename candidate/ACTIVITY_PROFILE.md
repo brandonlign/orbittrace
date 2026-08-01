@@ -4,7 +4,7 @@ The activity profile asks when the candidate is most common relative to the surr
 
 An earlier version used April files only. That left bins after the end of April with no exposure, so the result was discarded. The final run loads March, April, and May data for 2022–2026 and excludes bins with fewer than 40 simultaneous non-core antihelion meteors.
 
-Stream-core counts are divided by the simultaneous non-core counts in the same expanded antihelion region. This is therefore a relative activity profile, not an absolute flux or ZHR measurement.
+Stream-core counts are divided by simultaneous non-core counts in the same expanded antihelion region, producing a relative activity profile. Absolute flux and ZHR require station-level exposure calibration.
 
 ## Combined result
 
@@ -20,7 +20,7 @@ Stream-core counts are divided by the simultaneous non-core counts in the same e
 | Pooled odds ratio | 4.162 |
 | Pooled p-value | 6.51 × 10⁻¹⁹ |
 
-The raw half-maximum width is one half-degree bin, but the identity of the highest bin changes when individual years are omitted. The stable result is the broader four-degree interval, not a precisely fixed annual peak.
+The raw half-maximum width is one half-degree bin, but the identity of the highest bin changes when individual years are omitted. The broader four-degree interval is the stable timing result.
 
 ## Year-by-year comparison
 
@@ -36,4 +36,4 @@ The pooled result remains significant when any one year is removed; the leave-on
 
 ## Limits of this profile
 
-Normalizing by simultaneous antihelion meteors helps control changes in catalogue exposure, but it does not model weather, limiting magnitude, radiant elevation, station uptime, or collecting area directly. The profile supports a concentrated late-April activity interval. It does not support an absolute flux, ZHR, or a precise physical FWHM.
+Normalizing by simultaneous antihelion meteors helps control changes in catalogue exposure. Weather, limiting magnitude, radiant elevation, station uptime, and collecting area would be needed for absolute flux, ZHR, and a precise physical FWHM. This analysis supports a concentrated late-April relative activity interval.

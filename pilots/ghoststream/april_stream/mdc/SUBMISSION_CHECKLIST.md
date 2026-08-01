@@ -1,6 +1,6 @@
 # Pre-submission checklist
 
-Formal MDC submission remains blocked pending the unchecked review, authorship, data-preservation, and delivery items below. The computational recovery and primary/internal/external clean reruns are complete; this checklist does not imply official recognition or submission readiness.
+Formal MDC submission remains blocked pending the unchecked discovery-lineage, review, authorship, data-preservation, and delivery items below. The computational recovery and primary/internal/external clean reruns are complete; this checklist does not imply official recognition or submission readiness.
 
 ## Computational recovery and reproducibility
 
@@ -17,13 +17,17 @@ Formal MDC submission remains blocked pending the unchecked review, authorship, 
 - [x] Recovered frozen specification curve passed 81/81 eligible cells.
 - [x] Recovered CAMS and SonotaCo scripts regenerated the exact preserved ten-event pooled ID set.
 - [x] Current JPL screen completed: 729/729 valid broad-compatible orbits, zero at D ≤ 0.15.
-- [ ] Recovered all-season blind-search rerun independently rediscovers the April survivor and its untouched 2024/2023 replication.
-- [ ] Recovered untouched known-shower and weak-stream injection controls are preserved from a fresh clean rerun.
+- [x] Historical v2 method-control output audited honestly: 3/3 named showers recovered and injection passed, but the aggregate verdict remained `NO_GO_DEGENERATE_PARENT_CLUSTER`.
+- [x] The v2 degeneracy-rule contradiction was documented: Eta Aquariids target prevalence exceeded the global 30% largest-cluster ceiling.
+- [x] A correction was frozen before independent 2024 holdouts, retaining the exact clustering setting, recovery thresholds, hidden labels, and 30% ceiling while applying it to non-target clusters.
+- [x] Corrected independent-year method-control holdout passed 3/3 named showers and 3/3 non-target degeneracy checks.
+- [ ] Recovered January–July 2026 blind-search matrix independently rediscovers the April survivor with untouched 2025/2024 validation.
 - [ ] Code-inclusive expert-review bundle includes the final blind-search and method-control evidence.
 
 ## Scientific checks
 
-- [x] Candidate originated in an all-season blind search rather than a targeted final-template query.
+- [x] Candidate was originally reported from a blind month/year search rather than a targeted final-template query.
+- [ ] The actual recovered January–July 2026 discovery entrypoint and lineage are independently rerun and preserved.
 - [x] Frozen historical GMN replication completed.
 - [x] Exact-time duplicate solutions removed.
 - [x] Activity test repeated without orbital elements.
@@ -57,7 +61,8 @@ Formal MDC submission remains blocked pending the unchecked review, authorship, 
 - [x] Exact cross-source duplicate audit found zero duplicate UTC events among the 16 external members.
 - [x] Machine-readable candidate solution records bootstrap intervals and unresolved speed drift.
 - [x] Historical 111-check package audit recomputed the lookup and identified no numerical discrepancy after the submitted semimajor-axis correction.
-- [ ] Recovered package audit passes against the current source manifest, exact primary, exact downstream, exact external, manuscript, and MDC files.
+- [x] Corrected 2024 method-control evidence is committed with run, artifact, source, environment, and result hashes.
+- [ ] Recovered package audit passes against the current source manifest, exact primary, exact downstream, exact external, method-control, blind-lineage, manuscript, and MDC files.
 - [ ] Code-inclusive expert bundle is built and checksum-validated from the current branch.
 - [ ] Confirm the preferred GMN catalogue version string and citation.
 - [ ] Preserve hashes or archived copies for every GMN monthly source catalogue used in the final submission analysis, subject to data-use rules.

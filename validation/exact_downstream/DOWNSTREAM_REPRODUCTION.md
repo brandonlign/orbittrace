@@ -12,4 +12,4 @@ The recovered analysis source from commit `39972b5fe0cf4d47092d3caa2b3ced12bedb0
 - Geographic member counts: 30, 22, and 44; largest cross-region medoid D = 0.04054.
 - Sensitivity analysis: all 81 settings passed.
 
-The result closes the internal downstream reproduction gap. External-catalogue checks are recorded separately because they use different source files and assumptions.
+These reruns reproduce the internal analyses from the preserved source. The external-catalogue rerun is recorded in `../exact_external/`.

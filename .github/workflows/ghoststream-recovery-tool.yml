@@ -211,7 +211,7 @@ jobs:
           PY
 
           python -m compileall -q "$target"
-          git diff --check
+          python -m json.tool "$target/SOURCE_MANIFEST.json" >/dev/null
 
       - name: Commit recovered snapshots
         shell: bash

@@ -25,35 +25,34 @@ jobs:
           from pathlib import Path
 
           audit = Path("pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py")
-          lines = audit.read_text().splitlines()
+          text = audit.read_text()
 
           old_target = 'for key in ("q", "e", "peri", "node", "incl", "a"):'
           new_target = 'for calc_key, mean_key in (("q", "q"), ("e", "e"), ("peri", "peri"), ("node", "node"), ("incl", "inc"), ("a", "a")):'
-          old_matches = [i for i, line in enumerate(lines) if line.strip() == old_target]
-          new_matches = [i for i, line in enumerate(lines) if line.strip() == new_target]
-          if len(old_matches) == 1 and not new_matches:
-              i = old_matches[0]
-              indent = lines[i][: len(lines[i]) - len(lines[i].lstrip())]
-              if i + 1 >= len(lines) or 'calculation audit -> mean JSON' not in lines[i + 1]:
-                  raise SystemExit("unexpected calculation mapping body")
-              lines[i] = indent + new_target
-              lines[i + 1] = indent + '    close(f"calculation audit -> mean JSON {calc_key}", calc_means[calc_key], mean[mean_key], 5e-6)'
-          elif len(new_matches) != 1:
-              raise SystemExit(f"calculation mapping old={old_matches} new={new_matches}")
+          if old_target in text and new_target not in text:
+              text = text.replace(
+                  '    ' + old_target + '\n        close(f"calculation audit -> mean JSON {key}", calc_means[key], mean[key], 5e-6)',
+                  '    ' + new_target + '\n        close(f"calculation audit -> mean JSON {calc_key}", calc_means[calc_key], mean[mean_key], 5e-6)',
+                  1,
+              )
+          if text.count(new_target) != 1:
+              raise SystemExit(f"calculation mapping count={text.count(new_target)}")
 
-          legacy_target = 'close(f"legacy rounded value {key}", float(legacy[index]), float(mean[key]), tolerance)'
-          legacy_fixed = 'close(f"legacy rounded value {key}", float(legacy[index]), float(mean[mean_key]), tolerance)'
-          legacy_matches = [i for i, line in enumerate(lines) if line.strip() == legacy_target]
-          legacy_fixed_matches = [i for i, line in enumerate(lines) if line.strip() == legacy_fixed]
-          if len(legacy_matches) == 1 and not legacy_fixed_matches:
-              i = legacy_matches[0]
-              indent = lines[i][: len(lines[i]) - len(lines[i].lstrip())]
-              lines.insert(i, indent + 'mean_key = "inc" if key == "incl" else key')
-              lines[i + 1] = indent + legacy_fixed
-          elif len(legacy_fixed_matches) != 1:
-              raise SystemExit(f"legacy mapping old={legacy_matches} fixed={legacy_fixed_matches}")
+          legacy_old = '        close(f"legacy rounded value {key}", float(legacy[index]), float(mean[key]), tolerance)'
+          legacy_new = '        mean_key = "inc" if key == "incl" else key\n        close(f"legacy rounded value {key}", float(legacy[index]), float(mean[mean_key]), tolerance)'
+          if legacy_old in text and legacy_new not in text:
+              text = text.replace(legacy_old, legacy_new, 1)
+          if text.count('mean_key = "inc" if key == "incl" else key') != 1:
+              raise SystemExit("legacy mapping is not unique")
 
-          audit.write_text("\n".join(lines) + "\n")
+          checker_old = '"q": "q", "e": "e", "peri": "peri", "node": "node", "inc": "incl",'
+          checker_new = '"q": "q", "e": "e", "peri": "peri", "node": "node", "inc": "inc",'
+          if checker_old in text:
+              text = text.replace(checker_old, checker_new, 1)
+          if text.count(checker_new) != 1:
+              raise SystemExit("checker mapping is not unique")
+
+          audit.write_text(text)
           PY
 
       - name: Validate source fixes
@@ -61,6 +60,7 @@ jobs:
           python -m py_compile pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
           grep -F '("incl", "inc")' pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
           grep -F 'mean_key = "inc" if key == "incl" else key' pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
+          grep -F '"inc": "inc"' pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
           git diff --check
 
       - name: Commit source fixes
@@ -71,6 +71,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "Audit field mappings already fixed."
           else
-            git commit -m "Complete MDC package audit field mapping"
+            git commit -m "Finalize MDC package audit field mapping"
             git push origin HEAD:agent/ghoststream-pilot
           fi

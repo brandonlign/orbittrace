@@ -1,0 +1,41 @@
+{
+  "verdict": "NO_CURRENT_IAU_MDC_HARD_DUPLICATE",
+  "catalogue": {
+    "version": "2026-06-25",
+    "declared_shower_records": 1072,
+    "parsed_shower_records": 1072,
+    "parsed_solutions": 2174,
+    "byte_count": 3308032,
+    "sha256": "821fa09734314e2796388c4f2fc94bb770998f2f2b08d6a84135660849aef899"
+  },
+  "frozen_duplicate_rules": {
+    "candidate_activity_interval_solar_longitude_deg": [32.901963, 40.901963],
+    "mean_epoch_fallback_half_width_deg": 8.0,
+    "maximum_drifted_radiant_separation_deg": 5.0,
+    "maximum_drifted_speed_difference_km_s": 5.0,
+    "maximum_southworth_hawkins_d": 0.15,
+    "hard_match_requires_complete_orbit": true
+  },
+  "hard_duplicate_match_count": 0,
+  "radiant_speed_activity_match_count": 0,
+  "orbit_incomplete_near_match_count": 0,
+  "nearest_complete_orbit": {
+    "iau_number": "00149",
+    "code": "NOP",
+    "name": "NorthernMayOphiuchids",
+    "solution_number": "004",
+    "published_activity_interval_solar_longitude_deg": [45.0, 75.0],
+    "mean_solar_longitude_deg": 58.6,
+    "mean_epoch_delta_from_candidate_deg": 21.698037,
+    "drifted_radiant_separation_deg": 9.587885339576435,
+    "drifted_speed_difference_km_s": 1.0048719724795987,
+    "southworth_hawkins_d": 0.23445149980443517,
+    "activity_compatible": false,
+    "hard_duplicate_match": false
+  },
+  "ci_evidence": {
+    "workflow_run_id": 30678572191,
+    "artifact_id": 8811375826,
+    "artifact_sha256": "d7a88515dcc97762812dd4df6b431a2c65805928969ad114b3636809254ae393"
+  }
+}

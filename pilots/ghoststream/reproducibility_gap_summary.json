@@ -1,74 +1,100 @@
 {
-  "verdict": "CORE_ANALYSIS_NOT_REPRODUCIBLE_FROM_CURRENT_BRANCH",
+  "verdict": "CORE_SOURCE_RECOVERED_PRIMARY_EXACT_DOWNSTREAM_PENDING",
   "audit_date_utc": "2026-08-01",
   "branch": "agent/ghoststream-pilot",
-  "scientific_candidate_status": "high_confidence_uncatalogued_stream_candidate_preserved_outputs",
+  "scientific_candidate_status": "high_confidence_uncatalogued_stream_candidate_primary_exactly_reproduced",
   "publication_status": "hold",
   "formal_mdc_submission_status": "blocked",
-  "expert_review_bundle_status": "superseded_do_not_send_as_complete_reproducibility_package",
-  "branch_comparison": {
-    "changed_files": 82,
-    "all_changed_files_added": true,
-    "core_analysis_scripts_deleted_from_branch": false,
-    "interpretation": "The core implementation was not removed from this branch; it was never committed here or exists elsewhere."
+  "expert_review_bundle_status": "superseded_rebuild_from_recovered_implementation",
+  "original_gap": {
+    "core_analysis_absent_from_isef_branch": true,
+    "core_analysis_scripts_deleted_from_isef_branch": false,
+    "interpretation": "The implementation was never committed to the original isef branch, but survived in temporary remotion-worker pull-request commits."
   },
-  "reproducible_bounded_stages": [
-    "current linked EDMOND recovery and integrity audit",
-    "current linked EDMOND frozen-template evaluation",
-    "live IAU MDC novelty refresh",
-    "exact official MDC consistency checker rerun",
-    "MDC package internal consistency audit",
-    "flux handoff tools",
-    "deterministic evidence bundle construction",
-    "read-only local workspace recovery inventory"
-  ],
-  "missing_core_stages": [
-    "GMN source catalogue acquisition and immutable manifests",
-    "GMN parsing and quality filtering",
-    "coordinate transformations",
+  "source_recovery": {
+    "status": "recovered",
+    "recovery_discovery_commit": "4175e5187fcc6faf3d1befb099a9e35be96850f2",
+    "novel_downstream_commit": "39972b5fe0cf4d47092d3caa2b3ced12bedb065e",
+    "recovery_discovery_files": 13,
+    "novel_downstream_files": 35,
+    "file_level_sha256_manifest": "pilots/ghoststream/recovered_pipeline/SOURCE_MANIFEST.json",
+    "snapshots_preserved_without_refactoring": true
+  },
+  "exact_primary_reproduction": {
+    "status": "passed",
+    "workflow_run_id": 30682932931,
+    "source_commit": "39972b5fe0cf4d47092d3caa2b3ced12bedb065e",
+    "source_script_sha256": "4a29b4c3bde528be2523b627f7e8a22d3c836f45981cc77aefd7d4c694c844ac",
+    "total_members": 101,
+    "significant_year_members": 95,
+    "annual_counts": {
+      "2019": 1,
+      "2020": 4,
+      "2021": 1,
+      "2022": 10,
+      "2023": 8,
+      "2024": 14,
+      "2025": 34,
+      "2026": 29
+    },
+    "preserved_95_timestamp_set_exact": true,
+    "missing_preserved_timestamps": 0,
+    "additional_timestamps": 0,
+    "validator_verdict": "APRIL_STREAM_DISCOVERY_CANDIDATE_SURVIVES_AUDIT"
+  },
+  "resolved_core_stages": [
+    "GMN monthly catalogue acquisition and parsing implementation",
+    "quality filtering and coordinate transformations",
     "exact-time deduplication",
     "known-shower and weak-injection controls",
     "blind candidate generation",
     "frozen April membership selection",
-    "expanded antihelion source-preserving activity test",
-    "shifted-window audit",
-    "source/time-matched post-selection orbital null",
+    "expanded antihelion source-preserving activity test implementation",
+    "shifted-window audit implementation",
+    "source/time-matched post-selection orbital-null implementation",
     "measurement-uncertainty clone trials",
-    "year/night hierarchical bootstrap",
-    "geographic station split",
-    "March-May source-normalized activity profile",
-    "81-cell specification curve",
-    "original CAMS and SonotaCo acquisition and selection",
-    "parent-body screen",
-    "end-to-end report and figure generation"
+    "year/night hierarchical bootstrap implementation",
+    "geographic station split implementation",
+    "March-May source-normalized activity profile implementation",
+    "81-cell specification curve implementation",
+    "CAMS and SonotaCo acquisition and selection implementation",
+    "parent-body screen implementation",
+    "end-to-end report generation implementation"
   ],
-  "missing_provenance": [
-    "exact source files and URLs",
-    "source byte counts and SHA-256 hashes",
-    "catalogue schemas and access dates",
-    "station-country mapping",
-    "random seeds",
-    "dependency environment",
-    "intermediate event tables",
-    "frozen machine-readable configurations"
+  "remaining_reproducibility_work": [
+    "commit clean recovered internal GMN downstream rerun and comparison package",
+    "commit clean recovered CAMS and SonotaCo rerun and comparison package",
+    "record current live JPL parent-screen result",
+    "retain EDMOND as provenance-limited supplementary evidence unless a complete current release is recovered",
+    "rerun package and official-checker audits against the rebuilt package",
+    "rebuild manuscript and code-inclusive expert-review bundle",
+    "obtain independent scientific and duplicate review"
   ],
-  "allowed_current_claim": "Internally consistent and extensively audited results package for a high-confidence uncatalogued April meteor-stream candidate; core discovery and validation pipeline not yet computationally reproducible from the committed branch.",
+  "input_provenance_boundary": {
+    "source_code_hashes_committed": true,
+    "environment_and_random_seeds_recovered": true,
+    "live_official_monthly_gmn_acquisition_reproduced": true,
+    "raw_monthly_catalogue_bytes_vendored": false,
+    "raw_monthly_catalogue_byte_hash_manifest_complete": false,
+    "interpretation": "The exact original implementation reproduced the primary result from the current official GMN monthly source. Long-term immutable raw-input archiving remains desirable and must not be falsely described as complete."
+  },
+  "allowed_current_claim": "The original GhostStream source has been recovered and the unchanged primary GMN validator exactly regenerated all 101 members, including the committed 95-event significant-year lookup. Remaining downstream and external clean reruns are in progress; official recognition and submission readiness are not claimed.",
   "forbidden_until_resolution": [
     "journal submission",
     "formal IAU MDC submission",
-    "public reproducibility DOI",
-    "claim of end-to-end computational reproducibility",
-    "sending the superseded expert bundle as a complete code/data package"
+    "claim of official IAU recognition",
+    "claim that every downstream and external stage has completed a fresh clean rerun",
+    "claim of complete current EDMOND v6.01 replication",
+    "sending the superseded expert bundle as the current code-inclusive review package"
   ],
   "resolution_gate": [
-    "recover or independently reconstruct core source code",
-    "preserve exact input manifests, hashes, schemas, seeds, and environment",
-    "clean fail-closed rerun from source catalogues",
-    "regenerate 95-member lookup and primary statistics",
-    "document every discrepancy without retuning",
-    "add persistent end-to-end CI",
+    "preserve original source snapshots and hashes",
+    "exactly regenerate the primary 101-member and 95-member results",
+    "cleanly rerun and reconcile internal downstream analyses",
+    "cleanly rerun and reconcile CAMS and SonotaCo evidence",
+    "record current parent-screen and catalogue-novelty results",
     "rerun package and official checker audits",
-    "build a new code-inclusive expert review bundle",
-    "obtain external scientific review of the reproducible pipeline"
+    "build a new code-inclusive expert-review bundle",
+    "obtain external scientific and duplicate review"
   ]
 }

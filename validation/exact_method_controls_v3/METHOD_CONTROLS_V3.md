@@ -12,4 +12,4 @@ That correction was set before the independent 2024 holdout data were examined.
 
 All three showers were recovered, and every non-target cluster remained below 30%.
 
-The corrected holdout resolves the specific contradiction in the earlier gate. It does not erase that earlier result, and it does not by itself validate the April candidate. Its role is narrower: it shows that the unchanged clustering and recovery thresholds work on independent known-shower data when the degeneracy rule measures the intended failure mode.
+The corrected holdout resolves the specific contradiction in the earlier gate. Its role is narrow: it shows that the unchanged clustering and recovery thresholds work on independent known-shower data when the degeneracy rule measures the intended failure mode. The earlier result remains part of the record.

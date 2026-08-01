@@ -1,11 +1,6 @@
 name: GhostStream EDMOND archive-index audit
 
 on:
-  pull_request:
-    paths:
-      - "pilots/ghoststream/april_stream/edmond_2024/audit_archive_indices.py"
-      - "pilots/ghoststream/april_stream/edmond_2024/recover_current_edmond.py"
-      - ".github/workflows/ghoststream-edmond-archive-index-audit.yml"
   workflow_dispatch:
 
 permissions:

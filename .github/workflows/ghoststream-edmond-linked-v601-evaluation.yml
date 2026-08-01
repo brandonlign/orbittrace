@@ -1,10 +1,6 @@
 name: GhostStream linked EDMOND v6.01 frozen evaluation
 
 on:
-  pull_request:
-    paths:
-      - "pilots/ghoststream/april_stream/edmond_2024/evaluate_linked_v601_archives.py"
-      - ".github/workflows/ghoststream-edmond-linked-v601-evaluation.yml"
   workflow_dispatch:
 
 permissions:

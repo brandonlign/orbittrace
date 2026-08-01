@@ -1,10 +1,6 @@
 name: GhostStream EDMOND linked-release integrity
 
 on:
-  pull_request:
-    paths:
-      - "pilots/ghoststream/april_stream/edmond_2024/audit_linked_release_integrity.py"
-      - ".github/workflows/ghoststream-edmond-linked-release-integrity.yml"
   workflow_dispatch:
 
 permissions:

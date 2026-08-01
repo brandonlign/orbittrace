@@ -1,6 +1,12 @@
 name: GhostStream recovered method controls PR check
 
 on:
+  push:
+    branches:
+      - agent/ghoststream-pilot
+    paths:
+      - "pilots/ghoststream/reconstruction/verify_recovered_method_controls.py"
+      - ".github/workflows/ghoststream-method-controls-pr.yml"
   pull_request:
     paths:
       - "pilots/ghoststream/reconstruction/verify_recovered_method_controls.py"
@@ -8,7 +14,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   reproduce-method-controls:
@@ -17,6 +23,9 @@ jobs:
     steps:
       - name: Check out GhostStream evidence branch
         uses: actions/checkout@v4
+        with:
+          ref: agent/ghoststream-pilot
+          fetch-depth: 0
 
       - name: Check out immutable recovered control source
         uses: actions/checkout@v4
@@ -74,7 +83,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ghoststream-exact-recovered-method-controls-pr
+          name: ghoststream-exact-recovered-method-controls
           path: |
             ghoststream_method_control_evidence/
             ghoststream_results_v2/
@@ -84,3 +93,22 @@ jobs:
             ghoststream_method_source_sha256.txt
           if-no-files-found: error
           retention-days: 90
+
+      - name: Commit exact method-control evidence
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          target="pilots/ghoststream/reconstruction/exact_method_controls"
+          rm -rf "$target"
+          cp -a ghoststream_method_control_evidence "$target"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$target"
+          if git diff --cached --quiet; then
+            echo "Method-control evidence already matches."
+            exit 0
+          fi
+          git commit -m "Reproduce GhostStream method controls"
+          git pull --rebase origin agent/ghoststream-pilot
+          git push origin HEAD:agent/ghoststream-pilot

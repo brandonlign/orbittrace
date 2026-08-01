@@ -38,6 +38,6 @@ The nearest complete orbit was Northern May Ophiuchids solution 004:
 
 Its speed is similar, but its timing, radiant, and orbit do not satisfy the comparison rule.
 
-The current official catalogue therefore contains no matching solution under the fixed criteria used here. This is useful evidence that the candidate is uncatalogued, but it cannot replace a specialist’s search of older literature, alternate coordinate conventions, removed solutions, and unpublished or locally used shower lists.
+The current official catalogue contains no matching solution under the fixed criteria used here. The next comparison is a specialist search of older literature, alternate coordinate conventions, removed solutions, and locally used shower lists.
 
 The machine-readable result is in `live_mdc_novelty_refresh_summary.json`.

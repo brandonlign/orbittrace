@@ -1,6 +1,6 @@
 # External-catalogue comparison
 
-The year/night bootstrap did not resolve a geocentric-speed drift. To avoid carrying an unsupported slope into other catalogues, the external analyses were repeated with dVg/dλ⊙ set to zero. The radiant center, angular drift, dispersions, activity interval, and orbital rules were unchanged.
+The year/night bootstrap left the geocentric-speed drift unresolved, so the external analyses were repeated with dVg/dλ⊙ set to zero. The radiant center, angular drift, dispersions, activity interval, and orbital rules were unchanged.
 
 ## CAMS and SonotaCo
 
@@ -33,13 +33,13 @@ A shower-removed EDMOND subset adds six non-overlapping events in 2014, 2016, 20
 | Orbit-null p-value | 5 × 10⁻⁵ |
 | Exact UTC duplicate groups across sources | 0 |
 
-EDMOND is a compilation of historical video-meteor data and may share upstream observations or reduction history with other catalogues. The absence of exact UTC duplicates prevents direct double-counting of the selected events, but the archive labels should not be treated as three completely independent instruments.
+EDMOND is a compilation of historical video-meteor data and may share upstream observations or reduction history with other catalogues. The selected events contain no exact UTC duplicates. The three archive labels are treated as sources with possible shared provenance rather than fully independent instruments.
 
 ## Currently linked EDMOND files
 
 The same zero-speed-drift definition was applied to every annual ZIP currently linked from the EDMOND page. Twenty-three files covering 2001–2023 passed ZIP, CRC, schema, and finite-field checks. The 2024 link returned 404.
 
-The surviving links do not appear to be the complete advertised v6.01 release:
+The surviving links cover only part of the advertised v6.01 release:
 
 - linked rows for 2001–2023: 481,252;
 - advertised rows for those years: 614,758;
@@ -47,6 +47,6 @@ The surviving links do not appear to be the complete advertised v6.01 release:
 - annual row-count matches: 0 of 23; and
 - embedded versions: mainly 513 and 516 rather than 601.
 
-The linked files selected exactly the same six EDMOND events and no additional ones. Their one-sided activity p-value was 3.379 × 10⁻⁴, the median D_SH was 0.03601, and the orbit-null p-value was 5.0 × 10⁻⁵. The shifted-window p-value was 0.06122, and the sample remained below the project’s minimum N = 8 rule.
+The linked files selected exactly the same six EDMOND events. Their one-sided activity p-value was 3.379 × 10⁻⁴, the median D_SH was 0.03601, and the orbit-null p-value was 5.0 × 10⁻⁵. The shifted-window p-value was 0.06122, and the sample remained below the project’s minimum N = 8 rule.
 
 The external evidence is therefore unchanged when the unsupported speed slope is removed. CAMS and SonotaCo provide the main cross-catalogue support; EDMOND adds useful but provenance-limited evidence.

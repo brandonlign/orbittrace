@@ -19,7 +19,7 @@ jobs:
           ref: agent/ghoststream-pilot
           fetch-depth: 0
 
-      - name: Apply idempotent field-mapping fixes
+      - name: Apply idempotent package-audit fixes
         run: |
           python - <<'PY'
           from pathlib import Path
@@ -27,6 +27,7 @@ jobs:
           audit = Path("pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py")
           text = audit.read_text()
 
+          # Preserve the already-correct field aliases if an older checkout is encountered.
           old_target = 'for key in ("q", "e", "peri", "node", "incl", "a"):'
           new_target = 'for calc_key, mean_key in (("q", "q"), ("e", "e"), ("peri", "peri"), ("node", "node"), ("incl", "inc"), ("a", "a")):'
           if old_target in text and new_target not in text:
@@ -35,22 +36,101 @@ jobs:
                   '    ' + new_target + '\n        close(f"calculation audit -> mean JSON {calc_key}", calc_means[calc_key], mean[mean_key], 5e-6)',
                   1,
               )
-          if text.count(new_target) != 1:
-              raise SystemExit(f"calculation mapping count={text.count(new_target)}")
-
           legacy_old = '        close(f"legacy rounded value {key}", float(legacy[index]), float(mean[key]), tolerance)'
           legacy_new = '        mean_key = "inc" if key == "incl" else key\n        close(f"legacy rounded value {key}", float(legacy[index]), float(mean[mean_key]), tolerance)'
           if legacy_old in text and legacy_new not in text:
               text = text.replace(legacy_old, legacy_new, 1)
-          if text.count('mean_key = "inc" if key == "incl" else key') != 1:
-              raise SystemExit("legacy mapping is not unique")
+          text = text.replace(
+              '"q": "q", "e": "e", "peri": "peri", "node": "node", "inc": "incl",',
+              '"q": "q", "e": "e", "peri": "peri", "node": "node", "inc": "inc",',
+              1,
+          )
 
-          checker_old = '"q": "q", "e": "e", "peri": "peri", "node": "node", "inc": "incl",'
-          checker_new = '"q": "q", "e": "e", "peri": "peri", "node": "node", "inc": "inc",'
-          if checker_old in text:
-              text = text.replace(checker_old, checker_new, 1)
-          if text.count(checker_new) != 1:
-              raise SystemExit("checker mapping is not unique")
+          old_lookup_block = '''    for key in ("LoSb", "LoSe", "LoS", "Ra", "De", "Vg", "LoR", "S_LoR", "LaR", "dRa", "dDe"):
+              close(f"lookup recomputation -> calculation audit {key}", recomputed[key], calc_means[key], 5e-10)
+              close(f"lookup recomputation -> mean JSON {key}", recomputed[key], mean[key], 5e-6)
+          '''
+          new_lookup_block = '''    lookup_quantization_tolerance = {
+              "LoSb": 5e-7,
+              "LoSe": 5e-7,
+              "LoS": 5e-7,
+              "Ra": 5e-7,
+              "De": 5e-7,
+              "Vg": 5e-7,
+              "LoR": 5e-7,
+              "S_LoR": 5e-7,
+              "LaR": 5e-7,
+              "dRa": 1e-6,
+              "dDe": 1e-6,
+          }
+          for key in ("LoSb", "LoSe", "LoS", "Ra", "De", "Vg", "LoR", "S_LoR", "LaR", "dRa", "dDe"):
+              tolerance = lookup_quantization_tolerance[key]
+              close(
+                  f"lookup recomputation -> calculation audit {key}",
+                  recomputed[key],
+                  calc_means[key],
+                  tolerance,
+                  "The public lookup serializes each source column to six decimals; the tolerance is the resulting quantization bound, not a scientific threshold.",
+              )
+              close(f"lookup recomputation -> mean JSON {key}", recomputed[key], mean[key], 5e-6)
+          '''
+          if old_lookup_block in text:
+              text = text.replace(old_lookup_block, new_lookup_block, 1)
+          if text.count('lookup_quantization_tolerance = {') != 1:
+              raise SystemExit("lookup quantization block is not unique")
+
+          old_semimajor_block = '''    for calc_key, mean_key in (("q", "q"), ("e", "e"), ("peri", "peri"), ("node", "node"), ("incl", "inc"), ("a", "a")):
+              close(f"calculation audit -> mean JSON {calc_key}", calc_means[calc_key], mean[mean_key], 5e-6)
+          derived_a = float(mean["q"]) / (1.0 - float(mean["e"]))
+          close("mean JSON semimajor identity q/(1-e)", float(mean["a"]), derived_a, 5e-6)
+          close("calculation audit semimajor identity q/(1-e)", float(calc_means["a"]), float(calc_means["q"]) / (1.0 - float(calc_means["e"])), 5e-12)
+          '''
+          new_semimajor_block = '''    for calc_key, mean_key in (("q", "q"), ("e", "e"), ("peri", "peri"), ("node", "node"), ("incl", "inc"), ("a", "a")):
+              close(f"calculation audit -> mean JSON {calc_key}", calc_means[calc_key], mean[mean_key], 5e-6)
+          semimajor = calc["semimajor_axis_derivation"]
+          full_precision_derived_a = float(calc_means["q"]) / (1.0 - float(calc_means["e"]))
+          close(
+              "calculation audit full-precision semimajor identity q/(1-e)",
+              float(semimajor["a_from_full_precision_means"]),
+              full_precision_derived_a,
+              5e-12,
+          )
+          submitted_derived_a = float(mean["q"]) / (1.0 - float(mean["e"]))
+          close(
+              "calculation audit exact submitted semimajor derivation",
+              float(semimajor["exact_a_from_submitted_q_e"]),
+              submitted_derived_a,
+              5e-12,
+          )
+          close(
+              "mean JSON semimajor identity at six-decimal precision",
+              float(mean["a"]),
+              submitted_derived_a,
+              5e-7,
+              "The submitted a is q/(1-e) rounded to six decimals from the submitted six-decimal q and e.",
+          )
+          close(
+              "calculation audit submitted semimajor value",
+              float(calc_means["a"]),
+              float(mean["a"]),
+              5e-12,
+          )
+          '''
+          if old_semimajor_block in text:
+              text = text.replace(old_semimajor_block, new_semimajor_block, 1)
+          if text.count('calculation audit full-precision semimajor identity q/(1-e)') != 1:
+              raise SystemExit("semimajor audit block is not unique")
+
+          required = [
+              new_target,
+              'mean_key = "inc" if key == "incl" else key',
+              '"inc": "inc"',
+              'lookup_quantization_tolerance = {',
+              'calculation audit full-precision semimajor identity q/(1-e)',
+          ]
+          for token in required:
+              if text.count(token) != 1:
+                  raise SystemExit(f"required token count for {token!r}: {text.count(token)}")
 
           audit.write_text(text)
           PY
@@ -58,8 +138,8 @@ jobs:
       - name: Validate source fixes
         run: |
           python -m py_compile pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
-          grep -F '("incl", "inc")' pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
-          grep -F 'mean_key = "inc" if key == "incl" else key' pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
+          grep -F 'lookup_quantization_tolerance = {' pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
+          grep -F 'calculation audit full-precision semimajor identity q/(1-e)' pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
           grep -F '"inc": "inc"' pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
           git diff --check
 
@@ -69,8 +149,8 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
           if git diff --cached --quiet; then
-            echo "Audit field mappings already fixed."
+            echo "Package audit already models quantization and rounded semimajor derivation."
           else
-            git commit -m "Finalize MDC package audit field mapping"
+            git commit -m "Model MDC package quantization and semimajor rounding"
             git push origin HEAD:agent/ghoststream-pilot
           fi

@@ -6,10 +6,14 @@ on:
       - agent/ghoststream-pilot
     paths:
       - "pilots/ghoststream/reconstruction/verify_blind_rediscovery.py"
+      - "pilots/ghoststream/reconstruction/blind_wrapper_fix.json"
+      - "pilots/ghoststream/reconstruction/blind_wrapper_repaired/run_month_year_v3.py"
       - ".github/workflows/ghoststream-blind-rediscovery-pr.yml"
   pull_request:
     paths:
       - "pilots/ghoststream/reconstruction/verify_blind_rediscovery.py"
+      - "pilots/ghoststream/reconstruction/blind_wrapper_fix.json"
+      - "pilots/ghoststream/reconstruction/blind_wrapper_repaired/run_month_year_v3.py"
       - ".github/workflows/ghoststream-blind-rediscovery-pr.yml"
   workflow_dispatch:
 
@@ -46,7 +50,7 @@ jobs:
           python -m pip install -r _ghoststream_exact_source/ghoststream_novel/requirements.txt
           python -m pip freeze | sort | tee ghoststream_blind_environment.txt
 
-      - name: Verify immutable discovery source
+      - name: Verify immutable source and apply documented wrapper repair
         shell: bash
         run: |
           set -euo pipefail
@@ -56,8 +60,26 @@ jobs:
             _ghoststream_exact_source/ghoststream_novel/run_month_v2.py \
             _ghoststream_exact_source/ghoststream_novel/run_month_year_v3.py \
             _ghoststream_exact_source/ghoststream_novel/requirements.txt \
+            pilots/ghoststream/reconstruction/blind_wrapper_repaired/run_month_year_v3.py \
+            pilots/ghoststream/reconstruction/blind_wrapper_fix.json \
             pilots/ghoststream/reconstruction/verify_blind_rediscovery.py \
             | tee ghoststream_blind_source_sha256.txt
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          record = json.loads(Path("pilots/ghoststream/reconstruction/blind_wrapper_fix.json").read_text())
+          original = Path("_ghoststream_exact_source/ghoststream_novel/run_month_year_v3.py")
+          observed = hashlib.sha256(original.read_bytes()).hexdigest()
+          assert observed == record["original_source_sha256"], (observed, record["original_source_sha256"])
+          assert record["scientific_logic_changed"] is False
+          repaired = Path("pilots/ghoststream/reconstruction/blind_wrapper_repaired/run_month_year_v3.py")
+          original.write_bytes(repaired.read_bytes())
+          PY
+          echo "Repaired wrapper SHA-256:" | tee -a ghoststream_blind_source_sha256.txt
+          sha256sum _ghoststream_exact_source/ghoststream_novel/run_month_year_v3.py \
+            | tee -a ghoststream_blind_source_sha256.txt
           python -m py_compile \
             _ghoststream_exact_source/ghoststream_novel/run_novel_search.py \
             _ghoststream_exact_source/ghoststream_novel/run_month_v2.py \

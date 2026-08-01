@@ -2,7 +2,7 @@
 
 GhostStream is a search for weak meteor streams in public meteor-trajectory catalogues. The project began as a blind search of Global Meteor Network (GMN) data and found one recurring concentration of meteors in late April. The same radiant, timing, speed, and orbital pattern appears in GMN data from 2022 through 2026, with smaller supporting samples in CAMS, SonotaCo, and EDMOND.
 
-The result is best described as an **apparently uncatalogued meteor-stream candidate**. It has not been recognized by the International Astronomical Union, and it still needs independent review by meteor-shower specialists.
+The result is best described as an **apparently uncatalogued meteor-stream candidate**. The main scientific question is whether it is a distinct stream or a narrow component of a known shower complex or the antihelion source.
 
 ## Start here
 
@@ -38,7 +38,7 @@ The candidate also survived an untouched-year test, a source-matched background 
 
 ## Check the repository
 
-The lightweight check does not rerun the full data download and search. It verifies the expected files, fixed result metadata, source provenance, Python syntax, and repository hygiene.
+The lightweight check verifies the expected files, fixed result metadata, source provenance, Python syntax, and repository hygiene. The full search uses the public catalogues and the analysis scripts in `pipeline/`.
 
 ```bash
 python scripts/verify_repository.py
@@ -48,4 +48,4 @@ The analysis dependencies are listed in `requirements.txt`.
 
 ## Use of AI
 
-OpenAI ChatGPT assisted with research planning, code drafting and debugging, source discovery, reproducibility checks, organization, and editing. Brandon Li reviewed the final methods, code, sources, numerical results, and interpretations and takes responsibility for the work. The system was not treated as an author, a source of scientific evidence, or an independent reviewer.
+OpenAI ChatGPT assisted with research planning, code drafting and debugging, source discovery, reproducibility checks, organization, and editing. Brandon Li reviewed the final methods, code, sources, numerical results, and interpretations and takes responsibility for the work.

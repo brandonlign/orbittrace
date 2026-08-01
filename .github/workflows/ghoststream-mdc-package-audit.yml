@@ -41,7 +41,9 @@ jobs:
             pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
 
       - name: Run package audit
+        shell: bash
         run: |
+          set -euo pipefail
           python pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py \
             --output-dir mdc_package_audit 2>&1 | tee mdc_package_audit.log
 

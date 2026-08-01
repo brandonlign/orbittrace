@@ -1,6 +1,15 @@
 GHOSTSTREAM PUBLICATION / FORMAL MDC HOLD
 
-Do not submit the manuscript, formally report the candidate to the IAU MDC, mint a reproducibility DOI, or send the superseded expert bundle until the core GMN source-to-result pipeline is recovered or independently reconstructed and cleanly rerun.
+The original core GMN source code has now been recovered and the unchanged primary validator exactly regenerated all 101 members, including the committed 95-event 2022–2026 lookup.
 
-Authoritative audit:
-pilots/ghoststream/REPRODUCIBILITY_GAP_AUDIT.md
+The hold remains active for a narrower reason: do not submit the manuscript, formally report the candidate to the IAU MDC, mint a reproducibility DOI, or send the superseded expert bundle until:
+
+1. the recovered internal GMN downstream analyses pass the clean fail-closed rerun;
+2. the recoverable external-archive and parent-screen stages are rerun and reconciled;
+3. the manuscript, data-availability statement, and expert-review bundle are rebuilt from the recovered implementation; and
+4. independent expert duplicate/scientific review is completed.
+
+Current recovery evidence:
+pilots/ghoststream/recovered_pipeline/SOURCE_MANIFEST.json
+pilots/ghoststream/reconstruction/exact_recovered/EXACT_REPRODUCTION.md
+pilots/ghoststream/recovery/CURRENT_RECOVERY_STATUS.md

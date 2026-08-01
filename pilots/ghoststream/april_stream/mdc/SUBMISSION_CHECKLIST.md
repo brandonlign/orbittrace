@@ -37,7 +37,7 @@
 - [x] Shober EDMOND source file MD5 verified against the Zenodo record.
 - [x] Exact cross-source duplicate audit found zero duplicate UTC events among the 16 external members.
 - [x] Machine-readable candidate solution records bootstrap intervals and unresolved speed drift.
-- [ ] Fail-closed package-wide consistency audit passes across the 95-row lookup, mean JSON, legacy record, calculation audit, checker evidence, catalogue provenance, external-evidence boundaries, manuscript, and final summary.
+- [x] Fail-closed package-wide consistency audit passed **111/111 checks** across the 95-row lookup, mean JSON, legacy record, calculation audit, checker evidence, catalogue provenance, external-evidence boundaries, manuscript, and final summary.
 - [ ] Confirm the preferred GMN catalogue version string and citation.
 - [ ] Archive hashes for every GMN monthly source catalogue used in the final submission analysis.
 - [ ] Regenerate and checksum-lock the final sent package after all manuscript edits are complete.

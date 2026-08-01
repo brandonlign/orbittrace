@@ -1,0 +1,71 @@
+name: GhostStream current EDMOND recovery
+
+on:
+  pull_request:
+    paths:
+      - "pilots/ghoststream/april_stream/edmond_2024/**"
+      - ".github/workflows/ghoststream-edmond-recovery.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  recover-current-edmond:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile recovery audit
+        run: |
+          python -m py_compile \
+            pilots/ghoststream/april_stream/edmond_2024/recover_current_edmond.py
+
+      - name: Recover and verify the current annual archive
+        id: recovery
+        shell: bash
+        run: |
+          set +e
+          python pilots/ghoststream/april_stream/edmond_2024/recover_current_edmond.py \
+            --output-dir edmond_audit 2>&1 | tee edmond_audit.log
+          status=${PIPESTATUS[0]}
+          set -e
+          echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+          printf '%s\n' "$status" > edmond_audit/exit_code.txt
+          if [[ "$status" != "0" && "$status" != "3" ]]; then
+            echo "Unexpected recovery-audit failure: $status" >&2
+            exit "$status"
+          fi
+
+      - name: Display machine-readable verdict
+        if: always()
+        run: |
+          test -f edmond_audit/current_edmond_recovery.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          p = Path("edmond_audit/current_edmond_recovery.json")
+          result = json.loads(p.read_text())
+          print(json.dumps({
+              "verdict": result["verdict"],
+              "accepted_archive_url": result.get("accepted_archive_url"),
+              "probe_count": len(result.get("probes", [])),
+              "reference_2023": result.get("reference_2023_probe", {}).get("outcome"),
+          }, indent=2))
+          PY
+
+      - name: Upload recovery evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ghoststream-edmond-2024-recovery
+          path: |
+            edmond_audit/
+            edmond_audit.log
+          if-no-files-found: error
+          retention-days: 30

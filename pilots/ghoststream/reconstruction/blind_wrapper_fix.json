@@ -1,0 +1,45 @@
+{
+  "status": "MINIMAL_RECOVERED_WRAPPER_REPAIR",
+  "identified_utc": "2026-08-01T05:06:08Z",
+  "source_repository": "brandonlign/remotion-worker",
+  "source_commit": "39972b5fe0cf4d47092d3caa2b3ced12bedb065e",
+  "source_path": "ghoststream_novel/run_month_year_v3.py",
+  "original_source_sha256": "9681b11f97546589689f39af9e2ebe956185a5956de58d37538a1bd1e74b78ed",
+  "repair_commit": "38582b848b0ba730a292e48116a476c04df221d0",
+  "failed_workflow_run_id": 30684930270,
+  "failed_workflow_job_id": 91328722702,
+  "failed_artifact_id": 8813634346,
+  "failed_artifact_zip_sha256": "f9f3009e37e19c3a322b060c737e4a1349f83b745df479a67d347f21c75fde49",
+  "failure": {
+    "month": "2026-04",
+    "exception": "KeyError: '2023'",
+    "location": "final candidate CSV/report formatting after scientific validation",
+    "scientific_state_before_exception": {
+      "prevalidation_candidates": 2,
+      "candidate_1_replication": false,
+      "candidate_1_clone": false,
+      "candidate_1_full_gate": false,
+      "candidate_2_replication": true,
+      "candidate_2_clone": true,
+      "candidate_2_full_gate": true
+    }
+  },
+  "root_cause": "The arbitrary-year wrapper replaced double-quoted validation lookups but the recovered report/CSV code used single-quoted ['validation']['2023'] and ['validation']['2024'] keys. Cosmetic year labels also searched for doubled braces and remained hardcoded to 2025.",
+  "repair_scope": [
+    "generalize single-quoted validation-year lookups to discovery_year-1 and discovery_year-2",
+    "correct cosmetic month and report year labels"
+  ],
+  "scientific_logic_changed": false,
+  "unchanged_components": [
+    "GMN catalogue acquisition",
+    "quality filtering",
+    "HDBSCAN clustering",
+    "candidate scoring and ranking",
+    "IAU catalogue veto",
+    "historical validation thresholds",
+    "orbit compactness calculations",
+    "uncertainty-clone trials",
+    "full-gate decision"
+  ],
+  "claim_boundary": "The original wrapper is preserved unchanged in recovered_pipeline. The repaired runner must be described as a minimal year-generalization/reporting fix, not an unchanged exact-source rerun."
+}

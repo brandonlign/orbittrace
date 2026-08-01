@@ -15,6 +15,6 @@ The checks covered:
 - the CAMS and SonotaCo member sets; and
 - the recovered source manifest.
 
-The underlying machine-generated report was produced before the repository was reorganized, so some stored paths refer to the earlier canonical layout. The hashes and numerical comparisons refer to that frozen evidence package, not to the later wording and folder-name cleanup.
+The underlying machine-generated report was produced before the repository was reorganized, so some stored paths refer to the earlier canonical layout. The hashes and numerical comparisons refer to that frozen evidence package, while the current repository uses the cleaned folder structure and wording.
 
-Passing this check means the draft files agree with one another and with the preserved computations. It does not provide independent scientific validation or permission to submit.
+The check shows that the draft files agree with one another and with the preserved computations. Scientific interpretation is addressed in the manuscript and expert review.

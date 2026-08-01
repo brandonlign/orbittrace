@@ -16,6 +16,8 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: agent/ghoststream-pilot
 
       - uses: actions/setup-python@v5
         with:
@@ -24,7 +26,7 @@ jobs:
       - name: Compile recovery inventory tool
         run: python -m py_compile pilots/ghoststream/recovery/audit_local_workspace.py
 
-      - name: Validate recovered analysis and remaining package hold
+      - name: Validate recovered analysis and remaining review hold
         run: |
           python - <<'PY'
           import json
@@ -88,20 +90,20 @@ jobs:
           assert repro["publication_or_formal_mdc_submission_allowed"] is False
           assert final["overall_verdict"] == "GO_SCIENTIFIC_CANDIDATE_PUBLICATION_HOLD"
 
-          # The package audit remains historical until the manuscript/MDC bundle is
-          # rebuilt from the recovered outputs and audited again.
-          assert package["status"] == "HISTORICAL_INTERNAL_SNAPSHOT_NOT_CURRENT_END_TO_END_REPRODUCIBILITY"
-          assert package["current_manifest_valid"] is False
-          assert package["current_reaudit_required"] is True
+          assert package["verdict"] == "PASS_RECOVERED_MDC_PACKAGE_INTERNALLY_CONSISTENT"
+          assert package["failed_checks"] == 0
+          assert package["check_count"] > 111
+          assert package["recovered_analysis"]["analysis_chain_clean_rerun_completed"] is True
+          assert package["recovered_analysis"]["submission_allowed"] is False
 
           print(json.dumps({
               "gap_verdict": gap["verdict"],
               "primary": exact["status"],
               "downstream": downstream["status"],
               "external": external["status"],
+              "package": package["verdict"],
               "analysis_chain_complete": repro["analysis_chain_clean_rerun_completed"],
               "publication_allowed": repro["publication_or_formal_mdc_submission_allowed"],
-              "historical_package_status": package["status"],
           }, indent=2))
           PY
 
@@ -113,20 +115,24 @@ jobs:
           grep -F 'EXACT REPRODUCTION PASSED' pilots/ghoststream/reconstruction/exact_recovered/EXACT_REPRODUCTION.md
           grep -F 'EXACT_RECOVERED_DOWNSTREAM_REPRODUCTION' pilots/ghoststream/reconstruction/exact_downstream/DOWNSTREAM_REPRODUCTION.md
           grep -F 'RECOVERED_EXTERNAL_ARCHIVE_REPRODUCTION' pilots/ghoststream/reconstruction/exact_external/EXTERNAL_REPRODUCTION.md
+          grep -F 'PASS_RECOVERED_MDC_PACKAGE_INTERNALLY_CONSISTENT' pilots/ghoststream/april_stream/mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md
           grep -F 'Internal GMN downstream clean rerun: **passed and committed**' pilots/ghoststream/recovery/CURRENT_RECOVERY_STATUS.md
           grep -F 'The hold remains active for a narrower reason' pilots/ghoststream/recovery/DO_NOT_SUBMIT_UNTIL_RECOVERED.txt
           grep -F 'Formal MDC submission remains blocked' pilots/ghoststream/april_stream/mdc/SUBMISSION_CHECKLIST.md
-          grep -F 'HISTORICAL_INTERNAL_SNAPSHOT' pilots/ghoststream/april_stream/mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md
 
-      - name: Ensure recovery and rerun infrastructure exists
+      - name: Ensure recovery and review infrastructure exists
         run: |
           test -s pilots/ghoststream/recovered_pipeline/SOURCE_MANIFEST.json
           test -s pilots/ghoststream/reconstruction/exact_recovered/exact_reproduction.json
           test -s pilots/ghoststream/reconstruction/exact_downstream/downstream_reproduction.json
           test -s pilots/ghoststream/reconstruction/exact_external/external_reproduction.json
+          test -s pilots/ghoststream/april_stream/mdc/mdc_package_consistency_summary.json
+          test -s pilots/ghoststream/april_stream/build_expert_review_bundle.py
           test -s .github/workflows/ghoststream-primary-reproduction-pr.yml
           test -s .github/workflows/ghoststream-recovered-downstream-reproduction.yml
           test -s .github/workflows/ghoststream-recovered-external-reproduction.yml
+          test -s .github/workflows/ghoststream-mdc-package-audit.yml
+          test -s .github/workflows/ghoststream-expert-review-bundle.yml
 
       - name: Guard against premature submission language
         shell: bash

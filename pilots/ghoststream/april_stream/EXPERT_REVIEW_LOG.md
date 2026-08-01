@@ -6,15 +6,20 @@ Last updated: 2026-08-01
 
 **No outreach has been sent. No external scientific review has been completed.**
 
-Prepared review bundle:
+Current sendable review bundle:
 
-- source commit: `e65437383099b696b28606bcf2cf3e65aad2f0f0`
-- inner ZIP SHA-256: `5ecf86b507e0d677bda37eb5716aede0ff4adab54eb8e804e4f73e654a105a14`
-- workflow run: `30679946992`
-- artifact ID: `8811845053`
-- artifact expiration: 2026-08-31 02:24:45 UTC
+- source commit: `dd6607bbe4b5a1472d753dc966450e8526795100`
+- inner ZIP SHA-256: `782c539109bf9ec997152b913c13775af4a6d38e366e58031e704457cf0ee80d`
+- included scientific files: 23
+- AI/software provenance included: yes
+- workflow run: `30680227323`
+- artifact ID: `8811936608`
+- artifact wrapper SHA-256: `308e96f2f31c138a81f25c1007be0707e74db5157f7f69bb817f8adffe90a0d2`
+- artifact expiration: 2026-08-31 02:33:06 UTC
 
-A later scientific edit requires a new bundle and must not reuse this hash.
+The earlier bundle from commit `e65437383099b696b28606bcf2cf3e65aad2f0f0` is superseded because it did not include the explicit AI/software provenance record. Do not send the earlier bundle.
+
+A later scientific edit requires a new bundle and must not reuse the current hash.
 
 ## Planned review sequence
 
@@ -58,6 +63,7 @@ Copy this section for each reviewer.
 - Coordinate/orbit correction:
 - Antihelion/null-model concern:
 - External-evidence concern:
+- AI/software provenance concern:
 - Required analysis:
 - Required manuscript revision:
 - MDC submission recommendation:

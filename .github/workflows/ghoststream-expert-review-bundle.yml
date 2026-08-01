@@ -16,7 +16,19 @@ on:
       - "pilots/ghoststream/april_stream/all_external_members_zero_speed.csv"
       - "pilots/ghoststream/april_stream/shober_edmond/SHOBER_EDMOND_VALIDATION.md"
       - "pilots/ghoststream/april_stream/edmond_2024/EDMOND_CURRENT_RELEASE_AUDIT.md"
+      - "pilots/ghoststream/recovered_pipeline/**"
+      - "pilots/ghoststream/reconstruction/exact_recovered/**"
+      - "pilots/ghoststream/reconstruction/exact_downstream/**"
+      - "pilots/ghoststream/reconstruction/exact_external/**"
+      - "pilots/ghoststream/results/ghoststream_final_summary.json"
+      - "pilots/ghoststream/reproducibility_gap_summary.json"
+      - "pilots/ghoststream/recovery/CURRENT_RECOVERY_STATUS.md"
+      - ".github/workflows/ghoststream-primary-reproduction-pr.yml"
+      - ".github/workflows/ghoststream-recovered-downstream-reproduction.yml"
+      - ".github/workflows/ghoststream-recovered-external-reproduction.yml"
+      - ".github/workflows/ghoststream-mdc-package-audit.yml"
       - ".github/workflows/ghoststream-expert-review-bundle.yml"
+      - ".github/workflows/ghoststream-reproducibility-hold.yml"
   workflow_dispatch:
 
 permissions:
@@ -25,7 +37,7 @@ permissions:
 jobs:
   build-review-bundle:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
         with:
@@ -46,11 +58,9 @@ jobs:
           echo "GhostStream source branch head: $sha"
 
       - name: Compile bundle builder
-        run: |
-          python -m py_compile \
-            pilots/ghoststream/april_stream/build_expert_review_bundle.py
+        run: python -m py_compile pilots/ghoststream/april_stream/build_expert_review_bundle.py
 
-      - name: Build deterministic bundle
+      - name: Build deterministic code-inclusive bundle
         shell: bash
         run: |
           set -euo pipefail
@@ -68,31 +78,46 @@ jobs:
 
           branch_head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
           result = json.loads(Path("expert_review_bundle/expert_review_bundle_build.json").read_text())
-          assert result["verdict"] == "PASS_EXPERT_REVIEW_BUNDLE_BUILT"
+          assert result["verdict"] == "PASS_CODE_INCLUSIVE_EXPERT_REVIEW_BUNDLE_BUILT"
           assert result["source_commit"] == branch_head
-          assert result["included_files"] == 23
-          assert result["zip_members"] == 25
+          assert result["included_files"] >= 100
+          assert result["zip_members"] == result["included_files"] + 2
+          assert result["required_paths_present"] is True
           assert len(result["zip_sha256"]) == 64
           path = Path(result["output"])
           with zipfile.ZipFile(path) as archive:
               assert archive.testzip() is None
-              names = archive.namelist()
-              assert "README.md" in names
-              assert "MANIFEST.json" in names
-              assert "mdc/AI_AND_SOFTWARE_PROVENANCE.md" in names
+              names = set(archive.namelist())
+              required = {
+                  "README.md",
+                  "MANIFEST.json",
+                  "april_stream/EXPERT_REVIEW_PACKET.md",
+                  "april_stream/mdc/AI_AND_SOFTWARE_PROVENANCE.md",
+                  "recovered_pipeline/SOURCE_MANIFEST.json",
+                  "recovered_pipeline/pr57_novel/validate_april_candidate.py",
+                  "reconstruction/exact_recovered/exact_reproduction.json",
+                  "reconstruction/exact_downstream/downstream_reproduction.json",
+                  "reconstruction/exact_external/external_reproduction.json",
+                  "ci/ghoststream-primary-reproduction-pr.yml",
+                  "ci/ghoststream-recovered-downstream-reproduction.yml",
+                  "ci/ghoststream-recovered-external-reproduction.yml",
+              }
+              assert required <= names, sorted(required - names)
               manifest = json.loads(archive.read("MANIFEST.json"))
               assert manifest["source_commit"] == branch_head
-              assert manifest["file_count"] == 23
+              assert manifest["file_count"] == result["included_files"]
+              assert manifest["reproducibility_status"] == "source_recovered_primary_internal_and_external_analysis_reruns_passed"
+              assert set(manifest["required_bundle_paths"]) <= names
           print(json.dumps(result, indent=2))
           PY
 
       - name: Upload expert review bundle
         uses: actions/upload-artifact@v4
         with:
-          name: ghoststream-expert-review-bundle
+          name: ghoststream-code-inclusive-expert-review-bundle
           path: |
             expert_review_bundle/GhostStream_Expert_Review_Bundle.zip
             expert_review_bundle/expert_review_bundle_build.json
             expert_review_bundle.log
           if-no-files-found: error
-          retention-days: 30
+          retention-days: 90

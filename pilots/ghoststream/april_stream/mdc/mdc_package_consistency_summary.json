@@ -1,0 +1,70 @@
+{
+  "verdict": "PASS_MDC_PACKAGE_INTERNALLY_CONSISTENT",
+  "run_date_utc": "2026-08-01",
+  "lookup_rows": 95,
+  "check_count": 111,
+  "passed_checks": 111,
+  "failed_checks": 0,
+  "recomputed_from_lookup": {
+    "LoSb": 32.95845,
+    "LoSe": 40.269068,
+    "LoS": 37.149520378947365,
+    "Ra": 247.16974634736843,
+    "De": -14.342742789473684,
+    "Vg": 37.617512526315785,
+    "LoR": 247.72599663157894,
+    "S_LoR": 210.57647625263155,
+    "LaR": 7.338829473684211,
+    "dRa": 0.8870783675724828,
+    "dDe": -0.15750649890816443,
+    "N": 95
+  },
+  "lookup_quantization": {
+    "serialized_decimal_places": 6,
+    "mean_value_absolute_tolerance": 5e-7,
+    "slope_absolute_tolerance": 1e-6,
+    "interpretation": "Representation tolerance for the six-decimal lookup table, not a scientific acceptance threshold."
+  },
+  "semimajor_axis": {
+    "submitted_q": 0.080114,
+    "submitted_e": 0.943593,
+    "exact_a_from_submitted_q_e": 1.4202847164359038,
+    "submitted_a": 1.420285,
+    "submitted_rounding_error_au": 2.835640962262742e-7,
+    "full_precision_mean_q": 0.08011411578947367,
+    "full_precision_mean_e": 0.9435933578947369,
+    "a_from_full_precision_means": 1.4202957807693795
+  },
+  "validated_boundaries": {
+    "exact_official_checker_zero_errors": true,
+    "static_and_fresh_checker_outputs_identical": true,
+    "live_iau_mdc_hard_duplicate_matches": 0,
+    "live_iau_mdc_radiant_speed_activity_near_matches": 0,
+    "live_iau_mdc_orbit_incomplete_near_matches": 0,
+    "complete_edmond_v601_release_tested": false,
+    "currently_linked_edmond_selected_members": 6,
+    "currently_linked_edmond_additional_events": 0
+  },
+  "manifest": {
+    "pilots/ghoststream/april_stream/mdc/GhostStream_April_95_GMN_lookup.csv": "0f021d95df56901ba119114d9b7c3816abbb3c86354638f23a69eed71b1aa6d3",
+    "pilots/ghoststream/april_stream/mdc/GhostStream_April_mean_submission.json": "ad674924a6f6730f7a1c78b6825d670b6c4bdf7f8aed3a58c7a382b15460aded",
+    "pilots/ghoststream/april_stream/mdc/GhostStream_April_mean_legacy.txt": "c327333469911555360656b8c9659ee1afa90e7100bb511034b95f871377558d",
+    "pilots/ghoststream/april_stream/mdc/calculation_audit.json": "bcfc50adf58d70d73983e1ebae51a719ea8ae882d43938fd7220b2f8e6d3ff9c",
+    "pilots/ghoststream/april_stream/mdc/exact_official_checker_summary.json": "580c9c0906c5d925d0071bd8770eb9a56c28ce5e51c66c34cfa9c0232f8f494a",
+    "pilots/ghoststream/april_stream/mdc/MDC_OFFICIAL_CHECKER_REPORT.md": "99b71ffb837de61598319afb61a8d01490869810fc37a43f257ba1f930347c3a",
+    "pilots/ghoststream/april_stream/mdc/live_mdc_novelty_refresh_summary.json": "6d2c2b145a63048938244f0a5c7fb7c078d48c53a46959ec68b89b4b577573ee",
+    "pilots/ghoststream/april_stream/candidate_solution.json": "d79e9ad9a51f6b4b4dad55e1077c82d165db73ad30767f30af67e36522f696c9",
+    "pilots/ghoststream/april_stream/edmond_2024/linked_v601_frozen_summary.json": "53ef2295cc4a076ae11cf54df348129c801a6ccb622149730c98b1b2ab6fb9f4",
+    "pilots/ghoststream/results/ghoststream_final_summary.json": "f9245309ca48c1324032d9ef4a165553eb0bbe989929241d5617bfa1dc27e2d2",
+    "pilots/ghoststream/RESULTS.md": "60d4111050fdb72798541b9075720e5ae11d30305c44be9467f9d51f72611e83",
+    "pilots/ghoststream/april_stream/mdc/MANUSCRIPT_DRAFT.md": "b44dd8fc562ce928dd778ab68f1581a3bb025affc06711013cf361ae122c7806",
+    "pilots/ghoststream/april_stream/mdc/README.md": "f6b19512f6178f4c4702a1fffe0c83b8828d88a2500c06cf9dbdd12c71b944a2",
+    "pilots/ghoststream/april_stream/mdc/SUBMISSION_CHECKLIST.md": "d959505cb15c305864dd474309aa35e5cd5d8dbda9df7101cdec29ef334f8884"
+  },
+  "ci_evidence": {
+    "workflow_run_id": 30679519051,
+    "artifact_id": 8811703184,
+    "artifact_sha256": "9b60b836a6781e574b50ad7d9b6b6f445ef8feab59250d47ee75adf605a05776"
+  },
+  "claim_boundary": "Internal consistency and provenance only; not IAU submission, official recognition, external scientific review, or a new independent replication."
+}

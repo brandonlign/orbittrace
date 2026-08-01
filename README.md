@@ -48,4 +48,4 @@ The analysis dependencies are listed in `requirements.txt`.
 
 ## Use of AI
 
-OpenAI ChatGPT assisted with research planning, code drafting and debugging, source discovery, reproducibility checks, organization, and editing. Brandon Li reviewed the methods, code, sources, numerical results, and interpretations and is responsible for the final work.
+ChatGPT assisted with portions of the coding, troubleshooting, and writing. Brandon Li directed the project, evaluated the results, and made the final methodological and scientific decisions.

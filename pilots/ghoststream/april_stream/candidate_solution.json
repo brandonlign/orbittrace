@@ -25,24 +25,33 @@
     "year_night_cluster_bootstrap_replicates": 20000,
     "right_ascension_drift_deg_per_deg": {
       "point_estimate": 0.887078,
-      "confidence_interval_95": [0.672, 1.040],
+      "confidence_interval_95": [
+        0.672,
+        1.04
+      ],
       "resolved_from_zero": true
     },
     "declination_drift_deg_per_deg": {
       "point_estimate": -0.157506,
-      "confidence_interval_95": [-0.248, -0.037],
+      "confidence_interval_95": [
+        -0.248,
+        -0.037
+      ],
       "resolved_from_zero": true
     },
     "geocentric_speed_drift_km_s_per_deg": {
       "point_estimate": -0.0293492,
-      "confidence_interval_95": [-0.178, 0.221],
+      "confidence_interval_95": [
+        -0.178,
+        0.221
+      ],
       "resolved_from_zero": false,
       "interpretation": "Retain the fitted value for reproducibility, but do not claim a physical speed drift. Uniform external validation fixes this slope to zero."
     }
   },
   "residual_dispersion": {
     "sun_centered_ecliptic_longitude_sigma_deg": 0.7369,
-    "ecliptic_latitude_sigma_deg": 0.6250,
+    "ecliptic_latitude_sigma_deg": 0.625,
     "geocentric_speed_sigma_km_s": 1.1596
   },
   "refined_orbit": {
@@ -56,23 +65,62 @@
     "tisserand_parameter_jupiter": 3.8416041641
   },
   "cluster_bootstrap_95_intervals": {
-    "solar_longitude_deg": [36.334, 38.043],
-    "right_ascension_deg": [246.428, 247.894],
-    "declination_deg": [-14.565, -14.159],
-    "geocentric_speed_km_s": [37.201, 37.865],
-    "perihelion_distance_au": [0.078358, 0.082575],
-    "eccentricity": [0.940369, 0.945591],
-    "inclination_deg": [23.448, 24.961],
-    "argument_of_perihelion_deg": [333.262, 333.946],
-    "node_deg": [36.341, 38.052],
-    "semimajor_axis_au": [1.3725, 1.4549]
+    "solar_longitude_deg": [
+      36.334,
+      38.043
+    ],
+    "right_ascension_deg": [
+      246.428,
+      247.894
+    ],
+    "declination_deg": [
+      -14.565,
+      -14.159
+    ],
+    "geocentric_speed_km_s": [
+      37.201,
+      37.865
+    ],
+    "perihelion_distance_au": [
+      0.078358,
+      0.082575
+    ],
+    "eccentricity": [
+      0.940369,
+      0.945591
+    ],
+    "inclination_deg": [
+      23.448,
+      24.961
+    ],
+    "argument_of_perihelion_deg": [
+      333.262,
+      333.946
+    ],
+    "node_deg": [
+      36.341,
+      38.052
+    ],
+    "semimajor_axis_au": [
+      1.3725,
+      1.4549
+    ]
   },
   "gmn_evidence": {
     "deduplicated_selected_members_2019_2026": 101,
     "members_in_significant_years_2022_2026": 95,
-    "significant_years": [2022, 2023, 2024, 2025, 2026],
-    "untouched_confirmation_years": [2022, 2023],
-    "pooled_untouched_activity_p": 0.00001857134041807409,
+    "significant_years": [
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "untouched_confirmation_years": [
+      2022,
+      2023
+    ],
+    "pooled_untouched_activity_p": 1.857134041807409e-05,
     "pooled_untouched_shifted_window_p": 0.017543859649122806,
     "pooled_untouched_orbit_null_p": 0.0001,
     "overall_median_orbital_distance": 0.0439834,
@@ -85,9 +133,18 @@
   },
   "independent_archive_evidence": {
     "primary_cross_network": {
-      "catalogs": ["CAMS", "SonotaCo"],
+      "catalogs": [
+        "CAMS",
+        "SonotaCo"
+      ],
       "strict_members": 10,
-      "years": [2011, 2012, 2022, 2023, 2025],
+      "years": [
+        2011,
+        2012,
+        2022,
+        2023,
+        2025
+      ],
       "member_counts": {
         "CAMS-2011": 2,
         "CAMS-2012": 4,
@@ -100,23 +157,86 @@
       "pooled_shifted_window_p_posthoc": 0.02040816326530612,
       "pooled_median_orbital_distance": 0.0487914089007297,
       "pooled_q90_orbital_distance": 0.07708080241916682,
-      "pooled_orbit_null_p": 0.00005,
+      "pooled_orbit_null_p": 5e-05,
       "pooled_medoid_distance_to_gmn_orbit": 0.017230503215407457,
       "interpretation": "Primary external support. Pooling is explicitly post-hoc because it was motivated by sparse archive-specific outcomes."
     },
     "extended_exploratory": {
-      "catalogs": ["CAMS", "SonotaCo", "Shober-EDMOND"],
+      "catalogs": [
+        "CAMS",
+        "SonotaCo",
+        "Shober-EDMOND"
+      ],
       "strict_members": 16,
-      "years": [2011, 2012, 2014, 2016, 2017, 2022, 2023, 2025],
+      "years": [
+        2011,
+        2012,
+        2014,
+        2016,
+        2017,
+        2022,
+        2023,
+        2025
+      ],
       "uniform_speed_drift_km_s_per_deg": 0.0,
-      "pooled_activity_p_posthoc": 0.000001463872778077572,
+      "pooled_activity_p_posthoc": 1.463872778077572e-06,
       "pooled_shifted_window_p_posthoc": 0.02040816326530612,
       "pooled_median_orbital_distance": 0.04843263558185726,
       "pooled_q90_orbital_distance": 0.08700583156353803,
-      "pooled_orbit_null_p": 0.00005,
+      "pooled_orbit_null_p": 5e-05,
       "pooled_medoid_distance_to_gmn_orbit": 0.017230503215407457,
       "exact_cross_source_duplicate_groups": 0,
       "interpretation": "Supporting exploratory evidence. EDMOND is a compiled archive and may share upstream network provenance with other historical catalogs, so it is not counted as a fully independent third instrument."
+    },
+    "full_linked_edmond_v601": {
+      "validated_annual_archives": 23,
+      "validated_years": [
+        2001,
+        2002,
+        2003,
+        2004,
+        2005,
+        2006,
+        2007,
+        2008,
+        2009,
+        2010,
+        2011,
+        2012,
+        2013,
+        2014,
+        2015,
+        2016,
+        2017,
+        2018,
+        2019,
+        2020,
+        2021,
+        2022,
+        2023
+      ],
+      "unavailable_years": [
+        2024
+      ],
+      "selected_members": 6,
+      "selected_years": [
+        2014,
+        2016,
+        2017,
+        2022
+      ],
+      "exact_overlaps_with_prior_shober_six": 6,
+      "additional_selected_events": 0,
+      "uniform_speed_drift_km_s_per_deg": 0.0,
+      "activity_p": 0.0003378529391388961,
+      "activity_odds_ratio": 7.4554307337988845,
+      "shifted_window_p": 0.061224489795918366,
+      "median_orbit_d_sh": 0.03600524759144138,
+      "q90_orbit_d_sh": 0.07344069219748785,
+      "maximum_orbit_d_sh": 0.09805965651612987,
+      "orbit_null_p": 4.999750012499375e-05,
+      "standalone_gate_passed": false,
+      "interpretation": "The complete usable linked v6.01 annual series reproduces exactly the prior six EDMOND events. It is supporting, provenance-limited evidence, not an additional independent sample or a full frozen pass."
     }
   },
   "novelty_audit": {

@@ -15,7 +15,8 @@ A blind scan of 2026 Global Meteor Network trajectories found a compact annual A
 - remains significant under **all 81 of 81** frozen combinations of fit-error, station-count, radiant-width, and activity-window rules;
 - has stable mean radiant and orbit under a **20,000-replicate year/night cluster bootstrap**;
 - is supported primarily by **10 CAMS and SonotaCo meteors** across five historical years;
-- receives additional orbitally strong support from **six non-overlapping meteors** in a shower-removed EDMOND subset; and
+- receives additional orbitally strong support from **six non-overlapping meteors** in a shower-removed EDMOND subset;
+- reproduces exactly those six and no additional members when the unchanged template is applied to every usable linked EDMOND v6.01 annual archive from 2001–2023; and
 - passes the official MDC radiant/orbit consistency programs with **zero flagged errors**.
 
 The correct claim is currently:
@@ -179,7 +180,9 @@ Combining CAMS, SonotaCo, and the Shober EDMOND subset produced:
 
 This extension is explicitly exploratory. EDMOND is a compiled archive and may share contributing-network provenance with other historical catalogues, so it is not counted as a clean third independent instrument.
 
-The advertised public EDMOND 2024 annual attachment was unavailable during the audit. The page, WordPress API, sitemaps, and 252 plausible asset paths did not yield a valid file. No scientific inference was drawn from its absence.
+The advertised public EDMOND 2024 annual attachment remains unavailable. A networked recovery audit tested 434 candidate URLs, direct and alternate site paths, the WordPress media API, Wayback, and recent Common Crawl indexes without finding a CRC-valid 2024 ZIP; the neighboring official 2023 archive passed ZIP, CRC, and schema validation in the same environment. The missing 2024 file was not inferred or reconstructed.
+
+The unchanged zero-speed-drift template was then applied to all **23 usable linked annual archives from 2001–2023**. It selected exactly the same six 2014, 2016, 2017, and 2022 events already preserved from the Shober subset and no additional events. The full-series activity enrichment was strong (one-sided Fisher p = **3.3785×10⁻⁴**, odds ratio **7.455**) and the post-selection orbit remained decisive (median Southworth–Hawkins D = **0.03601**, q90 = **0.07344**, 20,000-trial orbit-null p = **4.99975×10⁻⁵**). The 48-position shifted-window audit gave p = **0.06122**. This is therefore supporting evidence rather than a standalone frozen pass: the sample remains below the preexisting N ≥ 8 rule and the supplemental localization audit is slightly above 0.05. No scientific inference is drawn from the absent 2024 attachment.
 
 ### Novelty and parent-body audit
 

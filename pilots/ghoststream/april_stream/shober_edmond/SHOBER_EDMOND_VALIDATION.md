@@ -27,3 +27,7 @@ The open Zenodo file is a shower-removed EDMOND subset published independently o
 The result is supportive rather than a standalone catalogue pass. It narrowly misses the original activity threshold of p ≤ 0.01 and contains six rather than eight members. Its orbital evidence is independently decisive and is not sensitive to the unresolved speed drift.
 
 The Shober EDMOND subset may contain observations contributed by networks that also appear in other historical compilations. It is therefore preserved as a separate robustness result and is not automatically counted as a fully independent third observing network.
+
+## Later full linked-series audit
+
+The unchanged zero-speed-drift template was later applied to all 23 usable annual ZIPs linked by the public EDMOND v6.01 page from 2001–2023. The linked 2024 ZIP remained unavailable. The full annual series selected exactly these same six UTC events and no additional events. Its one-sided activity p was 3.3785×10⁻⁴, the 48-position shifted-window p was 0.06122, and the 20,000-trial post-selection orbit-null p was 4.99975×10⁻⁵. This confirms the six-member extraction in the full usable public series without changing the interpretation: supportive, orbitally strong, provenance-limited evidence rather than an independent standalone pass.

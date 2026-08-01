@@ -42,6 +42,23 @@ This is the primary external result because CAMS and SonotaCo provide distinct h
 
 The EDMOND extension is supporting, explicitly exploratory evidence. EDMOND is a compiled historical archive and may share contributing networks or reduction ancestry with other video-meteor compilations. The absence of exact UTC duplicates prevents simple double-counting of the same selected events, but the three archive labels must not be interpreted as three fully independent instruments.
 
+## Full linked EDMOND v6.01 annual audit
+
+The unchanged zero-speed-drift template was also applied to every usable annual archive linked by the public EDMOND v6.01 page. Twenty-three annual ZIPs from 2001–2023 passed signature, CRC, schema, and finite-field checks; the linked 2024 ZIP returned HTTP 404. The evaluation selected exactly the same six EDMOND events already listed above and no additional events.
+
+- Members: **6**
+- Years: **2014, 2016, 2017, 2022**
+- One-sided activity p: **3.3785294 × 10⁻⁴**
+- Activity odds ratio: **7.4554**
+- Shifted-window p: **0.0612245**
+- Median Southworth–Hawkins D: **0.036005**
+- q90 Southworth–Hawkins D: **0.073441**
+- Orbit-null p: **4.99975 × 10⁻⁵**
+- Exact overlaps with the six Shober-selected events: **6/6**
+- Additional selected events: **0**
+
+This strengthens the provenance and reproducibility of the six-event EDMOND support but does not turn it into a new independent sample. It remains below the frozen N ≥ 8 standalone gate, and its supplemental shifted-window audit is slightly above 0.05.
+
 ## Interpretation
 
 The independent-archive result is not an artifact of the fitted GMN speed slope. Setting that unresolved slope to zero leaves the primary CAMS+SonotaCo evidence unchanged and preserves all 16 external radiant-time members in the extended audit. Orbit was not used to select members; their orbital compactness was tested only afterward against source- and time-matched null samples.

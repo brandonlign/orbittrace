@@ -2,26 +2,99 @@
   "pilot": "GhostStream",
   "overall_verdict": "GO",
   "primary_result": {
+    "internal_id": "GhostStream-April-36.9",
+    "status": "high_confidence_uncatalogued_stream_candidate",
+    "official_iau_designation": null,
+    "significant_gmn_years": [
+      2022,
+      2023,
+      2024,
+      2025,
+      2026
+    ],
+    "confirmed_gmn_members": 95,
+    "deduplicated_selected_gmn_members_2019_2026": 101,
+    "untouched_confirmation_years": [
+      2022,
+      2023
+    ],
+    "untouched_pooled_activity_p": 1.857134041807409e-05,
+    "untouched_shifted_window_p": 0.017543859649122806,
+    "untouched_orbit_null_p": 0.0001,
+    "geographic_groups_passing": 3,
+    "specification_grid_passes": 81,
+    "specification_grid_cells": 81,
+    "uncertainty_clone_passes": 1000,
+    "uncertainty_clone_trials": 1000,
+    "iau_solutions_parsed": 2174,
+    "hard_iau_matches": 0
+  },
+  "primary_external_support": {
+    "catalogs": [
+      "CAMS",
+      "SonotaCo"
+    ],
+    "members": 10,
+    "years": [
+      2011,
+      2012,
+      2022,
+      2023,
+      2025
+    ],
+    "activity_p_posthoc": 0.0001621843884718582,
+    "shifted_window_p_posthoc": 0.02040816326530612,
+    "orbit_null_p": 5e-05
+  },
+  "supporting_edmond_evidence": {
+    "members": 6,
+    "years": [
+      2014,
+      2016,
+      2017,
+      2022
+    ],
+    "full_linked_annual_archives_validated": 23,
+    "full_linked_years": [
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ],
+    "unavailable_linked_years": [
+      2024
+    ],
+    "exact_overlaps_with_prior_six": 6,
+    "additional_selected_events": 0,
+    "activity_p": 0.0003378529391388961,
+    "shifted_window_p": 0.061224489795918366,
+    "orbit_null_p": 4.999750012499375e-05,
+    "standalone_gate_passed": false
+  },
+  "secondary_result": {
     "iau_code": "NMV",
     "name": "Northern March gamma-Virginids",
     "iau_status": "working list",
-    "finding": "Independent multi-year confirmation in GMN meteors labeled sporadic",
-    "significant_years": [2021, 2022, 2023, 2024, 2025],
-    "untouched_significant_years": [2021, 2022, 2023],
-    "significant_year_count": 5,
-    "untouched_significant_year_count": 3,
-    "selected_members_all_years": 112,
-    "uncertainty_clone_iterations": 500,
-    "uncertainty_clone_pass_fraction": 1.0
-  },
-  "secondary_result": {
-    "iau_code": "EOC",
-    "name": "eta1-Coronae Australids",
-    "iau_status": "working list",
-    "significant_years": [2023, 2024, 2025],
-    "untouched_significant_year_count": 1,
-    "selected_members_all_years": 60,
-    "frozen_multiyear_gate_passed": false
+    "finding": "Independent multi-year method-validation recovery in GMN meteors labeled sporadic"
   },
   "method_validation": {
     "untouched_known_showers_recovered": 3,
@@ -32,5 +105,5 @@
       "80_members": "8/9"
     }
   },
-  "claim_limit": "This supports independent confirmation and refinement of an IAU working-list shower; it is not an official establishment or a brand-new shower discovery."
+  "claim_limit": "This supports a high-confidence uncatalogued annual April meteor-stream candidate. It is not official IAU recognition, an established shower, a fully independent third-network replication, an absolute-flux measurement, or a parent-body identification."
 }

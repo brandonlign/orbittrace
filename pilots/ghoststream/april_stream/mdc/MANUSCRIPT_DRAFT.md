@@ -52,7 +52,7 @@ The frozen candidate was later tested in:
 
 The Shober EDMOND file was verified against its published MD5 before analysis. EDMOND aggregates observations from contributing video networks and can share provenance with other historical compilations. It was therefore treated as additional robustness evidence rather than a fully independent third instrument.
 
-The public EDMOND v6.01 page advertises a 2024 annual file containing 13,513 refined orbits, but its live attachment was unavailable during the audit. The page HTML, WordPress media API, sitemaps, and 252 plausible asset paths were checked without locating a valid ZIP. No result was inferred from that missing file.
+The public EDMOND v6.01 page advertises a 2024 annual file containing 13,513 refined orbits, but its live attachment returned HTTP 404. A networked recovery audit tested 434 candidate URLs, direct and alternate site paths, the WordPress media API, Wayback, and recent Common Crawl indexes without locating a CRC-valid 2024 ZIP; the neighboring official 2023 attachment passed ZIP, CRC, and schema validation in the same environment. The missing 2024 file was not inferred or reconstructed. The frozen candidate was instead evaluated in every usable annual ZIP linked by the same page, covering 2001–2023. No result was inferred from the missing 2024 file.
 
 ### 2.3 Shower catalogue
 
@@ -275,6 +275,10 @@ The MD5-verified shower-removed EDMOND subset contained six additional members i
 - maximum member distance from the refined GMN orbit = 0.10638.
 
 The EDMOND sample narrowly missed the standalone p ≤ 0.01 and N ≥ 8 rules, so it is supportive rather than independently decisive.
+
+#### Full linked EDMOND v6.01 audit
+
+The unchanged zero-speed-drift template was subsequently applied to all 23 usable annual archives linked by the public EDMOND v6.01 page from 2001 through 2023; the linked 2024 archive remained unavailable. The full annual series selected exactly the same six UTC events as the Shober subset and no additional events. Within the expanded antihelion source, the frozen inside-versus-outside activity test gave p = 3.3785 × 10⁻⁴ and a Haldane–Anscombe odds ratio of 7.455. A 48-position shifted-window audit gave a plus-one empirical p = 0.06122. The six post-selection orbits had median Southworth–Hawkins D = 0.03601, q90 D = 0.07344, and a 20,000-trial source/time-matched orbit-null p = 4.99975 × 10⁻⁵. This full-series check confirms that the six selected events are reproducible in the public annual archives, but it does not create an independent sample and does not pass the frozen N ≥ 8 or shifted-window localization gates.
 
 The uniform exploratory synthesis of CAMS, SonotaCo, and Shober EDMOND contained 16 non-overlapping events across eight years:
 

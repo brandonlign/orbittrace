@@ -1,10 +1,6 @@
 name: GhostStream integrate live IAU MDC result
 
 on:
-  pull_request:
-    paths:
-      - "pilots/ghoststream/april_stream/mdc/integrate_live_mdc_refresh.py"
-      - ".github/workflows/ghoststream-integrate-live-mdc.yml"
   workflow_dispatch:
 
 permissions:

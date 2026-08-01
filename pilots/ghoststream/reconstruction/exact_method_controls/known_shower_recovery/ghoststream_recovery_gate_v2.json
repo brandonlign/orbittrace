@@ -1,0 +1,661 @@
+{
+  "development": {
+    "Geminids": {
+      "cluster_count": 19,
+      "largest_cluster_fraction": 0.742875,
+      "noise_fraction": 0.103125,
+      "score": {
+        "cluster": 5,
+        "cluster_size": 29715,
+        "f1": 0.9320562813347949,
+        "precision": 0.8727578663974424,
+        "recall": 1.0,
+        "recovered": true,
+        "shower": "GEM",
+        "true_count": 25934
+      },
+      "target": "GEM"
+    },
+    "Leonids": {
+      "cluster_count": 27,
+      "largest_cluster_fraction": 0.1338661897043206,
+      "noise_fraction": 0.48789894360292885,
+      "score": {
+        "cluster": 24,
+        "cluster_size": 2395,
+        "f1": 0.9192602616147948,
+        "precision": 0.8509394572025052,
+        "recall": 0.9995095635115253,
+        "recovered": true,
+        "shower": "LEO",
+        "true_count": 2039
+      },
+      "target": "LEO"
+    },
+    "Orionids": {
+      "cluster_count": 24,
+      "largest_cluster_fraction": 0.31337804767515637,
+      "noise_fraction": 0.42622133599202394,
+      "score": {
+        "cluster": 21,
+        "cluster_size": 6915,
+        "f1": 0.9029033793431699,
+        "precision": 0.8229934924078091,
+        "recall": 1.0,
+        "recovered": true,
+        "shower": "ORI",
+        "true_count": 5691
+      },
+      "target": "ORI"
+    },
+    "Perseids": {
+      "cluster_count": 19,
+      "largest_cluster_fraction": 0.6224100247705086,
+      "noise_fraction": 0.2018650735829812,
+      "score": {
+        "cluster": 18,
+        "cluster_size": 21358,
+        "f1": 0.9477781062173612,
+        "precision": 0.9007397696413522,
+        "recall": 1.0,
+        "recovered": true,
+        "shower": "PER",
+        "true_count": 19238
+      },
+      "target": "PER"
+    },
+    "Quadrantids": {
+      "cluster_count": 18,
+      "largest_cluster_fraction": 0.400670812661589,
+      "noise_fraction": 0.3258332751030676,
+      "score": {
+        "cluster": 10,
+        "cluster_size": 5734,
+        "f1": 0.9564109564109564,
+        "precision": 0.9164632019532613,
+        "recall": 1.0,
+        "recovered": true,
+        "shower": "QUA",
+        "true_count": 5255
+      },
+      "target": "QUA"
+    }
+  },
+  "development_windows": {
+    "Geminids": [
+      "2025-12-11",
+      "2025-12-15",
+      "GEM"
+    ],
+    "Leonids": [
+      "2025-11-15",
+      "2025-11-19",
+      "LEO"
+    ],
+    "Orionids": [
+      "2025-10-19",
+      "2025-10-23",
+      "ORI"
+    ],
+    "Perseids": [
+      "2025-08-10",
+      "2025-08-14",
+      "PER"
+    ],
+    "Quadrantids": [
+      "2025-01-02",
+      "2025-01-05",
+      "QUA"
+    ]
+  },
+  "frozen_pass_rule": {
+    "all_three_named_untouched_showers_recovered": true,
+    "maximum_largest_cluster_fraction": 0.3
+  },
+  "frozen_recovery_rule": {
+    "minimum_f1": 0.35,
+    "minimum_precision": 0.35,
+    "minimum_recall": 0.35,
+    "minimum_true_members": 40
+  },
+  "labels_hidden_during_clustering": true,
+  "metadata": {
+    "development": {
+      "Geminids": {
+        "columns": {
+          "bet": "betgeo_deg",
+          "label": "iau_code",
+          "lam": "lamgeo_deg",
+          "sol": "sol_lon_deg",
+          "vel": "vgeo_km_s"
+        },
+        "days": [
+          {
+            "date": "2025-12-11",
+            "rows": 4745
+          },
+          {
+            "date": "2025-12-12",
+            "rows": 10073
+          },
+          {
+            "date": "2025-12-13",
+            "rows": 21236
+          },
+          {
+            "date": "2025-12-14",
+            "rows": 14995
+          },
+          {
+            "date": "2025-12-15",
+            "rows": 3229
+          }
+        ],
+        "end": "2025-12-15",
+        "frozen_target": "GEM",
+        "quality_rows": 54267,
+        "raw_rows": 54278,
+        "sampled_rows": 40000,
+        "solar_longitude_center": 261.5448482072709,
+        "start": "2025-12-11",
+        "top_labels": {
+          "COM": 371,
+          "DAD": 144,
+          "DSA": 127,
+          "EHY": 116,
+          "EVE": 199,
+          "GEM": 25934,
+          "HYD": 514,
+          "JLL": 172,
+          "M25Y1": 214,
+          "MON": 578,
+          "ORN": 113,
+          "ORS": 62,
+          "SPORADIC": 10513,
+          "THA": 282,
+          "XVI": 86
+        }
+      },
+      "Leonids": {
+        "columns": {
+          "bet": "betgeo_deg",
+          "label": "iau_code",
+          "lam": "lamgeo_deg",
+          "sol": "sol_lon_deg",
+          "vel": "vgeo_km_s"
+        },
+        "days": [
+          {
+            "date": "2025-11-15",
+            "rows": 3175
+          },
+          {
+            "date": "2025-11-16",
+            "rows": 3712
+          },
+          {
+            "date": "2025-11-17",
+            "rows": 4308
+          },
+          {
+            "date": "2025-11-18",
+            "rows": 3376
+          },
+          {
+            "date": "2025-11-19",
+            "rows": 3349
+          }
+        ],
+        "end": "2025-11-19",
+        "frozen_target": "LEO",
+        "quality_rows": 17891,
+        "raw_rows": 17920,
+        "sampled_rows": 17891,
+        "solar_longitude_center": 235.49415112521083,
+        "start": "2025-11-15",
+        "top_labels": {
+          "AND": 64,
+          "ATS": 417,
+          "DAD": 79,
+          "FTR": 278,
+          "LEO": 2039,
+          "LTA": 1007,
+          "NID": 55,
+          "NOO": 129,
+          "NTA": 768,
+          "OER": 153,
+          "ORS": 218,
+          "PIH": 51,
+          "RPU": 42,
+          "SPORADIC": 11905,
+          "TAT": 374
+        }
+      },
+      "Orionids": {
+        "columns": {
+          "bet": "betgeo_deg",
+          "label": "iau_code",
+          "lam": "lamgeo_deg",
+          "sol": "sol_lon_deg",
+          "vel": "vgeo_km_s"
+        },
+        "days": [
+          {
+            "date": "2025-10-19",
+            "rows": 5025
+          },
+          {
+            "date": "2025-10-20",
+            "rows": 3778
+          },
+          {
+            "date": "2025-10-21",
+            "rows": 4361
+          },
+          {
+            "date": "2025-10-22",
+            "rows": 2979
+          },
+          {
+            "date": "2025-10-23",
+            "rows": 5935
+          }
+        ],
+        "end": "2025-10-23",
+        "frozen_target": "ORI",
+        "quality_rows": 22066,
+        "raw_rows": 22078,
+        "sampled_rows": 22066,
+        "solar_longitude_center": 208.60779794002494,
+        "start": "2025-10-19",
+        "top_labels": {
+          "CTA": 55,
+          "EGE": 252,
+          "LMI": 467,
+          "M2025U1": 94,
+          "NOA": 304,
+          "NUE": 199,
+          "OER": 77,
+          "ORI": 5691,
+          "PIH": 46,
+          "SFD": 45,
+          "SPORADIC": 12949,
+          "STA": 1037,
+          "TCA": 125,
+          "XAR": 366,
+          "YDR": 43
+        }
+      },
+      "Perseids": {
+        "columns": {
+          "bet": "betgeo_deg",
+          "label": "iau_code",
+          "lam": "lamgeo_deg",
+          "sol": "sol_lon_deg",
+          "vel": "vgeo_km_s"
+        },
+        "days": [
+          {
+            "date": "2025-08-10",
+            "rows": 4363
+          },
+          {
+            "date": "2025-08-11",
+            "rows": 6812
+          },
+          {
+            "date": "2025-08-12",
+            "rows": 11363
+          },
+          {
+            "date": "2025-08-13",
+            "rows": 6083
+          },
+          {
+            "date": "2025-08-14",
+            "rows": 5702
+          }
+        ],
+        "end": "2025-08-14",
+        "frozen_target": "PER",
+        "quality_rows": 34315,
+        "raw_rows": 34323,
+        "sampled_rows": 34315,
+        "solar_longitude_center": 140.4296064142049,
+        "start": "2025-08-10",
+        "top_labels": {
+          "AIC": 94,
+          "AOA": 446,
+          "AUD": 185,
+          "EQA": 85,
+          "ERI": 271,
+          "FTC": 76,
+          "JPE": 46,
+          "KAP": 110,
+          "NDA": 335,
+          "NZC": 44,
+          "PAU": 45,
+          "PER": 19238,
+          "PHE": 97,
+          "SIA": 52,
+          "SPORADIC": 12885
+        }
+      },
+      "Quadrantids": {
+        "columns": {
+          "bet": "betgeo_deg",
+          "label": "iau_code",
+          "lam": "lamgeo_deg",
+          "sol": "sol_lon_deg",
+          "vel": "vgeo_km_s"
+        },
+        "days": [
+          {
+            "date": "2025-01-02",
+            "rows": 7186
+          },
+          {
+            "date": "2025-01-03",
+            "rows": 4065
+          },
+          {
+            "date": "2025-01-04",
+            "rows": 1470
+          },
+          {
+            "date": "2025-01-05",
+            "rows": 1603
+          }
+        ],
+        "end": "2025-01-05",
+        "frozen_target": "QUA",
+        "quality_rows": 14311,
+        "raw_rows": 14324,
+        "sampled_rows": 14311,
+        "solar_longitude_center": 283.33368731574643,
+        "start": "2025-01-02",
+        "top_labels": {
+          "ACV": 49,
+          "AHY": 186,
+          "COM": 192,
+          "DSA": 38,
+          "DSV": 54,
+          "JNH": 53,
+          "NCC": 64,
+          "OLE": 33,
+          "ORN": 50,
+          "PIH": 61,
+          "PIP": 57,
+          "QUA": 5255,
+          "SCC": 84,
+          "SPORADIC": 7798,
+          "TCD": 49
+        }
+      }
+    },
+    "untouched": {
+      "Eta_Aquariids": {
+        "columns": {
+          "bet": "betgeo_deg",
+          "label": "iau_code",
+          "lam": "lamgeo_deg",
+          "sol": "sol_lon_deg",
+          "vel": "vgeo_km_s"
+        },
+        "days": [
+          {
+            "date": "2025-05-03",
+            "rows": 3002
+          },
+          {
+            "date": "2025-05-04",
+            "rows": 3284
+          },
+          {
+            "date": "2025-05-05",
+            "rows": 3263
+          },
+          {
+            "date": "2025-05-06",
+            "rows": 3169
+          },
+          {
+            "date": "2025-05-07",
+            "rows": 2537
+          },
+          {
+            "date": "2025-05-08",
+            "rows": 2985
+          }
+        ],
+        "end": "2025-05-08",
+        "frozen_target": "ETA",
+        "quality_rows": 18230,
+        "raw_rows": 18240,
+        "sampled_rows": 18230,
+        "solar_longitude_center": 45.83983634541064,
+        "start": "2025-05-03",
+        "top_labels": {
+          "ARC": 37,
+          "AVB": 42,
+          "BAQ": 76,
+          "BTC": 20,
+          "EDR": 35,
+          "ELY": 58,
+          "EPS": 60,
+          "ETA": 6043,
+          "GAQ": 52,
+          "ILI": 80,
+          "OMC": 18,
+          "OTH": 17,
+          "SPORADIC": 11451,
+          "TVU": 66,
+          "XSC": 75
+        }
+      },
+      "Lyrids": {
+        "columns": {
+          "bet": "betgeo_deg",
+          "label": "iau_code",
+          "lam": "lamgeo_deg",
+          "sol": "sol_lon_deg",
+          "vel": "vgeo_km_s"
+        },
+        "days": [
+          {
+            "date": "2025-04-19",
+            "rows": 1490
+          },
+          {
+            "date": "2025-04-20",
+            "rows": 1973
+          },
+          {
+            "date": "2025-04-21",
+            "rows": 2457
+          },
+          {
+            "date": "2025-04-22",
+            "rows": 3011
+          },
+          {
+            "date": "2025-04-23",
+            "rows": 2674
+          },
+          {
+            "date": "2025-04-24",
+            "rows": 2668
+          }
+        ],
+        "end": "2025-04-24",
+        "frozen_target": "LYR",
+        "quality_rows": 14252,
+        "raw_rows": 14273,
+        "sampled_rows": 14252,
+        "solar_longitude_center": 32.27959659611589,
+        "start": "2025-04-19",
+        "top_labels": {
+          "AHE": 31,
+          "APC": 28,
+          "ARC": 153,
+          "AVB": 201,
+          "DLI": 111,
+          "ETA": 100,
+          "GSG": 40,
+          "ILI": 89,
+          "LYR": 2703,
+          "NHE": 108,
+          "NPE": 36,
+          "RLY": 40,
+          "SPORADIC": 10358,
+          "TAL": 69,
+          "ZCY": 89
+        }
+      },
+      "Southern_Delta_Aquariids": {
+        "columns": {
+          "bet": "betgeo_deg",
+          "label": "iau_code",
+          "lam": "lamgeo_deg",
+          "sol": "sol_lon_deg",
+          "vel": "vgeo_km_s"
+        },
+        "days": [
+          {
+            "date": "2025-07-27",
+            "rows": 4135
+          },
+          {
+            "date": "2025-07-28",
+            "rows": 5671
+          },
+          {
+            "date": "2025-07-29",
+            "rows": 4686
+          },
+          {
+            "date": "2025-07-30",
+            "rows": 5723
+          },
+          {
+            "date": "2025-07-31",
+            "rows": 6060
+          },
+          {
+            "date": "2025-08-01",
+            "rows": 6877
+          }
+        ],
+        "end": "2025-08-01",
+        "frozen_target": "SDA",
+        "quality_rows": 33142,
+        "raw_rows": 33152,
+        "sampled_rows": 33142,
+        "solar_longitude_center": 127.24019903032605,
+        "start": "2025-07-27",
+        "top_labels": {
+          "CAP": 2784,
+          "EQA": 198,
+          "ERI": 297,
+          "GDR": 345,
+          "JPE": 133,
+          "KAP": 195,
+          "NDA": 94,
+          "NZC": 119,
+          "PER": 2174,
+          "PHE": 244,
+          "PPS": 211,
+          "SDA": 8572,
+          "SPORADIC": 16921,
+          "SZC": 82,
+          "UCA": 88
+        }
+      }
+    }
+  },
+  "pilot": "GhostStream",
+  "reason_for_single_correction": "v1 leaf clustering fragmented major showers into small high-precision clusters",
+  "setting_frozen_before_untouched_test": {
+    "cluster_selection_method": "eom",
+    "min_cluster_size": 40,
+    "min_samples": 10,
+    "scales": [
+      4.0,
+      4.0,
+      3.0,
+      3.0
+    ]
+  },
+  "stage": "known_shower_recovery_gate_v2",
+  "untouched": {
+    "Eta_Aquariids": {
+      "cluster_count": 16,
+      "largest_cluster_fraction": 0.36659352715304444,
+      "noise_fraction": 0.31162918266593526,
+      "score": {
+        "cluster": 15,
+        "cluster_size": 6683,
+        "f1": 0.9497092566399497,
+        "precision": 0.9042346251683375,
+        "recall": 1.0,
+        "recovered": true,
+        "shower": "ETA",
+        "true_count": 6043
+      },
+      "target": "ETA"
+    },
+    "Lyrids": {
+      "cluster_count": 16,
+      "largest_cluster_fraction": 0.23414257648049397,
+      "noise_fraction": 0.40078585461689586,
+      "score": {
+        "cluster": 9,
+        "cluster_size": 3337,
+        "f1": 0.8947019867549669,
+        "precision": 0.8097093197482769,
+        "recall": 0.9996300406955235,
+        "recovered": true,
+        "shower": "LYR",
+        "true_count": 2703
+      },
+      "target": "LYR"
+    },
+    "Southern_Delta_Aquariids": {
+      "cluster_count": 27,
+      "largest_cluster_fraction": 0.3023052320318629,
+      "noise_fraction": 0.3684750467684509,
+      "score": {
+        "cluster": 11,
+        "cluster_size": 10019,
+        "f1": 0.9221666397719326,
+        "precision": 0.8555744086236151,
+        "recall": 1.0,
+        "recovered": true,
+        "shower": "SDA",
+        "true_count": 8572
+      },
+      "target": "SDA"
+    }
+  },
+  "untouched_eligible": 3,
+  "untouched_largest_cluster_fraction": 0.36659352715304444,
+  "untouched_recovered": 3,
+  "untouched_windows": {
+    "Eta_Aquariids": [
+      "2025-05-03",
+      "2025-05-08",
+      "ETA"
+    ],
+    "Lyrids": [
+      "2025-04-19",
+      "2025-04-24",
+      "LYR"
+    ],
+    "Southern_Delta_Aquariids": [
+      "2025-07-27",
+      "2025-08-01",
+      "SDA"
+    ]
+  },
+  "verdict": "NO_GO_DEGENERATE_PARENT_CLUSTER"
+}

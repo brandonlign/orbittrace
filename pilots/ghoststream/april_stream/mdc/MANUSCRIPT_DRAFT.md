@@ -8,7 +8,7 @@
 
 ## Abstract
 
-A blind search for weak meteor streams was conducted using public Global Meteor Network (GMN) trajectory catalogues. Candidate structures were detected in a joint radiant–speed–time representation and then evaluated with orbital coherence, independent-year replication, measurement-uncertainty cloning, source-preserving null tests, geographic station-network splits, clustered bootstrap uncertainty, a frozen 81-cell specification curve, external meteor-orbit archives, and comparison against the International Astronomical Union Meteor Data Center (IAU MDC) shower catalogue. One compact structure discovered in April 2026 survived the complete audit. A frozen template identified 95 members in five significant GMN years from 2022 through 2026. In the two untouched confirmation years, 2022 and 2023, the pooled activity enhancement remained significant after a twelve-month familywise correction (p = 1.86 × 10⁻⁵), while a source- and time-matched orbital null gave p = 1.0 × 10⁻⁴. No orbital element was used to select the final activity enhancement. A March–May source-normalized profile supported a contiguous activity core from solar longitude 35.90° to 39.90° (pooled p = 6.51 × 10⁻¹⁹). Three disjoint GMN geographic station groups independently reproduced the activity excess and compact orbit; their medoid orbits differed by at most D = 0.0405. All 81 frozen combinations of trajectory-fit error, station count, radiant-core width, and activity-window width passed. A 20,000-replicate year/night bootstrap resolved right-ascension and declination drift but not geocentric-speed drift. The robust GMN orbit is q = 0.0792 AU, e = 0.9463, i = 24.71°, ω = 333.49°, and Ω = 37.94°. Ten CAMS and SonotaCo meteors provide the primary external support. Six additional non-overlapping meteors occur in a shower-removed EDMOND subset; their orbital evidence is strong, although EDMOND is a compiled archive and is not treated as a fully independent third instrument. A checksum-locked refresh of the official IAU MDC catalogue version 2026-06-25 parsed 1,072 shower records and 2,174 solutions and found no hard duplicate, no activity-compatible radiant–speed near match, and no orbit-incomplete near match. These results support an uncatalogued annual meteor-stream candidate active in late April. The stream is not claimed as established pending expert duplicate review, publication, and IAU MDC evaluation.
+A blind search for weak meteor streams was conducted using public Global Meteor Network (GMN) trajectory catalogues. Candidate structures were detected in a joint radiant–speed–time representation and then evaluated with orbital coherence, independent-year replication, measurement-uncertainty cloning, source-preserving null tests, geographic station-network splits, clustered bootstrap uncertainty, a frozen 81-cell specification curve, external meteor-orbit archives, and comparison against the International Astronomical Union Meteor Data Center (IAU MDC) shower catalogue. One compact structure discovered in April 2026 survived the complete audit. A frozen template identified 95 members in five significant GMN years from 2022 through 2026. In the two untouched confirmation years, 2022 and 2023, the pooled activity enhancement remained significant after a twelve-month familywise correction (p = 1.86 × 10⁻⁵), while a source- and time-matched orbital null gave p = 1.0 × 10⁻⁴. No orbital element was used to select the final activity enhancement. A March–May source-normalized profile supported a contiguous activity core from solar longitude 35.90° to 39.90° (pooled p = 6.51 × 10⁻¹⁹). Three disjoint GMN geographic station groups independently reproduced the activity excess and compact orbit; their medoid orbits differed by at most D = 0.0405. All 81 frozen combinations of trajectory-fit error, station count, radiant-core width, and activity-window width passed. A 20,000-replicate year/night bootstrap resolved right-ascension and declination drift but not geocentric-speed drift. The robust GMN orbit is q = 0.0792 AU, e = 0.9463, i = 24.71°, ω = 333.49°, and Ω = 37.94°. Ten CAMS and SonotaCo meteors provide the primary external support. Six additional non-overlapping meteors occur in a shower-removed EDMOND subset; their orbital evidence is strong, although EDMOND is a compiled archive and is not treated as a fully independent third instrument. A checksum-locked refresh of the official IAU MDC catalogue version 2026-06-25 parsed 1,072 shower records and 2,174 solutions and found no hard duplicate, no activity-compatible radiant–speed near match, and no orbit-incomplete near match. The original executable implementation was recovered from immutable runner commits and reproduced the 101-event primary selection, exact 95-event lookup, internal downstream analyses, and CAMS/SonotaCo support without retuning. These results support an uncatalogued annual meteor-stream candidate active in late April. The stream is not claimed as established pending expert duplicate review, publication, and IAU MDC evaluation.
 
 ## 1. Introduction
 
@@ -143,6 +143,10 @@ CAMS, SonotaCo, and Shober EDMOND meteors were selected using the frozen GMN rad
 
 CAMS and SonotaCo form the primary cross-network external comparison. Their archive-specific thresholds were defined before examining each result. Because both samples were sparse, their pooled synthesis is explicitly post-hoc. The EDMOND extension is also exploratory and is reported separately because EDMOND is a compiled archive that may share upstream network provenance with other historical catalogues. Exact UTC overlaps were audited across selected external events.
 
+### 3.11 Recovered implementation and clean reruns
+
+The original executable source was initially absent from the project branch but survived in two immutable temporary runner commits. Exact source snapshots, dependency files, deterministic seeds, and file-level SHA-256 hashes are preserved in the repository. The primary validator was rerun unchanged and regenerated 101 total selected GMN events, including the committed 95-event 2022–2026 lookup timestamp-for-timestamp. The source-preserving null, cluster bootstrap, activity profile, geographic replication, specification curve, CAMS/SonotaCo selection, pooled archive synthesis, and current JPL screen were then rerun from the recovered implementation. No threshold was retuned to recover the preserved results.
+
 ## 4. Results
 
 ### 4.1 GMN recurrence
@@ -160,7 +164,7 @@ The frozen template selected 101 deduplicated GMN meteors in 2019–2026. Five c
 | 2025 | 34 | 9.42 × 10⁻⁹ | 0.0001 | Yes |
 | 2026 | 29 | 4.131 × 10⁻⁶ | 0.0001 | Yes |
 
-The submission lookup table uses the 95 members from the five significant years.
+The draft MDC lookup table uses the 95 members from the five significant years.
 
 ### 4.2 Source-preserving confirmation
 
@@ -221,7 +225,7 @@ The robust GMN medoid orbit is:
 | ω | 333.494° | 333.262°–333.946° |
 | Ω | 37.937° | 36.341°–38.052° |
 
-The medoid and arithmetic-mean rows serve different purposes: the medoid is used for robust membership/similarity calculations, whereas the arithmetic mean and clustered intervals are used for the MDC submission record. The full GMN sample has median orbital D = 0.04398 and 90th-percentile D = 0.09232. All 1,000 uncertainty-clone trials passed the frozen compactness requirements.
+The medoid and arithmetic-mean rows serve different purposes: the medoid is used for robust membership/similarity calculations, whereas the arithmetic mean and clustered intervals are used for the draft MDC record. The full GMN sample has median orbital D = 0.04398 and 90th-percentile D = 0.09232. All 1,000 uncertainty-clone trials passed the frozen compactness requirements.
 
 ### 4.6 Geographic replication
 
@@ -296,7 +300,7 @@ This extended result is explicitly exploratory. The EDMOND label does not imply 
 
 The official IAU MDC full shower-data JSON was refreshed on 2026-08-01 and checksum-locked at catalogue version 2026-06-25 (1,072 shower records, 2,174 submitted solutions; SHA-256 `821fa09734314e2796388c4f2fc94bb770998f2f2b08d6a84135660849aef899`). The frozen screen found no hard duplicate, no activity-compatible radiant–speed near match, and no orbit-incomplete near match. The nearest complete orbit was Northern May Ophiuchids solution 004 at Southworth–Hawkins D = 0.23445. Its published activity interval of solar longitude 45°–75° does not overlap the candidate interval, and its drifted radiant remained separated by 9.59°.
 
-A NASA/JPL Small-Body Database screen found no credible parent. The nearest listed object had D ≈ 0.159 but an uncertainty-code-8 orbit based on an 11-day observational arc. No parent-body association is proposed.
+A freshly rerun NASA/JPL Small-Body Database screen fetched and evaluated 729 of 729 broad-compatible valid orbits. None had D ≤ 0.15; two had D ≤ 0.25. The nearest listed object was 2023 HJ7 at D = 0.15939, but its orbit had uncertainty code 8 and an 11-day observational arc. No parent-body association is proposed.
 
 ## 5. Discussion
 
@@ -314,6 +318,8 @@ The external evidence is supportive but not definitive. CAMS and SonotaCo contai
 
 The absence of a credible known parent is not evidence against the stream. Weak meteoroid streams may have unrecognized, poorly determined, dormant, or dynamically evolved parents. Dynamical integrations would be premature until a plausible parent-body shortlist exists.
 
+The recovered implementation and exact clean reruns substantially strengthen computational traceability. They do not replace expert meteor-science review, independent duplicate-shower review, or a fresh independent reduction. Raw monthly GMN catalogue bytes were not vendored as a complete immutable archive, so long-term source-byte preservation remains a limitation even though the recovered implementation reproduced the reported selection and downstream results from the current official source.
+
 ## 6. Limitations
 
 1. The discovery and confirmatory analyses use public catalogue-level trajectories rather than raw image re-reductions.
@@ -326,14 +332,20 @@ The absence of a credible known parent is not evidence against the stream. Weak 
 8. The literature and duplicate-shower audit cannot guarantee that no obscure historical solution uses a different convention or incomplete orbit.
 9. No dynamical parent-body connection has been demonstrated.
 10. The fitted geocentric-speed drift is not resolved from zero under clustered resampling.
+11. Raw monthly GMN catalogue bytes have not been preserved as a complete immutable source archive.
+12. Substantive generative-AI assistance with planning, code development, source discovery, auditing, organization, and manuscript preparation requires explicit disclosure and does not constitute independent scientific review.
 
 ## 7. Conclusion
 
-A blind search of GMN trajectories identified an annual late-April meteor-stream candidate with a compact radiant and orbit. The candidate is significant in five consecutive GMN years, survives a node-independent source-preserving test, appears across three disjoint geographic station groups, remains stable in 20,000 year/night bootstrap replicates, and passes all 81 frozen specification choices. Its source-normalized activity is concentrated primarily between solar longitudes 35.90° and 39.90°. Ten CAMS/SonotaCo meteors provide the primary external support, while six non-overlapping EDMOND meteors provide additional orbitally strong but provenance-limited evidence. No matching IAU MDC solution or credible parent body was found. The result warrants submission to the IAU MDC and independent expert review, but it should remain described as an uncatalogued discovery candidate until publication and formal evaluation.
+A blind search of GMN trajectories identified an annual late-April meteor-stream candidate with a compact radiant and orbit. The candidate is significant in five consecutive GMN years, survives a node-independent source-preserving test, appears across three disjoint geographic station groups, remains stable in 20,000 year/night bootstrap replicates, and passes all 81 frozen specification choices. Its source-normalized activity is concentrated primarily between solar longitudes 35.90° and 39.90°. Ten CAMS/SonotaCo meteors provide the primary external support, while six non-overlapping EDMOND meteors provide additional orbitally strong but provenance-limited evidence. No matching IAU MDC solution or credible parent body was found. The result warrants independent expert review and, if that review confirms the coordinate conventions, null models, and novelty assessment, possible submission to the IAU MDC. It should remain described as an uncatalogued discovery candidate until publication and formal evaluation.
 
 ## Data and code availability
 
-The GMN trajectory catalogues are publicly available through the Global Meteor Network. The frozen search, validation scripts, lookup table, candidate solution, source-preserving null, activity profile, geographic split, bootstrap intervals, specification curve, external-member tables, and audit outputs are preserved in the project repository. The IAU MDC lookup table accompanying this draft contains the 95 GMN meteors used for the arithmetic-mean submission record. The Shober EDMOND subset is available through Zenodo record 18664293 under CC BY 4.0.
+The GMN trajectory catalogues are publicly available through the Global Meteor Network. Exact snapshots of the recovered discovery, validation, downstream, and archive-analysis source are preserved in the project repository with file-level SHA-256 provenance. The unchanged recovered primary validator regenerated 101 total selected events and the exact 95-event 2022–2026 lookup; complete primary, internal-downstream, and external clean-rerun evidence is preserved in machine-readable form. The IAU MDC lookup table accompanying this draft contains the 95 GMN meteors used for the arithmetic-mean draft record. The Shober EDMOND subset is available through Zenodo record 18664293 under CC BY 4.0. Raw monthly GMN catalogue bytes have not been redistributed or vendored as a complete immutable archive; final data archiving must follow the applicable source and network data-use rules.
+
+## AI and software disclosure
+
+Substantive generative-AI assistance was used for research planning, code development, source discovery, auditing, organization, and manuscript preparation. AI tools were not treated as authors or independent scientific reviewers. The author remains responsible for verifying the analyses, references, claims, and final submission. Detailed provenance is provided in `AI_AND_SOFTWARE_PROVENANCE.md`.
 
 ## References
 

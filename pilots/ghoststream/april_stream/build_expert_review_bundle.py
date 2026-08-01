@@ -1,10 +1,11 @@
 #!/usr/bin/env python3
-"""Build a deterministic, bounded GhostStream expert-review bundle.
+"""Build a deterministic, code-inclusive GhostStream expert-review bundle.
 
-The bundle contains the primary manuscript/data package, the frozen scientific
-record, the AI/software provenance disclosure, and the minimum robustness
-reports needed for an external meteor expert to issue a critical verdict. It
-excludes raw catalogues, temporary workflows, and internal development logs.
+The bundle contains the manuscript/MDC package, source and claim-boundary
+records, the recovered immutable analysis implementation, exact clean-rerun
+evidence, and the CI entrypoints needed for an external expert to inspect how
+the reported results were regenerated. Raw upstream catalogues remain external
+and are not silently repackaged.
 """
 from __future__ import annotations
 
@@ -16,7 +17,11 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[3]
 
-FILES = [
+BASE_FILES = [
+    "pilots/ghoststream/RESULTS.md",
+    "pilots/ghoststream/results/ghoststream_final_summary.json",
+    "pilots/ghoststream/reproducibility_gap_summary.json",
+    "pilots/ghoststream/recovery/CURRENT_RECOVERY_STATUS.md",
     "pilots/ghoststream/april_stream/EXPERT_REVIEW_PACKET.md",
     "pilots/ghoststream/april_stream/CANDIDATE_DOSSIER.md",
     "pilots/ghoststream/april_stream/candidate_solution.json",
@@ -32,6 +37,8 @@ FILES = [
     "pilots/ghoststream/april_stream/mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md",
     "pilots/ghoststream/april_stream/mdc/mdc_package_consistency_summary.json",
     "pilots/ghoststream/april_stream/mdc/AI_AND_SOFTWARE_PROVENANCE.md",
+    "pilots/ghoststream/april_stream/mdc/README.md",
+    "pilots/ghoststream/april_stream/mdc/SUBMISSION_CHECKLIST.md",
     "pilots/ghoststream/april_stream/BOOTSTRAP_UNCERTAINTY.md",
     "pilots/ghoststream/april_stream/SPECIFICATION_CURVE.md",
     "pilots/ghoststream/april_stream/ACTIVITY_PROFILE.md",
@@ -40,6 +47,22 @@ FILES = [
     "pilots/ghoststream/april_stream/all_external_members_zero_speed.csv",
     "pilots/ghoststream/april_stream/shober_edmond/SHOBER_EDMOND_VALIDATION.md",
     "pilots/ghoststream/april_stream/edmond_2024/EDMOND_CURRENT_RELEASE_AUDIT.md",
+]
+
+TREE_ROOTS = [
+    "pilots/ghoststream/recovered_pipeline",
+    "pilots/ghoststream/reconstruction/exact_recovered",
+    "pilots/ghoststream/reconstruction/exact_downstream",
+    "pilots/ghoststream/reconstruction/exact_external",
+]
+
+CI_FILES = [
+    ".github/workflows/ghoststream-primary-reproduction-pr.yml",
+    ".github/workflows/ghoststream-recovered-downstream-reproduction.yml",
+    ".github/workflows/ghoststream-recovered-external-reproduction.yml",
+    ".github/workflows/ghoststream-mdc-package-audit.yml",
+    ".github/workflows/ghoststream-expert-review-bundle.yml",
+    ".github/workflows/ghoststream-reproducibility-hold.yml",
 ]
 
 FIXED_ZIP_TIME = (2026, 8, 1, 0, 0, 0)
@@ -56,6 +79,27 @@ def zip_write(archive: zipfile.ZipFile, name: str, data: bytes) -> None:
     archive.writestr(info, data)
 
 
+def collect_files() -> list[str]:
+    paths = set(BASE_FILES + CI_FILES)
+    for relative_root in TREE_ROOTS:
+        tree = ROOT / relative_root
+        if not tree.is_dir():
+            raise FileNotFoundError(relative_root)
+        for path in tree.rglob("*"):
+            if path.is_file():
+                paths.add(path.relative_to(ROOT).as_posix())
+    return sorted(paths)
+
+
+def bundle_path(relative: str) -> str:
+    prefix = "pilots/ghoststream/"
+    if relative.startswith(prefix):
+        return relative.removeprefix(prefix)
+    if relative.startswith(".github/workflows/"):
+        return "ci/" + Path(relative).name
+    return "repository/" + relative
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--output-dir", type=Path, required=True)
@@ -65,56 +109,112 @@ def main() -> int:
 
     records: list[dict[str, object]] = []
     payloads: list[tuple[str, bytes]] = []
-    for relative in FILES:
+    seen_bundle_paths: set[str] = set()
+    for relative in collect_files():
         path = ROOT / relative
         if not path.is_file():
             raise FileNotFoundError(relative)
         data = path.read_bytes()
-        bundle_name = relative.removeprefix("pilots/ghoststream/april_stream/")
-        payloads.append((bundle_name, data))
+        name = bundle_path(relative)
+        if name in seen_bundle_paths:
+            raise RuntimeError(f"duplicate bundle path: {name}")
+        seen_bundle_paths.add(name)
+        payloads.append((name, data))
         records.append(
             {
                 "source_path": relative,
-                "bundle_path": bundle_name,
+                "bundle_path": name,
                 "byte_count": len(data),
                 "sha256": sha256(data),
             }
         )
 
+    required_bundle_paths = {
+        "april_stream/EXPERT_REVIEW_PACKET.md",
+        "april_stream/mdc/MANUSCRIPT_DRAFT.md",
+        "april_stream/mdc/GhostStream_April_95_GMN_lookup.csv",
+        "recovered_pipeline/SOURCE_MANIFEST.json",
+        "recovered_pipeline/pr57_novel/validate_april_candidate.py",
+        "reconstruction/exact_recovered/exact_reproduction.json",
+        "reconstruction/exact_downstream/downstream_reproduction.json",
+        "reconstruction/exact_external/external_reproduction.json",
+        "ci/ghoststream-primary-reproduction-pr.yml",
+        "ci/ghoststream-recovered-downstream-reproduction.yml",
+        "ci/ghoststream-recovered-external-reproduction.yml",
+    }
+    missing = sorted(required_bundle_paths - seen_bundle_paths)
+    if missing:
+        raise RuntimeError(f"required bundle files missing: {missing}")
+
     readme = f"""# GhostStream external expert review bundle
 
 Branch commit: `{args.commit_sha}`
 Prepared: 2026-08-01 UTC
-Files: {len(records)}
+Included repository files: {len(records)}
+
+## Recovery and reproducibility status
+
+The original executable GhostStream analysis survived in immutable temporary
+runner commits and is included under `recovered_pipeline/` with file-level
+SHA-256 provenance. The unchanged recovered primary validator exactly
+regenerated 101 selected GMN events, including the preserved 95-event
+2022–2026 lookup. The recovered internal downstream and CAMS/SonotaCo/JPL
+stages were also rerun and their complete outputs are included under
+`reconstruction/`.
+
+This resolves the prior code-loss and analysis-rerun gap. It does not replace
+external meteor-science review, make the shower official, or make the current
+draft automatically suitable for submission.
 
 ## Suggested reading order
 
-1. `EXPERT_REVIEW_PACKET.md`
-2. `mdc/MANUSCRIPT_DRAFT.md`
-3. `mdc/AI_AND_SOFTWARE_PROVENANCE.md`
-4. `mdc/GhostStream_April_95_GMN_lookup.csv`
-5. `mdc/GhostStream_April_mean_submission.json`
-6. `mdc/calculation_audit.json`
-7. `mdc/LIVE_MDC_NOVELTY_REFRESH.md`
-8. `mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md`
-9. `candidate_solution.json`
-10. robustness and external-archive reports as needed
+1. `april_stream/EXPERT_REVIEW_PACKET.md`
+2. `april_stream/mdc/MANUSCRIPT_DRAFT.md`
+3. `results/ghoststream_final_summary.json`
+4. `reconstruction/exact_recovered/EXACT_REPRODUCTION.md`
+5. `reconstruction/exact_downstream/DOWNSTREAM_REPRODUCTION.md`
+6. `reconstruction/exact_external/EXTERNAL_REPRODUCTION.md`
+7. `recovered_pipeline/SOURCE_MANIFEST.json`
+8. `april_stream/mdc/AI_AND_SOFTWARE_PROVENANCE.md`
+9. `april_stream/mdc/GhostStream_April_95_GMN_lookup.csv`
+10. `april_stream/mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md`
+11. source and robustness records as needed
 
 ## Requested outcome
 
-Please return a critical verdict using the A–E scale in `EXPERT_REVIEW_PACKET.md`, identify any fatal error or likely known-shower duplicate, and state the required work before a possible IAU Meteor Data Center submission.
+Please return a critical verdict using the A–E scale in
+`april_stream/EXPERT_REVIEW_PACKET.md`, identify any fatal error or likely
+known-shower duplicate, and state the required work before a possible IAU
+Meteor Data Center submission.
 
 ## AI/software transparency
 
-The package discloses substantive generative-AI assistance with research planning, code development, source discovery, auditing, organization, and manuscript preparation. AI tools were not treated as authors or independent scientific reviewers. Reviewers should consider whether the documented verification and human-responsibility controls are adequate.
+The package discloses substantive generative-AI assistance with research
+planning, code development, source discovery, auditing, organization, and
+manuscript preparation. AI tools were not treated as authors or independent
+scientific reviewers. Reviewers should consider whether the documented
+verification and human-responsibility controls are adequate.
+
+## Input-data boundary
+
+Upstream GMN, CAMS, SonotaCo, EDMOND, IAU MDC, and JPL catalogues are not
+silently redistributed in this ZIP. The included source records their public
+acquisition paths and the exact clean runs record the resulting selected and
+audit tables. Raw monthly GMN bytes were not vendored as a complete immutable
+archive, so long-term source-byte preservation remains a disclosed limitation.
 
 ## Claim boundary
 
-This is a draft pre-submission research package. The candidate is not an official IAU discovery, an established shower, a named shower, or a demonstrated parent-body association. Mechanical validation does not replace scientific review.
+This is a draft pre-submission research package. The candidate is not an
+official IAU discovery, an established shower, a named shower, a demonstrated
+parent-body association, a complete EDMOND v6.01 replication, or a completed
+external scientific review.
 
 ## Integrity
 
-`MANIFEST.json` records the source path, bundle path, byte count, and SHA-256 of every included file. The ZIP is deterministic for the same inputs and commit identifier.
+`MANIFEST.json` records the source path, bundle path, byte count, and SHA-256
+of every included file. The ZIP is deterministic for the same inputs and
+commit identifier.
 """.encode("utf-8")
 
     manifest = {
@@ -122,10 +222,13 @@ This is a draft pre-submission research package. The candidate is not an officia
         "prepared_utc": "2026-08-01T00:00:00Z",
         "source_commit": args.commit_sha,
         "file_count": len(records),
+        "required_bundle_paths": sorted(required_bundle_paths),
         "files": records,
+        "reproducibility_status": "source_recovered_primary_internal_and_external_analysis_reruns_passed",
         "claim_boundary": (
             "Draft pre-submission package; not official IAU recognition, an "
-            "established shower, or a completed external scientific review."
+            "established shower, a complete EDMOND v6.01 replication, or a "
+            "completed external scientific review."
         ),
     }
     manifest_data = (json.dumps(manifest, indent=2, sort_keys=True) + "\n").encode("utf-8")
@@ -147,12 +250,13 @@ This is a draft pre-submission research package. The candidate is not an officia
             raise RuntimeError(f"expected {expected} ZIP members, found {len(names)}")
 
     result = {
-        "verdict": "PASS_EXPERT_REVIEW_BUNDLE_BUILT",
+        "verdict": "PASS_CODE_INCLUSIVE_EXPERT_REVIEW_BUNDLE_BUILT",
         "source_commit": args.commit_sha,
         "included_files": len(records),
         "zip_members": 2 + len(records),
         "zip_byte_count": output.stat().st_size,
         "zip_sha256": sha256(output.read_bytes()),
+        "required_paths_present": True,
         "output": str(output),
     }
     (args.output_dir / "expert_review_bundle_build.json").write_text(

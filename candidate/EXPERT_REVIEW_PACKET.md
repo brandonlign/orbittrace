@@ -5,7 +5,7 @@ I am looking for a critical technical review of a late-April meteor-stream candi
 ## Main questions
 
 1. Does the 95-event GMN sample look like a real recurring meteor stream rather than structured antihelion background?
-2. Is there a known, working-list, removed, or historically published shower that is a plausible match despite the current catalogue comparison?
+2. Is there a known, working-list, removed, or historically published shower that is a plausible match despite the current catalogue comparison, including the unnamed IMO sequences #181 and #182?
 3. Are the radiant, drift, solar-longitude, node, and orbital conventions used consistently?
 4. What additional analysis or data would most strengthen the interpretation?
 
@@ -81,6 +81,7 @@ I would also like to know whether using a robust solution for matching and an ar
 - Six CAMS and four SonotaCo matches; the ten-event pooled result was calculated after the separate results were known.
 - Six additional events in a shower-removed EDMOND subset, treated as supplementary because EDMOND is a compilation.
 - Comparison with 2,174 current IAU MDC solutions, with no match under the fixed comparison rules.
+- Review of two unnamed single-station IMO sequences (#181 and #182) whose dates overlap the candidate; their public summaries do not provide enough radiant, speed, or orbital detail for a direct match.
 - Official MDC radiant/orbit checker run on the draft mean record, with no flagged inconsistencies.
 
 ## Main limitations

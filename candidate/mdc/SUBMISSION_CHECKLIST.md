@@ -26,14 +26,12 @@ This list separates completed preparation from work that still requires outside 
 - [ ] Revision of the manuscript in response to expert comments.
 - [ ] Regeneration of the final submission package and hashes after those revisions.
 
-## Do not fill in yet
+## Fields completed during submission
 
-The following fields should remain blank until the MDC or publication process supplies them:
+The MDC or publication process supplies the following fields:
 
 - official numerical shower code;
 - three-letter code;
 - provisional designation;
 - official shower name; and
 - final publication reference.
-
-The project is ready to be reviewed, not yet ready to be presented as an officially discovered shower.

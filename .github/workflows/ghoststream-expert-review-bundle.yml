@@ -20,12 +20,20 @@ on:
       - "pilots/ghoststream/reconstruction/exact_recovered/**"
       - "pilots/ghoststream/reconstruction/exact_downstream/**"
       - "pilots/ghoststream/reconstruction/exact_external/**"
+      - "pilots/ghoststream/reconstruction/exact_method_controls/**"
+      - "pilots/ghoststream/reconstruction/exact_method_controls_v3/**"
+      - "pilots/ghoststream/reconstruction/exact_blind_rediscovery/**"
+      - "pilots/ghoststream/reconstruction/METHOD_CONTROL_RECONCILIATION.md"
+      - "pilots/ghoststream/reconstruction/blind_wrapper_fix.json"
       - "pilots/ghoststream/results/ghoststream_final_summary.json"
       - "pilots/ghoststream/reproducibility_gap_summary.json"
       - "pilots/ghoststream/recovery/CURRENT_RECOVERY_STATUS.md"
       - ".github/workflows/ghoststream-primary-reproduction-pr.yml"
       - ".github/workflows/ghoststream-recovered-downstream-reproduction.yml"
       - ".github/workflows/ghoststream-recovered-external-reproduction.yml"
+      - ".github/workflows/ghoststream-method-controls-pr.yml"
+      - ".github/workflows/ghoststream-method-controls-v3.yml"
+      - ".github/workflows/ghoststream-blind-rediscovery-pr.yml"
       - ".github/workflows/ghoststream-mdc-package-audit.yml"
       - ".github/workflows/ghoststream-expert-review-bundle.yml"
       - ".github/workflows/ghoststream-reproducibility-hold.yml"
@@ -80,7 +88,7 @@ jobs:
           result = json.loads(Path("expert_review_bundle/expert_review_bundle_build.json").read_text())
           assert result["verdict"] == "PASS_CODE_INCLUSIVE_EXPERT_REVIEW_BUNDLE_BUILT"
           assert result["source_commit"] == branch_head
-          assert result["included_files"] >= 100
+          assert result["included_files"] >= 110
           assert result["zip_members"] == result["included_files"] + 2
           assert result["required_paths_present"] is True
           assert len(result["zip_sha256"]) == 64
@@ -98,15 +106,22 @@ jobs:
                   "reconstruction/exact_recovered/exact_reproduction.json",
                   "reconstruction/exact_downstream/downstream_reproduction.json",
                   "reconstruction/exact_external/external_reproduction.json",
+                  "reconstruction/exact_method_controls/method_controls.json",
+                  "reconstruction/exact_method_controls_v3/method_controls_v3.json",
+                  "reconstruction/exact_blind_rediscovery/blind_rediscovery.json",
+                  "reconstruction/METHOD_CONTROL_RECONCILIATION.md",
+                  "reconstruction/blind_wrapper_fix.json",
                   "ci/ghoststream-primary-reproduction-pr.yml",
                   "ci/ghoststream-recovered-downstream-reproduction.yml",
                   "ci/ghoststream-recovered-external-reproduction.yml",
+                  "ci/ghoststream-method-controls-v3.yml",
+                  "ci/ghoststream-blind-rediscovery-pr.yml",
               }
               assert required <= names, sorted(required - names)
               manifest = json.loads(archive.read("MANIFEST.json"))
               assert manifest["source_commit"] == branch_head
               assert manifest["file_count"] == result["included_files"]
-              assert manifest["reproducibility_status"] == "source_recovered_primary_internal_and_external_analysis_reruns_passed"
+              assert manifest["reproducibility_status"] == "source_recovered_primary_internal_external_method_and_blind_evidence_complete"
               assert set(manifest["required_bundle_paths"]) <= names
           print(json.dumps(result, indent=2))
           PY

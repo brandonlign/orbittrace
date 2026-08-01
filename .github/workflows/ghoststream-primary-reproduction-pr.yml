@@ -6,6 +6,7 @@ on:
       - "pilots/ghoststream/reconstruction/RECONSTRUCTION_PROTOCOL.md"
       - "pilots/ghoststream/reconstruction/reproduce_primary_gmn.py"
       - "pilots/ghoststream/reconstruction/run_primary_gmn_tls_compat.py"
+      - "pilots/ghoststream/reconstruction/probe_gmn_query_transport.py"
       - "pilots/ghoststream/april_stream/mdc/GhostStream_April_95_GMN_lookup.csv"
       - ".github/workflows/ghoststream-primary-reproduction-pr.yml"
   workflow_dispatch:
@@ -28,7 +29,13 @@ jobs:
         run: |
           python -m py_compile \
             pilots/ghoststream/reconstruction/reproduce_primary_gmn.py \
-            pilots/ghoststream/reconstruction/run_primary_gmn_tls_compat.py
+            pilots/ghoststream/reconstruction/run_primary_gmn_tls_compat.py \
+            pilots/ghoststream/reconstruction/probe_gmn_query_transport.py
+
+      - name: Probe official GMN query transport
+        run: |
+          python pilots/ghoststream/reconstruction/probe_gmn_query_transport.py \
+            2>&1 | tee ghoststream_gmn_query_probe.log
 
       - name: Run frozen primary reproduction
         id: reproduce
@@ -61,6 +68,7 @@ jobs:
           name: ghoststream-primary-gmn-reproduction-pr
           path: |
             pilots/ghoststream/reconstruction/primary_gmn_reproduction/
+            ghoststream_gmn_query_probe.log
             ghoststream_primary_reproduction.log
             ghoststream_primary_reproduction_exit_code.txt
           if-no-files-found: error

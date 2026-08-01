@@ -1,0 +1,6 @@
+GHOSTSTREAM PUBLICATION / FORMAL MDC HOLD
+
+Do not submit the manuscript, formally report the candidate to the IAU MDC, mint a reproducibility DOI, or send the superseded expert bundle until the core GMN source-to-result pipeline is recovered or independently reconstructed and cleanly rerun.
+
+Authoritative audit:
+pilots/ghoststream/REPRODUCIBILITY_GAP_AUDIT.md

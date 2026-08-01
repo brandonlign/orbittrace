@@ -1,24 +1,25 @@
-# GhostStream recovered method-control audit
+# Original method controls
 
-**Verdict:** `RECOVERED_METHOD_CONTROL_AUDIT_NEGATIVE_GATE_INFEASIBLE`
+The early control run recovered all three named showers, but its combined pass rule failed. That failure is kept because it exposed a real problem in the way the control gate had been written.
 
-The recovered control code was run unchanged from its immutable source commit.
-The historical aggregate gate remains a no-go and is not retroactively converted to a pass.
+## Named-shower recovery
 
-## Preserved results
+| Shower | Precision | Recall | F1 |
+|---|---:|---:|---:|
+| Lyrids | 0.810 | 1.000 | 0.895 |
+| Eta Aquariids | 0.904 | 1.000 | 0.950 |
+| Southern Delta Aquariids | 0.856 | 1.000 | 0.922 |
 
-- Original aggregate known-shower verdict: **`NO_GO_DEGENERATE_PARENT_CLUSTER`**
-- Untouched named showers individually recovered: **3/3**
-- Lyrids: precision 0.810, recall 1.000, F1 0.895
-- Eta Aquariids: precision 0.904, recall 1.000, F1 0.950
-- Southern Delta Aquariids: precision 0.856, recall 1.000, F1 0.922
-- Injection gate: **`INJECTION_GATE_PASS`**
-- 20-member injections: **4/9**, median F1 0.526
-- 40-member injections: **7/9**, median F1 0.800
-- 80-member injections: **8/9**, median F1 0.870
+## Injection sensitivity
 
-## Why the aggregate rule was infeasible
+| Injected members | Recovered runs | Median F1 |
+|---:|---:|---:|
+| 20 | 4 / 9 | 0.526 |
+| 40 | 7 / 9 | 0.800 |
+| 80 | 8 / 9 | 0.870 |
 
-Eta Aquariids supplied 6043 of 18230 sampled rows (33.149%). The frozen rule prohibited any cluster larger than 30%. At the observed recall, any ETA-containing target cluster had an unavoidable minimum fraction of 33.149%.
+## Why the combined rule failed
 
-A prospective independent-year holdout with the same 30% threshold applied only to non-target clusters is required. That correction tests the intended failure mode without making a strong real shower mathematically incapable of passing.
+The original rule rejected any result whose largest cluster contained more than 30% of the sampled rows. Eta Aquariids themselves made up 33.149% of their sample. At full recall, a correct Eta Aquariid cluster therefore had to exceed the limit.
+
+That is a contradiction in the control definition, not evidence that the clustering failed to recover Eta Aquariids. The original negative result remains recorded. A corrected rule was then specified before a separate 2024 holdout was examined; that run is documented in `../exact_method_controls_v3/`.

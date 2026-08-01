@@ -1,53 +1,51 @@
 # GhostStream
 
-GhostStream is a reproducible search for weak meteor streams hidden in large public meteor-trajectory archives. The analysis identified a high-confidence late-April stream candidate in Global Meteor Network data, recovered it in a blind month-by-month search, reproduced it across multiple years, and found supporting events in CAMS and SonotaCo.
+GhostStream is a search for weak meteor streams in public meteor-trajectory catalogues. The project began as a blind search of Global Meteor Network (GMN) data and found one recurring concentration of meteors in late April. The same radiant, timing, speed, and orbital pattern appears in GMN data from 2022 through 2026, with smaller supporting samples in CAMS, SonotaCo, and EDMOND.
 
-The result is a **meteor-stream discovery candidate**, not an officially recognized IAU meteor shower. Independent meteor-science review and a final duplicate-shower assessment are still required before publication or submission to the IAU Meteor Data Center.
+The result is best described as an **apparently uncatalogued meteor-stream candidate**. It has not been recognized by the International Astronomical Union, and it still needs independent review by meteor-shower specialists.
 
-## Repository layout
+## Start here
 
-- `pipeline/pr57_novel/` — discovery, validation, external-archive, activity-profile, and submission-support source
-- `pipeline/pr56_runner/` — the original blind-search and method-gate source preserved for exact reproducibility
-- `candidate/` — final candidate solution, event lookup table, orbit solution, manuscript materials, and review documents
-- `validation/` — exact reproduction, blind rediscovery, external-support, and method-control results
-- `results/ghoststream_final_summary.json` — canonical machine-readable project summary
-- `scripts/verify_repository.py` — structural, scientific-consistency, and repository-hygiene checks
+- [`candidate/EXPERT_REVIEW_PACKET.md`](candidate/EXPERT_REVIEW_PACKET.md) gives a reviewer the shortest useful route through the project.
+- [`candidate/CANDIDATE_DOSSIER.md`](candidate/CANDIDATE_DOSSIER.md) explains the candidate and the evidence in plain scientific language.
+- [`RESULTS.md`](RESULTS.md) collects the main numerical results.
+- [`candidate/mdc/MANUSCRIPT_DRAFT.md`](candidate/mdc/MANUSCRIPT_DRAFT.md) is the working paper draft.
+- [`candidate/mdc/GhostStream_April_95_GMN_lookup.csv`](candidate/mdc/GhostStream_April_95_GMN_lookup.csv) contains the 95 GMN meteors used for the draft mean solution.
 
-## Current scientific result
+## Repository guide
 
-The supported claim is:
+- `pipeline/` preserves the executable discovery, validation, control, and external-catalogue code.
+- `candidate/` contains the scientific summary, supporting reports, event tables, and draft submission material.
+- `validation/` records the independent reruns and method checks.
+- `results/ghoststream_final_summary.json` is the compact machine-readable summary.
+- `pipeline/SOURCE_MANIFEST.json` records the immutable source commits and file hashes.
 
-> A computationally reproduced, high-confidence, apparently uncatalogued late-April meteor-stream candidate.
+The repository was reorganized after the analysis was complete. One-time download probes, inspection scripts, superseded versions, and runtime patch wrappers were removed from the active code tree. The original source hashes and immutable commits remain listed in `pipeline/SOURCE_MANIFEST.json`.
 
-Key evidence includes:
+## Main result
 
-- 95 confirmed GMN members across 2022–2026;
-- exact reproduction of the preserved event set;
-- one full-gate survivor in the blind January–July 2026 search;
-- recurrence in untouched 2025 and 2024 data;
-- 500/500 blind-search uncertainty-clone passes and 1,000/1,000 final-solution clone passes;
-- 81/81 passing specification-grid cells;
-- supporting CAMS and SonotaCo events;
-- no hard automated match in the checked IAU Meteor Data Center catalogue.
+The final GMN sample contains 95 meteors from five consecutive significant years:
 
-## Repository hygiene
+| Year | Members |
+|---:|---:|
+| 2022 | 10 |
+| 2023 | 8 |
+| 2024 | 14 |
+| 2025 | 34 |
+| 2026 | 29 |
 
-The active repository contains no tracked logs, caches, editor files, ZIP archives, temporary files, or abandoned cleanup workflows. The verifier rejects these artifacts if they are introduced later.
+The candidate also survived an untouched-year test, a source-matched background test, orbital null tests, measurement-error simulations, geographic splits, clustered bootstrap resampling, and an 81-setting sensitivity analysis. The current IAU Meteor Data Center catalogue contains no matching shower solution under the project’s comparison rules.
 
-Some files under `pipeline/` have versioned names or end in `_fixed.py`. They are not unfinished temporary files. That directory is an immutable source snapshot of the exact historical execution trees, and those names document which compatibility or determinism fixes were actually applied. Renaming or deleting them would weaken the computational provenance.
+## Check the repository
 
-## Verification
+The lightweight check does not rerun the full data download and search. It verifies the expected files, fixed result metadata, source provenance, Python syntax, and repository hygiene.
 
 ```bash
-python -m pip install -r requirements.txt
 python scripts/verify_repository.py
 ```
 
-The complete computational environments and exact historical execution records are preserved under `validation/` and `pipeline/SOURCE_MANIFEST.json`.
+The analysis dependencies are listed in `requirements.txt`.
 
-## Provenance
+## Use of AI
 
-The canonical evidence source is commit `af9a21e10d8c365cf4ca75f945b9c04bdde137e0` from the earlier development history. The final repository layout changes organization only; it does not alter the frozen candidate, event lists, statistics, or scientific claim boundary.
-
-Canonical package SHA-256: `716b70313465d5df4bfb092a85a81680e6f618606b71e25470c63c480b6449f5`  
-Expert-review bundle SHA-256: `60c0a77ed8852277f949a0296ccafc91ae4947277011cb1d6247b9be4b173e22`
+OpenAI ChatGPT assisted with research planning, code drafting and debugging, source discovery, reproducibility checks, organization, and editing. Brandon Li reviewed the final methods, code, sources, numerical results, and interpretations and takes responsibility for the work. The system was not treated as an author, a source of scientific evidence, or an independent reviewer.

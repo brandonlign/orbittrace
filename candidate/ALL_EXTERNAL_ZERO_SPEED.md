@@ -1,64 +1,52 @@
-# Uniform zero-speed-drift external archive synthesis
+# External-catalogue comparison
 
-**Verdict:** `EXTERNAL_EVIDENCE_STABLE_WITH_ZERO_SPEED_DRIFT_AND_EDMOND_EXTENSION`
+The year/night bootstrap did not resolve a geocentric-speed drift. To avoid carrying an unsupported slope into other catalogues, the external analyses were repeated with dVg/dλ⊙ set to zero. The radiant center, angular drift, dispersions, activity interval, and orbital rules were unchanged.
 
-The clustered year/night bootstrap did not resolve a geocentric-speed drift, so every external archive was rerun with `dVg/dλ⊙ = 0`. All radiant centers, radiant drift terms, dispersions, activity bounds, and orbital rules remained frozen.
+## CAMS and SonotaCo
 
-## Primary cross-network evidence: CAMS + SonotaCo
+The main external sample combines six CAMS meteors from 2011–2012 with four SonotaCo meteors from 2022, 2023, and 2025.
 
-- Members: **10**
-- Years: **2011, 2012, 2022, 2023, 2025**
-- Activity p: **1.6218439 × 10⁻⁴**
-- Shifted-window p: **0.0204082**
-- Median orbital D: **0.048791**
-- q90 orbital D: **0.077081**
-- Orbit-null p: **5 × 10⁻⁵**
-- Medoid distance to refined GMN orbit: **0.017231**
-- Frozen family gate: **passed**
+| Measure | Value |
+|---|---:|
+| Members | 10 |
+| Years | 2011, 2012, 2022, 2023, 2025 |
+| Activity p-value | 1.6218 × 10⁻⁴ |
+| Shifted-window p-value | 0.02041 |
+| Median orbital D | 0.04879 |
+| 90th-percentile orbital D | 0.07708 |
+| Orbit-null p-value | 5 × 10⁻⁵ |
+| Medoid distance from the GMN orbit | 0.01723 |
 
-This is the primary external result because CAMS and SonotaCo provide distinct historical observing/reduction contexts from the GMN discovery sample. The pooled test remains explicitly post-hoc because it was motivated by the two sparse archive-specific outcomes.
+CAMS and SonotaCo were examined separately first. CAMS narrowly missed the project’s activity cutoff, while SonotaCo had too few events to meet the minimum count. Their pooled result was calculated afterward, so it is supporting evidence rather than a planned independent discovery test.
 
-## Extended exploratory evidence: adding the Shober EDMOND subset
+## EDMOND extension
 
-- Members: **16**
-- Years: **2011, 2012, 2014, 2016, 2017, 2022, 2023, 2025**
-- Member counts:
-  - CAMS 2011: 2
-  - CAMS 2012: 4
-  - Shober-EDMOND 2014: 1
-  - Shober-EDMOND 2016: 2
-  - Shober-EDMOND 2017: 2
-  - Shober-EDMOND 2022: 1
-  - SonotaCo 2022: 2
-  - SonotaCo 2023: 1
-  - SonotaCo 2025: 1
-- Activity p: **1.4638728 × 10⁻⁶**
-- Shifted-window p: **0.0204082**
-- Median orbital D: **0.048433**
-- q90 orbital D: **0.087006**
-- Orbit-null p: **5 × 10⁻⁵**
-- Medoid distance to refined GMN orbit: **0.017231**
-- Exact cross-source UTC duplicate groups: **0**
+A shower-removed EDMOND subset adds six non-overlapping events in 2014, 2016, 2017, and 2022. With those included, the extended sample contains 16 events across eight years.
 
-The EDMOND extension is supporting, explicitly exploratory evidence. EDMOND is a compiled historical archive and may share contributing networks or reduction ancestry with other video-meteor compilations. The absence of exact UTC duplicates prevents simple double-counting of the same selected events, but the three archive labels must not be interpreted as three fully independent instruments.
+| Measure | Value |
+|---|---:|
+| Members | 16 |
+| Activity p-value | 1.4639 × 10⁻⁶ |
+| Shifted-window p-value | 0.02041 |
+| Median orbital D | 0.04843 |
+| 90th-percentile orbital D | 0.08701 |
+| Orbit-null p-value | 5 × 10⁻⁵ |
+| Exact UTC duplicate groups across sources | 0 |
 
-## Currently linked EDMOND annual-file audit
+EDMOND is a compilation of historical video-meteor data and may share upstream observations or reduction history with other catalogues. The absence of exact UTC duplicates prevents direct double-counting of the selected events, but the archive labels should not be treated as three completely independent instruments.
 
-The unchanged zero-speed-drift template was applied to all annual ZIPs currently linked by the EDMOND v6.01 page. Twenty-three ZIPs from 2001–2023 passed signature, CRC, schema, and finite-field checks; the linked 2024 ZIP returned HTTP 404. Release-integrity checks show that these links are incomplete or stale relative to the page: 481,252 linked rows versus 614,758 advertised for the same years, 0/23 annual count matches, and embedded versions 513/516 rather than 601. They are not represented as a complete v6.01 release. The evaluation selected exactly the same six EDMOND events already listed above and no additional events.
+## Currently linked EDMOND files
 
-- Members: **6**
-- Years: **2014, 2016, 2017, 2022**
-- One-sided activity p: **3.3785294 × 10⁻⁴**
-- Activity odds ratio: **7.4554**
-- Shifted-window p: **0.0612245**
-- Median Southworth–Hawkins D: **0.036005**
-- q90 Southworth–Hawkins D: **0.073441**
-- Orbit-null p: **4.99975 × 10⁻⁵**
-- Exact overlaps with the six Shober-selected events: **6/6**
-- Additional selected events: **0**
+The same zero-speed-drift definition was applied to every annual ZIP currently linked from the EDMOND page. Twenty-three files covering 2001–2023 passed ZIP, CRC, schema, and finite-field checks. The 2024 link returned 404.
 
-This strengthens the provenance and reproducibility of the six-event EDMOND support in the currently linked files but does not turn it into a new independent sample or a complete current-release replication. It remains below the frozen N ≥ 8 standalone gate, and its supplemental shifted-window audit is slightly above 0.05.
+The surviving links do not appear to be the complete advertised v6.01 release:
 
-## Interpretation
+- linked rows for 2001–2023: 481,252;
+- advertised rows for those years: 614,758;
+- coverage: 78.283%;
+- annual row-count matches: 0 of 23; and
+- embedded versions: mainly 513 and 516 rather than 601.
 
-The independent-archive result is not an artifact of the fitted GMN speed slope. Setting that unresolved slope to zero leaves the primary CAMS+SonotaCo evidence unchanged and preserves all 16 external radiant-time members in the extended audit. Orbit was not used to select members; their orbital compactness was tested only afterward against source- and time-matched null samples.
+The linked files selected exactly the same six EDMOND events and no additional ones. Their one-sided activity p-value was 3.379 × 10⁻⁴, the median D_SH was 0.03601, and the orbit-null p-value was 5.0 × 10⁻⁵. The shifted-window p-value was 0.06122, and the sample remained below the project’s minimum N = 8 rule.
+
+The external evidence is therefore unchanged when the unsupported speed slope is removed. CAMS and SonotaCo provide the main cross-catalogue support; EDMOND adds useful but provenance-limited evidence.

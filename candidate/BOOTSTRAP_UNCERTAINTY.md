@@ -1,22 +1,12 @@
-# Cluster-bootstrap uncertainty for the GhostStream April solution
+# Bootstrap uncertainty
 
-## Verdict
+The 95 confirmed meteors are spread across five years and 29 observing nights. Individual meteors from the same night are not fully independent, so the uncertainty analysis resamples years and then nights within each selected year.
 
-**The mean radiant and orbit are stable to year/night resampling. RA and declination drift remain nonzero, but the geocentric-speed drift is not resolved from zero.**
+Twenty thousand bootstrap samples were generated. Each sample retained all meteors from the nights it selected. Circular means were used for angular quantities, and semimajor axis was recalculated from each sample’s mean q and e.
 
-These intervals quantify sampling variability across years and observing nights. They are separate from the 1,000/1,000 measurement-uncertainty clone test, which evaluates perturbations of individual trajectory measurements.
+## Mean solution
 
-## Primary bootstrap
-
-- Members: **95**
-- Years: **2022–2026**
-- Unique observing nights: **29**
-- Replicates: **20,000**
-- Resampling: sample five years with replacement; within every selected year, sample its observing nights with replacement; retain all meteors from each selected night.
-- Angular means: circular, mapped near the observed solution.
-- Semimajor axis: derived from each bootstrap sample's mean q and e.
-
-| Quantity | Point estimate | 95% year/night cluster-bootstrap interval |
+| Quantity | Point estimate | 95% interval |
 |---|---:|---:|
 | Solar longitude | 37.150° | 36.334°–38.043° |
 | RA | 247.170° | 246.428°–247.894° |
@@ -31,15 +21,15 @@ These intervals quantify sampling variability across years and observing nights.
 
 ## Radiant and speed drift
 
-| Drift | Point estimate | 95% interval | Interpretation |
+| Drift | Point estimate | 95% interval | Reading |
 |---|---:|---:|---|
-| dRA/dλ⊙ | +0.887°/° | +0.672 to +1.040 | resolved positive drift |
-| dDec/dλ⊙ | −0.158°/° | −0.248 to −0.037 | resolved negative drift |
-| dVg/dλ⊙ | −0.029 km/s/° | −0.178 to +0.221 | **not distinguishable from zero** |
+| dRA/dλ⊙ | +0.887°/° | +0.672 to +1.040 | positive drift is resolved |
+| dDec/dλ⊙ | −0.158°/° | −0.248 to −0.037 | negative drift is resolved |
+| dVg/dλ⊙ | −0.029 km/s/° | −0.178 to +0.221 | interval includes zero |
 
-A second bootstrap retained every observed year exactly once and resampled nights only. It produced the same conclusion: RA and declination drift excluded zero; the Vg interval remained wide and crossed zero.
+A second bootstrap that kept every year exactly once and resampled nights only gave the same qualitative result. The mean radiant and orbit are stable, the angular radiant drifts are supported, and the geocentric-speed drift is not.
 
-## Leave-one-year-out stability
+## Leave-one-year-out ranges
 
 | Quantity | Minimum | Maximum |
 |---|---:|---:|
@@ -55,20 +45,6 @@ A second bootstrap retained every observed year exactly once and resampled night
 | dDec/dλ⊙ | −0.182 | −0.114 |
 | dVg/dλ⊙ | −0.058 | −0.002 |
 
-## Independent raw-catalogue reproduction
+The bootstrap was also rerun from the original GMN catalogues rather than from a prepared candidate table. It recovered the required 10, 8, 14, 34, and 29 members for 2022–2026 before resampling.
 
-The analysis was rerun from the original GMN April catalogues rather than the downloaded candidate CSV. The script required exactly 95 frozen members before bootstrapping and recovered:
-
-- 2022: 10 members;
-- 2023: 8;
-- 2024: 14;
-- 2025: 34;
-- 2026: 29.
-
-GitHub Actions workflow run `30673906207` completed successfully. Its machine-readable artifact has SHA-256 `148e440510d220acfc68b342a22b781a15c858e471295bfc8a5eb9ec2590398a` and reproduced the same qualitative verdict for all three drift terms.
-
-## Interpretation boundary
-
-The paper may report the measured positive RA drift and negative declination drift as resolved. The speed slope should be reported as a fitted value whose clustered confidence interval includes zero, not as a detected physical deceleration.
-
-The arithmetic-mean MDC record remains appropriate and already passed both official MDC consistency programs. The robust medoid orbit remains preferable for membership and similarity tests; the arithmetic mean and clustered intervals should be used for the submission table and manuscript uncertainty statement.
+These intervals describe variation across the observed years and nights. They are separate from the 1,000 event-level measurement perturbations used to test membership and orbital compactness.

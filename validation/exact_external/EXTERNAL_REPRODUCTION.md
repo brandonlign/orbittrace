@@ -1,13 +1,19 @@
-# GhostStream recovered external reproduction
+# External analysis reproduction
 
-**Archive verdict:** `RECOVERED_EXTERNAL_ARCHIVE_REPRODUCTION`
+The recovered external-catalogue code regenerated the saved CAMS and SonotaCo member lists exactly.
 
-The recovered source exactly regenerated the preserved six CAMS and four SonotaCo events. Neither archive is overstated as a standalone decisive replication: CAMS narrowly misses the frozen activity threshold, and SonotaCo is below the frozen minimum member count.
+| Catalogue | Members | Activity p-value | Orbit-null p-value | Interpretation |
+|---|---:|---:|---:|---|
+| CAMS | 6 | 0.012508 | 0.0001 | orbitally supportive; activity just above the standalone cutoff |
+| SonotaCo | 4 | 0.007145 | 0.0001 | supportive; below the minimum event count |
 
-- CAMS: 6 members; activity p=0.012507992; orbit-null p=0.0001
-- SonotaCo: 4 members; activity p=0.0071452104; orbit-null p=0.0001
-- Exploratory pooled synthesis: 10 exact members; activity p=0.00016218439; orbit-null p=5e-05
-- Pooled medoid distance to refined GMN orbit: 0.017231
-- Current JPL parent-screen status: `NO_CURRENT_JPL_OBJECT_AT_D_LE_0_15`
+The pooled ten-event sample was also reproduced exactly:
 
-EDMOND is retained separately as provenance-limited supplementary evidence and is not counted as a clean third-network replication.
+- activity p-value: 1.62184 × 10⁻⁴;
+- shifted-window p-value: 0.02041;
+- orbit-null p-value: 5 × 10⁻⁵; and
+- medoid distance from the GMN orbit: 0.01723.
+
+The current JPL parent screen again found no object at D ≤ 0.15.
+
+EDMOND is kept as separate supplementary evidence because it is a compiled archive and cannot be assumed to provide a fully independent third observing system.

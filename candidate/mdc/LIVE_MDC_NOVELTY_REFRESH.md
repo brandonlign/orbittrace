@@ -1,67 +1,43 @@
-# Live IAU Meteor Data Center novelty refresh
+# Comparison with the IAU Meteor Data Center catalogue
 
-**Verdict:** `NO_CURRENT_IAU_MDC_HARD_DUPLICATE`
+The candidate was compared with the official IAU MDC full shower-data catalogue downloaded on 2026-08-01. The catalogue identified itself as version 2026-06-25.
 
-## Scope
+## Catalogue used
 
-The frozen GhostStream April candidate was compared against the current official IAU Meteor Data Center full shower-data JSON without changing the candidate, its drifts, or the duplicate-screen thresholds.
+- Shower records: 1,072
+- Submitted solutions: 2,174
+- Download size: 3,308,032 bytes
+- SHA-256: `821fa09734314e2796388c4f2fc94bb770998f2f2b08d6a84135660849aef899`
 
-The refresh was run on **2026-08-01 UTC** against catalogue version **2026-06-25**.
+The file passed the expected count and schema checks before comparison.
 
-## Catalogue provenance
+## Matching rule
 
-- Official shower records declared and parsed: **1,072**
-- Submitted shower solutions parsed: **2,174**
-- Download size: **3,308,032 bytes**
-- Download SHA-256: `821fa09734314e2796388c4f2fc94bb770998f2f2b08d6a84135660849aef899`
-- Source/count/schema checks: **passed**
+A shower was counted as a direct match only when all of the following were true:
 
-## Frozen duplicate screen
+1. its published activity interval overlapped the candidate interval of solar longitude 32.901963°–40.901963°, or its mean epoch was within 8° when bounds were unavailable;
+2. its radiant, propagated to the candidate epoch when drift information was available, was within 5°;
+3. its geocentric speed differed by no more than 5 km/s; and
+4. its complete orbit had D_SH ≤ 0.15.
 
-A hard duplicate required all of the following:
-
-1. the published activity interval to overlap the candidate's frozen solar-longitude interval of **32.901963°–40.901963°**, or the mean epoch to lie within ±8° when bounds were absent;
-2. drifted radiant separation no greater than **5°**;
-3. drifted geocentric-speed difference no greater than **5 km s⁻¹**; and
-4. a complete orbit with Southworth–Hawkins distance `D_SH ≤ 0.15`.
-
-Orbit-incomplete radiant–speed–activity near matches were also reported separately rather than being silently treated as novel.
+Solutions missing orbital elements were listed separately if their timing, radiant, and speed were close.
 
 ## Result
 
-- Hard duplicate matches: **0**
-- Activity-compatible radiant–speed near matches: **0**
-- Orbit-incomplete near matches: **0**
+- Direct matches: 0
+- Activity-compatible radiant/speed near matches: 0
+- Near matches with incomplete orbits: 0
 
-The nearest complete orbit remains:
+The nearest complete orbit was Northern May Ophiuchids solution 004:
 
-- IAU number/code: **149 NOP**
-- Name: **Northern May Ophiuchids**
-- Solution: **004**
-- `D_SH`: **0.2344515**
-- Published activity interval: **45°–75°** solar longitude
-- Mean epoch: **58.6°**, or **21.698°** after the candidate epoch
-- Drifted radiant separation: **9.5879°**
-- Drifted speed difference: **1.0049 km s⁻¹**
-- Activity-compatible with GhostStream: **no**
+- D_SH = 0.2344515;
+- published activity interval = 45°–75°;
+- mean epoch = 58.6°;
+- drifted-radiant separation = 9.5879°; and
+- speed difference = 1.0049 km/s.
 
-NOP therefore fails the activity, radiant, and orbital duplicate rules despite its relatively similar speed.
+Its speed is similar, but its timing, radiant, and orbit do not satisfy the comparison rule.
 
-## Interpretation
+The current official catalogue therefore contains no matching solution under the fixed criteria used here. This is useful evidence that the candidate is uncatalogued, but it cannot replace a specialist’s search of older literature, alternate coordinate conventions, removed solutions, and unpublished or locally used shower lists.
 
-The current official catalogue contains no shower solution that satisfies the frozen GhostStream duplicate criteria. The result preserves the existing claim boundary: GhostStream remains an **uncatalogued candidate**, not an official IAU discovery or established shower.
-
-This refresh tests catalogue duplication only. It does not replace expert review of coordinate conventions, minor-shower literature, or the submitted 95-event membership table.
-
-## Reproduce
-
-```bash
-python pilots/ghoststream/april_stream/mdc/refresh_live_mdc_novelty.py \
-  --output-dir live_mdc_refresh
-```
-
-## Preserved CI evidence
-
-- Workflow run: `30678572191`
-- Artifact: `8811375826`
-- Artifact SHA-256: `d7a88515dcc97762812dd4df6b431a2c65805928969ad114b3636809254ae393`
+The machine-readable result is in `live_mdc_novelty_refresh_summary.json`.

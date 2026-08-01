@@ -1,6 +1,6 @@
 # Results
 
-A blind search of GMN trajectories found one late-April structure that remained convincing after the candidate definition was fixed and tested in other years. The project refers to it internally as `GhostStream-April-36.9`. It does not have an official IAU designation.
+A blind search of GMN trajectories found one late-April structure that remained convincing after the candidate definition was fixed and tested in other years. The project refers to it internally as `GhostStream-April-36.9`.
 
 ## Candidate at a glance
 
@@ -25,7 +25,7 @@ The evidence supports a recurring meteor stream. The remaining scientific questi
 
 The search used public GMN trajectories labelled as sporadic. Meteors were represented by Sun-centered radiant longitude, radiant latitude, geocentric speed, and solar longitude. HDBSCAN generated candidate clusters, and candidates then had to pass requirements for observing nights, participating stations, compactness, orbital coherence, split-sample recurrence, and separation from known showers.
 
-A January–July 2026 blind rerun produced one full-gate survivor, in April. The search did not receive the final month or the 95-event lookup table. The April candidate was then evaluated in earlier years without moving its center to improve those results.
+A January–July 2026 blind rerun independently selected April as the only full-gate survivor. The fixed April definition was then evaluated in earlier years.
 
 | Year | Selected members | Activity p-value | Orbit-null p-value | Individually significant |
 |---:|---:|---:|---:|:---:|
@@ -66,7 +66,7 @@ The 95-member arithmetic mean prepared for the draft MDC record is slightly diff
 
 A March–May profile normalized stream-core counts by the simultaneous non-core antihelion population. The supported activity interval is solar longitude 35.902°–39.902°. The highest half-degree bin occurred at 38.652°, but that exact peak shifted when individual years were removed, so the four-degree interval is the more stable description.
 
-A 20,000-replicate bootstrap resampled years and observing nights. The mean radiant and orbit remained stable. Right-ascension and declination drift were resolved, while the fitted speed drift was not distinguishable from zero. External-catalogue tests were therefore repeated with the speed drift set to zero.
+A 20,000-replicate bootstrap resampled years and observing nights. The mean radiant and orbit remained stable. Right-ascension and declination drift were resolved, while the fitted speed drift remained unresolved. External-catalogue tests were therefore repeated with the speed drift set to zero.
 
 ## Geographic checks
 
@@ -89,7 +89,7 @@ The candidate was re-evaluated under 81 combinations of:
 - radiant/speed core radius: 2.5σ, 3.0σ, or 3.5σ; and
 - activity half-width: 3°, 4°, or 5°.
 
-All 81 settings passed. Membership ranged from 29 to 129, while median orbital D remained between 0.0364 and 0.0555. These are overlapping sensitivity checks, not 81 independent discoveries.
+All 81 settings passed. Membership ranged from 29 to 129, while median orbital D remained between 0.0364 and 0.0555. Together, the 81 settings form one sensitivity analysis.
 
 ## External catalogues
 
@@ -107,13 +107,13 @@ CAMS contributed six matches from 2011–2012. SonotaCo contributed four from 20
 | Orbit-null p-value | 5 × 10⁻⁵ |
 | Medoid distance from GMN orbit | 0.01723 |
 
-A shower-removed EDMOND subset added six non-overlapping meteors from 2014, 2016, 2017, and 2022. Those events are orbitally strong but do not meet the project’s standalone sample-size and timing rules. EDMOND is also a compilation that may share upstream observations with other catalogues, so it is treated as supplementary evidence rather than a clean third independent network.
+A shower-removed EDMOND subset added six non-overlapping meteors from 2014, 2016, 2017, and 2022. The sample falls below the project’s standalone size and timing thresholds. Because EDMOND may share upstream observations with other catalogues, it is treated as supplementary evidence.
 
 ## Known-shower and parent-body checks
 
 A checksum-locked copy of IAU MDC catalogue version 2026-06-25 contained 1,072 shower records and 2,174 submitted solutions. None matched the candidate under the activity, drifted-radiant, speed, and orbital criteria. The nearest complete orbit was Northern May Ophiuchids solution 004 at D_SH = 0.23445; its activity period and radiant do not match the late-April candidate.
 
-A NASA/JPL search evaluated 729 broadly compatible valid orbits. None had D ≤ 0.15. The nearest object, 2023 HJ7, had D = 0.15939 but an uncertainty code of 8 and an observational arc of only 11 days. No parent body is proposed.
+A NASA/JPL search evaluated 729 broadly compatible valid orbits. The nearest object, 2023 HJ7, had D = 0.15939, an uncertainty code of 8, and an observational arc of only 11 days. The search did not identify a credible parent-body candidate.
 
 ## What remains uncertain
 
@@ -124,7 +124,6 @@ The main limitations are straightforward:
 - the three geographic groups share the GMN processing system;
 - the external samples are small, and the pooled analysis was decided after the separate results were known;
 - EDMOND is a compiled archive with incomplete currently linked release files;
-- no specialist has yet completed an independent duplicate-shower review; and
-- no credible parent body or dynamical history has been established.
+- specialist comparison with obscure or differently parameterized shower literature remains the most important external check.
 
-The next step is independent scientific review, especially of the coordinate conventions, antihelion background, event table, and possible historical shower matches.
+The next step is independent scientific review of the coordinate conventions, antihelion background, event table, and possible historical shower matches.

@@ -3,7 +3,8 @@ name: GhostStream EDMOND recovery fast path
 on:
   pull_request:
     paths:
-      - "pilots/ghoststream/april_stream/edmond_2024/**"
+      - "pilots/ghoststream/april_stream/edmond_2024/recover_current_edmond.py"
+      - "pilots/ghoststream/april_stream/edmond_2024/recover_current_edmond_fast.py"
       - ".github/workflows/ghoststream-edmond-recovery-fast.yml"
   workflow_dispatch:
 

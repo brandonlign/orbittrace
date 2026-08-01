@@ -7,15 +7,22 @@
 - [x] Exact-time duplicate solutions removed.
 - [x] Activity test repeated without orbital elements.
 - [x] Expanded antihelion-source null passed.
-- [x] Measurement-uncertainty clone gate passed.
+- [x] Measurement-uncertainty clone gate passed: 1,000/1,000 trials.
+- [x] Twenty-thousand-replicate year/night cluster bootstrap completed.
+- [x] RA and declination drift resolved; geocentric-speed drift correctly marked unresolved.
+- [x] Frozen 81-cell specification curve completed: 81/81 cells passed.
 - [x] Full current IAU-solution audit found no hard match.
-- [x] CAMS and SonotaCo support documented.
+- [x] CAMS and SonotaCo primary external support documented.
+- [x] Uniform zero-speed-drift external rerun completed.
+- [x] Shober EDMOND subset adds six non-overlapping, orbitally compact supporting meteors.
+- [x] EDMOND provenance limitation is explicit; it is not counted as a fully independent third instrument.
 - [x] NASA/JPL parent screen completed.
 - [x] March–May source-normalized activity profile replaces raw month-boundary interpretation.
 - [x] Three disjoint GMN geographic station groups independently pass activity and orbit gates.
-- [ ] External meteor expert reviews coordinate and orbit conventions.
+- [x] Official EDMOND 2024 page/link audit documented; advertised attachment was unavailable.
+- [ ] External meteor expert reviews coordinate, orbit, and radiant-drift conventions.
 - [ ] Independent network reruns the frozen solution or its own preregistered search.
-- [ ] Absolute exposure/flux profile models station uptime, weather, limiting magnitude, radiant elevation, and collecting area.
+- [ ] Absolute exposure/flux profile models station uptime, weather, limiting magnitude, radiant elevation, and collecting area using consented GMN Level 2 data.
 - [ ] Final duplicate search includes any newly added MDC solutions immediately before submission.
 
 ## Data checks
@@ -25,9 +32,13 @@
 - [x] All lookup radiants are geocentric J2000 values.
 - [x] SCLO is reported in the 0–360° convention.
 - [x] Semimajor axis is internally consistent with mean q and e.
-- [x] Run the completed record through the official MDC consistency checker: zero flagged errors in both directions.
+- [x] Official MDC consistency checker reports zero flagged errors in both directions.
+- [x] Shober EDMOND source file MD5 verified against the Zenodo record.
+- [x] Exact cross-source duplicate audit found zero duplicate UTC events among the 16 external members.
+- [x] Machine-readable candidate solution records bootstrap intervals and unresolved speed drift.
 - [ ] Confirm the preferred GMN catalogue version string and citation.
-- [ ] Archive hashes for all source catalogues and result files.
+- [ ] Archive hashes for every GMN monthly source catalogue used in the final submission analysis.
+- [ ] Regenerate and checksum-lock the final sent package after all manuscript edits are complete.
 
 ## Authorship and publication
 

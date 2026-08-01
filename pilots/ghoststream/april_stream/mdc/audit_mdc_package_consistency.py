@@ -178,7 +178,7 @@ def main() -> int:
     exact = checker["exact_committed_mean"]
     checker_key_map = {
         "LS": "LoS", "RA": "Ra", "Dec": "De", "Vg": "Vg",
-        "q": "q", "e": "e", "peri": "peri", "node": "node", "inc": "incl",
+        "q": "q", "e": "e", "peri": "peri", "node": "node", "inc": "inc",
     }
     for checker_key, mean_key in checker_key_map.items():
         close(f"exact official checker input {checker_key}", exact[checker_key], mean[mean_key], 5e-7)

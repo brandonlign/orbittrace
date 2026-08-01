@@ -188,7 +188,7 @@
       "exact_cross_source_duplicate_groups": 0,
       "interpretation": "Supporting exploratory evidence. EDMOND is a compiled archive and may share upstream network provenance with other historical catalogs, so it is not counted as a fully independent third instrument."
     },
-    "full_linked_edmond_v601": {
+    "currently_linked_edmond_annual_files": {
       "validated_annual_archives": 23,
       "validated_years": [
         2001,
@@ -236,7 +236,19 @@
       "maximum_orbit_d_sh": 0.09805965651612987,
       "orbit_null_p": 4.999750012499375e-05,
       "standalone_gate_passed": false,
-      "interpretation": "The complete usable linked v6.01 annual series reproduces exactly the prior six EDMOND events. It is supporting, provenance-limited evidence, not an additional independent sample or a full frozen pass."
+      "interpretation": "All currently linked annual files reproduce exactly the prior six EDMOND events, but the links are incomplete or stale relative to the advertised v6.01 release. This is supporting, provenance-limited evidence, not a complete current-release test or an additional independent sample.",
+      "advertised_release_version": "6.01",
+      "complete_advertised_release_tested": false,
+      "currently_linked_rows_2001_2023": 481252,
+      "advertised_rows_2001_2023": 614758,
+      "linked_coverage_fraction": 0.78283,
+      "annual_row_count_matches": 0,
+      "annual_files_checked": 23,
+      "embedded_version_counts": {
+        "513": 257305,
+        "516": 223941,
+        "malformed_control_character_rows": 6
+      }
     }
   },
   "novelty_audit": {

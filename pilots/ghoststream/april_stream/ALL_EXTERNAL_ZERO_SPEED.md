@@ -42,9 +42,9 @@ This is the primary external result because CAMS and SonotaCo provide distinct h
 
 The EDMOND extension is supporting, explicitly exploratory evidence. EDMOND is a compiled historical archive and may share contributing networks or reduction ancestry with other video-meteor compilations. The absence of exact UTC duplicates prevents simple double-counting of the same selected events, but the three archive labels must not be interpreted as three fully independent instruments.
 
-## Full linked EDMOND v6.01 annual audit
+## Currently linked EDMOND annual-file audit
 
-The unchanged zero-speed-drift template was also applied to every usable annual archive linked by the public EDMOND v6.01 page. Twenty-three annual ZIPs from 2001–2023 passed signature, CRC, schema, and finite-field checks; the linked 2024 ZIP returned HTTP 404. The evaluation selected exactly the same six EDMOND events already listed above and no additional events.
+The unchanged zero-speed-drift template was applied to all annual ZIPs currently linked by the EDMOND v6.01 page. Twenty-three ZIPs from 2001–2023 passed signature, CRC, schema, and finite-field checks; the linked 2024 ZIP returned HTTP 404. Release-integrity checks show that these links are incomplete or stale relative to the page: 481,252 linked rows versus 614,758 advertised for the same years, 0/23 annual count matches, and embedded versions 513/516 rather than 601. They are not represented as a complete v6.01 release. The evaluation selected exactly the same six EDMOND events already listed above and no additional events.
 
 - Members: **6**
 - Years: **2014, 2016, 2017, 2022**
@@ -57,7 +57,7 @@ The unchanged zero-speed-drift template was also applied to every usable annual 
 - Exact overlaps with the six Shober-selected events: **6/6**
 - Additional selected events: **0**
 
-This strengthens the provenance and reproducibility of the six-event EDMOND support but does not turn it into a new independent sample. It remains below the frozen N ≥ 8 standalone gate, and its supplemental shifted-window audit is slightly above 0.05.
+This strengthens the provenance and reproducibility of the six-event EDMOND support in the currently linked files but does not turn it into a new independent sample or a complete current-release replication. It remains below the frozen N ≥ 8 standalone gate, and its supplemental shifted-window audit is slightly above 0.05.
 
 ## Interpretation
 

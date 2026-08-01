@@ -16,7 +16,7 @@ A blind scan of 2026 Global Meteor Network trajectories found a compact annual A
 - has stable mean radiant and orbit under a **20,000-replicate year/night cluster bootstrap**;
 - is supported primarily by **10 CAMS and SonotaCo meteors** across five historical years;
 - receives additional orbitally strong support from **six non-overlapping meteors** in a shower-removed EDMOND subset;
-- reproduces exactly those six and no additional members when the unchanged template is applied to every usable linked EDMOND v6.01 annual archive from 2001–2023; and
+- reproduces exactly those six and no additional members across all currently linked EDMOND annual files from 2001–2023, while a release-integrity audit shows those links are incomplete or stale relative to the advertised v6.01 release; and
 - passes the official MDC radiant/orbit consistency programs with **zero flagged errors**.
 
 The correct claim is currently:
@@ -180,9 +180,11 @@ Combining CAMS, SonotaCo, and the Shober EDMOND subset produced:
 
 This extension is explicitly exploratory. EDMOND is a compiled archive and may share contributing-network provenance with other historical catalogues, so it is not counted as a clean third independent instrument.
 
-The advertised public EDMOND 2024 annual attachment remains unavailable. A networked recovery audit tested 434 candidate URLs, direct and alternate site paths, the WordPress media API, Wayback, and recent Common Crawl indexes without finding a CRC-valid 2024 ZIP; the neighboring official 2023 archive passed ZIP, CRC, and schema validation in the same environment. The missing 2024 file was not inferred or reconstructed.
+The advertised public EDMOND 2024 annual attachment remains unavailable. The exhaustive recovery run recorded 434 probes, including 432 deterministic live and legacy asset paths; no CRC-valid 2024 ZIP was recovered, while the linked 2023 ZIP passed signature, CRC, and schema validation in the same environment. The missing 2024 file was not inferred or reconstructed.
 
-The unchanged zero-speed-drift template was then applied to all **23 usable linked annual archives from 2001–2023**. It selected exactly the same six 2014, 2016, 2017, and 2022 events already preserved from the Shober subset and no additional events. The full-series activity enrichment was strong (one-sided Fisher p = **3.3785×10⁻⁴**, odds ratio **7.455**) and the post-selection orbit remained decisive (median Southworth–Hawkins D = **0.03601**, q90 = **0.07344**, 20,000-trial orbit-null p = **4.99975×10⁻⁵**). The 48-position shifted-window audit gave p = **0.06122**. This is therefore supporting evidence rather than a standalone frozen pass: the sample remains below the preexisting N ≥ 8 rule and the supplemental localization audit is slightly above 0.05. No scientific inference is drawn from the absent 2024 attachment.
+A separate release-integrity audit showed that the surviving annual links are **not the complete advertised v6.01 release**. The 23 linked CSVs for 2001–2023 contain **481,252 rows**, versus **614,758** advertised for those same years (**78.283%**); **0 of 23** annual counts match; and embedded `_Version` values are predominantly **513** and **516**, not 601. They are therefore described as the **currently linked files**, not as a complete v6.01 archive.
+
+The unchanged zero-speed-drift template was applied to every currently linked annual file from 2001–2023. It selected exactly the same six 2014, 2016, 2017, and 2022 events already preserved from the Shober subset and no additional events. The activity enrichment was strong (one-sided Fisher p = **3.3785×10⁻⁴**, odds ratio **7.455**) and the post-selection orbit remained decisive (median Southworth–Hawkins D = **0.03601**, q90 = **0.07344**, 20,000-trial orbit-null p = **4.99975×10⁻⁵**). The 48-position shifted-window audit gave p = **0.06122**. This supports the six existing EDMOND events but is neither a new independent sample nor a complete v6.01 replication. It also remains below the preexisting N ≥ 8 rule. No scientific inference is drawn from the absent 2024 attachment.
 
 ### Novelty and parent-body audit
 

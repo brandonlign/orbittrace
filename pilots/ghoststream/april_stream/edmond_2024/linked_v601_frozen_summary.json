@@ -1,10 +1,36 @@
 {
-  "verdict": "LINKED_EDMOND_ARCHIVES_PROVIDE_SUPPORT_BUT_NOT_FULL_FROZEN_PASS",
+  "verdict": "CURRENTLY_LINKED_EDMOND_FILES_SUPPORT_BUT_NOT_COMPLETE_V601_OR_STANDALONE_PASS",
   "retuning_performed": false,
   "orbit_used_for_member_selection": false,
   "archive_acquisition": {
-    "validated_years": [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023],
-    "unavailable_years": [2024],
+    "validated_years": [
+      2001,
+      2002,
+      2003,
+      2004,
+      2005,
+      2006,
+      2007,
+      2008,
+      2009,
+      2010,
+      2011,
+      2012,
+      2013,
+      2014,
+      2015,
+      2016,
+      2017,
+      2018,
+      2019,
+      2020,
+      2021,
+      2022,
+      2023
+    ],
+    "unavailable_years": [
+      2024
+    ],
     "unavailable_2024_status": 404,
     "separate_recovery_probe_count": 434,
     "accepted_2024_archives": 0,
@@ -28,7 +54,12 @@
   },
   "frozen_activity_test": {
     "selected_members": 6,
-    "selected_years": [2014, 2016, 2017, 2022],
+    "selected_years": [
+      2014,
+      2016,
+      2017,
+      2022
+    ],
     "table": {
       "inside_core": 6,
       "inside_noncore": 1060,
@@ -56,7 +87,7 @@
     "null_pool": 1060,
     "trials": 20000,
     "passes_as_or_more_compact": 0,
-    "p_plus_one": 0.00004999750012499375
+    "p_plus_one": 4.999750012499375e-05
   },
   "overlap_audit": {
     "exact_UTC_overlaps_with_prior_Shober_six": 6,
@@ -76,5 +107,23 @@
     "recovery_run_id": 30677260504,
     "recovery_artifact_id": 8810993046,
     "recovery_artifact_sha256": "55cb868d4f4f0b67daf125034174e5b36bf7add65d3294c9b88fa7b419d95735"
-  }
+  },
+  "release_integrity": {
+    "advertised_release_version": "6.01",
+    "complete_advertised_release_tested": false,
+    "currently_linked_files_validated": 23,
+    "currently_linked_rows_2001_2023": 481252,
+    "advertised_rows_2001_2023": 614758,
+    "coverage_fraction": 0.78283,
+    "annual_row_count_matches": 0,
+    "embedded_version_counts": {
+      "513": 257305,
+      "516": 223941,
+      "malformed_control_character_rows": 6
+    },
+    "unavailable_years": [
+      2024
+    ]
+  },
+  "claim_boundary": "Statistics apply to all currently linked annual files, which are incomplete or stale relative to the advertised v6.01 release. They do not constitute a complete current-release replication."
 }

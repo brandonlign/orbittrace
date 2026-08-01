@@ -54,8 +54,17 @@
       2017,
       2022
     ],
-    "full_linked_annual_archives_validated": 23,
-    "full_linked_years": [
+    "unavailable_linked_years": [
+      2024
+    ],
+    "exact_overlaps_with_prior_six": 6,
+    "additional_selected_events": 0,
+    "activity_p": 0.0003378529391388961,
+    "shifted_window_p": 0.061224489795918366,
+    "orbit_null_p": 4.999750012499375e-05,
+    "standalone_gate_passed": false,
+    "currently_linked_annual_files_validated": 23,
+    "currently_linked_years": [
       2001,
       2002,
       2003,
@@ -80,15 +89,16 @@
       2022,
       2023
     ],
-    "unavailable_linked_years": [
-      2024
-    ],
-    "exact_overlaps_with_prior_six": 6,
-    "additional_selected_events": 0,
-    "activity_p": 0.0003378529391388961,
-    "shifted_window_p": 0.061224489795918366,
-    "orbit_null_p": 4.999750012499375e-05,
-    "standalone_gate_passed": false
+    "advertised_release_version": "6.01",
+    "complete_advertised_release_tested": false,
+    "currently_linked_rows_2001_2023": 481252,
+    "advertised_rows_2001_2023": 614758,
+    "linked_coverage_fraction": 0.78283,
+    "annual_row_count_matches": 0,
+    "embedded_versions": [
+      513,
+      516
+    ]
   },
   "secondary_result": {
     "iau_code": "NMV",
@@ -105,5 +115,5 @@
       "80_members": "8/9"
     }
   },
-  "claim_limit": "This supports a high-confidence uncatalogued annual April meteor-stream candidate. It is not official IAU recognition, an established shower, a fully independent third-network replication, an absolute-flux measurement, or a parent-body identification."
+  "claim_limit": "This supports a high-confidence uncatalogued annual April meteor-stream candidate. It is not official IAU recognition, an established shower, a complete current EDMOND v6.01 replication, a fully independent third-network replication, an absolute-flux measurement, or a parent-body identification."
 }

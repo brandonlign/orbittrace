@@ -43,11 +43,11 @@ The main checks were designed to address different ways a false stream could app
 
 **Recurrence.** The candidate passes the year-level test in 2022–2026. The pooled 2022–2023 result was kept untouched until the candidate definition had been fixed.
 
-**Background structure.** The final activity test places the candidate inside a deliberately broad antihelion background. It selects events without using orbital elements, then asks whether the selected events are orbitally compact afterward.
+**Background structure.** The final activity test places the candidate inside a deliberately broad antihelion background. Selection uses radiant, speed, and solar longitude; orbital compactness is evaluated afterward.
 
 **Measurement uncertainty.** All 1,000 perturbed-event trials retained the required orbital compactness.
 
-**Sampling uncertainty.** A 20,000-replicate bootstrap resampled years and observing nights. The mean radiant and orbit remained stable. The angular radiant drifts were resolved, but the speed drift was not.
+**Sampling uncertainty.** A 20,000-replicate bootstrap resampled years and observing nights. The mean radiant and orbit remained stable, the angular radiant drifts were resolved, and the speed drift remained unresolved.
 
 **Geography.** The signal appears in three disjoint station groups: the Americas, Europe/West Asia, and Oceania/East Asia/Africa.
 
@@ -57,14 +57,12 @@ The main checks were designed to address different ways a false stream could app
 
 **Known showers.** The current official IAU MDC catalogue contains no solution that matches the candidate in activity, drifted radiant, speed, and orbit under the project’s comparison rules.
 
-## What the evidence does not settle
+## Open questions
 
-The project has not shown that the IAU should recognize a new shower. A specialist could still identify an overlooked historical solution, a coordinate-convention issue, or a narrow component of the antihelion source that the present background model does not capture well enough.
+The main open question is whether the group is best interpreted as a distinct stream, a branch of a known minor shower, or narrow structure within the antihelion source. A specialist literature and catalogue review is the most direct way to resolve that question.
 
-The external samples are also small. CAMS narrowly misses the project’s standalone activity cutoff, SonotaCo is below the minimum event count, and the pooled result was calculated after those separate sparse outcomes were known.
-
-No parent body has been identified, and no dynamical integrations have been used to establish the stream’s origin.
+The external samples are small. CAMS narrowly misses the project’s standalone activity cutoff, SonotaCo is below the minimum event count, and the pooled result was calculated after those separate outcomes were known. Dynamical origin modeling is outside the current analysis.
 
 ## Current interpretation
 
-The most defensible interpretation is that the data contain a real, recurring, orbitally coherent late-April concentration that is not represented by a matching solution in the current IAU MDC catalogue. Whether it should be treated as a distinct meteor shower is now a question for independent meteor specialists.
+The data support a real, recurring, orbitally coherent late-April concentration with no matching solution in the current IAU MDC catalogue.

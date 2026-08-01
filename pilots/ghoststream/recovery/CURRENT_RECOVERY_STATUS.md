@@ -17,8 +17,11 @@ Updated: 2026-08-01
 - Original validator verdict: **`APRIL_STREAM_DISCOVERY_CANDIDATE_SURVIVES_AUDIT`**
 - Internal GMN downstream clean rerun: **passed and committed**
 - External CAMS/SonotaCo clean rerun: **passed and committed**
+- Historical v2 method-control gate: **`NO_GO_DEGENERATE_PARENT_CLUSTER` preserved**
+- Corrected independent-year 2024 method controls: **passed 3/3**
+- Actual January–July 2026 blind-discovery matrix: **running from recovered source**
 - Current JPL parent screen: **passed; zero objects at D ≤ 0.15**
-- Publication hold active: **yes, pending package/manuscript rebuild and independent review**
+- Publication hold active: **yes, pending blind-lineage result, final package build, and independent review**
 - Formal MDC hold active: **yes**
 - Prior expert bundle sendable: **no; it must be rebuilt from the recovered implementation**
 
@@ -31,6 +34,8 @@ Updated: 2026-08-01
 - `pilots/ghoststream/reconstruction/exact_downstream/DOWNSTREAM_REPRODUCTION.md`
 - `pilots/ghoststream/reconstruction/exact_external/external_reproduction.json`
 - `pilots/ghoststream/reconstruction/exact_external/EXTERNAL_REPRODUCTION.md`
+- `pilots/ghoststream/reconstruction/exact_method_controls_v3/method_controls_v3.json`
+- `pilots/ghoststream/reconstruction/exact_method_controls_v3/METHOD_CONTROLS_V3.md`
 
 ## Exact primary result
 
@@ -94,15 +99,31 @@ The current JPL screen evaluated 729 valid broad-compatible orbits:
 
 EDMOND remains provenance-limited supplementary evidence. The advertised 2024 attachment is still unavailable and the surviving linked annual files are not a complete v6.01 release.
 
+## Method-control reconciliation
+
+The unchanged recovered v2 method gate individually recovered all three untouched named showers and the weak-stream injection gate passed, but its aggregate verdict was `NO_GO_DEGENERATE_PARENT_CLUSTER`. That historical verdict remains preserved.
+
+The no-go arose because the v2 30% largest-cluster ceiling included the real target cluster. Eta Aquariids itself occupied more than 30% of its holdout sample, making full ETA recovery mathematically incompatible with the rule.
+
+A correction was frozen before inspecting independent 2024 seasons. It retained the exact HDBSCAN setting, recovery thresholds, hidden labels, and 30% threshold, but applied the ceiling to the largest non-target cluster—the unrelated-cluster failure mode the rule was intended to detect.
+
+The corrected prospective holdout passed:
+
+| Control | Precision | Recall | F1 | Largest non-target cluster |
+|---|---:|---:|---:|---:|
+| Lyrids | 0.821 | 1.000 | 0.902 | 0.130 |
+| Eta Aquariids | 0.917 | 1.000 | 0.957 | 0.156 |
+| Southern Delta Aquariids | 0.864 | 1.000 | 0.927 | 0.140 |
+
+All three values were below the unchanged 0.30 ceiling. This resolves the specific v2 gate-design contradiction without rewriting its historical outcome.
+
 ## Why an earlier reconstruction returned 103
 
 A separately reconstructed later radiant-speed template omitted the original validator's frozen orbit-distance membership cuts. It was therefore a different analysis, not evidence that the official monthly catalogues or signal had changed. Running the recovered original source removed the discrepancy completely.
 
 ## Remaining work
 
-The computational recovery and clean analysis reruns are complete. The remaining gate is packaging and review:
-
-1. rebuild the manuscript, figures, data-availability statement, and code-inclusive expert bundle from the recovered implementation;
-2. rerun the MDC package manifest and official checker audits against that rebuilt package;
+1. complete and preserve the actual January–July 2026 blind-discovery matrix from `run_month_year_v3.py`;
+2. integrate the blind and corrected method-control evidence into the recovered MDC package audit and code-inclusive expert bundle;
 3. obtain independent scientific and duplicate review; and
 4. keep journal and formal MDC submission blocked until those steps pass.

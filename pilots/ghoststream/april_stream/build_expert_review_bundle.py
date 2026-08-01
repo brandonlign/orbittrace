@@ -3,9 +3,9 @@
 
 The bundle contains the manuscript/MDC package, source and claim-boundary
 records, the recovered immutable analysis implementation, exact clean-rerun
-evidence, and the CI entrypoints needed for an external expert to inspect how
-the reported results were regenerated. Raw upstream catalogues remain external
-and are not silently repackaged.
+evidence, the historical and corrected method-control records, the recovered
+blind-discovery lineage, and the CI entrypoints needed for external review.
+Raw upstream catalogues remain external and are not silently repackaged.
 """
 from __future__ import annotations
 
@@ -22,6 +22,8 @@ BASE_FILES = [
     "pilots/ghoststream/results/ghoststream_final_summary.json",
     "pilots/ghoststream/reproducibility_gap_summary.json",
     "pilots/ghoststream/recovery/CURRENT_RECOVERY_STATUS.md",
+    "pilots/ghoststream/reconstruction/METHOD_CONTROL_RECONCILIATION.md",
+    "pilots/ghoststream/reconstruction/blind_wrapper_fix.json",
     "pilots/ghoststream/april_stream/EXPERT_REVIEW_PACKET.md",
     "pilots/ghoststream/april_stream/CANDIDATE_DOSSIER.md",
     "pilots/ghoststream/april_stream/candidate_solution.json",
@@ -54,12 +56,18 @@ TREE_ROOTS = [
     "pilots/ghoststream/reconstruction/exact_recovered",
     "pilots/ghoststream/reconstruction/exact_downstream",
     "pilots/ghoststream/reconstruction/exact_external",
+    "pilots/ghoststream/reconstruction/exact_method_controls",
+    "pilots/ghoststream/reconstruction/exact_method_controls_v3",
+    "pilots/ghoststream/reconstruction/exact_blind_rediscovery",
 ]
 
 CI_FILES = [
     ".github/workflows/ghoststream-primary-reproduction-pr.yml",
     ".github/workflows/ghoststream-recovered-downstream-reproduction.yml",
     ".github/workflows/ghoststream-recovered-external-reproduction.yml",
+    ".github/workflows/ghoststream-method-controls-pr.yml",
+    ".github/workflows/ghoststream-method-controls-v3.yml",
+    ".github/workflows/ghoststream-blind-rediscovery-pr.yml",
     ".github/workflows/ghoststream-mdc-package-audit.yml",
     ".github/workflows/ghoststream-expert-review-bundle.yml",
     ".github/workflows/ghoststream-reproducibility-hold.yml",
@@ -138,9 +146,16 @@ def main() -> int:
         "reconstruction/exact_recovered/exact_reproduction.json",
         "reconstruction/exact_downstream/downstream_reproduction.json",
         "reconstruction/exact_external/external_reproduction.json",
+        "reconstruction/exact_method_controls/method_controls.json",
+        "reconstruction/exact_method_controls_v3/method_controls_v3.json",
+        "reconstruction/exact_blind_rediscovery/blind_rediscovery.json",
+        "reconstruction/METHOD_CONTROL_RECONCILIATION.md",
+        "reconstruction/blind_wrapper_fix.json",
         "ci/ghoststream-primary-reproduction-pr.yml",
         "ci/ghoststream-recovered-downstream-reproduction.yml",
         "ci/ghoststream-recovered-external-reproduction.yml",
+        "ci/ghoststream-method-controls-v3.yml",
+        "ci/ghoststream-blind-rediscovery-pr.yml",
     }
     missing = sorted(required_bundle_paths - seen_bundle_paths)
     if missing:
@@ -162,6 +177,11 @@ regenerated 101 selected GMN events, including the preserved 95-event
 stages were also rerun and their complete outputs are included under
 `reconstruction/`.
 
+The package preserves both the historical v2 method-control no-go and the
+prospective corrected 2024 holdout pass. It also includes the actual recovered
+January–July 2026 blind-discovery lineage and the minimal wrapper-repair record;
+the original recovered wrapper remains preserved unchanged.
+
 This resolves the prior code-loss and analysis-rerun gap. It does not replace
 external meteor-science review, make the shower official, or make the current
 draft automatically suitable for submission.
@@ -171,12 +191,12 @@ draft automatically suitable for submission.
 1. `april_stream/EXPERT_REVIEW_PACKET.md`
 2. `april_stream/mdc/MANUSCRIPT_DRAFT.md`
 3. `results/ghoststream_final_summary.json`
-4. `reconstruction/exact_recovered/EXACT_REPRODUCTION.md`
-5. `reconstruction/exact_downstream/DOWNSTREAM_REPRODUCTION.md`
-6. `reconstruction/exact_external/EXTERNAL_REPRODUCTION.md`
-7. `recovered_pipeline/SOURCE_MANIFEST.json`
-8. `april_stream/mdc/AI_AND_SOFTWARE_PROVENANCE.md`
-9. `april_stream/mdc/GhostStream_April_95_GMN_lookup.csv`
+4. `reconstruction/exact_blind_rediscovery/BLIND_REDISCOVERY.md`
+5. `reconstruction/METHOD_CONTROL_RECONCILIATION.md`
+6. `reconstruction/exact_recovered/EXACT_REPRODUCTION.md`
+7. `reconstruction/exact_downstream/DOWNSTREAM_REPRODUCTION.md`
+8. `reconstruction/exact_external/EXTERNAL_REPRODUCTION.md`
+9. `recovered_pipeline/SOURCE_MANIFEST.json`
 10. `april_stream/mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md`
 11. source and robustness records as needed
 
@@ -224,7 +244,7 @@ commit identifier.
         "file_count": len(records),
         "required_bundle_paths": sorted(required_bundle_paths),
         "files": records,
-        "reproducibility_status": "source_recovered_primary_internal_and_external_analysis_reruns_passed",
+        "reproducibility_status": "source_recovered_primary_internal_external_method_and_blind_evidence_complete",
         "claim_boundary": (
             "Draft pre-submission package; not official IAU recognition, an "
             "established shower, a complete EDMOND v6.01 replication, or a "

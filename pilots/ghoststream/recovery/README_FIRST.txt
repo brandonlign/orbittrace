@@ -1,0 +1,7 @@
+RUN THIS FIRST ON BRANDON'S MAC:
+
+cd /Users/Brandon/Desktop/isef
+python3 pilots/ghoststream/recovery/audit_local_workspace.py --repo /Users/Brandon/Desktop/isef --output-dir /Users/Brandon/Desktop/ghoststream_recovery_audit
+open /Users/Brandon/Desktop/ghoststream_recovery_audit/GHOSTSTREAM_LOCAL_RECOVERY_AUDIT.md
+
+This is read-only. It does not upload, restore, copy, or modify files.

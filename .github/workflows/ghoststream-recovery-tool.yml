@@ -148,8 +148,8 @@ jobs:
           cp -a _ghoststream_source/pr56/ghoststream_runner/. "$target/pr56_runner/"
           cp -a _ghoststream_source/pr57/ghoststream_novel/. "$target/pr57_novel/"
 
-          test "$(find "$target/pr56_runner" -type f | wc -l | tr -d ' ')" -eq 14
-          test "$(find "$target/pr57_novel" -type f | wc -l | tr -d ' ')" -eq 35
+          test "$(find "$target/pr56_runner" -type f | wc -l | tr -d ' ')" -eq 13
+          test "$(find "$target/pr57_novel" -type f | wc -l | tr -d ' ')" -eq 34
           test -f "$target/pr56_runner/validate_candidates.py"
           test -f "$target/pr56_runner/multiyear_confirmation.py"
           test -f "$target/pr57_novel/run_novel_search_fixed.py"

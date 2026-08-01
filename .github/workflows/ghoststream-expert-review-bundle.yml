@@ -28,10 +28,22 @@ jobs:
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: agent/ghoststream-pilot
+          fetch-depth: 1
 
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
+
+      - name: Resolve exact branch head
+        id: source
+        shell: bash
+        run: |
+          set -euo pipefail
+          sha=$(git rev-parse HEAD)
+          echo "sha=$sha" >> "$GITHUB_OUTPUT"
+          echo "GhostStream source branch head: $sha"
 
       - name: Compile bundle builder
         run: |
@@ -44,17 +56,20 @@ jobs:
           set -euo pipefail
           python pilots/ghoststream/april_stream/build_expert_review_bundle.py \
             --output-dir expert_review_bundle \
-            --commit-sha "$GITHUB_SHA" 2>&1 | tee expert_review_bundle.log
+            --commit-sha "${{ steps.source.outputs.sha }}" 2>&1 | tee expert_review_bundle.log
 
       - name: Validate bundle
         run: |
           python - <<'PY'
           import json
+          import subprocess
           import zipfile
           from pathlib import Path
 
+          branch_head = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
           result = json.loads(Path("expert_review_bundle/expert_review_bundle_build.json").read_text())
           assert result["verdict"] == "PASS_EXPERT_REVIEW_BUNDLE_BUILT"
+          assert result["source_commit"] == branch_head
           assert result["included_files"] == 22
           assert result["zip_members"] == 24
           assert len(result["zip_sha256"]) == 64
@@ -64,7 +79,7 @@ jobs:
               assert "README.md" in archive.namelist()
               assert "MANIFEST.json" in archive.namelist()
               manifest = json.loads(archive.read("MANIFEST.json"))
-              assert manifest["source_commit"] == result["source_commit"]
+              assert manifest["source_commit"] == branch_head
               assert manifest["file_count"] == 22
           print(json.dumps(result, indent=2))
           PY

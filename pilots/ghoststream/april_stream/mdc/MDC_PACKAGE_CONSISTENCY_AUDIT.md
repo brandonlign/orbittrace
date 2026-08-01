@@ -65,7 +65,7 @@ The separate full-precision calculation remains preserved:
 
 The exact official MDC checker reran successfully after this correction. Semimajor axis is not one of the checker's 12 input fields, while the committed radiant, speed, q, e, perihelion, node, inclination, and N remained unchanged.
 
-## Package hashes
+## Final package hashes
 
 | File | Bytes | SHA-256 |
 |---|---:|---|
@@ -81,16 +81,16 @@ The exact official MDC checker reran successfully after this correction. Semimaj
 | `pilots/ghoststream/results/ghoststream_final_summary.json` | 3341 | `f9245309ca48c1324032d9ef4a165553eb0bbe989929241d5617bfa1dc27e2d2` |
 | `pilots/ghoststream/RESULTS.md` | 14396 | `60d4111050fdb72798541b9075720e5ae11d30305c44be9467f9d51f72611e83` |
 | `pilots/ghoststream/april_stream/mdc/MANUSCRIPT_DRAFT.md` | 30096 | `b44dd8fc562ce928dd778ab68f1581a3bb025affc06711013cf361ae122c7806` |
-| `pilots/ghoststream/april_stream/mdc/README.md` | 4389 | `f6b19512f6178f4c4702a1fffe0c83b8828d88a2500c06cf9dbdd12c71b944a2` |
-| `pilots/ghoststream/april_stream/mdc/SUBMISSION_CHECKLIST.md` | 4384 | `d959505cb15c305864dd474309aa35e5cd5d8dbda9df7101cdec29ef334f8884` |
+| `pilots/ghoststream/april_stream/mdc/README.md` | 4900 | `7224ea82826fb5b078e7c4dcda99ddea5c9039b4a2a7fcdaee7f1138aa8c9284` |
+| `pilots/ghoststream/april_stream/mdc/SUBMISSION_CHECKLIST.md` | 4403 | `4990ad5092374622fc89e476b177bd46e70863b0c6a265a7a068eda353dd2768` |
 
-These hashes identify the exact inputs evaluated by the passing workflow. Later edits require a fresh audit and new manifest.
+These hashes identify the exact final inputs evaluated by the passing workflow. Later edits to any listed file require a fresh audit and new manifest.
 
 ## Preserved CI evidence
 
-- Workflow run: `30679519051`
-- Artifact: `8811703184`
-- Artifact SHA-256: `9b60b836a6781e574b50ad7d9b6b6f445ef8feab59250d47ee75adf605a05776`
+- Workflow run: `30679622980`
+- Artifact: `8811736659`
+- Artifact SHA-256: `53810c9b09e61e95bc68f7262de3d5d3d1bb6c31a3f748f52c5277cf58f7d30a`
 
 ## Claim boundary
 

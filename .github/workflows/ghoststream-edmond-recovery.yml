@@ -1,10 +1,6 @@
 name: GhostStream current EDMOND recovery
 
 on:
-  pull_request:
-    paths:
-      - "pilots/ghoststream/april_stream/edmond_2024/recover_current_edmond.py"
-      - ".github/workflows/ghoststream-edmond-recovery.yml"
   workflow_dispatch:
 
 permissions:

@@ -1,6 +1,12 @@
 name: GhostStream blind rediscovery PR check
 
 on:
+  push:
+    branches:
+      - agent/ghoststream-pilot
+    paths:
+      - "pilots/ghoststream/reconstruction/verify_blind_rediscovery.py"
+      - ".github/workflows/ghoststream-blind-rediscovery-pr.yml"
   pull_request:
     paths:
       - "pilots/ghoststream/reconstruction/verify_blind_rediscovery.py"
@@ -8,7 +14,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   blind-rediscovery:
@@ -17,6 +23,9 @@ jobs:
     steps:
       - name: Check out GhostStream evidence branch
         uses: actions/checkout@v4
+        with:
+          ref: agent/ghoststream-pilot
+          fetch-depth: 0
 
       - name: Check out immutable recovered source
         uses: actions/checkout@v4
@@ -66,7 +75,7 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ghoststream-exact-blind-rediscovery-pr
+          name: ghoststream-exact-blind-rediscovery
           path: |
             ghoststream_blind_rediscovery_evidence/
             ghoststream_novel_results/
@@ -75,3 +84,22 @@ jobs:
             ghoststream_blind_source_sha256.txt
           if-no-files-found: error
           retention-days: 90
+
+      - name: Commit exact blind-rediscovery evidence
+        if: github.event_name == 'push'
+        shell: bash
+        run: |
+          set -euo pipefail
+          target="pilots/ghoststream/reconstruction/exact_blind_rediscovery"
+          rm -rf "$target"
+          cp -a ghoststream_blind_rediscovery_evidence "$target"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$target"
+          if git diff --cached --quiet; then
+            echo "Blind-rediscovery evidence already matches."
+            exit 0
+          fi
+          git commit -m "Reproduce GhostStream blind discovery"
+          git pull --rebase origin agent/ghoststream-pilot
+          git push origin HEAD:agent/ghoststream-pilot

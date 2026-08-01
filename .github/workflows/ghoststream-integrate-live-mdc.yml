@@ -1,0 +1,85 @@
+name: GhostStream integrate live IAU MDC result
+
+on:
+  pull_request:
+    paths:
+      - "pilots/ghoststream/april_stream/mdc/integrate_live_mdc_refresh.py"
+      - ".github/workflows/ghoststream-integrate-live-mdc.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  integrate-live-mdc:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/ghoststream-pilot
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile guarded integration
+        run: |
+          python -m py_compile \
+            pilots/ghoststream/april_stream/mdc/integrate_live_mdc_refresh.py
+
+      - name: Integrate novelty refresh
+        run: |
+          python pilots/ghoststream/april_stream/mdc/integrate_live_mdc_refresh.py
+
+      - name: Validate integrated outputs
+        shell: bash
+        run: |
+          set -euo pipefail
+          python -m json.tool pilots/ghoststream/april_stream/candidate_solution.json >/dev/null
+          python -m json.tool pilots/ghoststream/results/ghoststream_final_summary.json >/dev/null
+          grep -F "zero hard duplicates and zero radiant–speed–activity near matches" pilots/ghoststream/RESULTS.md
+          grep -F "catalogue version 2026-06-25" pilots/ghoststream/april_stream/mdc/MANUSCRIPT_DRAFT.md
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          candidate = json.loads(Path("pilots/ghoststream/april_stream/candidate_solution.json").read_text())
+          novelty = candidate["novelty_audit"]
+          assert novelty["iau_catalogue_version"] == "2026-06-25"
+          assert novelty["iau_catalogue_shower_records"] == 1072
+          assert novelty["iau_solutions_parsed"] == 2174
+          assert novelty["hard_iau_matches"] == 0
+          assert novelty["radiant_speed_activity_near_matches"] == 0
+          assert novelty["orbit_incomplete_near_matches"] == 0
+          assert novelty["nearest_official_orbit"]["code"] == "NOP"
+          assert novelty["nearest_official_orbit"]["orbit_distance_d_sh"] > 0.15
+
+          summary = json.loads(Path("pilots/ghoststream/results/ghoststream_final_summary.json").read_text())
+          primary = summary["primary_result"]
+          assert primary["iau_catalogue_version"] == "2026-06-25"
+          assert primary["hard_iau_matches"] == 0
+          assert primary["radiant_speed_activity_near_matches"] == 0
+          print("Live MDC novelty integration validated.")
+          PY
+
+      - name: Commit integrated novelty result
+        shell: bash
+        run: |
+          set -euo pipefail
+          git status --short
+          git diff --check
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            pilots/ghoststream/RESULTS.md \
+            pilots/ghoststream/april_stream/candidate_solution.json \
+            pilots/ghoststream/april_stream/mdc/MANUSCRIPT_DRAFT.md \
+            pilots/ghoststream/results/ghoststream_final_summary.json
+          if git diff --cached --quiet; then
+            echo "No novelty integration changes remain to commit."
+          else
+            git commit -m "Integrate live IAU MDC novelty refresh"
+            git push origin HEAD:agent/ghoststream-pilot
+          fi

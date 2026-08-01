@@ -4,9 +4,7 @@ on:
   pull_request:
     paths:
       - "pilots/ghoststream/reconstruction/RECONSTRUCTION_PROTOCOL.md"
-      - "pilots/ghoststream/reconstruction/reproduce_primary_gmn.py"
-      - "pilots/ghoststream/reconstruction/run_primary_gmn_tls_compat.py"
-      - "pilots/ghoststream/reconstruction/probe_gmn_query_transport.py"
+      - "pilots/ghoststream/reconstruction/probe_gmn_monthly_source.py"
       - "pilots/ghoststream/april_stream/mdc/GhostStream_April_95_GMN_lookup.csv"
       - ".github/workflows/ghoststream-primary-reproduction-pr.yml"
   workflow_dispatch:
@@ -15,71 +13,38 @@ permissions:
   contents: read
 
 jobs:
-  reproduce-primary-gmn:
+  probe-official-monthly-source:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with:
-          python-version: "3.11"
+          python-version: "3.10"
 
-      - name: Compile reconstruction
+      - name: Install pinned GMN parser
         run: |
-          python -m py_compile \
-            pilots/ghoststream/reconstruction/reproduce_primary_gmn.py \
-            pilots/ghoststream/reconstruction/run_primary_gmn_tls_compat.py \
-            pilots/ghoststream/reconstruction/probe_gmn_query_transport.py
+          python -m pip install --upgrade pip
+          python -m pip install "gmn-python-api==0.0.13"
+          python -m pip freeze | sort | tee ghoststream_monthly_probe_environment.txt
 
-      - name: Probe official GMN query transport
+      - name: Compile monthly-source probe
         run: |
-          python pilots/ghoststream/reconstruction/probe_gmn_query_transport.py \
-            2>&1 | tee ghoststream_gmn_query_probe.log
+          python -m py_compile pilots/ghoststream/reconstruction/probe_gmn_monthly_source.py
 
-      - name: Run frozen primary reproduction
-        id: reproduce
-        shell: bash
+      - name: Probe official April 2019 catalogue
         run: |
-          set +e
-          python pilots/ghoststream/reconstruction/run_primary_gmn_tls_compat.py \
-            2>&1 | tee ghoststream_primary_reproduction.log
-          status=${PIPESTATUS[0]}
-          set -e
-          printf '%s\n' "$status" > ghoststream_primary_reproduction_exit_code.txt
-          echo "exit_code=$status" >> "$GITHUB_OUTPUT"
+          python pilots/ghoststream/reconstruction/probe_gmn_monthly_source.py \
+            2>&1 | tee ghoststream_gmn_monthly_probe.log
 
-      - name: Validate generated evidence
-        if: always()
-        run: |
-          test -s pilots/ghoststream/reconstruction/primary_gmn_reproduction/primary_gmn_reproduction.json
-          test -s pilots/ghoststream/reconstruction/primary_gmn_reproduction/PRIMARY_GMN_REPRODUCTION.md
-          test -s pilots/ghoststream/reconstruction/primary_gmn_reproduction/reproduced_members_2019_2026.csv
-          test -s pilots/ghoststream/reconstruction/primary_gmn_reproduction/reproduced_activity_tables.csv
-          python -m json.tool \
-            pilots/ghoststream/reconstruction/primary_gmn_reproduction/primary_gmn_reproduction.json \
-            >/dev/null
-          cat pilots/ghoststream/reconstruction/primary_gmn_reproduction/PRIMARY_GMN_REPRODUCTION.md
-
-      - name: Upload complete reproduction evidence
+      - name: Upload probe evidence
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ghoststream-primary-gmn-reproduction-pr
+          name: ghoststream-gmn-monthly-source-probe
           path: |
-            pilots/ghoststream/reconstruction/primary_gmn_reproduction/
-            ghoststream_gmn_query_probe.log
-            ghoststream_primary_reproduction.log
-            ghoststream_primary_reproduction_exit_code.txt
+            ghoststream_gmn_monthly_probe.log
+            ghoststream_monthly_probe_environment.txt
           if-no-files-found: error
           retention-days: 90
-
-      - name: Preserve fail-closed status
-        if: always()
-        shell: bash
-        run: |
-          status="${{ steps.reproduce.outputs.exit_code }}"
-          if [[ -z "$status" ]]; then
-            exit 1
-          fi
-          exit "$status"

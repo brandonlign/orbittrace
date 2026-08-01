@@ -15,8 +15,8 @@
     "dDe": -0.15750649890816443,
     "N": 95
   },
-  "check_count": 132,
-  "passed_checks": 132,
+  "check_count": 151,
+  "passed_checks": 151,
   "failed_checks": 0,
   "checks": [
     {
@@ -1349,7 +1349,380 @@
         "d_le_0_15": 0
       },
       "tolerance": null,
-      "note": "Live JPL catalogue result; no parent body is claimed."
+      "note": "Live JPL result; no parent body is claimed."
+    },
+    {
+      "name": "historical method-control audit status",
+      "passed": true,
+      "observed": "RECOVERED_METHOD_CONTROL_AUDIT_NEGATIVE_GATE_INFEASIBLE",
+      "expected": "RECOVERED_METHOD_CONTROL_AUDIT_NEGATIVE_GATE_INFEASIBLE",
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "historical v2 no-go preserved",
+      "passed": true,
+      "observed": {
+        "verdict": "NO_GO_DEGENERATE_PARENT_CLUSTER",
+        "scientific_gate_passed": false
+      },
+      "expected": {
+        "verdict": "NO_GO_DEGENERATE_PARENT_CLUSTER",
+        "scientific_gate_passed": false
+      },
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "historical named showers recovered",
+      "passed": true,
+      "observed": {
+        "recovered": 3,
+        "eligible": 3
+      },
+      "expected": {
+        "recovered": 3,
+        "eligible": 3
+      },
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "historical injection gate",
+      "passed": true,
+      "observed": "INJECTION_GATE_PASS",
+      "expected": "INJECTION_GATE_PASS",
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "corrected method-control verdict",
+      "passed": true,
+      "observed": {
+        "status": "CORRECTED_INDEPENDENT_YEAR_CONTROL_PASS",
+        "passed": true
+      },
+      "expected": {
+        "status": "CORRECTED_INDEPENDENT_YEAR_CONTROL_PASS",
+        "passed": true
+      },
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "corrected method-control frozen holdout",
+      "passed": true,
+      "observed": {
+        "frozen": true,
+        "recovered": 3,
+        "non_target_passes": 3
+      },
+      "expected": {
+        "frozen": true,
+        "recovered": 3,
+        "non_target_passes": 3
+      },
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "corrected method-control ceiling",
+      "passed": true,
+      "observed": 0.3,
+      "expected": 0.3,
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "blind discovery verdict",
+      "passed": true,
+      "observed": "EXACT_2026_BLIND_REDISCOVERY",
+      "expected": "EXACT_2026_BLIND_REDISCOVERY",
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "blind discovery matrix",
+      "passed": true,
+      "observed": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "validation_years": [
+          2025,
+          2024
+        ]
+      },
+      "expected": {
+        "months": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7
+        ],
+        "validation_years": [
+          2025,
+          2024
+        ]
+      },
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "blind discovery unique survivor",
+      "passed": true,
+      "observed": {
+        "survivors": 1,
+        "additional": []
+      },
+      "expected": {
+        "survivors": 1,
+        "additional": []
+      },
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "blind discovery validation",
+      "passed": true,
+      "observed": {
+        "2025": {
+          "local_pool": 38,
+          "median_d": 0.041607534494908706,
+          "member_ids": [
+            "20250424014938_M20Bz",
+            "20250424113355_orZBq",
+            "20250424205212_hkMYq",
+            "20250425061734_4DlAc",
+            "20250425063625_FffqS",
+            "20250425092149_UkyHc",
+            "20250425094115_SdkSh",
+            "20250425135239_dV5qL",
+            "20250425150758_nITBy",
+            "20250426152659_6Gcpz",
+            "20250426232357_GNe2H",
+            "20250427101726_SpGVY",
+            "20250427111229_2riz9",
+            "20250427143535_kHfIE",
+            "20250427163849_iIo6c",
+            "20250428020357_dwsno",
+            "20250428021707_CJzTI",
+            "20250428022950_dNshR",
+            "20250428034614_PK2wc",
+            "20250428060958_F0cK2",
+            "20250428063243_XL5xF",
+            "20250428074446_zrXLC",
+            "20250428165803_A6kVU",
+            "20250428193144_cKN3Y",
+            "20250428203753_lOpUS",
+            "20250429001847_zeGx1",
+            "20250429044016_joqKV",
+            "20250429051626_jzOa5",
+            "20250429061607_ELNc5",
+            "20250429071025_Ubm6T",
+            "20250429205604_gpO44",
+            "20250429205604_CzV3z",
+            "20250429214658_ayS3e",
+            "20250429224526_DzIb1",
+            "20250430173153_i3o5H",
+            "20250430173153_WJqAL"
+          ],
+          "members": 36,
+          "nights": 7,
+          "null_q99": 22.0,
+          "p": 0.002,
+          "passed": true,
+          "stations": 104,
+          "year": 2025
+        },
+        "2024": {
+          "local_pool": 15,
+          "median_d": 0.051316434048483475,
+          "member_ids": [
+            "20240426053939_W3Fc4",
+            "20240426080141_SvPi3",
+            "20240426174706_dAiNC",
+            "20240426175119_GStop",
+            "20240426234906_41XAG",
+            "20240428085039_OtjIt",
+            "20240428123539_T6Djd",
+            "20240428132311_4Rw3t",
+            "20240428132723_YoJCh",
+            "20240429005404_1ywsu",
+            "20240429005752_ggjMN",
+            "20240429085626_mNMgb",
+            "20240429152411_ReB2Q",
+            "20240430044813_8cTT0"
+          ],
+          "members": 14,
+          "nights": 4,
+          "null_q99": 7.0,
+          "p": 0.002,
+          "passed": true,
+          "stations": 44,
+          "year": 2024
+        }
+      },
+      "expected": {
+        "2025_members": 36,
+        "2024_members": 14,
+        "both_passed": true
+      },
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "blind discovery clone stability",
+      "passed": true,
+      "observed": {
+        "draws": 500,
+        "median_of_clone_medians": 0.041452531239146745,
+        "pass_fraction": 1.0,
+        "passed": true
+      },
+      "expected": {
+        "passed": true,
+        "pass_fraction": 1.0
+      },
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "blind discovery automated IAU veto",
+      "passed": true,
+      "observed": false,
+      "expected": false,
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "blind wrapper repair record",
+      "passed": true,
+      "observed": {
+        "status": "MINIMAL_RECOVERED_WRAPPER_REPAIR",
+        "scientific_logic_changed": false
+      },
+      "expected": {
+        "status": "MINIMAL_RECOVERED_WRAPPER_REPAIR",
+        "scientific_logic_changed": false
+      },
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "blind repaired wrapper hash",
+      "passed": true,
+      "observed": "94f04270aca54d1056841390fd6bbb0cdfc25187c065c6bf886307c8effab217",
+      "expected": "94f04270aca54d1056841390fd6bbb0cdfc25187c065c6bf886307c8effab217",
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "final summary discovery state",
+      "passed": true,
+      "observed": {
+        "blind_status": "EXACT_2026_BLIND_REDISCOVERY",
+        "lineage_reproduced": true
+      },
+      "expected": {
+        "blind_status": "EXACT_2026_BLIND_REDISCOVERY",
+        "lineage_reproduced": true
+      },
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "final summary method reconciliation",
+      "passed": true,
+      "observed": {
+        "historical_v2": {
+          "status": "RECOVERED_METHOD_CONTROL_AUDIT_NEGATIVE_GATE_INFEASIBLE",
+          "aggregate_verdict": "NO_GO_DEGENERATE_PARENT_CLUSTER",
+          "named_showers_recovered": 3,
+          "named_showers_tested": 3,
+          "weak_stream_injection_verdict": "INJECTION_GATE_PASS",
+          "scientific_gate_passed": false
+        },
+        "corrected_independent_2024": {
+          "status": "CORRECTED_INDEPENDENT_YEAR_CONTROL_PASS",
+          "correction_frozen_before_holdout": true,
+          "recovered_controls": 3,
+          "eligible_controls": 3,
+          "non_target_degeneracy_passes": 3,
+          "largest_non_target_cluster_ceiling": 0.3,
+          "controls": {
+            "Lyrids_2024": {
+              "window": [
+                "2024-04-19",
+                "2024-04-24"
+              ],
+              "available_days": 5,
+              "missing_days": [
+                "2024-04-22"
+              ],
+              "sampled_rows": 5033,
+              "true_members": 1230,
+              "target_prevalence": 0.24438704549970197,
+              "precision": 0.8210947930574098,
+              "recall": 1.0,
+              "f1": 0.9017595307917888,
+              "target_cluster_fraction": 0.29763560500695413,
+              "largest_non_target_cluster_fraction": 0.12974369163520763,
+              "passed": true
+            },
+            "Eta_Aquariids_2024": {
+              "window": [
+                "2024-05-03",
+                "2024-05-08"
+              ],
+              "available_days": 6,
+              "missing_days": [],
+              "sampled_rows": 14569,
+              "true_members": 4875,
+              "target_prevalence": 0.3346145926281831,
+              "precision": 0.9173880316146029,
+              "recall": 1.0,
+              "f1": 0.95691431936402,
+              "target_cluster_fraction": 0.3647470656874185,
+              "largest_non_target_cluster_fraction": 0.15622211545061432,
+              "passed": true
+            },
+            "Southern_Delta_Aquariids_2024": {
+              "window": [
+                "2024-07-27",
+                "2024-08-01"
+              ],
+              "available_days": 5,
+              "missing_days": [
+                "2024-07-29"
+              ],
+              "sampled_rows": 21744,
+              "true_members": 5270,
+              "target_prevalence": 0.24236571008094188,
+              "precision": 0.864217776320105,
+              "recall": 1.0,
+              "f1": 0.9271639690358902,
+              "target_cluster_fraction": 0.28044518027961735,
+              "largest_non_target_cluster_fraction": 0.14026857983811628,
+              "passed": true
+            }
+          },
+          "passed": true
+        },
+        "interpretation": "The historical v2 no-go is preserved. A prospective correction addressing its mathematically infeasible target-cluster ceiling passed all three independent 2024 controls without changing the clustering or recovery thresholds."
+      },
+      "expected": "historical no-go plus corrected independent holdout pass",
+      "tolerance": null,
+      "note": null
     },
     {
       "name": "final summary recovered analysis state",
@@ -1368,9 +1741,13 @@
         "analysis_chain_clean_rerun_completed": true,
         "end_to_end_clean_rerun_completed": false,
         "later_archive_mdc_and_package_audits_reproducible": true,
-        "current_branch_status": "core_source_recovered_primary_internal_and_external_analysis_reruns_passed_package_rebuild_pending",
+        "current_branch_status": "computational_recovery_and_discovery_lineage_complete_package_and_independent_review_pending",
         "publication_or_formal_mdc_submission_allowed": false,
-        "resolution_required": "Rebuild the manuscript, figures, data-availability statement, MDC package, and code-inclusive expert bundle from the recovered outputs; rerun package and official-checker audits; then obtain independent scientific and duplicate review."
+        "resolution_required": "Regenerate the recovered MDC package audit and code-inclusive expert bundle from the final evidence, then obtain independent scientific and duplicate-shower review before submission.",
+        "historical_method_control_status": "negative_gate_preserved",
+        "corrected_method_control_status": "passed",
+        "blind_discovery_lineage_status": "passed_with_minimal_non_scientific_wrapper_repair",
+        "discovery_lineage_reproduced": true
       },
       "expected": "recovered source plus primary/internal/external reruns passed",
       "tolerance": null,
@@ -1388,21 +1765,43 @@
         "end_to_end_clean_rerun_completed": false
       },
       "tolerance": null,
-      "note": "The analysis chain is reproduced, but the submission package still requires rebuild and external review."
+      "note": "Independent review remains required."
     },
     {
-      "name": "reproducibility gap current verdict",
+      "name": "candidate solution finalized recovery",
       "passed": true,
-      "observed": "COMPUTATIONAL_RECOVERY_AND_ANALYSIS_RERUNS_COMPLETE_PACKAGE_REVIEW_PENDING",
-      "expected": "COMPUTATIONAL_RECOVERY_AND_ANALYSIS_RERUNS_COMPLETE_PACKAGE_REVIEW_PENDING",
+      "observed": {
+        "blind": "EXACT_2026_BLIND_REDISCOVERY",
+        "method_passed": true
+      },
+      "expected": {
+        "blind": "EXACT_2026_BLIND_REDISCOVERY",
+        "method_passed": true
+      },
       "tolerance": null,
       "note": null
     },
     {
-      "name": "human-readable recovery status",
+      "name": "reproducibility gap current verdict",
+      "passed": true,
+      "observed": "COMPUTATIONAL_RECOVERY_AND_DISCOVERY_LINEAGE_COMPLETE_REVIEW_PENDING",
+      "expected": "COMPUTATIONAL_RECOVERY_AND_DISCOVERY_LINEAGE_COMPLETE_REVIEW_PENDING",
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "human-readable final recovery status",
       "passed": true,
       "observed": "recovery status phrases",
-      "expected": "both clean reruns passed and committed",
+      "expected": "blind and corrected method controls passed",
+      "tolerance": null,
+      "note": null
+    },
+    {
+      "name": "method reconciliation document",
+      "passed": true,
+      "observed": "reconciliation sections",
+      "expected": "historical no-go and prospective pass disclosed",
       "tolerance": null,
       "note": null
     }
@@ -1437,16 +1836,16 @@
       "sha256": "6d2c2b145a63048938244f0a5c7fb7c078d48c53a46959ec68b89b4b577573ee"
     },
     "pilots/ghoststream/april_stream/candidate_solution.json": {
-      "byte_count": 9610,
-      "sha256": "d79e9ad9a51f6b4b4dad55e1077c82d165db73ad30767f30af67e36522f696c9"
+      "byte_count": 21287,
+      "sha256": "a8ad20cb42da5180c653feff2e4f0347cc1e7bd4d0c1e6df0bd8e73d7077687e"
     },
     "pilots/ghoststream/april_stream/edmond_2024/linked_v601_frozen_summary.json": {
       "byte_count": 3848,
       "sha256": "53ef2295cc4a076ae11cf54df348129c801a6ccb622149730c98b1b2ab6fb9f4"
     },
     "pilots/ghoststream/results/ghoststream_final_summary.json": {
-      "byte_count": 8950,
-      "sha256": "2b55b583710d762bf4334ecc84ac87326d0e4da619f976834db2e1f5ee5dd578"
+      "byte_count": 17028,
+      "sha256": "d26e983432f887cd20a567be6bd62559662e46dd0d2448c58d4f4a85efe6de6e"
     },
     "pilots/ghoststream/RESULTS.md": {
       "byte_count": 14396,
@@ -1461,8 +1860,8 @@
       "sha256": "0e2a50aeddf343cc007d1d243c92a9e34bc3049087478312ee24458d09786790"
     },
     "pilots/ghoststream/april_stream/mdc/SUBMISSION_CHECKLIST.md": {
-      "byte_count": 6565,
-      "sha256": "e2a89860f22fcdb4aa0c4e4953b3dc0bbb9e2b2f6de2dfb7a04148bc4ac342dd"
+      "byte_count": 7943,
+      "sha256": "771707862e02458e6e5d45c237f963b47b30b1a0ccb616657f7ec10dca9715c7"
     },
     "pilots/ghoststream/recovered_pipeline/SOURCE_MANIFEST.json": {
       "byte_count": 9535,
@@ -1480,13 +1879,37 @@
       "byte_count": 6352,
       "sha256": "bc77b935a95ad88f9d96a49035eae963f57471efbb5cd879e2f17a6a6bc6ee56"
     },
+    "pilots/ghoststream/reconstruction/exact_method_controls/method_controls.json": {
+      "byte_count": 4234,
+      "sha256": "0779b0d23591e33786c40b54d88d73b9e07445c25d7380ca677b257974a0ef26"
+    },
+    "pilots/ghoststream/reconstruction/exact_method_controls_v3/method_controls_v3.json": {
+      "byte_count": 3906,
+      "sha256": "92286925d47d22c382792e2094b74767436cfeb75ae8ba282a00d7c423c4b00c"
+    },
+    "pilots/ghoststream/reconstruction/exact_blind_rediscovery/blind_rediscovery.json": {
+      "byte_count": 6489,
+      "sha256": "9ebe9063b4f690ea418313571ae2a0a9714cc5ba52a777452327879a9033cfea"
+    },
+    "pilots/ghoststream/reconstruction/blind_wrapper_fix.json": {
+      "byte_count": 2142,
+      "sha256": "bed9b6de2a6280c2e47af17f52f95070de7f90d0a1175b3d2c8e32da05f96adf"
+    },
+    "pilots/ghoststream/reconstruction/blind_wrapper_repaired/run_month_year_v3.py": {
+      "byte_count": 2638,
+      "sha256": "94f04270aca54d1056841390fd6bbb0cdfc25187c065c6bf886307c8effab217"
+    },
     "pilots/ghoststream/reproducibility_gap_summary.json": {
-      "byte_count": 6410,
-      "sha256": "0b07d56a74a57e87ff729b4b701267314ef2921bcc6716e22599facaf3ebc9f4"
+      "byte_count": 10052,
+      "sha256": "62592d4c07596bb38014604e785d9616c1bc67f8aefadb13284119c4f46117af"
     },
     "pilots/ghoststream/recovery/CURRENT_RECOVERY_STATUS.md": {
-      "byte_count": 4883,
-      "sha256": "2d37545a041ff887ccf163cb47b02dbfed4486025e875b6eda58cf6514abb6e2"
+      "byte_count": 7973,
+      "sha256": "d81c3a7ae550a75ad835d5fb0632b2d69f97195ef98c8d70583b5c3f5288fd89"
+    },
+    "pilots/ghoststream/reconstruction/METHOD_CONTROL_RECONCILIATION.md": {
+      "byte_count": 3309,
+      "sha256": "8ef2f773e3dcc29776c4c38d7d8f552c0d96e428ef66b0ca73510b220dc32fef"
     }
   },
   "recovered_analysis": {
@@ -1494,7 +1917,12 @@
     "exact_primary": "pilots/ghoststream/reconstruction/exact_recovered/exact_reproduction.json",
     "exact_downstream": "pilots/ghoststream/reconstruction/exact_downstream/downstream_reproduction.json",
     "exact_external": "pilots/ghoststream/reconstruction/exact_external/external_reproduction.json",
+    "historical_method_controls": "pilots/ghoststream/reconstruction/exact_method_controls/method_controls.json",
+    "corrected_method_controls": "pilots/ghoststream/reconstruction/exact_method_controls_v3/method_controls_v3.json",
+    "blind_discovery": "pilots/ghoststream/reconstruction/exact_blind_rediscovery/blind_rediscovery.json",
+    "blind_wrapper_repair": "pilots/ghoststream/reconstruction/blind_wrapper_fix.json",
     "analysis_chain_clean_rerun_completed": true,
+    "discovery_lineage_reproduced": true,
     "submission_allowed": false
   }
 }

@@ -3,7 +3,7 @@
   "status": "high_confidence_uncatalogued_stream_candidate",
   "official_iau_designation": null,
   "official_name": null,
-  "claim_boundary": "Candidate identified in a blind GMN search and supported by CAMS, SonotaCo, and a shower-removed EDMOND subset; not yet submitted to or recognized by the IAU Meteor Data Center.",
+  "claim_boundary": "Recovered and computationally reproduced high-confidence uncatalogued late-April meteor-stream candidate; not yet submitted to or recognized by the IAU Meteor Data Center and not cleared for submission before independent review.",
   "epoch": {
     "solar_longitude_deg": 36.901963,
     "approximate_calendar_timing": "late April"
@@ -294,14 +294,348 @@
       "workflow_run_id": 30678572191,
       "artifact_id": 8811375826,
       "artifact_sha256": "d7a88515dcc97762812dd4df6b431a2c65805928969ad114b3636809254ae393"
+    },
+    "historical_jpl_screen": {
+      "small_bodies_screened": 6284,
+      "objects_with_orbit_distance_le_0_15": 0,
+      "ci_evidence": {
+        "workflow_run_id": 30678572191,
+        "artifact_id": 8811375826,
+        "artifact_sha256": "d7a88515dcc97762812dd4df6b431a2c65805928969ad114b3636809254ae393"
+      }
+    },
+    "current_jpl_screen": {
+      "broad_compatible_objects": 729,
+      "valid_orbits": 729,
+      "objects_with_orbit_distance_le_0_15": 0,
+      "objects_with_orbit_distance_le_0_25": 2,
+      "nearest": {
+        "full_name": "       (2023 HJ7)",
+        "pdes": "2023 HJ7",
+        "kind": "au",
+        "class": "APO",
+        "neo": "Y",
+        "t_jup": "2.984",
+        "moid": ".0506788",
+        "epoch": "2460062.5",
+        "e": ".9346996680013376",
+        "a": "2.03048320006529",
+        "q": ".1325912270819698",
+        "i": "18.23088404961739",
+        "om": "214.7152034621026",
+        "w": "152.2159826673517",
+        "first_obs": "2023-04-23",
+        "last_obs": "2023-05-04",
+        "condition_code": "8",
+        "data_arc": "11",
+        "H": "23.00",
+        "d_stream": 0.15939456567933025,
+        "d_direct": 0.8024572129099576,
+        "d_flipped": 0.15939456567933025
+      },
+      "parent_body_claimed": false
     }
   },
   "next_required_actions": [
-    "Independent meteor-network team applies its own preregistered pipeline",
-    "Complete IAU MDC shower-mean submission template",
-    "Prepare and submit a methods-and-discovery manuscript",
-    "Expert duplicate-shower and orbit-convention review",
-    "Obtain consented GMN Level 2 data for absolute flux and mass-index estimation",
-    "Parent-body dynamics only after a credible orbital candidate exists"
-  ]
+    "Regenerate and pass the recovered MDC package consistency audit",
+    "Build and checksum-lock the final code-inclusive expert-review bundle",
+    "Obtain independent meteor-science and duplicate-shower review",
+    "Confirm GMN data-use, acknowledgment, authorship, and submission language",
+    "Preserve final source catalogue hashes or allowed archived copies",
+    "Submit to the MDC or a journal only after the preceding review gates pass"
+  ],
+  "computational_recovery": {
+    "source_recovered": true,
+    "primary": "EXACT_REPRODUCTION",
+    "internal_downstream": "EXACT_RECOVERED_DOWNSTREAM_REPRODUCTION",
+    "external": "RECOVERED_EXTERNAL_ARCHIVE_REPRODUCTION",
+    "historical_method_control": "RECOVERED_METHOD_CONTROL_AUDIT_NEGATIVE_GATE_INFEASIBLE",
+    "corrected_method_control": "CORRECTED_INDEPENDENT_YEAR_CONTROL_PASS",
+    "blind_discovery": "EXACT_2026_BLIND_REDISCOVERY",
+    "blind_wrapper_repair": {
+      "status": "MINIMAL_RECOVERED_WRAPPER_REPAIR",
+      "identified_utc": "2026-08-01T05:06:08Z",
+      "source_repository": "brandonlign/remotion-worker",
+      "source_commit": "39972b5fe0cf4d47092d3caa2b3ced12bedb065e",
+      "source_path": "ghoststream_novel/run_month_year_v3.py",
+      "original_source_sha256": "9681b11f97546589689f39af9e2ebe956185a5956de58d37538a1bd1e74b78ed",
+      "repair_commit": "38582b848b0ba730a292e48116a476c04df221d0",
+      "failed_workflow_run_id": 30684930270,
+      "failed_workflow_job_id": 91328722702,
+      "failed_artifact_id": 8813634346,
+      "failed_artifact_zip_sha256": "f9f3009e37e19c3a322b060c737e4a1349f83b745df479a67d347f21c75fde49",
+      "failure": {
+        "month": "2026-04",
+        "exception": "KeyError: '2023'",
+        "location": "final candidate CSV/report formatting after scientific validation",
+        "scientific_state_before_exception": {
+          "prevalidation_candidates": 2,
+          "candidate_1_replication": false,
+          "candidate_1_clone": false,
+          "candidate_1_full_gate": false,
+          "candidate_2_replication": true,
+          "candidate_2_clone": true,
+          "candidate_2_full_gate": true
+        }
+      },
+      "root_cause": "The arbitrary-year wrapper replaced double-quoted validation lookups but the recovered report/CSV code used single-quoted ['validation']['2023'] and ['validation']['2024'] keys. Cosmetic year labels also searched for doubled braces and remained hardcoded to 2025.",
+      "repair_scope": [
+        "generalize single-quoted validation-year lookups to discovery_year-1 and discovery_year-2",
+        "correct cosmetic month and report year labels"
+      ],
+      "scientific_logic_changed": false,
+      "unchanged_components": [
+        "GMN catalogue acquisition",
+        "quality filtering",
+        "HDBSCAN clustering",
+        "candidate scoring and ranking",
+        "IAU catalogue veto",
+        "historical validation thresholds",
+        "orbit compactness calculations",
+        "uncertainty-clone trials",
+        "full-gate decision"
+      ],
+      "claim_boundary": "The original wrapper is preserved unchanged in recovered_pipeline. The repaired runner must be described as a minimal year-generalization/reporting fix, not an unchanged exact-source rerun."
+    }
+  },
+  "blind_discovery_reproduction": {
+    "status": "EXACT_2026_BLIND_REDISCOVERY",
+    "source_commit": "39972b5fe0cf4d47092d3caa2b3ced12bedb065e",
+    "entrypoint": "ghoststream_novel/run_month_year_v3.py",
+    "months_scanned": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7
+    ],
+    "validation_years": [
+      2025,
+      2024
+    ],
+    "full_gate_survivors": 1,
+    "additional_non_april_survivors": [],
+    "april_survivor": {
+      "center": [
+        -149.297555,
+        7.450069999999999,
+        37.422239999999995,
+        36.901962999999995
+      ],
+      "clone_stability": {
+        "draws": 500,
+        "median_of_clone_medians": 0.041452531239146745,
+        "pass_fraction": 1.0,
+        "passed": true
+      },
+      "cluster": 429,
+      "discovery_members": 26,
+      "expected_center": [
+        -149.297555,
+        7.45007,
+        37.42224,
+        36.901963
+      ],
+      "nearest_iau": {
+        "active_at_candidate": false,
+        "code": "USG",
+        "matched": false,
+        "name": "phi-Ophiuchids",
+        "orbit_d": 0.36718276091840135,
+        "radiant_scaled_distance": 2.5376472866777355,
+        "score": 7.862704405134609,
+        "sky_distance_with_drift": 3.0723682174306193,
+        "solar_delta_from_mean": 13.798037000000022,
+        "speed_delta": 1.6922399999999982,
+        "status": 0
+      },
+      "normalized_center_distance": 2.8575491038920723e-15,
+      "orbit_median_d": 0.03798760080673734,
+      "orbit_medoid": [
+        0.950783,
+        0.073747,
+        25.286643,
+        334.338586,
+        37.363391
+      ],
+      "orbit_null": {
+        "null_q05": 0.912508051069085,
+        "p": 0.005,
+        "pool": 14644
+      },
+      "orbit_q90_d": 0.09444559233769059,
+      "sigma_raw": [
+        0.8811907230000108,
+        0.579296298,
+        1.0990810320000026,
+        1.3296245906999886
+      ],
+      "validation": {
+        "2024": {
+          "local_pool": 15,
+          "median_d": 0.051316434048483475,
+          "member_ids": [
+            "20240426053939_W3Fc4",
+            "20240426080141_SvPi3",
+            "20240426174706_dAiNC",
+            "20240426175119_GStop",
+            "20240426234906_41XAG",
+            "20240428085039_OtjIt",
+            "20240428123539_T6Djd",
+            "20240428132311_4Rw3t",
+            "20240428132723_YoJCh",
+            "20240429005404_1ywsu",
+            "20240429005752_ggjMN",
+            "20240429085626_mNMgb",
+            "20240429152411_ReB2Q",
+            "20240430044813_8cTT0"
+          ],
+          "members": 14,
+          "nights": 4,
+          "null_q99": 7.0,
+          "p": 0.002,
+          "passed": true,
+          "stations": 44,
+          "year": 2024
+        },
+        "2025": {
+          "local_pool": 38,
+          "median_d": 0.041607534494908706,
+          "member_ids": [
+            "20250424014938_M20Bz",
+            "20250424113355_orZBq",
+            "20250424205212_hkMYq",
+            "20250425061734_4DlAc",
+            "20250425063625_FffqS",
+            "20250425092149_UkyHc",
+            "20250425094115_SdkSh",
+            "20250425135239_dV5qL",
+            "20250425150758_nITBy",
+            "20250426152659_6Gcpz",
+            "20250426232357_GNe2H",
+            "20250427101726_SpGVY",
+            "20250427111229_2riz9",
+            "20250427143535_kHfIE",
+            "20250427163849_iIo6c",
+            "20250428020357_dwsno",
+            "20250428021707_CJzTI",
+            "20250428022950_dNshR",
+            "20250428034614_PK2wc",
+            "20250428060958_F0cK2",
+            "20250428063243_XL5xF",
+            "20250428074446_zrXLC",
+            "20250428165803_A6kVU",
+            "20250428193144_cKN3Y",
+            "20250428203753_lOpUS",
+            "20250429001847_zeGx1",
+            "20250429044016_joqKV",
+            "20250429051626_jzOa5",
+            "20250429061607_ELNc5",
+            "20250429071025_Ubm6T",
+            "20250429205604_gpO44",
+            "20250429205604_CzV3z",
+            "20250429214658_ayS3e",
+            "20250429224526_DzIb1",
+            "20250430173153_i3o5H",
+            "20250430173153_WJqAL"
+          ],
+          "members": 36,
+          "nights": 7,
+          "null_q99": 22.0,
+          "p": 0.002,
+          "passed": true,
+          "stations": 104,
+          "year": 2025
+        }
+      }
+    },
+    "wrapper_repair": {
+      "original_source_sha256": "9681b11f97546589689f39af9e2ebe956185a5956de58d37538a1bd1e74b78ed",
+      "repair_commit": "38582b848b0ba730a292e48116a476c04df221d0",
+      "scientific_logic_changed": false,
+      "scope": [
+        "generalize single-quoted validation-year lookups to discovery_year-1 and discovery_year-2",
+        "correct cosmetic month and report year labels"
+      ]
+    }
+  },
+  "method_control_reconciliation": {
+    "historical_v2": {
+      "status": "RECOVERED_METHOD_CONTROL_AUDIT_NEGATIVE_GATE_INFEASIBLE",
+      "aggregate_verdict": "NO_GO_DEGENERATE_PARENT_CLUSTER",
+      "named_showers_recovered": 3,
+      "named_showers_tested": 3,
+      "weak_stream_injection_verdict": "INJECTION_GATE_PASS",
+      "scientific_gate_passed": false
+    },
+    "corrected_independent_2024": {
+      "status": "CORRECTED_INDEPENDENT_YEAR_CONTROL_PASS",
+      "correction_frozen_before_holdout": true,
+      "recovered_controls": 3,
+      "eligible_controls": 3,
+      "non_target_degeneracy_passes": 3,
+      "largest_non_target_cluster_ceiling": 0.3,
+      "controls": {
+        "Lyrids_2024": {
+          "window": [
+            "2024-04-19",
+            "2024-04-24"
+          ],
+          "available_days": 5,
+          "missing_days": [
+            "2024-04-22"
+          ],
+          "sampled_rows": 5033,
+          "true_members": 1230,
+          "target_prevalence": 0.24438704549970197,
+          "precision": 0.8210947930574098,
+          "recall": 1.0,
+          "f1": 0.9017595307917888,
+          "target_cluster_fraction": 0.29763560500695413,
+          "largest_non_target_cluster_fraction": 0.12974369163520763,
+          "passed": true
+        },
+        "Eta_Aquariids_2024": {
+          "window": [
+            "2024-05-03",
+            "2024-05-08"
+          ],
+          "available_days": 6,
+          "missing_days": [],
+          "sampled_rows": 14569,
+          "true_members": 4875,
+          "target_prevalence": 0.3346145926281831,
+          "precision": 0.9173880316146029,
+          "recall": 1.0,
+          "f1": 0.95691431936402,
+          "target_cluster_fraction": 0.3647470656874185,
+          "largest_non_target_cluster_fraction": 0.15622211545061432,
+          "passed": true
+        },
+        "Southern_Delta_Aquariids_2024": {
+          "window": [
+            "2024-07-27",
+            "2024-08-01"
+          ],
+          "available_days": 5,
+          "missing_days": [
+            "2024-07-29"
+          ],
+          "sampled_rows": 21744,
+          "true_members": 5270,
+          "target_prevalence": 0.24236571008094188,
+          "precision": 0.864217776320105,
+          "recall": 1.0,
+          "f1": 0.9271639690358902,
+          "target_cluster_fraction": 0.28044518027961735,
+          "largest_non_target_cluster_fraction": 0.14026857983811628,
+          "passed": true
+        }
+      },
+      "passed": true
+    },
+    "interpretation": "The historical v2 no-go is preserved. A prospective correction addressing its mathematically infeasible target-cluster ceiling passed all three independent 2024 controls without changing the clustering or recovery thresholds."
+  }
 }

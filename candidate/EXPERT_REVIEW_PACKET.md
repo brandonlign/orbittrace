@@ -2,20 +2,20 @@
 
 Thank you for taking the time to look at this project. I am seeking a critical technical review of a late-April meteor-stream candidate found in public GMN trajectory data.
 
-The result has passed the project’s internal checks, but I do not want to submit it to the IAU Meteor Data Center or describe it as a new shower until someone with meteor-shower expertise has checked the event selection, coordinate conventions, orbit treatment, background model, and possible historical duplicates.
+I would especially value a check of the event selection, coordinate conventions, orbit treatment, background model, and possible historical duplicates.
 
 ## The questions I most need answered
 
 1. Does the 95-event GMN sample look like a real recurring meteor stream rather than structured antihelion background?
 2. Is there a known, working-list, removed, or historically published shower that is a plausible match despite the current catalogue comparison?
 3. Are the radiant, drift, solar-longitude, node, and orbital conventions used consistently?
-4. What additional analysis or data would you require before an MDC or journal submission?
+4. What additional analysis or data would most strengthen the interpretation?
 
-A brief answer is useful. A detailed code review is welcome but not expected for an initial response.
+A brief answer focused on the main scientific issue would be very useful; a detailed code review is optional.
 
 ## What was found
 
-A blind January–July 2026 search produced one full-gate survivor, in April. The candidate definition was then applied to earlier GMN years without moving its center to improve the historical results.
+A blind January–July 2026 search selected April as the only full-gate survivor. The fixed candidate definition was then applied to earlier GMN years.
 
 The confirmed sample contains 95 meteors:
 
@@ -27,7 +27,7 @@ The confirmed sample contains 95 meteors:
 | 2025 | 34 |
 | 2026 | 29 |
 
-The pooled 2022–2023 confirmation, which was not used to choose the candidate, gave:
+The pooled 2022–2023 confirmation was reserved until after the candidate definition had been fixed and gave:
 
 - activity p = 1.857 × 10⁻⁵ after the twelve-month familywise rule;
 - shifted-window p = 0.01754; and
@@ -74,7 +74,7 @@ I would especially appreciate advice on whether this distinction between a robus
 ## Checks already completed
 
 - Exact rerun of the original event-selection code: 101 total selected events and the same 95-event confirmed lookup table.
-- Blind January–July 2026 rediscovery: one April survivor and no other full-gate survivors.
+- Blind January–July 2026 rediscovery: April was the only full-gate survivor.
 - Source-preserving antihelion test with orbit evaluated only after selection.
 - 1,000 measurement-error trials, all passing the orbital compactness requirements.
 - 20,000 year/night bootstrap replicates.
@@ -87,7 +87,7 @@ I would especially appreciate advice on whether this distinction between a robus
 
 ## Most important limitations
 
-The discovery and confirmation use catalogue trajectories rather than new raw-image reductions. The antihelion source is structured, and the present source-matched null may not capture every narrow component. The three geographic samples share GMN’s processing pipeline. The external catalogues are sparse, and their pooled result was not planned before the separate outcomes were known. No parent body or dynamical history has been established.
+The discovery and confirmation use catalogue trajectories rather than new raw-image reductions. The antihelion source is structured, and the present source-matched null may miss a narrow component. The three geographic samples share GMN’s processing pipeline. The external catalogues are sparse, and their pooled result was decided after the separate outcomes were known.
 
 ## Suggested reading order
 

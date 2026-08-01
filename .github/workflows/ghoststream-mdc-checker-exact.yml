@@ -1,11 +1,6 @@
 name: GhostStream exact official MDC checker
 
 on:
-  pull_request:
-    paths:
-      - "pilots/ghoststream/april_stream/mdc/rerun_official_mdc_checker.py"
-      - "pilots/ghoststream/april_stream/mdc/GhostStream_April_mean_submission.json"
-      - ".github/workflows/ghoststream-mdc-checker-exact.yml"
   workflow_dispatch:
 
 permissions:
@@ -33,7 +28,9 @@ jobs:
             pilots/ghoststream/april_stream/mdc/rerun_official_mdc_checker.py
 
       - name: Run distributed binaries and fresh source build
+        shell: bash
         run: |
+          set -euo pipefail
           python pilots/ghoststream/april_stream/mdc/rerun_official_mdc_checker.py \
             --output-dir exact_mdc_checker 2>&1 | tee exact_mdc_checker.log
 

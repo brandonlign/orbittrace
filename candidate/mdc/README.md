@@ -1,6 +1,6 @@
 # Draft MDC material
 
-This folder contains the files that would be needed to discuss a possible IAU Meteor Data Center submission. Nothing here has been submitted.
+This folder contains the event table, mean records, catalogue comparison, consistency checks, manuscript, and checklist prepared for a possible IAU Meteor Data Center submission.
 
 ## Main files
 
@@ -11,9 +11,9 @@ This folder contains the files that would be needed to discuss a possible IAU Me
 - `LIVE_MDC_NOVELTY_REFRESH.md` records the comparison with the current official shower catalogue.
 - `MDC_OFFICIAL_CHECKER_REPORT.md` records the official radiant/orbit consistency check.
 - `MDC_PACKAGE_CONSISTENCY_AUDIT.md` summarizes the internal consistency check.
-- `SUBMISSION_CHECKLIST.md` lists what is complete and what still blocks submission.
+- `SUBMISSION_CHECKLIST.md` lists completed preparation and remaining work.
 
-The numerical code, provisional designation, official shower name, journal reference, and corresponding-author email are intentionally blank. Those should not be invented before the appropriate submission process.
+The numerical code, provisional designation, shower name, journal reference, and corresponding-author email are fields completed during the appropriate submission process.
 
 ## Two related solutions
 
@@ -24,6 +24,6 @@ The project keeps two representations of the candidate:
 
 The draft six-decimal values q = 0.080114 AU and e = 0.943593 imply a = 1.420285 AU after rounding. The full-precision means imply a = 1.420296 AU. Both calculations are preserved in `calculation_audit.json`.
 
-## Current status
+## Next steps
 
-The event table, mean records, official consistency check, and current catalogue comparison are prepared. Submission remains premature until an independent meteor specialist reviews the candidate, the GMN data-use and acknowledgment language is confirmed, and the manuscript is revised in response to that review.
+The event table, mean records, official consistency check, and current catalogue comparison are prepared. The remaining work is specialist review, confirmation of GMN data-use and acknowledgment language, and revision of the manuscript in response to that review.

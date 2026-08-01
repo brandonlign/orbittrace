@@ -1,0 +1,77 @@
+name: GhostStream MDC package consistency audit
+
+on:
+  pull_request:
+    paths:
+      - "pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py"
+      - "pilots/ghoststream/april_stream/mdc/GhostStream_April_95_GMN_lookup.csv"
+      - "pilots/ghoststream/april_stream/mdc/GhostStream_April_mean_submission.json"
+      - "pilots/ghoststream/april_stream/mdc/GhostStream_April_mean_legacy.txt"
+      - "pilots/ghoststream/april_stream/mdc/calculation_audit.json"
+      - "pilots/ghoststream/april_stream/mdc/exact_official_checker_summary.json"
+      - "pilots/ghoststream/april_stream/mdc/MDC_OFFICIAL_CHECKER_REPORT.md"
+      - "pilots/ghoststream/april_stream/mdc/live_mdc_novelty_refresh_summary.json"
+      - "pilots/ghoststream/april_stream/candidate_solution.json"
+      - "pilots/ghoststream/april_stream/edmond_2024/linked_v601_frozen_summary.json"
+      - "pilots/ghoststream/results/ghoststream_final_summary.json"
+      - "pilots/ghoststream/RESULTS.md"
+      - "pilots/ghoststream/april_stream/mdc/MANUSCRIPT_DRAFT.md"
+      - "pilots/ghoststream/april_stream/mdc/README.md"
+      - "pilots/ghoststream/april_stream/mdc/SUBMISSION_CHECKLIST.md"
+      - ".github/workflows/ghoststream-mdc-package-audit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit-mdc-package:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Compile package audit
+        run: |
+          python -m py_compile \
+            pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
+
+      - name: Run package audit
+        run: |
+          python pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py \
+            --output-dir mdc_package_audit 2>&1 | tee mdc_package_audit.log
+
+      - name: Display audit summary
+        if: always()
+        run: |
+          if [[ -f mdc_package_audit/mdc_package_consistency_audit.json ]]; then
+            python - <<'PY'
+          import json
+          from pathlib import Path
+          result = json.loads(Path("mdc_package_audit/mdc_package_consistency_audit.json").read_text())
+          failed = [item for item in result["checks"] if not item["passed"]]
+          print(json.dumps({
+              "verdict": result["verdict"],
+              "check_count": result["check_count"],
+              "passed_checks": result["passed_checks"],
+              "failed_checks": result["failed_checks"],
+              "failure_names": [item["name"] for item in failed],
+              "recomputed_from_lookup": result["recomputed_from_lookup"],
+          }, indent=2))
+          PY
+          fi
+
+      - name: Upload package-audit evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ghoststream-mdc-package-consistency-audit
+          path: |
+            mdc_package_audit/
+            mdc_package_audit.log
+          if-no-files-found: error
+          retention-days: 30

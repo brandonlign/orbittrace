@@ -56,12 +56,50 @@
   },
   "primary_external_support": {
     "catalogs": ["CAMS", "SonotaCo"],
-    "members": 10,
-    "years": [2011, 2012, 2022, 2023, 2025],
-    "activity_p_posthoc": 0.0001621843884718582,
-    "shifted_window_p_posthoc": 0.02040816326530612,
-    "orbit_null_p": 5e-05,
-    "fresh_recovered_rerun_status": "in_progress"
+    "fresh_recovered_rerun_status": "passed",
+    "source_commit": "39972b5fe0cf4d47092d3caa2b3ced12bedb065e",
+    "evidence_manifest": "pilots/ghoststream/reconstruction/exact_external/external_reproduction.json",
+    "cams": {
+      "classification": "supportive_not_individually_decisive",
+      "members": 6,
+      "years": [2011, 2012],
+      "activity_p": 0.01250799173915949,
+      "shifted_window_p": 0.02040816326530612,
+      "median_orbit_d": 0.05067754141552857,
+      "orbit_null_p": 0.0001
+    },
+    "sonotaco": {
+      "classification": "supportive_below_minimum_member_count",
+      "members": 4,
+      "years": [2022, 2023, 2025],
+      "activity_p": 0.00714521041594382,
+      "shifted_window_p": 0.02040816326530612,
+      "median_orbit_d": 0.036142539673428176,
+      "orbit_null_p": 0.0001
+    },
+    "exploratory_pooled_synthesis": {
+      "verdict": "INDEPENDENT_ARCHIVES_JOINTLY_SUPPORT_APRIL_STREAM",
+      "members": 10,
+      "preserved_member_id_set_exact": true,
+      "years": [2011, 2012, 2022, 2023, 2025],
+      "activity_p_posthoc": 0.0001621843884718582,
+      "shifted_window_p_posthoc": 0.02040816326530612,
+      "median_orbit_d": 0.0487914089007297,
+      "orbit_null_p": 5e-05,
+      "distance_to_gmn_refined_orbit": 0.017230503215407457
+    }
+  },
+  "current_parent_screen": {
+    "status": "NO_CURRENT_JPL_OBJECT_AT_D_LE_0_15",
+    "broad_compatible_objects": 729,
+    "valid_orbits": 729,
+    "objects_at_d_le_0_15": 0,
+    "objects_at_d_le_0_25": 2,
+    "nearest_object": "2023 HJ7",
+    "nearest_d": 0.15939456567933025,
+    "nearest_condition_code": 8,
+    "nearest_data_arc_days": 11,
+    "parent_claimed": false
   },
   "supporting_edmond_evidence": {
     "members": 6,
@@ -82,6 +120,7 @@
     "linked_coverage_fraction": 0.78283,
     "annual_row_count_matches": 0,
     "embedded_versions": [513, 516],
+    "live_2024_link_status": "not_found",
     "claim_boundary": "provenance_limited_supplement_not_clean_third_network_replication"
   },
   "secondary_result": {
@@ -108,12 +147,13 @@
     "exact_101_member_result_reproduced": true,
     "exact_95_member_lookup_reproduced": true,
     "internal_downstream_clean_rerun_status": "in_progress",
-    "external_archive_clean_rerun_status": "in_progress",
+    "external_archive_clean_rerun_status": "passed",
+    "current_parent_screen_completed": true,
     "end_to_end_clean_rerun_completed": false,
     "later_archive_mdc_and_package_audits_reproducible": true,
-    "current_branch_status": "core_source_recovered_primary_exact_downstream_and_external_reruns_in_progress",
+    "current_branch_status": "core_source_recovered_primary_and_external_exact_internal_downstream_in_progress",
     "publication_or_formal_mdc_submission_allowed": false,
-    "resolution_required": "Complete and commit the recovered downstream and external comparison runs, rerun package and official-checker audits, rebuild the manuscript and code-inclusive expert bundle, and obtain independent scientific and duplicate review."
+    "resolution_required": "Complete and commit the recovered internal downstream comparison run, rerun package and official-checker audits against the rebuilt package, rebuild the manuscript and code-inclusive expert bundle, and obtain independent scientific and duplicate review."
   },
-  "claim_limit": "The original source has been recovered and the unchanged primary GMN validator exactly regenerated all 101 members, including the committed 95-event significant-year lookup. This supports a high-confidence uncatalogued annual April meteor-stream candidate, but it is not official IAU recognition, an established shower, a complete current EDMOND v6.01 replication, a fully independent third-network replication, an absolute-flux measurement, or a parent-body identification. Journal and formal MDC submission remain on hold while the recovered downstream and external stages are cleanly rerun and independently reviewed."
+  "claim_limit": "The original source has been recovered; the unchanged primary GMN validator exactly regenerated all 101 members including the committed 95-event lookup; and the recovered external archive chain exactly regenerated the preserved six CAMS, four SonotaCo, and ten-event pooled member set. This supports a high-confidence uncatalogued annual April meteor-stream candidate, but it is not official IAU recognition, an established shower, a complete current EDMOND v6.01 replication, a fully independent third-network replication, an absolute-flux measurement, or a parent-body identification. Journal and formal MDC submission remain on hold while the internal downstream chain is completed, the package is rebuilt, and independent review is obtained."
 }

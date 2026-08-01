@@ -1,0 +1,73 @@
+name: GhostStream fix MDC package audit
+
+on:
+  pull_request:
+    paths:
+      - ".github/workflows/ghoststream-fix-mdc-package-audit.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix-package-audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: agent/ghoststream-pilot
+          fetch-depth: 0
+
+      - name: Apply exact audit fixes
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          audit = Path("pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py")
+          text = audit.read_text()
+          old = '''    for key in ("q", "e", "peri", "node", "incl", "a"):
+              close(f"calculation audit -> mean JSON {key}", calc_means[key], mean[key], 5e-6)
+          '''
+          new = '''    for calc_key, mean_key in (("q", "q"), ("e", "e"), ("peri", "peri"), ("node", "node"), ("incl", "inc"), ("a", "a")):
+              close(f"calculation audit -> mean JSON {calc_key}", calc_means[calc_key], mean[mean_key], 5e-6)
+          '''
+          if text.count(old) != 1:
+              raise SystemExit(f"audit mapping block count={text.count(old)}")
+          audit.write_text(text.replace(old, new, 1))
+
+          workflow = Path(".github/workflows/ghoststream-mdc-package-audit.yml")
+          text = workflow.read_text()
+          old = '''      - name: Run package audit
+                  run: |
+                    python pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py \\
+                      --output-dir mdc_package_audit 2>&1 | tee mdc_package_audit.log
+          '''
+          new = '''      - name: Run package audit
+                  shell: bash
+                  run: |
+                    set -euo pipefail
+                    python pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py \\
+                      --output-dir mdc_package_audit 2>&1 | tee mdc_package_audit.log
+          '''
+          if text.count(old) != 1:
+              raise SystemExit(f"workflow run block count={text.count(old)}")
+          workflow.write_text(text.replace(old, new, 1))
+          PY
+
+      - name: Validate fixes
+        run: |
+          python -m py_compile pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
+          grep -F 'set -euo pipefail' .github/workflows/ghoststream-mdc-package-audit.yml
+          grep -F '("incl", "inc")' pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py
+          git diff --check
+
+      - name: Commit fixes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            pilots/ghoststream/april_stream/mdc/audit_mdc_package_consistency.py \
+            .github/workflows/ghoststream-mdc-package-audit.yml
+          git commit -m "Fix MDC package audit execution"
+          git push origin HEAD:agent/ghoststream-pilot

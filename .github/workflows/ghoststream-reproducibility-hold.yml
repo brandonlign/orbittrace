@@ -22,10 +22,9 @@ jobs:
           python-version: "3.11"
 
       - name: Compile recovery inventory tool
-        run: |
-          python -m py_compile pilots/ghoststream/recovery/audit_local_workspace.py
+        run: python -m py_compile pilots/ghoststream/recovery/audit_local_workspace.py
 
-      - name: Validate machine-readable hold
+      - name: Validate recovered source and exact primary evidence
         run: |
           python - <<'PY'
           import json
@@ -33,57 +32,83 @@ jobs:
 
           gap = json.loads(Path("pilots/ghoststream/reproducibility_gap_summary.json").read_text())
           final = json.loads(Path("pilots/ghoststream/results/ghoststream_final_summary.json").read_text())
+          exact = json.loads(Path("pilots/ghoststream/reconstruction/exact_recovered/exact_reproduction.json").read_text())
+          manifest = json.loads(Path("pilots/ghoststream/recovered_pipeline/SOURCE_MANIFEST.json").read_text())
           package = json.loads(Path("pilots/ghoststream/april_stream/mdc/mdc_package_consistency_summary.json").read_text())
 
-          assert gap["verdict"] == "CORE_ANALYSIS_NOT_REPRODUCIBLE_FROM_CURRENT_BRANCH"
+          assert gap["verdict"] == "CORE_SOURCE_RECOVERED_PRIMARY_EXACT_DOWNSTREAM_PENDING"
           assert gap["publication_status"] == "hold"
           assert gap["formal_mdc_submission_status"] == "blocked"
-          assert gap["expert_review_bundle_status"].startswith("superseded")
-          assert len(gap["missing_core_stages"]) >= 15
-          assert len(gap["resolution_gate"]) >= 8
+          assert gap["source_recovery"]["recovery_discovery_files"] == 13
+          assert gap["source_recovery"]["novel_downstream_files"] == 35
+          assert gap["exact_primary_reproduction"]["status"] == "passed"
+          assert gap["exact_primary_reproduction"]["total_members"] == 101
+          assert gap["exact_primary_reproduction"]["significant_year_members"] == 95
+          assert gap["exact_primary_reproduction"]["preserved_95_timestamp_set_exact"] is True
+
+          assert manifest["status"] == "RECOVERED_FROM_IMMUTABLE_GITHUB_PR_COMMITS"
+          assert manifest["sources"]["pr56_runner"]["commit"] == "4175e5187fcc6faf3d1befb099a9e35be96850f2"
+          assert manifest["sources"]["pr57_novel"]["commit"] == "39972b5fe0cf4d47092d3caa2b3ced12bedb065e"
+          assert manifest["sources"]["pr56_runner"]["file_count"] == 13
+          assert manifest["sources"]["pr57_novel"]["file_count"] == 35
+
+          assert exact["status"] == "EXACT_REPRODUCTION"
+          assert exact["total_members"] == 101
+          assert exact["preserved_95_exact"] is True
+          assert exact["missing_preserved_timestamps"] == []
+          assert exact["additional_timestamps"] == []
 
           repro = final["reproducibility_status"]
-          assert repro["core_gmn_analysis_code_committed"] is False
-          assert repro["exact_core_input_manifests_committed"] is False
+          assert repro["core_gmn_analysis_code_committed"] is True
+          assert repro["source_file_hash_manifest_committed"] is True
+          assert repro["exact_primary_clean_rerun_completed"] is True
+          assert repro["exact_101_member_result_reproduced"] is True
+          assert repro["exact_95_member_lookup_reproduced"] is True
+          assert repro["exact_core_raw_input_byte_manifest_committed"] is False
           assert repro["end_to_end_clean_rerun_completed"] is False
           assert repro["publication_or_formal_mdc_submission_allowed"] is False
           assert final["overall_verdict"] == "GO_SCIENTIFIC_CANDIDATE_PUBLICATION_HOLD"
 
+          # The old package audit remains a historical snapshot until the rebuilt
+          # package is rerun after downstream/external recovery completes.
           assert package["status"] == "HISTORICAL_INTERNAL_SNAPSHOT_NOT_CURRENT_END_TO_END_REPRODUCIBILITY"
           assert package["current_manifest_valid"] is False
           assert package["current_reaudit_required"] is True
-          assert package["current_branch_reproducibility"]["publication_or_formal_mdc_submission_allowed"] is False
+
           print(json.dumps({
               "gap_verdict": gap["verdict"],
-              "overall_verdict": final["overall_verdict"],
-              "missing_core_stages": len(gap["missing_core_stages"]),
+              "exact_primary_status": exact["status"],
+              "total_members": exact["total_members"],
+              "lookup_exact": exact["preserved_95_exact"],
+              "publication_allowed": repro["publication_or_formal_mdc_submission_allowed"],
               "historical_package_status": package["status"],
           }, indent=2))
           PY
 
-      - name: Validate human-readable boundaries
+      - name: Validate human-readable recovery and hold boundaries
         shell: bash
         run: |
           set -euo pipefail
-          grep -F 'CORE_ANALYSIS_NOT_REPRODUCIBLE_FROM_CURRENT_BRANCH' pilots/ghoststream/REPRODUCIBILITY_GAP_AUDIT.md
-          grep -F 'journal or formal MDC submission is blocked' pilots/ghoststream/REPRODUCIBILITY_GAP_AUDIT.md
+          grep -F 'CORE_SOURCE_RECOVERED_AND_PRIMARY_RESULT_EXACTLY_REPRODUCED' pilots/ghoststream/REPRODUCIBILITY_GAP_AUDIT.md
+          grep -F 'EXACT REPRODUCTION PASSED' pilots/ghoststream/reconstruction/exact_recovered/EXACT_REPRODUCTION.md
+          grep -F 'Original core GMN analysis source recovered: **yes**' pilots/ghoststream/recovery/CURRENT_RECOVERY_STATUS.md
+          grep -F 'The hold remains active for a narrower reason' pilots/ghoststream/recovery/DO_NOT_SUBMIT_UNTIL_RECOVERED.txt
           grep -F 'Formal MDC submission remains blocked' pilots/ghoststream/april_stream/mdc/SUBMISSION_CHECKLIST.md
-          grep -F 'core GMN discovery and validation software' pilots/ghoststream/april_stream/mdc/README.md
-          grep -F 'SUPERSEDED_CORE_PIPELINE_MISSING' pilots/ghoststream/april_stream/EXPERT_REVIEW_BUNDLE.md
-          grep -F 'Publication and formal IAU Meteor Data Center submission are on hold' pilots/ghoststream/april_stream/mdc/PUBLICATION_AND_MDC_PLAN.md
           grep -F 'HISTORICAL_INTERNAL_SNAPSHOT' pilots/ghoststream/april_stream/mdc/MDC_PACKAGE_CONSISTENCY_AUDIT.md
 
-      - name: Ensure recovery documentation exists
+      - name: Ensure recovery and rerun infrastructure exists
         run: |
-          test -s pilots/ghoststream/recovery/README.md
-          test -s pilots/ghoststream/recovery/audit_local_workspace.py
-          test -s pilots/ghoststream/REPRODUCIBILITY_GAP_AUDIT.md
-          test -s pilots/ghoststream/reproducibility_gap_summary.json
+          test -s pilots/ghoststream/recovered_pipeline/SOURCE_MANIFEST.json
+          test -s pilots/ghoststream/reconstruction/exact_recovered/exact_reproduction.json
+          test -s pilots/ghoststream/reconstruction/exact_recovered/EXACT_REPRODUCTION.md
+          test -s .github/workflows/ghoststream-primary-reproduction-pr.yml
+          test -s .github/workflows/ghoststream-recovered-downstream-reproduction.yml
+          test -s .github/workflows/ghoststream-recovered-external-reproduction.yml
 
-      - name: Guard against stale send-ready language
+      - name: Guard against premature submission language
         shell: bash
         run: |
           set -euo pipefail
           ! grep -Fq 'Current sendable bundle' pilots/ghoststream/april_stream/EXPERT_REVIEW_BUNDLE.md
-          ! grep -Fq 'No outreach has been sent. No external scientific review has been completed.' pilots/ghoststream/april_stream/EXPERT_REVIEW_LOG.md
-          ! grep -Fq 'PASS_MDC_PACKAGE_INTERNALLY_CONSISTENT"' pilots/ghoststream/april_stream/mdc/mdc_package_consistency_summary.json
+          ! grep -Fq 'publication_or_formal_mdc_submission_allowed": true' pilots/ghoststream/results/ghoststream_final_summary.json
+          ! grep -Fq 'end_to_end_clean_rerun_completed": true' pilots/ghoststream/results/ghoststream_final_summary.json

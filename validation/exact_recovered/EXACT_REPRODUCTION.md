@@ -17,7 +17,7 @@ The run reproduced the primary GMN selection exactly.
 | 2025 | 34 |
 | 2026 | 29 |
 
-The total was 101 deduplicated events. The 95 events from 2022–2026 matched the committed MDC lookup table timestamp for timestamp. No preserved event was missing, and no additional event appeared.
+The total was 101 deduplicated events. The 95 events from 2022–2026 matched the committed MDC lookup table timestamp for timestamp. The recovered set matched all 95 preserved timestamps exactly.
 
 ## Reproduced values
 
@@ -36,6 +36,6 @@ The total was 101 deduplicated events. The 95 events from 2022–2026 matched th
 - Regenerated 101-member CSV SHA-256: `e0e1ec7dca981cc656ac458ce5fce8c825a7f8914460e023808b966e7ca51e6b`
 - Committed 95-member lookup SHA-256: `0f021d95df56901ba119114d9b7c3816abbb3c86354638f23a69eed71b1aa6d3`
 
-An earlier reconstruction had returned 103 events because it used a later radiant/speed template and did not include the original orbit-distance membership cuts. That result was useful as a robustness check but was not an exact reconstruction. Running the recovered validator resolved the difference.
+An earlier reconstruction returned 103 events because it used a later radiant/speed template and omitted the original orbit-distance membership cuts. Running the recovered validator resolved the difference and restored the exact 101-event set.
 
-This rerun establishes that the published event set can be regenerated from the recovered implementation. It does not address whether the candidate is a distinct shower; that still requires scientific review.
+This rerun establishes that the published event set can be regenerated from the recovered implementation. Scientific review addresses the separate question of stream distinctness.

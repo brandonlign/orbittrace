@@ -31,7 +31,7 @@
         "theta": null,
         "phi": null,
         "Flags": "  A    ",
-        "a": 1.420296,
+        "a": 1.420285,
         "q": 0.080114,
         "e": 0.943593,
         "peri": 333.636995,
@@ -54,7 +54,7 @@
   "calculation": {
     "membership": "95 deduplicated GMN members in the five independently significant years 2022-2026",
     "mean_type": "unweighted arithmetic mean; angular variables do not cross 0/360 in this sample",
-    "semimajor_axis": "derived from mean q/(1-mean e) for internal consistency",
+    "semimajor_axis": "computed from the submitted six-decimal q/(1-e), then rounded to six decimals; the full-precision derivation is retained in calculation_audit.json",
     "radiant_daily_motion": "ordinary least-squares slope versus solar longitude",
     "selection_warning": "LoSb and LoSe are the observed bounds of the frozen selection window, not an exposure-corrected activity duration."
   }

@@ -1,16 +1,8 @@
-# Local Python environments and generated interpreter state
-.venv/
 __pycache__/
 *.py[cod]
 .pytest_cache/
-*.egg-info/
-
-# Downloaded MMS source files and intermediate caches (large, reproducible)
-data/raw/
-data/cache/
-pydata/
-
-# Run logs are generated locally; retain the provenance snapshot instead.
-results/logs/*
-!results/logs/.gitkeep
-!results/logs/environment.json
+.venv/
+venv/
+.DS_Store
+*.log
+*.tmp

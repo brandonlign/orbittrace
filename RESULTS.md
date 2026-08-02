@@ -111,7 +111,7 @@ A shower-removed EDMOND subset added six non-overlapping meteors from 2014, 2016
 
 ## Known-shower and parent-body checks
 
-A checksum-locked copy of IAU MDC catalogue version 2026-06-25 contained 1,072 shower records and 2,174 submitted solutions. None matched the candidate under the activity, drifted-radiant, speed, and orbital criteria. The nearest complete orbit was Northern May Ophiuchids solution 004 at D_SH = 0.23445; its activity period and radiant do not match the late-April candidate.
+The checked IAU MDC catalogue version 2026-06-25 contained 1,072 shower records and 2,174 submitted solutions. None matched the candidate under the activity, drifted-radiant, speed, and orbital criteria. The nearest complete orbit was Northern May Ophiuchids solution 004 at D_SH = 0.23445; its activity period and radiant do not match the late-April candidate.
 
 A NASA/JPL search evaluated 729 broadly compatible valid orbits. The nearest object, 2023 HJ7, had D = 0.15939, an uncertainty code of 8, and an observational arc of only 11 days. The search did not identify a credible parent-body candidate.
 

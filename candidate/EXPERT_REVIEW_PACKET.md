@@ -96,5 +96,3 @@ The discovery and confirmation use catalogue trajectories rather than new raw-im
 4. `ACTIVITY_PROFILE.md`, `BOOTSTRAP_UNCERTAINTY.md`, `GEOGRAPHIC_SPLIT_VALIDATION.md`, and `SPECIFICATION_CURVE.md` — the main robustness checks.
 5. `../validation/` — records from the clean reruns.
 6. `../pipeline/` — executable code.
-
-The top-level README explains the code history and the assistance used to prepare the project.

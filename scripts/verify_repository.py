@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import json
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -53,15 +54,55 @@ for path in ROOT.rglob("*"):
     if path.is_file() and path.name.lower().endswith(junk_suffixes):
         raise AssertionError(f"Temporary file is tracked: {path.relative_to(ROOT)}")
 
-# Keep the public assistance disclosure in the top-level README only.
-terms = ("chat" + "gpt", "open" + "ai", "generative " + "ai", "ai" + "-assisted", "use of " + "ai")
+# Keep the public assistance note in the top-level README only.
+parts = {
+    "assistant_name": "chat" + "gpt",
+    "company_name": "open" + "ai",
+    "short_term": "a" + "i",
+    "generated_term": "generative " + "a" + "i",
+    "assisted_term": "a" + "i" + "-assisted",
+    "full_term": "artificial " + "intelligence",
+    "model_term": "large language " + "model",
+    "abbreviation": "l" + "lm",
+    "model_family": "g" + "pt",
+}
+patterns = [
+    re.compile(rf"\b{re.escape(parts['assistant_name'])}\b", re.IGNORECASE),
+    re.compile(rf"\b{re.escape(parts['company_name'])}\b", re.IGNORECASE),
+    re.compile(rf"\b{re.escape(parts['short_term'])}\b", re.IGNORECASE),
+    re.compile(rf"\b{re.escape(parts['generated_term'])}\b", re.IGNORECASE),
+    re.compile(rf"\b{re.escape(parts['assisted_term'])}\b", re.IGNORECASE),
+    re.compile(rf"\b{re.escape(parts['full_term'])}\b", re.IGNORECASE),
+    re.compile(rf"\b{re.escape(parts['model_term'])}s?\b", re.IGNORECASE),
+    re.compile(rf"\b{re.escape(parts['abbreviation'])}s?\b", re.IGNORECASE),
+    re.compile(rf"\b{re.escape(parts['model_family'])}(?:-?\d[\w.-]*)?\b", re.IGNORECASE),
+]
+
+text_suffixes = {
+    ".md", ".txt", ".py", ".yml", ".yaml", ".json", ".csv", ".toml", ".ini", ".cfg"
+}
+checker = Path(__file__).resolve()
 for path in ROOT.rglob("*"):
-    if not path.is_file() or path == ROOT / "README.md" or path.suffix.lower() not in {".md", ".txt", ".py", ".yml", ".yaml"}:
+    if not path.is_file() or path == ROOT / "README.md" or path.resolve() == checker:
         continue
-    lower = path.read_text(encoding="utf-8", errors="ignore").lower()
-    hits = [term for term in terms if term in lower]
+    if path.suffix.lower() not in text_suffixes:
+        continue
+    text = path.read_text(encoding="utf-8", errors="ignore")
+    hits = sorted({match.group(0) for pattern in patterns for match in pattern.finditer(text)})
     if hits:
-        raise AssertionError(f"Assistance disclosure appears outside README.md: {path.relative_to(ROOT)} ({hits})")
+        raise AssertionError(
+            f"Assistance wording appears outside README.md: {path.relative_to(ROOT)} ({hits})"
+        )
+
+for path in ROOT.rglob("*"):
+    if path == ROOT / "README.md":
+        continue
+    normalized_name = re.sub(r"[^a-z0-9]+", " ", path.name.lower()).strip()
+    if any(pattern.search(normalized_name) for pattern in patterns):
+        raise AssertionError(f"Assistance-related filename appears outside README.md: {path.relative_to(ROOT)}")
+
+readme = (ROOT / "README.md").read_text(encoding="utf-8")
+assert any(pattern.search(readme) for pattern in patterns), "README assistance note is missing"
 
 print("GhostStream repository check passed.")
-print("Event counts, catalogue comparison, blind rediscovery, and source history are present and consistent.")
+print("Event counts, catalogue comparison, blind rediscovery, source history, and README-only assistance wording are consistent.")

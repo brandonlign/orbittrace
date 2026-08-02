@@ -13,7 +13,7 @@ This folder collects the event table, mean records, catalogue comparison, consis
 - `MDC_PACKAGE_CONSISTENCY_AUDIT.md` summarizes the internal consistency check.
 - `SUBMISSION_CHECKLIST.md` tracks the remaining work.
 
-The numerical code, provisional designation, shower name, journal reference, and corresponding-author email remain blank until the submission process supplies them.
+The numerical code, provisional designation, shower name, and journal reference remain blank until the submission process supplies them.
 
 ## Two related solutions
 

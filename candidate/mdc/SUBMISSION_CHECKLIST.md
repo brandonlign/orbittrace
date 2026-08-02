@@ -14,6 +14,7 @@ This checklist separates finished preparation from the work that still needs out
 - [x] Internal source, bootstrap, geographic, and sensitivity reruns.
 - [x] Reproduction of the CAMS and SonotaCo supporting samples.
 - [x] Working manuscript and reviewer guide.
+- [x] Author, affiliation, and contact information.
 
 ## Still required
 
@@ -22,7 +23,7 @@ This checklist separates finished preparation from the work that still needs out
 - [ ] Review of the antihelion background and the non-orbital activity selection.
 - [ ] Review of the distinction between the robust matching solution and arithmetic-mean MDC record.
 - [ ] Confirmation of GMN data-use, acknowledgment, and authorship expectations.
-- [ ] Final author, affiliation, contact, and journal information.
+- [ ] Final journal information.
 - [ ] Revision of the manuscript in response to expert comments.
 - [ ] Regeneration of the final submission package and hashes after those revisions.
 

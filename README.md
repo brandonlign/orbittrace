@@ -14,13 +14,10 @@ The analysis points to an **apparently uncatalogued meteor-stream candidate**. T
 
 ## Repository guide
 
-- `pipeline/` preserves the executable discovery, validation, control, and external-catalogue code.
+- `pipeline/` contains the discovery, validation, control, and external-catalogue code.
 - `candidate/` contains the scientific summary, supporting reports, event tables, and draft submission material.
 - `validation/` records the independent reruns and method checks.
 - `results/ghoststream_final_summary.json` is the compact machine-readable summary.
-- `pipeline/SOURCE_MANIFEST.json` records the immutable source commits and file hashes.
-
-The repository was reorganized after the analysis was complete. One-time download probes, inspection scripts, superseded versions, and runtime patch wrappers were removed from the active code tree. The original source hashes and immutable commits remain listed in `pipeline/SOURCE_MANIFEST.json`.
 
 ## Main result
 
@@ -38,7 +35,7 @@ The same group appears in untouched years and remains compact under source-match
 
 ## Check the repository
 
-The lightweight check covers the file set, result metadata, source hashes, Python syntax, and repository hygiene. The catalogue downloads and full search use the scripts under `pipeline/`.
+The lightweight check covers the expected files, result metadata, Python syntax, and repository hygiene. The catalogue downloads and full search use the scripts under `pipeline/`.
 
 ```bash
 python scripts/verify_repository.py

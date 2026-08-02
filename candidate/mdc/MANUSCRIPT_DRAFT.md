@@ -4,7 +4,7 @@
 
 **Author:** Brandon Li  
 **Affiliation:** John L. Miller Great Neck North High School, Great Neck, New York, USA  
-**Corresponding author:** [to be added]
+**Corresponding author:** brandon.li.gn@gmail.com
 
 ## Abstract
 
@@ -12,7 +12,7 @@ I searched public Global Meteor Network (GMN) trajectory catalogues for weak met
 
 One late-April group survived the complete analysis. The final GMN sample contains 95 meteors in five significant years from 2022 through 2026. The pooled 2022–2023 confirmation was reserved until after the candidate definition had been fixed and gave an activity p-value of 1.86 × 10⁻⁵ after a twelve-month familywise rule and a source/time-matched orbit-null p-value of 1.0 × 10⁻⁴. The activity enhancement was selected from radiant, speed, and solar longitude, with orbit evaluated afterward. A March–May profile supports an activity interval from solar longitude 35.90° to 39.90°. The candidate appears in three non-overlapping GMN geographic station groups, passes all 81 tested combinations of nearby quality and window choices, and remains stable in 20,000 year/night bootstrap samples. The bootstrap resolves angular radiant drift while leaving geocentric-speed drift unresolved.
 
-Six CAMS meteors and four SonotaCo meteors provide the main external support. Six additional meteors occur in a shower-removed EDMOND subset, although EDMOND’s compiled provenance limits its independence. A checksum-locked comparison with 2,174 official MDC solutions found no direct match or timing/radiant/speed near match. The original analysis code was recovered from immutable commits and reproduced the primary event list and downstream results without retuning. The evidence supports a recurring, apparently uncatalogued late-April meteor-stream candidate. Specialist review will focus on its distinctness from minor-shower branches and antihelion structure.
+Six CAMS meteors and four SonotaCo meteors provide the main external support. Six additional meteors occur in a shower-removed EDMOND subset, although EDMOND’s compiled provenance limits its independence. A comparison with 2,174 official MDC solutions found no direct match or timing/radiant/speed near match. A clean rerun reproduced the primary event list and downstream results without retuning. The evidence supports a recurring, apparently uncatalogued late-April meteor-stream candidate. Specialist review will focus on its distinctness from minor-shower branches and antihelion structure.
 
 ## 1. Introduction
 
@@ -229,7 +229,7 @@ The geographic split makes a local station artifact unlikely, while the three gr
 
 The sensitivity analysis shows stability across nearby thresholds. The bootstrap supports the angular drifts and mean orbit while leaving speed drift unresolved. The activity analysis supports a concentrated late-April interval; absolute flux and a precise annual maximum require additional exposure modeling.
 
-The recovered source and exact reruns establish that the event list and numerical results are reproducible from the preserved implementation. The remaining taxonomic question is whether specialists consider the concentration a distinct stream.
+Clean reruns reproduced the event list and numerical results from the preserved implementation. The remaining taxonomic question is whether specialists consider the concentration a distinct stream.
 
 ## 6. Limitations
 

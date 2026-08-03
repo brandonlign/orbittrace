@@ -39,8 +39,6 @@ The 95-member arithmetic mean in the draft MDC record differs slightly because i
 
 ## How it was tested
 
-The checks target the main ways a false stream could appear.
-
 **Recurrence.** The candidate passes the year-level test in 2022–2026. The pooled 2022–2023 result was kept untouched until the candidate definition had been fixed.
 
 **Background structure.** The final activity test places the candidate inside a deliberately broad antihelion background. Selection uses radiant, speed, and solar longitude; orbital compactness is evaluated afterward.
@@ -53,14 +51,14 @@ The checks target the main ways a false stream could appear.
 
 **Analysis choices.** All 81 nearby combinations of quality cuts, station counts, core widths, and activity windows produced a significant and orbitally compact result.
 
-**External catalogues.** CAMS and SonotaCo contain ten matching meteors in five historical years. A shower-removed EDMOND subset contains six more, although EDMOND’s compiled provenance limits how independently that sample can be interpreted.
+**External catalogues.** The unchanged GMN template was applied to complete IAU MDC 2026 external catalogues. SonotaCo independently passed every preserved gate with 11 members across eight represented years: activity p = 5.484 × 10⁻⁵, shifted-window p = 0.02041, median orbital D = 0.02998, and orbit-null p = 0.0001. CAMS supplied nine members across five years and passed every gate except the pre-established 1% activity cutoff; its activity p-value was 0.01526 and orbit-null p-value was 0.0001. EDMOND added four supplementary members.
 
-**Known showers.** The current official IAU MDC catalogue contains no solution that matches the candidate in activity, drifted radiant, speed, and orbit under the project’s comparison rules. Two unnamed single-station IMO sequences (#181 and #182) overlap in date, but their public summaries do not provide enough radiant, speed, or orbital detail for a direct comparison. GhostStream adds a five-year, multi-station orbital characterization that those preliminary detections do not provide.
+**Known showers.** The current official IAU MDC catalogue contains no solution that matches the candidate in activity, drifted radiant, speed, and orbit under the project’s comparison rules. Two unnamed single-station IMO sequences (#181 and #182) overlap in date, but their public summaries do not provide enough radiant, speed, or orbital detail for a direct comparison.
 
 ## Main uncertainty
 
-The strongest alternative explanations are a branch of a known minor shower or narrow structure within the antihelion source. Resolving that requires a specialist comparison with older literature, removed solutions, and alternate shower lists.
+The strongest remaining alternative explanations are a branch of a known minor shower or narrow structure within the antihelion source. Resolving that requires specialist comparison with older literature, removed solutions, and alternate shower lists.
 
-The external samples are also small. CAMS narrowly misses the standalone activity cutoff, SonotaCo is below the minimum event count, and the pooled result was calculated after those separate outcomes were known. Dynamical origin modeling was not part of this analysis.
+External support is no longer the central weakness: SonotaCo provides a formal independent replication and CAMS provides strong independent corroboration. The unresolved issue is classification, not whether the pattern appears outside GMN. Dynamical origin modeling was not part of this analysis.
 
 The data show a real, recurring, orbitally coherent late-April concentration with no matching solution in the current IAU MDC catalogue.

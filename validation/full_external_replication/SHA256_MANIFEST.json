@@ -1,0 +1,18 @@
+{
+  "FULL_EXTERNAL_REPLICATION.md": {
+    "bytes": 1865,
+    "sha256": "94b3cbd45240383d0a9f6a43922197f2b51db278c8199a886a28f4b64d6cb0e8"
+  },
+  "cams_members.csv": {
+    "bytes": 1510,
+    "sha256": "90745f1cec82986365b3bccbe975ad11bedc3b211f71b7bf382e23d4e25b893e"
+  },
+  "edmond_members.csv": {
+    "bytes": 724,
+    "sha256": "6708cc0dba5cfc978fe39baa905cb65ba8197f068da0bddbb11ccb5c8c948751"
+  },
+  "sonotaco_members.csv": {
+    "bytes": 1948,
+    "sha256": "3e70d02fdea51e0da476f3bc32bb70febf5b362088cf5e31bc0a2801980c390b"
+  }
+}

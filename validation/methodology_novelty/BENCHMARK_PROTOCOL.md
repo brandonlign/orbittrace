@@ -1,10 +1,10 @@
-# Preregistered benchmark for the GhostStream validation protocol
+# Preregistered benchmark for the OrbitTrace validation protocol
 
 ## Status
 
 **Protocol only. Not yet executed.**
 
-This benchmark is designed to test whether the prospectively frozen GhostStream workflow improves reliability relative to simpler analysis strategies. Its purpose is not to strengthen the April candidate by changing its thresholds.
+This benchmark is designed to test whether the prospectively frozen OrbitTrace workflow improves reliability relative to simpler analysis strategies. Its purpose is not to strengthen the April candidate by changing its thresholds.
 
 ## Primary question
 
@@ -18,11 +18,11 @@ All available GMN years are searched and evaluated together. Candidate parameter
 
 ### B. Same-data gated workflow
 
-The existing GhostStream discovery and downstream gates are applied, but discovery and validation use the same years.
+The existing OrbitTrace discovery and downstream gates are applied, but discovery and validation use the same years.
 
 ### C. Frozen temporal-holdout workflow
 
-Candidate generation uses a designated discovery period. The candidate center, feature scales, drift treatment, activity interval, quality rules, and pass/fail gates are then locked before evaluation in designated untouched years.
+Candidate generation uses a designated discovery period. The candidate centre, feature scales, drift treatment, activity interval, quality rules, and pass/fail gates are then locked before evaluation in designated untouched years.
 
 ### D. Frozen holdout plus external replication
 
@@ -42,7 +42,7 @@ Use the existing 20-, 40-, and 80-member injection families in real sporadic bac
 
 Use source-matched sporadic regions and month/year combinations that contain no eligible established shower under the fixed MDC exclusion rules. Null regions are selected without inspecting candidate-survival outcomes.
 
-The April GhostStream candidate is excluded from choosing thresholds or benchmark success criteria.
+The April OrbitTrace candidate is excluded from choosing thresholds or benchmark success criteria.
 
 ## Fixed outputs
 

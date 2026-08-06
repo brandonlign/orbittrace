@@ -1,4 +1,4 @@
-work,year,density_clustering,measurement_error_test,false_positive_or_null,temporal_holdout,independent_network_confirmation,explicit_parameter_freeze,separate_activity_and_orbit_tests,relevance_to_ghoststream
+work,year,density_clustering,measurement_error_test,false_positive_or_null,temporal_holdout,independent_network_confirmation,explicit_parameter_freeze,separate_activity_and_orbit_tests,relevance_to_orbittrace
 "Rudawska et al., Independent identification in EDMOND",2015,no,not documented,limited threshold-based,no,no,no,no,"Independent catalogue-wide identification and MDC comparison already established"
 "Moorhead, Performance of D-criteria",2016,no,no,yes,no,no,no,no,"Per-shower thresholds tied to chosen false-positive rate"
 "Jenniskens & Nenon, CAMS confirmation",2016,no,not documented,qualitative background,external survey itself,yes,template-based but not fully preregistered,no,"Independent-survey confirmation already established"
@@ -8,4 +8,4 @@ work,year,density_clustering,measurement_error_test,false_positive_or_null,tempo
 "Matlovic et al., EDMOND identification and parent bodies",2023,no,not documented,problematic cases reviewed,no,no,no,no,"Method applied to three populous years; not a prospectively frozen holdout design"
 "Shober & Vaubaillon, Generalizable false positives",2024,no,no,yes,no,no,no,no,"KDE synthetic sporadic background estimates random associations"
 "Pena-Asensio & Ferrari, HDBSCAN stream identification",2025,yes,no,classification metrics,no,no,no,no,"HDBSCAN itself is already published for meteor-stream identification"
-"GhostStream",2026,yes,yes,yes,yes,yes,yes,yes,"Distinctive integrated chain, but performance advantage over prior workflows has not yet been benchmarked"
+"OrbitTrace",2026,yes,yes,yes,yes,yes,yes,yes,"Distinctive integrated chain, but performance advantage over prior workflows has not yet been benchmarked"

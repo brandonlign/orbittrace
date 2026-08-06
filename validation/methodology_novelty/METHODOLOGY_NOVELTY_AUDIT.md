@@ -1,8 +1,8 @@
-# GhostStream methodology-novelty audit
+# OrbitTrace methodology-novelty audit
 
 ## Verdict
 
-**NO-GO for claiming that GhostStream currently introduces a new meteor-stream discovery method.**
+**NO-GO for claiming that OrbitTrace currently introduces a new meteor-stream discovery method.**
 
 The project combines several strong safeguards in one prospectively frozen chain, but the major ingredients already appear in prior meteor-stream research:
 
@@ -14,7 +14,7 @@ The project combines several strong safeguards in one prospectively frozen chain
 
 The defensible description is therefore:
 
-> GhostStream uses a prospectively frozen, multi-stage validation protocol assembled from established meteor-stream identification and confirmation practices.
+> OrbitTrace uses a prospectively frozen, multi-stage validation protocol assembled from established meteor-stream identification and confirmation practices.
 
 This is rigorous methodology. It is not yet demonstrated methodological novelty.
 
@@ -22,38 +22,38 @@ This is rigorous methodology. It is not yet demonstrated methodological novelty.
 
 ### Density-based stream discovery
 
-Sugar et al. (2017) applied DBSCAN to meteor trajectories using solar longitude, geocentric velocity, and Sun-centered ecliptic radiant. They included measurement errors, false-positive/false-negative analysis, and comparison with an established shower-detection method.
+Sugar et al. (2017) applied DBSCAN to meteor trajectories using solar longitude, geocentric velocity, and Sun-centred ecliptic radiant. They included measurement errors, false-positive/false-negative analysis, and comparison with an established shower-detection method.
 
-Peña-Asensio and Ferrari (2025) applied HDBSCAN to CAMS v3 using geocentric and orbital feature sets, varied the minimum cluster size and cluster-selection method, and compared its classifications with CAMS labels. Therefore neither density-based clustering nor HDBSCAN itself is novel to GhostStream.
+Peña-Asensio and Ferrari (2025) applied HDBSCAN to CAMS v3 using geocentric and orbital feature sets, varied the minimum cluster size and cluster-selection method, and compared its classifications with CAMS labels. Neither density-based clustering nor HDBSCAN itself is novel to OrbitTrace.
 
-### False-positive and background modeling
+### False-positive and background modelling
 
 Moorhead (2016) developed shower-specific orbital-similarity cutoffs corresponding to a chosen false-positive rate.
 
-Shober and Vaubaillon (2024) modeled the sporadic background with kernel-density estimation and generated synthetic samples to estimate false shower associations. Therefore simulation- or null-based false-positive control is established practice.
+Shober and Vaubaillon (2024) modelled the sporadic background with kernel-density estimation and generated synthetic samples to estimate false shower associations. Simulation- or null-based false-positive control is established practice.
 
 ### Temporal holdout verification
 
 Jenniskens et al. (2016) reported that CAMS detections originally derived from data through March 2013 were checked with the larger data set available through March 2015. The later data were used to verify the earlier detections, explicitly not to identify further showers or improve their median orbital elements. This is already a form of fixed temporal holdout verification.
 
-GhostStream's untouched-year confirmation is stricter and more fully documented, but the general concept is not new.
+OrbitTrace's untouched-year confirmation is stricter and more fully documented, but the general concept is not new.
 
 ### Independent-network confirmation
 
 CAMS studies repeatedly used SonotaCo as an independent survey. Jenniskens and Nénon (2016) confirmed previously reported showers with CAMS, while Jenniskens et al. (2016) reported that many newly detected CAMS showers were also present in SonotaCo. A related verification study found that only 20 of 55 proposed high-threshold D-criterion detections produced convincing density enhancements in both CAMS and SonotaCo.
 
-Therefore external-network replication is an established confirmation practice, not a GhostStream invention.
+External-network replication is an established confirmation practice, not an OrbitTrace invention.
 
 ### Independent identification and catalogue comparison
 
 Rudawska et al. (2015) independently identified showers in EDMOND using orbital grouping followed by comparison in geocentric parameters and against the IAU MDC list. Matlovič et al. (2023) later applied a modified version to three populous EDMOND years. Independent catalogue-wide identification and duplicate checking are established.
 
-## What is distinctive about GhostStream
+## What is distinctive about OrbitTrace
 
 The project combines the following sequence with unusually explicit locking and provenance:
 
 1. blind candidate generation without a supplied target month or radiant;
-2. fixed candidate center, widths, timing, drift treatment, and decision gates;
+2. fixed candidate centre, widths, timing, drift treatment, and decision gates;
 3. untouched-year confirmation without refitting;
 4. activity selection using radiant, speed, and time, followed by a separate orbital-coherence test;
 5. source- and time-matched nulls;
@@ -83,7 +83,7 @@ This exact integrated sequence was not found in the papers reviewed here. Howeve
 
 A controlled benchmark must compare a pooled or same-data workflow with the prospectively frozen holdout workflow on known showers, injected weak streams, and null controls. The methods claim becomes defensible only if the frozen protocol measurably reduces false candidate survival while retaining useful recovery.
 
-The benchmark is preregistered separately in `BENCHMARK_PROTOCOL.md`. Until it is executed, GhostStream's main contribution remains the astronomical candidate and its unusually strong validation, not a new algorithm.
+The benchmark is preregistered separately in `BENCHMARK_PROTOCOL.md`. Until it is executed, OrbitTrace's main contribution remains the astronomical candidate and its unusually strong validation, not a new algorithm.
 
 ## Literature reviewed
 

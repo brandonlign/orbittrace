@@ -1,8 +1,8 @@
-# GhostStream full external-catalog replication
+# OrbitTrace full external-catalogue replication
 
 **Verdict:** `FROZEN_EXTERNAL_REPLICATION_PASSED_IN_SONOTACO`
 
-The complete IAU MDC 2026 CAMS v3, SonotaCo, and EDMOND yearly catalogs were evaluated with the unchanged GMN-derived template and preserved decision gates. No external-source parameter was refit.
+The complete IAU MDC 2026 CAMS v3, SonotaCo, and EDMOND yearly catalogues were evaluated with the unchanged GMN-derived template and preserved decision gates. No external-source parameter was refitted.
 
 ## CAMS
 
@@ -34,7 +34,7 @@ The complete IAU MDC 2026 CAMS v3, SonotaCo, and EDMOND yearly catalogs were eva
 
 ## EDMOND
 
-- Role: supplementary catalog
+- Role: supplementary catalogue
 - Valid seasonal rows: **16,005**
 - Frozen-template members: **4**
 - Counts by year: `{'2013': 1, '2014': 1, '2016': 2}`

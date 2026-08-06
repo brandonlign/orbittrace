@@ -1,6 +1,6 @@
-# GhostStream
+# OrbitTrace
 
-GhostStream searches public meteor-trajectory catalogues for weak streams that may have been missed. A blind search of Global Meteor Network (GMN) data found a recurring late-April group with similar radiants, speeds, timing, and orbits in every year from 2022 through 2026.
+OrbitTrace searches public meteor-trajectory catalogues for weak streams that may have been missed. A blind search of Global Meteor Network (GMN) data found a recurring late-April group with similar radiants, speeds, timing, and orbits in every year from 2022 through 2026.
 
 The fixed GMN solution was subsequently tested without refitting against the complete IAU MDC 2026 external catalogues. SonotaCo independently passed every preserved replication gate with 11 matching meteors across eight years. CAMS supplied nine additional coherent meteors across five years and passed every preserved gate except the project’s conservative 1% activity threshold. EDMOND supplied four supplementary matches.
 
@@ -14,15 +14,17 @@ The analysis points to an **apparently uncatalogued meteor-stream candidate**. T
 - [`validation/full_external_replication/FULL_EXTERNAL_REPLICATION.md`](validation/full_external_replication/FULL_EXTERNAL_REPLICATION.md): complete CAMS, SonotaCo, and EDMOND replication report.
 - [`validation/methodology_novelty/METHODOLOGY_NOVELTY_AUDIT.md`](validation/methodology_novelty/METHODOLOGY_NOVELTY_AUDIT.md): literature-backed boundary on what is and is not methodologically novel.
 - [`validation/methodology_novelty/BENCHMARK_PROTOCOL.md`](validation/methodology_novelty/BENCHMARK_PROTOCOL.md): preregistered comparison needed before any methods-performance claim.
-- [`candidate/mdc/MANUSCRIPT_DRAFT.md`](candidate/mdc/MANUSCRIPT_DRAFT.md): the working paper; its external-catalogue section predates the complete-catalogue replication and should be read together with the report above until the manuscript is revised.
-- [`candidate/mdc/GhostStream_April_95_GMN_lookup.csv`](candidate/mdc/GhostStream_April_95_GMN_lookup.csv): the 95-event GMN sample used for the draft mean solution.
+- [`candidate/mdc/MANUSCRIPT_DRAFT.md`](candidate/mdc/MANUSCRIPT_DRAFT.md): the repository manuscript draft; the current submission manuscript is maintained separately in Google Drive.
+- [`candidate/mdc/OrbitTrace_April_95_GMN_lookup.csv`](candidate/mdc/OrbitTrace_April_95_GMN_lookup.csv): the 95-event GMN sample used for the draft mean solution.
 
 ## Repository guide
 
 - `pipeline/` contains the discovery, validation, control, and external-catalogue code.
 - `candidate/` contains the scientific summary, supporting reports, event tables, and draft submission material.
 - `validation/` records the independent reruns, method checks, complete external-catalogue replication, and methodology-novelty audit.
-- `results/ghoststream_final_summary.json` records the original recovered package state; the complete external replication is preserved separately under `validation/full_external_replication/`.
+- `results/orbittrace_final_summary.json` records the original recovered package state; the complete external replication is preserved separately under `validation/full_external_replication/`.
+
+Some immutable historical workflow paths, artifact names, and checksums still contain the former project codename. They are retained only where changing them would break reproducibility or make an archived identifier inaccurate.
 
 ## Main result
 
@@ -42,7 +44,7 @@ The strongest external result is now a fully passing frozen-template replication
 
 ## Methodology claim boundary
 
-GhostStream uses a prospectively frozen, multi-stage validation design. Density clustering, temporal holdout verification, false-positive modeling, and independent-network confirmation all have prior meteor-science precedents, so the project does **not** currently claim a new meteor-stream discovery method. A controlled benchmark is required before claiming that the integrated protocol reduces false discoveries better than existing workflows.
+OrbitTrace uses a prospectively frozen, multi-stage validation design. Density clustering, temporal holdout verification, false-positive modelling, and independent-network confirmation all have prior meteor-science precedents, so the project does **not** currently claim a new meteor-stream discovery method. A controlled benchmark is required before claiming that the integrated protocol reduces false discoveries better than existing workflows.
 
 ## Check the repository
 

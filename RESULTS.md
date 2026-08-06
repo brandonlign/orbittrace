@@ -1,6 +1,6 @@
 # Results
 
-A blind search of GMN trajectories found one compact late-April group. After its center and selection rules were fixed, the same pattern appeared in earlier years. The internal label is `GhostStream-April-36.9`.
+A blind search of GMN trajectories found one compact late-April group. After its centre and selection rules were fixed, the same pattern appeared in earlier years. The internal label is `OrbitTrace-April-36.9`.
 
 ## Candidate at a glance
 
@@ -45,7 +45,7 @@ The robust solution used for matching is evaluated near solar longitude 36.902°
 
 | Parameter | Value |
 |---|---:|
-| Sun-centered ecliptic longitude | −149.376° |
+| Sun-centred ecliptic longitude | −149.376° |
 | Geocentric ecliptic latitude | +7.323° |
 | Approximate geocentric RA | 247.06° |
 | Approximate geocentric Dec | −14.22° |
@@ -75,7 +75,7 @@ All 81 nearby combinations of trajectory-fit limit, station count, core width, a
 
 ## Complete external-catalogue replication
 
-The fixed GMN center, drifts, widths, activity interval, orbit, and decision gates were applied without refitting to the complete usable IAU MDC 2026 yearly catalogues. The full machine-readable result, catalog hashes, and selected events are under [`validation/full_external_replication/`](validation/full_external_replication/).
+The fixed GMN centre, drifts, widths, activity interval, orbit, and decision gates were applied without refitting to the complete usable IAU MDC 2026 yearly catalogues. The full machine-readable result, catalogue hashes, and selected events are under [`validation/full_external_replication/`](validation/full_external_replication/).
 
 ### SonotaCo — formal independent replication
 

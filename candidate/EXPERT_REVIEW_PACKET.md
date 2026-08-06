@@ -39,7 +39,7 @@ The robust matching solution at solar longitude 36.901963° is:
 
 | Quantity | Value |
 |---|---:|
-| Sun-centered ecliptic longitude | −149.376325° |
+| Sun-centred ecliptic longitude | −149.376325° |
 | Ecliptic latitude | +7.323038° |
 | Approximate geocentric RA | 247.06° |
 | Approximate geocentric Dec | −14.22° |
@@ -126,7 +126,7 @@ The discovery and confirmation use catalogue trajectories rather than new raw-im
 
 1. `CANDIDATE_DOSSIER.md` — short scientific explanation.
 2. `../validation/full_external_replication/FULL_EXTERNAL_REPLICATION.md` — complete independent-catalogue result.
-3. `mdc/GhostStream_April_95_GMN_lookup.csv` — the event-level GMN sample.
+3. `mdc/OrbitTrace_April_95_GMN_lookup.csv` — the event-level GMN sample.
 4. `mdc/MANUSCRIPT_DRAFT.md` — full methods and discussion; its external section predates the complete-catalogue update.
 5. `ACTIVITY_PROFILE.md`, `BOOTSTRAP_UNCERTAINTY.md`, `GEOGRAPHIC_SPLIT_VALIDATION.md`, and `SPECIFICATION_CURVE.md` — the main robustness checks.
 6. `../validation/` — records from the clean reruns.

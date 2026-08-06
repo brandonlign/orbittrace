@@ -1,6 +1,6 @@
 # Candidate overview
 
-GhostStream-April-36.9 is a recurring late-April group found in a blind search of public GMN trajectories. The search was not given a shower date or radiant.
+OrbitTrace-April-36.9 is a recurring late-April group found in a blind search of public GMN trajectories. The search was not given a shower date or radiant.
 
 The signal is strongest in 2025 and 2026, with the same pattern also present in 2022, 2023, and 2024. Those five years contribute the 95 meteors used in the draft MDC record.
 
@@ -8,7 +8,7 @@ The signal is strongest in 2025 and 2026, with the same pattern also present in 
 
 The selected meteors are concentrated in four linked quantities:
 
-- Sun-centered radiant longitude;
+- Sun-centred radiant longitude;
 - ecliptic radiant latitude;
 - geocentric speed; and
 - solar longitude, which measures the Earth’s position in its orbit.
@@ -21,7 +21,7 @@ At solar longitude 36.901963°, the robust matching solution is:
 
 | Quantity | Value |
 |---|---:|
-| Sun-centered ecliptic longitude | −149.376325° |
+| Sun-centred ecliptic longitude | −149.376325° |
 | Geocentric ecliptic latitude | +7.323038° |
 | Approximate geocentric RA | 247.06° |
 | Approximate geocentric Dec | −14.22° |
@@ -59,6 +59,6 @@ The 95-member arithmetic mean in the draft MDC record differs slightly because i
 
 The strongest remaining alternative explanations are a branch of a known minor shower or narrow structure within the antihelion source. Resolving that requires specialist comparison with older literature, removed solutions, and alternate shower lists.
 
-External support is no longer the central weakness: SonotaCo provides a formal independent replication and CAMS provides strong independent corroboration. The unresolved issue is classification, not whether the pattern appears outside GMN. Dynamical origin modeling was not part of this analysis.
+External support is no longer the central weakness: SonotaCo provides a formal independent replication and CAMS provides strong independent corroboration. The unresolved issue is classification, not whether the pattern appears outside GMN. Dynamical origin modelling was not part of this analysis.
 
 The data show a real, recurring, orbitally coherent late-April concentration with no matching solution in the current IAU MDC catalogue.

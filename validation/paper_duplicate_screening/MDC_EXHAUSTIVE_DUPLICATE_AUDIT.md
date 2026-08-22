@@ -2,32 +2,38 @@
 
 This paper-facing audit resolves the duplicate-screening concern without changing the OrbitTrace candidate, validation thresholds, or ACRF method.
 
-## Frozen catalogue and all-solution screen
+## Current catalogue and all-solution screen
 
-The comparison uses the fixed **2026-06-25 IAU Meteor Data Center snapshot**, SHA-256 `821fa09734314e2796388c4f2fc94bb770998f2f2b08d6a84135660849aef899`. The file contains **1,072 shower records and 2,174 submitted solutions**, including working-list and removed entries. Every parsable solution was screened; this was not a nearest-name or confirmed-shower-only search.
+The official IAU Meteor Data Center text catalogue reports **Last update: 2026-08-14 20:00 UTC**. The downloaded file is 1,545,850 bytes with SHA-256 `418365d3f005bc6a2ead6e8bc0548dafdc4cc378843c8c2bf351f79af5293dbf` and contains **2,179 submitted solution rows**.
 
-The duplicate rules were frozen before the comparison:
+The duplicate rules were held fixed from the earlier audit:
 
 - OrbitTrace activity interval: solar longitude 32.901963°–40.901963°;
-- if an MDC solution lacked a published activity interval, mean-epoch compatibility used a fixed ±8° fallback;
+- if a solution lacks a published activity interval, mean-epoch compatibility uses a fixed ±8° fallback;
 - drifted radiant separation ≤ 5°;
 - geocentric-speed difference ≤ 5 km s⁻¹;
 - `D_SH ≤ 0.15` for a hard match;
-- a hard match required a complete orbit.
+- a hard match requires a complete orbit.
+
+The candidate radiant and speed are propagated to each catalogue solution's mean solar longitude using the fitted OrbitTrace drifts before radiant/speed comparison. Southworth–Hawkins distance is then evaluated for complete orbits.
+
+## Completeness audit
+
+Of the 2,179 submitted rows, **2,150** contain solar longitude, Sun-centred radiant longitude, radiant latitude and geocentric speed and therefore permit the complete timing/radiant/speed screen. **1,888** of these also contain a complete five-element orbit for `D_SH`.
+
+The remaining 29 rows were inspected separately rather than silently discarded. Only one is timing-compatible with OrbitTrace: alpha-Virginids solution AVB-003 at mean solar longitude 32.5°. It lacks a geocentric speed, but its drifted radiant is **49.09°** from OrbitTrace, so it fails the fixed 5° radiant condition by a wide margin regardless of the missing speed/orbit fields. None of the other incomplete rows is activity-compatible.
 
 ## Result
 
-Across all **2,174** solutions:
+Across the **entire 2,179-row current catalogue**:
 
 - hard duplicate matches: **0**;
-- timing/radiant/speed near matches: **0**;
-- near matches hidden only by incomplete orbital elements: **0**.
+- timing/radiant/speed near matches among parameter-complete rows: **0**;
+- plausible matches hidden by incomplete fields: **0**.
 
-The archived live rerun verdict is `NO_CURRENT_IAU_MDC_HARD_DUPLICATE` (workflow `30678572191`, artifact `8811375826`, artifact SHA-256 `d7a88515dcc97762812dd4df6b431a2c65805928969ad114b3636809254ae393`).
+The result is unchanged from the earlier 2026-06-25 audit even though the catalogue has since been updated.
 
-## Nearest alternatives
-
-The table below lists the ten smallest complete-orbit `D_SH` alternatives from the exhaustive screen. These are descriptive nearest neighbours; none passes the fixed duplicate rule.
+## Nearest complete-orbit alternatives
 
 | IAU solution | Activity compatible | Drifted radiant sep. | ΔVg | D_SH | Why it fails |
 |---|---:|---:|---:|---:|---|
@@ -42,10 +48,10 @@ The table below lists the ten smallest complete-orbit `D_SH` alternatives from t
 | 167 NSS 001 | No | 14.49° | 9.70 km/s | 0.465 | timing, radiant, speed and orbit |
 | 358 TOP 000 | No | 11.47° | 0.11 km/s | 0.474 | timing, radiant and orbit |
 
-No complete-orbit alternative is even inside the fixed `D_SH ≤ 0.15` hard-match boundary. The nearest complete orbit, NOP-004, has `D_SH = 0.23445`, begins at solar longitude 45° rather than overlapping OrbitTrace, and is separated by 9.59° in the drifted radiant at the candidate epoch.
+No complete-orbit alternative is inside the fixed `D_SH ≤ 0.15` boundary. The nearest remains NOP-004 at `D_SH = 0.23445`; its published activity begins at solar longitude 45° and its drifted radiant is 9.59° from OrbitTrace.
 
-## Population-level follow-up of the only serious neighbour
+## Population-level follow-up of NOP-004
 
-Because NOP-004 is the nearest complete catalogue orbit, it was also tested beyond its catalogue mean. The official NOP-004 observational lookup contains 567 rows. OrbitTrace spans solar longitude 32.958°–40.269° and NOP-004 45.007°–74.869°, leaving a 4.738° gap. The median OrbitTrace residual from the fitted NOP radiant trend is 11.233°, above the maximum residual within the NOP sample; all 95 OrbitTrace meteors exceed the NOP 99th-percentile radiant residual. In 100,000 bootstrap draws, none reached the observed separation. Among 118 publicly recoverable complete NOP orbits, the within-NOP 99th-percentile nearest-neighbour `D_SH` is 0.0878, while the closest OrbitTrace–NOP pair is 0.0929 and the median OrbitTrace-to-NOP distance is 0.1569.
+The official NOP-004 observational lookup contains 567 rows. OrbitTrace spans solar longitude 32.958°–40.269° and NOP-004 45.007°–74.869°, leaving a 4.738° gap. The median OrbitTrace residual from the fitted NOP radiant trend is 11.233°, above the maximum residual within the NOP sample; all 95 OrbitTrace meteors exceed the NOP 99th-percentile radiant residual. In 100,000 bootstrap draws, none reached the observed separation. Among 118 publicly recoverable complete NOP orbits, the within-NOP 99th-percentile nearest-neighbour `D_SH` is 0.0878, while the closest OrbitTrace–NOP pair is 0.0929 and the median OrbitTrace-to-NOP distance is 0.1569.
 
-Therefore the exhaustive catalogue screen and the dedicated population-level test agree: **OrbitTrace is not a duplicate of any solution in the frozen 2026-06-25 MDC snapshot.** This does not exclude a broader dynamical relationship to a known complex; it addresses the narrower duplicate-stream question.
+Therefore the current exhaustive catalogue screen and the dedicated population-level test agree: **OrbitTrace is not a duplicate of any solution in the 2026-08-14 MDC catalogue.** This does not exclude a broader dynamical relationship to a known complex.

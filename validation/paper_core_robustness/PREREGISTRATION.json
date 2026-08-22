@@ -1,0 +1,72 @@
+{
+  "frozen_at": "2026-08-22",
+  "purpose": "Post-hoc robustness analysis for the already selected ACRF-v3.5 paper method. This analysis tests sensitivity only; it must not be used to select replacement hyperparameters or modify the discovery method.",
+  "baseline": {
+    "feature_scales": {
+      "sun_centered_radiant_longitude_deg": 3.5,
+      "radiant_latitude_deg": 3.0,
+      "geocentric_speed_km_s": 2.5,
+      "solar_longitude_deg": 2.5
+    },
+    "min_cluster_size": 8,
+    "min_samples": 4,
+    "expected_orbittrace_result": {
+      "rank": 7,
+      "reported_members": 123,
+      "target_overlap": 95,
+      "target_count": 95,
+      "precision": 0.7723577235772358,
+      "recall": 1.0,
+      "f1": 0.8715596330275228
+    }
+  },
+  "grid": {
+    "scale_factorial": {
+      "description": "Full 3^4 factorial over all four physical distance scales with HDBSCAN fixed at the selected 8/4 setting.",
+      "sun_centered_radiant_longitude_deg": [2.5, 3.5, 4.5],
+      "radiant_latitude_deg": [2.0, 3.0, 4.0],
+      "geocentric_speed_km_s": [1.5, 2.5, 3.5],
+      "solar_longitude_deg": [1.5, 2.5, 3.5],
+      "min_cluster_size": 8,
+      "min_samples": 4,
+      "cells": 81
+    },
+    "hdbscan_factorial": {
+      "description": "Full 3x3 factorial over min_cluster_size and min_samples at the selected physical scales.",
+      "min_cluster_size": [6, 8, 12],
+      "min_samples": [2, 4, 6],
+      "feature_scales": [3.5, 3.0, 2.5, 2.5],
+      "cells": 9
+    },
+    "joint_extreme_interactions": {
+      "description": "All 2^4 low/high physical-scale corners crossed with four low/high HDBSCAN corners, to stress scale-HDBSCAN interactions without outcome-guided search.",
+      "sun_centered_radiant_longitude_deg": [2.5, 4.5],
+      "radiant_latitude_deg": [2.0, 4.0],
+      "geocentric_speed_km_s": [1.5, 3.5],
+      "solar_longitude_deg": [1.5, 3.5],
+      "hdbscan_corners": [[6, 2], [6, 6], [12, 2], [12, 6]],
+      "cells": 64
+    },
+    "unique_cells_expected": 154
+  },
+  "evaluation": {
+    "data": "Same quality-controlled GMN April 2022-2026 panel and 2025-2026 seed years used by ACRF-v3.5.",
+    "target_access": "For every cell, candidate generation and ranking are completed without target membership. Only afterward, the canonical OrbitTrace timestamp table is opened to identify the ranked family with the highest 2025-2026 seed F1; ties are resolved by greater seed overlap and then lower target-free rank.",
+    "membership": "If the tracked family ranks within the fixed top-100 materialization budget, apply the unchanged ACRF-v3.5 leave-one-year-out membership expansion and Dv <= 0.15 orbit gate. Global hierarchy-core anchors retain their normal core-only output semantics.",
+    "metrics": [
+      "target-free rank of tracked family",
+      "seed overlap, precision, recall, F1",
+      "final reported member count",
+      "final overlap, precision, recall, F1 against the 95-event canonical sample",
+      "canonical overlap by year"
+    ],
+    "summary_thresholds": [
+      "exact 95/95 recovery",
+      ">=90/95 recovery",
+      ">=80/95 recovery",
+      "rank <= 100"
+    ],
+    "baseline_reproduction_rule": "The selected 8/4 and [3.5,3.0,2.5,2.5] cell must reproduce the frozen rank-7, 123-member, 95/95 result before any sensitivity result is accepted."
+  },
+  "stopping_and_interpretation_rule": "Run the entire frozen grid. Do not add, remove, narrow, retune, or substitute settings after observing results. A sensitive result is reported as sensitivity; it is not repaired by choosing a better-performing cell."
+}

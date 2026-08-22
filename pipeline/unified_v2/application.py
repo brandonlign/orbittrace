@@ -13,8 +13,13 @@ import pandas as pd
 from pipeline.pr57_novel import run_novel_search as base
 
 from .config import V2Config
-from .crossfit_membership import expand_candidate
 from .features import periodic_physical6_from_raw
+from .full_pipeline import (
+    apply_orbit_gate,
+    build_full_catalogue,
+    compact_expanded_candidate,
+    seed_score,
+)
 from .partitioned_hierarchy import fit_partitioned_recurrent_hierarchy
 from .recurrent_tree import fit_recurrent_hierarchy
 
@@ -113,17 +118,7 @@ def _feature_panel(data: pd.DataFrame, config: V2Config) -> np.ndarray:
 
 
 def _seed_score(candidate: dict[str, Any], quantile: float) -> float:
-    if candidate.get("seed_score") is not None:
-        return float(candidate["seed_score"])
-    if candidate.get("recurrent_stability") is not None:
-        return float(candidate["recurrent_stability"])
-    annual = np.asarray(candidate.get("annual_normalized_stability", ()), dtype=float)
-    if not len(annual):
-        return 0.0
-    try:
-        return float(np.quantile(annual, quantile, method="lower"))
-    except TypeError:
-        return float(np.quantile(annual, quantile, interpolation="lower"))
+    return seed_score(candidate, quantile)
 
 
 def _prepare(frame: pd.DataFrame, year: int, month: int) -> dict[str, Any]:
@@ -182,59 +177,15 @@ def _apply_orbit_gate(
     event_ids: np.ndarray,
     config: V2Config,
 ) -> dict[str, Any]:
-    """Apply one fixed orbit-coherence gate after cross-fitted expansion."""
+    """Compatibility wrapper for the shared full-catalogue implementation."""
 
-    result = dict(candidate)
-    core = np.asarray(candidate.get("core_members", candidate.get("members", ())), dtype=int)
-    expanded = np.asarray(candidate.get("expanded_members", ()), dtype=int)
-    valid_core = np.isfinite(orbit_matrix[core]).all(axis=1)
-    if int(valid_core.sum()) < config.halo_min_training_members:
-        result["final_members"] = [int(value) for value in expanded.tolist()]
-        result["final_event_ids"] = [str(value) for value in event_ids[expanded].tolist()]
-        result["orbit_coherence"] = {
-            "applied": False,
-            "reason": "insufficient_valid_core_orbits",
-            "valid_core": int(valid_core.sum()),
-        }
-        return result
-    core_orbits = orbit_matrix[core][valid_core]
-    medoid = base.orbit_summary(core_orbits)["medoid"]
-    valid_rows = np.isfinite(orbit_matrix[expanded]).all(axis=1)
-    distances = np.full(len(expanded), np.inf, dtype=float)
-    if bool(valid_rows.any()):
-        distances[valid_rows] = base.orbit_distance_matrix(
-            orbit_matrix[expanded][valid_rows], medoid[None, :]
-        )[:, 0]
-    keep = valid_rows & (distances <= float(config.halo_orbit_distance_max))
-    final = expanded[keep]
-    result["final_members"] = [int(value) for value in final.tolist()]
-    result["final_event_ids"] = [str(value) for value in event_ids[final].tolist()]
-    result["final_member_count"] = int(len(final))
-    result["orbit_coherence"] = {
-        "applied": True,
-        "valid_core": int(valid_core.sum()),
-        "valid_expanded": int(valid_rows.sum()),
-        "distance_max": float(config.halo_orbit_distance_max),
-        "medoid": medoid.tolist(),
-        "kept": int(len(final)),
-        "removed": int(len(expanded) - len(final)),
-    }
-    return result
+    return apply_orbit_gate(candidate, orbit_matrix, event_ids, config)
 
 
 def _compact_expanded_candidate(candidate: dict[str, Any]) -> dict[str, Any]:
-    """Drop redundant full-panel index/member copies after the final gate."""
+    """Compatibility wrapper for the shared full-catalogue implementation."""
 
-    result = dict(candidate)
-    for key in (
-        "members",
-        "core_members",
-        "expanded_members",
-        "final_members",
-        "expanded_event_ids",
-    ):
-        result.pop(key, None)
-    return result
+    return compact_expanded_candidate(candidate)
 
 
 def run(
@@ -350,36 +301,40 @@ def run(
             "sha256": hashlib.sha256(seed_source_bytes).hexdigest(),
         }
     raw_candidates = [dict(candidate) for branch in (parents, leaves) for candidate in branch]
-    for candidate in raw_candidates:
-        candidate["seed_score"] = _seed_score(candidate, config.recurrence_quantile)
-    eligible_candidates = [
-        candidate
-        for candidate in raw_candidates
-        if float(candidate["seed_score"]) > 0.0
-        and int(candidate["member_count"]) <= int(config.hierarchy_max_candidate_members)
-    ]
-    eligible_candidates.sort(
-        key=lambda item: (
-            -float(item["seed_score"]),
-            -int(item["member_count"]),
-            item["family_id"],
-        )
-    )
-    for rank, candidate in enumerate(eligible_candidates, start=1):
-        candidate["seed_rank"] = rank
-    selection_diagnostics = {
-        "raw_candidates": int(len(raw_candidates)),
-        "eligible_candidates": int(len(eligible_candidates)),
-        "excluded_nonrecurrent": int(sum(float(item["seed_score"]) <= 0.0 for item in raw_candidates)),
-        "excluded_too_large": int(
-            sum(int(item["member_count"]) > config.hierarchy_max_candidate_members for item in raw_candidates)
-        ),
-        "maximum_seed_members": int(config.hierarchy_max_candidate_members),
-        "eligibility_rule": "positive lower-tail annual support and seed members <= fixed maximum",
-    }
-
     full_index_by_id = {event_id: index for index, event_id in enumerate(event_ids.tolist())}
     if seed_only:
+        for candidate in raw_candidates:
+            candidate["seed_score"] = _seed_score(candidate, config.recurrence_quantile)
+        eligible_candidates = [
+            candidate
+            for candidate in raw_candidates
+            if float(candidate["seed_score"]) > 0.0
+            and int(candidate["member_count"]) <= int(config.hierarchy_max_candidate_members)
+        ]
+        eligible_candidates.sort(
+            key=lambda item: (
+                -float(item["seed_score"]),
+                -int(item["member_count"]),
+                item["family_id"],
+            )
+        )
+        for rank, candidate in enumerate(eligible_candidates, start=1):
+            candidate["seed_rank"] = rank
+        selection_diagnostics = {
+            "raw_candidates": int(len(raw_candidates)),
+            "eligible_candidates": int(len(eligible_candidates)),
+            "excluded_nonrecurrent": int(
+                sum(float(item["seed_score"]) <= 0.0 for item in raw_candidates)
+            ),
+            "excluded_too_large": int(
+                sum(
+                    int(item["member_count"]) > config.hierarchy_max_candidate_members
+                    for item in raw_candidates
+                )
+            ),
+            "maximum_seed_members": int(config.hierarchy_max_candidate_members),
+            "eligibility_rule": "positive lower-tail annual support and seed members <= fixed maximum",
+        }
         candidates = []
         for candidate in eligible_candidates:
             compact = dict(candidate)
@@ -387,21 +342,18 @@ def run(
             compact["global_rank"] = int(candidate["seed_rank"])
             candidates.append(compact)
     else:
-        candidates = []
-        for candidate in eligible_candidates:
-            seed_members = [full_index_by_id[event_id] for event_id in candidate["event_ids"]]
-            candidate = dict(candidate)
-            candidate["members"] = seed_members
-            expanded = expand_candidate(
-                candidate,
-                matrix,
-                year_array,
-                event_ids,
-                config,
-                retain_member_diagnostics=False,
-            )
-            gated = _apply_orbit_gate(expanded, orbit_matrix, event_ids, config)
-            candidates.append(_compact_expanded_candidate(gated))
+        for candidate in raw_candidates:
+            candidate["members"] = [
+                full_index_by_id[event_id] for event_id in candidate["event_ids"]
+            ]
+        candidates, selection_diagnostics = build_full_catalogue(
+            raw_candidates,
+            matrix,
+            year_array,
+            event_ids,
+            orbit_matrix,
+            config,
+        )
     candidates.sort(
         key=lambda item: (
             -_seed_score(item, config.recurrence_quantile),

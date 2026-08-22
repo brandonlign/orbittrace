@@ -30,6 +30,18 @@ class UnifiedV2Tests(unittest.TestCase):
         self.assertEqual(result["eligible_showers"], 2)
         self.assertEqual(result["recovered_f1_gt_0_5"], 2)
 
+    def test_evaluator_scores_final_expanded_membership_when_present(self) -> None:
+        truth = {f"a{index}": "A" for index in range(4)}
+        candidates = [
+            {
+                "event_ids": ["a0"],
+                "final_event_ids": [f"a{index}" for index in range(4)],
+            }
+        ]
+        result = evaluate_candidate_catalogue(candidates, truth, 1)
+        self.assertEqual(result["recovered_f1_gt_0_5"], 1)
+        self.assertEqual(result["macro_f1"], 1.0)
+
     def test_periodic_transform_keeps_longitude_seam_continuous(self) -> None:
         raw = np.asarray(
             [

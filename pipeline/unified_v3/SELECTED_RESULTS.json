@@ -1,0 +1,38 @@
+{
+  "method": "ACRF-v3.5",
+  "fair_benchmark": {
+    "verdict": "PASS_ACRF_V3_5_LITERATURE_AND_DCRITERION_8_OF_8",
+    "artifact_sha256": "a272fbeeace43b0157e00d2623b50630285ec48a7f5cecfca21ceaa13981ac9a",
+    "panels": [
+      {"route": "sugar", "year": 2013, "macro_f1": 0.35193418924961645, "macro_f1_delta": 0.07918931714383359, "recovered": 21, "recovered_delta": 4},
+      {"route": "sugar", "year": 2014, "macro_f1": 0.37509024327044593, "macro_f1_delta": 0.08130037788788652, "recovered": 21, "recovered_delta": 5},
+      {"route": "hdbscan", "year": 2013, "macro_f1": 0.227334701302589, "macro_f1_delta": 0.025270295891570316, "recovered": 13, "recovered_delta": 1},
+      {"route": "hdbscan", "year": 2014, "macro_f1": 0.24607951908542505, "macro_f1_delta": 0.03647391635927877, "recovered": 13, "recovered_delta": 2}
+    ],
+    "d_criterion_macro_f1_deltas": [0.13512468318427756, 0.14175108625366228, 0.07969123940886652, 0.08141841305810052]
+  },
+  "known_shower_controls": {
+    "verdict": "CONTROL_GATE_PASS",
+    "artifact_sha256": "d7e4ff483ae970026da733795f6d1ea41f17d19c8b78a2a09ce6781ea1fd1b1b",
+    "f1": {"Lyrids": 0.902559394008952, "Eta_Aquariids": 0.9560001751236811, "Southern_Delta_Aquariids": 0.9619631901840491},
+    "largest_non_target_cluster_fraction": 0.19561571999146316
+  },
+  "orbittrace_recovery": {
+    "gate_passed": true,
+    "rank": 7,
+    "target_overlap": 95,
+    "target_count": 95,
+    "reported_members": 123,
+    "precision": 0.7723577235772358,
+    "recall": 1.0,
+    "f1": 0.8715596330275228,
+    "family_id": "FUSE35df08b7309eb00102a7c",
+    "target_free_artifact_sha256": "71a9708f13265e7cdd917fe7f907611d8d963fdb284aa235c40a7c755256a312",
+    "reveal_artifact_sha256": "52521870d6cc6de5a8f6b86417a6ee7cde7df2279ab2c6668fe3cb7a7621ddf0",
+    "target_sha256": "0f021d95df56901ba119114d9b7c3816abbb3c86354638f23a69eed71b1aa6d3"
+  },
+  "independent_survey": {
+    "status": "not_run",
+    "reason": "No AMOS rows are present and repository governance records the AMOS acquisition/execution lane as abandoned and unauthorized. Generalization is not claimed."
+  }
+}

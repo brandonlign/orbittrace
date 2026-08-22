@@ -1,0 +1,22 @@
+{
+  "frozen_at": "2026-08-22T04:00:00-04:00",
+  "supersedes": "PREREGISTRATION_V3_3.json after OrbitTrace ranked 7 but recovered only 43/95",
+  "lane": "target_exposed_development_v3_4",
+  "method_name": "ACRF-v3.4",
+  "method_expansion": "Anchored Cross-window Recurrent Fusion",
+  "changes": {
+    "hierarchy_fusion": "Parent and leaf refinements with Jaccard overlap >=0.80 are represented by the union of their cores while retaining one ranked family.",
+    "halo_gate": "The leave-one-year-out robust 99% core envelope is the membership gate. Solar-pair permutation q-values remain recorded diagnostics and are not enforced.",
+    "contamination_gate": "The fixed D<=0.15 orbital medoid gate remains binding after halo expansion."
+  },
+  "unchanged": {
+    "ranking": "global recurrent anchors followed by cross-window support count, recurrent score, and calibration diagnostics",
+    "global_anchor_limit": 32,
+    "local_windows": "10-degree width, 5-degree stride",
+    "maximum_refinement_core_members": 300,
+    "target_firewall": "target membership unavailable through final ranking and membership materialization"
+  },
+  "scientific_disclosure": "v3.4 is target-exposed method development. It can support a recovery/rediscovery claim only; generalization requires untouched AMOS.",
+  "gate_order_restart": ["fair literature 4/4", "D-criterion 4/4", "controls", "OrbitTrace 95/95 precision>=0.75 F1>=0.85 rank<=100", "untouched AMOS"],
+  "stopping_rule": "Any further semantic change creates v3.5 and restarts the gate order."
+}

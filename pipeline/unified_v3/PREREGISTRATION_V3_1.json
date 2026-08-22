@@ -1,0 +1,31 @@
+{
+  "frozen_at": "2026-08-22T01:30:00-04:00",
+  "supersedes": "PREREGISTRATION.json after FAIL_MSCR_V3_LITERATURE_0_OF_4",
+  "lane": "benchmark_exposed_development_v3_1",
+  "method_name": "AMSCR-v3.1",
+  "method_expansion": "Anchored Multiscale Significance-Calibrated Recurrence",
+  "change_rationale": "The v3 flat catalogue produced BY q=1 for all candidates and local-scale flooding. v3.1 makes the hierarchy explicit instead of pretending broad global detections and clean local refinements are exchangeable objects.",
+  "method_identity": {
+    "global_backbone": "the first 32 exposure-normalized recurrent-EOM parents, maximum 300 core members, in recurrent-stability order",
+    "refinements": "year-blind global and fixed overlapping 10-degree EOM/leaf candidates ranked by year-label calibration after cross-scale deduplication",
+    "backbone_membership": "hierarchy core",
+    "refinement_membership": "leave-one-year-out robust halo with density FDR q<=0.10 followed by D<=0.15 orbital gate",
+    "flat_order": "32 backbone candidates followed by calibrated refinements",
+    "target_access": "none during generation, ranking, expansion, or gating"
+  },
+  "fairness_disclosure": "The 32-anchor backbone was introduced after inspecting the failed v3 fair benchmark. All v3.1 fair results are therefore development-set evidence and require untouched survey validation before a generalization claim.",
+  "ordered_gates": [
+    "all 4 archived Sugar/HDBSCAN panels",
+    "all 4 clean-room D-criterion panels",
+    "frozen controls",
+    "target-sealed OrbitTrace recovery",
+    "untouched AMOS survey"
+  ],
+  "orbittrace_gate": {
+    "recall": "95/95",
+    "minimum_precision": 0.75,
+    "minimum_f1": 0.85,
+    "maximum_flat_rank": 100
+  },
+  "stopping_rule": "Any further semantic or parameter change creates v3.2 and restarts the gate order."
+}

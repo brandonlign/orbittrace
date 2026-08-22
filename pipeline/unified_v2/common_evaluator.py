@@ -37,7 +37,15 @@ def evaluate_candidate_catalogue(
     truth_ids = set(map(str, truth))
     active: list[set[str]] = []
     for candidate in list(candidates)[: int(budget)]:
-        members = set(map(str, candidate.get("event_ids", ()))) & truth_ids
+        members = set(
+            map(
+                str,
+                candidate.get(
+                    "final_event_ids",
+                    candidate.get("expanded_event_ids", candidate.get("event_ids", ())),
+                ),
+            )
+        ) & truth_ids
         if members:
             active.append(members)
     matrix = np.zeros((len(labels), len(active)), dtype=float)

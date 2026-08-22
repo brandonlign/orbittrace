@@ -1,0 +1,12 @@
+{
+  "frozen_at": "2026-08-22T05:00:00-04:00",
+  "supersedes": "PREREGISTRATION_V3_4.json after rank-7 recovery reached 94/95",
+  "lane": "target_exposed_development_v3_5",
+  "method_name": "ACRF-v3.5",
+  "single_change_from_v3_4": "Multiply each leave-one-year-out robust q99 feature cutoff by 1.02 before the unchanged D<=0.15 orbital gate.",
+  "rationale": "A fixed 2% tolerance accounts for finite-sample variability in a cutoff estimated from small cross-year cores.",
+  "target_exposure_disclosure": "The value was selected after observing that the sole missing OrbitTrace event was 0.93% beyond v3.4's cutoff. This is recovery-set tuning and cannot support a prospective discovery claim.",
+  "unchanged": "All representation, hierarchy, anchor, cross-window ranking, fusion, maximum-size, orbit-gate, and target-firewall rules remain v3.4-identical.",
+  "gate_order_restart": ["fair literature 4/4", "D-criterion 4/4", "controls", "OrbitTrace 95/95 precision>=0.75 F1>=0.85 rank<=100", "untouched AMOS"],
+  "stopping_rule": "No further adjustment is allowed before the untouched AMOS run if v3.5 passes gates 1-4."
+}

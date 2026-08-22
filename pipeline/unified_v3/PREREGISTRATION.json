@@ -1,0 +1,46 @@
+{
+  "frozen_at": "2026-08-22T00:00:00-04:00",
+  "lane": "exposed_development_v3",
+  "method_name": "MSCR-v3",
+  "method_expansion": "Multiscale Significance-Calibrated Recurrence",
+  "scientific_status": {
+    "orbittrace_target_was_known_before_v3": true,
+    "orbittrace_result_if_successful": "target-label-sealed recovery/rediscovery, not prospective unknown discovery",
+    "fair_sonotaco_truth_hidden_until_ranked_final-membership catalogues are materialized": true,
+    "independent_amos_survey_untouched_until_internal_gates_pass": true
+  },
+  "single_method_identity": {
+    "representation": "periodic_physical6",
+    "candidate_generation": "year-blind HDBSCAN EOM and leaf memberships at global and fixed overlapping 10-degree solar-longitude scales",
+    "recurrence_calibration": "fixed-membership year-label exchangeability; exact hypergeometric for two years and 9999 deterministic multivariate-hypergeometric draws for more than two years",
+    "multiplicity": "Benjamini-Yekutieli q-values across the deduplicated catalogue",
+    "cross_scale_deduplication": "Jaccard >= 0.80, retaining the best calibrated representative",
+    "ranking": "q-value, p-value, recurrence z, recurrence ratio, membership probability, size, family ID",
+    "membership": "leave-one-year-out robust halo with density FDR q<=0.10, followed by D<=0.15 orbital gate",
+    "maximum_seed_members": 300
+  },
+  "fixed_constants": {
+    "min_cluster_size": 8,
+    "min_samples": 4,
+    "global_per_year_cap": 30000,
+    "window_width_deg": 10.0,
+    "window_stride_deg": 5.0,
+    "feature_scales": [3.5, 3.0, 2.5, 2.5],
+    "minimum_year_support_fraction": 0.60,
+    "minimum_events_per_supported_year": 1,
+    "calibration_permutations": 9999,
+    "random_seed": 20260822,
+    "halo_core_tail_alpha": 0.01,
+    "halo_iterations": 2,
+    "halo_density_fdr": 0.10,
+    "orbit_distance_max": 0.15
+  },
+  "ordered_gates": {
+    "1_fair_literature": "strictly exceed archived macro-F1 and match-or-exceed recovered-family count on all 4 Sugar/HDBSCAN panels",
+    "2_clean_room_d_criterion": "strictly exceed D-criterion macro-F1 and match-or-exceed recovered-family count on all 4 panels",
+    "3_controls": "no major regression under the frozen v2 control definitions",
+    "4_orbittrace": "one ranked family has 95/95 target recall, precision >= 0.75, F1 >= 0.85, rank <= 100",
+    "5_independent_survey": "run one untouched AMOS survey only after gates 1-4 pass"
+  },
+  "stopping_rule": "Do not expose OrbitTrace or AMOS to a v3 variant that fails an earlier gate. Any parameter or semantic change creates a new version and requires rerunning earlier gates."
+}

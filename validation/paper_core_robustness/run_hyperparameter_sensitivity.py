@@ -19,6 +19,13 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
+# Direct script execution starts with this file's directory on ``sys.path``.
+# Add the repository root so the frozen package imports work identically from
+# a checkout, GitHub Actions, and a module-oriented local runner.
+REPO_ROOT = Path(__file__).resolve().parents[2]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 from pipeline.pr57_novel import run_novel_search as base
 from pipeline.unified_v2.application import _feature_panel, _prepare
 from pipeline.unified_v3.config import V3Config
@@ -38,6 +45,8 @@ SOLAR_SCALES = (1.5, 2.5, 3.5)
 MCS_LEVELS = (6, 8, 12)
 MS_LEVELS = (2, 4, 6)
 HDBSCAN_CORNERS = ((6, 2), (6, 6), (12, 2), (12, 6))
+RAW_DESIGN_CELLS = 154
+UNIQUE_PARAMETER_SETTINGS = 153
 
 BASELINE_EXPECTED = {
     "rank": 7,
@@ -99,8 +108,12 @@ def build_grid() -> list[dict[str, Any]]:
                 "grid_sources": sorted(settings[key]),
             }
         )
-    if len(rows) != 154:
-        raise RuntimeError(f"Frozen grid should contain 154 unique cells, found {len(rows)}")
+    if len(rows) != UNIQUE_PARAMETER_SETTINGS:
+        raise RuntimeError(
+            "Frozen grid should contain "
+            f"{UNIQUE_PARAMETER_SETTINGS} unique settings from {RAW_DESIGN_CELLS} raw cells, "
+            f"found {len(rows)}"
+        )
     return rows
 
 
@@ -365,8 +378,14 @@ def aggregate(inputs: list[Path], out: Path) -> int:
         raise RuntimeError("No shard CSV files found")
     frame = pd.concat([pd.read_csv(path) for path in csv_paths], ignore_index=True)
     frame = frame.drop_duplicates(subset=["setting_index"], keep=False).sort_values("setting_index")
-    if len(frame) != 154 or set(frame["setting_index"].astype(int)) != set(range(154)):
-        raise RuntimeError(f"Expected exactly 154 unique settings, found {len(frame)}")
+    if len(frame) != UNIQUE_PARAMETER_SETTINGS or set(frame["setting_index"].astype(int)) != set(
+        range(UNIQUE_PARAMETER_SETTINGS)
+    ):
+        raise RuntimeError(
+            "Expected exactly "
+            f"{UNIQUE_PARAMETER_SETTINGS} unique settings from {RAW_DESIGN_CELLS} raw cells, "
+            f"found {len(frame)}"
+        )
     rows = frame.to_dict(orient="records")
     baseline_rows = [row for row in rows if baseline_match(row)]
     if len(baseline_rows) != 1:
@@ -375,9 +394,27 @@ def aggregate(inputs: list[Path], out: Path) -> int:
 
     tracked = frame[frame["tracked"] == True]  # noqa: E712
     top100 = tracked[tracked["within_top100"] == True]  # noqa: E712
+
+    def min_median_max(series: pd.Series, integer: bool = False) -> dict[str, float | int | None]:
+        if len(series) == 0:
+            return {"min": None, "median": None, "max": None}
+        values = {
+            "min": float(series.min()),
+            "median": float(series.median()),
+            "max": float(series.max()),
+        }
+        if integer:
+            values = {
+                key: int(value) if key != "median" else value
+                for key, value in values.items()
+            }
+        return values
+
     summary = {
         "stage": "acrf_v3_5_frozen_core_hyperparameter_robustness",
-        "grid_cells": 154,
+        "raw_design_cells": RAW_DESIGN_CELLS,
+        "unique_parameter_settings": UNIQUE_PARAMETER_SETTINGS,
+        "executed_unique_cells": int(len(frame)),
         "baseline_reproduced": True,
         "tracked_cells": int(len(tracked)),
         "rank_le_100_cells": int(len(top100)),
@@ -404,6 +441,17 @@ def aggregate(inputs: list[Path], out: Path) -> int:
             int(top100["final_member_count"].min()) if len(top100) else None,
             int(top100["final_member_count"].max()) if len(top100) else None,
         ],
+        "min_median_max": {
+            "rank_tracked": min_median_max(tracked["rank"], integer=True),
+            "final_recall_top100": min_median_max(top100["final_recall"]),
+            "final_precision_top100": min_median_max(top100["final_precision"]),
+            "final_f1_top100": min_median_max(top100["final_f1"]),
+            "final_member_count_top100": min_median_max(top100["final_member_count"], integer=True),
+            "final_recall_all_cells": min_median_max(frame["final_recall"]),
+            "final_precision_all_cells": min_median_max(frame["final_precision"]),
+            "final_f1_all_cells": min_median_max(frame["final_f1"]),
+            "final_member_count_all_cells": min_median_max(frame["final_member_count"], integer=True),
+        },
         "annual_exact_overlap_cells": {
             str(year): int((frame[f"overlap_{year}"] == count).sum())
             for year, count in ((2022, 10), (2023, 8), (2024, 14), (2025, 34), (2026, 29))
@@ -429,15 +477,26 @@ def aggregate(inputs: list[Path], out: Path) -> int:
     (out / "hyperparameter_sensitivity_summary.json").write_text(
         json.dumps(summary, indent=2, sort_keys=True) + "\n"
     )
+    def min_median_max_text(item: dict[str, float | int | None]) -> str:
+        return f"{item['min']} / {item['median']} / {item['max']}"
+
     lines = [
         "# ACRF-v3.5 core-hyperparameter robustness", "",
         "This is a frozen post-hoc sensitivity analysis. It does not select or retune the paper method.", "",
-        f"- Cells: **{summary['grid_cells']}**",
+        f"- Raw design cells: **{summary['raw_design_cells']}**",
+        f"- Unique parameter settings executed: **{summary['unique_parameter_settings']}**",
         f"- Baseline reproduced exactly: **{summary['baseline_reproduced']}**",
-        f"- Tracked family within rank 100: **{summary['rank_le_100_cells']}/{summary['grid_cells']} ({summary['rank_le_100_fraction']:.1%})**",
-        f"- Exact 95/95 recovery: **{summary['exact_95_recovery_cells']}/{summary['grid_cells']} ({summary['exact_95_recovery_fraction']:.1%})**",
-        f"- At least 90/95 recovery: **{summary['at_least_90_recovery_cells']}/{summary['grid_cells']} ({summary['at_least_90_recovery_fraction']:.1%})**",
-        f"- At least 80/95 recovery: **{summary['at_least_80_recovery_cells']}/{summary['grid_cells']} ({summary['at_least_80_recovery_fraction']:.1%})**", "",
+        f"- Tracked family within rank 100: **{summary['rank_le_100_cells']}/{summary['unique_parameter_settings']} ({summary['rank_le_100_fraction']:.1%})**",
+        f"- Exact 95/95 recovery: **{summary['exact_95_recovery_cells']}/{summary['unique_parameter_settings']} ({summary['exact_95_recovery_fraction']:.1%})**",
+        f"- At least 90/95 recovery: **{summary['at_least_90_recovery_cells']}/{summary['unique_parameter_settings']} ({summary['at_least_90_recovery_fraction']:.1%})**",
+        f"- At least 80/95 recovery: **{summary['at_least_80_recovery_cells']}/{summary['unique_parameter_settings']} ({summary['at_least_80_recovery_fraction']:.1%})**", "",
+        "## Min/median/max metrics", "",
+        "Final metrics are reported for cells whose selected family was within the preregistered top-100 materialization budget; all-cell values are also retained in the JSON summary.", "",
+        f"- Rank (tracked), min / median / max: **{min_median_max_text(summary['min_median_max']['rank_tracked'])}**",
+        f"- Final recall (top-100), min / median / max: **{min_median_max_text(summary['min_median_max']['final_recall_top100'])}**",
+        f"- Final precision (top-100), min / median / max: **{min_median_max_text(summary['min_median_max']['final_precision_top100'])}**",
+        f"- Final F1 (top-100), min / median / max: **{min_median_max_text(summary['min_median_max']['final_f1_top100'])}**",
+        f"- Final member count (top-100), min / median / max: **{min_median_max_text(summary['min_median_max']['final_member_count_top100'])}**", "",
         "## Grid-specific results", "",
     ]
     for source, item in summary["grid_breakdown"].items():

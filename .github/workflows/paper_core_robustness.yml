@@ -6,9 +6,15 @@ on:
       - paper-robustness-20260822
     paths:
       - validation/paper_core_robustness/TRIGGER.txt
+  pull_request:
+    branches:
+      - main
+    paths:
+      - validation/paper_core_robustness/**
+      - .github/workflows/paper_core_robustness.yml
 
 permissions:
-  contents: write
+  contents: read
 
 jobs:
   sensitivity:
@@ -44,7 +50,7 @@ jobs:
           if-no-files-found: error
 
   aggregate:
-    name: aggregate and freeze results
+    name: aggregate results
     needs: sensitivity
     runs-on: ubuntu-latest
     timeout-minutes: 30
@@ -68,10 +74,8 @@ jobs:
           python validation/paper_core_robustness/run_hyperparameter_sensitivity.py \
             --out validation/paper_core_robustness/results \
             --aggregate validation/paper_core_robustness/downloaded
-      - name: Commit frozen results
-        run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add validation/paper_core_robustness/results
-          git commit -m 'Record frozen ACRF hyperparameter robustness results'
-          git push origin HEAD:paper-robustness-20260822
+      - uses: actions/upload-artifact@v4
+        with:
+          name: paper-core-robustness-results
+          path: validation/paper_core_robustness/results
+          if-no-files-found: error

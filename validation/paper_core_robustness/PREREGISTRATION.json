@@ -47,7 +47,9 @@
       "hdbscan_corners": [[6, 2], [6, 6], [12, 2], [12, 6]],
       "cells": 64
     },
-    "unique_cells_expected": 154
+    "raw_design_cells": 154,
+    "unique_parameter_settings": 153,
+    "count_correction": "The selected baseline occurs in both the scale factorial and HDBSCAN factorial and is executed once. This arithmetic correction changes no scientific setting or stopping rule."
   },
   "evaluation": {
     "data": "Same quality-controlled GMN April 2022-2026 panel and 2025-2026 seed years used by ACRF-v3.5.",

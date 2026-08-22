@@ -10,7 +10,7 @@ python -m venv .venv
 ./.venv/bin/python reproduce.py --all
 ```
 
-`--all` validates the frozen derived tables and results, runs every paper analysis reporter, summarizes the fair benchmarks, and regenerates Figures 1–3 into a temporary output directory. It does not download third-party raw catalogues. The command prints the output directory; pass `--out /path/to/output` to choose it explicitly.
+`--all` validates the frozen derived and results files, emits the paper-stage reports, summarizes the frozen benchmark and control outputs, and regenerates Figures 1–3 into a temporary output directory. It does not recompute every upstream analysis from raw data or download third-party raw catalogues. The command prints the output directory; pass `--out /path/to/output` to choose it explicitly.
 
 To apply ACRF to a newly prepared, label-free panel:
 
@@ -86,4 +86,4 @@ Raw third-party files are deliberately excluded. Follow `data/README.md`, downlo
 
 ## Claim boundary
 
-The package documents a recurring, apparently uncatalogued candidate and the exact analyses supporting that statement. It does not claim an official shower designation, a parent body, prospective unknown discovery, or state-of-the-art performance beyond the explicitly tested comparator panels.
+The package documents ACRF as the OrbitTrace discovery method and the recurring, apparently uncatalogued candidate it identifies. It does not claim an official shower designation or an identified parent body, and performance claims are limited to the explicitly tested comparator panels.

@@ -5,7 +5,7 @@ This repository contains derived tables only. Raw GMN, CAMS, SonotaCo, EDMOND, a
 ## GMN
 
 - Source: [GMN trajectory summary data](https://globalmeteornetwork.org/data/traj_summary_data/)
-- Access method: `gmn-python-api==0.0.13`, monthly trajectory-summary files.
+- Access method: monthly trajectory-summary files; the optional `gmn-python-api==0.0.13` client may be used separately to acquire them. It is not required by the reproducibility environment because its legacy pandas constraint conflicts with the pinned analysis stack.
 - Analysis slice: April 2022, 2023, 2024, 2025, and 2026; quality filtering and sporadic-only selection are part of the preparation step.
 - Acquisition/freeze date: 2026-08-22.
 - The public derived outputs are `canonical_95.csv`, `acrf_discovery_family_123.csv`, and `annual_membership.csv`.

@@ -1,0 +1,158 @@
+{
+  "candidate_frozen_from_gmn": true,
+  "catalog_coverage": {
+    "CAMS": {
+      "release": "CAMS v3",
+      "years": [2010, 2011, 2012, 2013, 2014, 2015, 2016]
+    },
+    "EDMOND": {
+      "role": "supplementary",
+      "years": [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017]
+    },
+    "SonotaCo": {
+      "years": [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]
+    }
+  },
+  "catalog_release": "IAU MDC Version 2026",
+  "frozen_template": {
+    "core_radius_squared": 9.0,
+    "ecliptic_latitude": [7.3230377, -0.0230546, 0.625],
+    "geocentric_speed": [37.641692, -0.0293492, 1.1596],
+    "orbit_member_d": 0.15,
+    "refined_orbit": [0.946296, 0.079202, 24.709376, 333.493819, 37.937477],
+    "solar_longitude_center_deg": 36.901963,
+    "sun_centered_longitude": [-149.3763247, -0.1029483, 0.7369],
+    "time_half_width_deg": 4.0
+  },
+  "independent_networks_passing": ["SonotaCo"],
+  "note": "This public copy preserves the scientific result, frozen parameters, archive coverage, selected members, and data provenance without bundling raw third-party archives.",
+  "software": {
+    "numpy": "2.5.1",
+    "pandas": "3.0.5",
+    "python": "3.12.13 (main, Jun 16 2026, 22:05:08) [GCC 13.3.0]"
+  },
+  "sources": {
+    "CAMS": {
+      "active_years": [2011, 2012],
+      "activity": {
+        "antihelion_inside": 1899,
+        "antihelion_outside": 6482,
+        "core_inside": 9,
+        "core_outside": 10,
+        "odds_ratio": 3.0819047619047617,
+        "p": 0.015258402994049713,
+        "table": [[9, 1890], [10, 6472]]
+      },
+      "independent": true,
+      "member_counts_by_year": {"2011": 2, "2012": 4, "2014": 1, "2015": 1, "2016": 1},
+      "members": 9,
+      "min_members_gate": 5,
+      "orbit": {
+        "members": 9,
+        "null_p": 0.0001,
+        "null_q01": 0.1860456137302507,
+        "observed": {
+          "median_d": 0.05630196189174284,
+          "medoid": [0.9399, 0.0915, 20.83, 331.21, 39.416],
+          "q90_d": 0.1164213849035731
+        },
+        "passed": true,
+        "pool": 1890,
+        "pool_kind": "same_time_antihelion_outside_core"
+      },
+      "passed": false,
+      "seasonal_valid_rows": 64830,
+      "shifted_windows": {
+        "control_q95": 0.0024949256636378966,
+        "control_windows": 48,
+        "empirical_p": 0.02040816326530612,
+        "observed_background": 1899,
+        "observed_core": 9,
+        "observed_ratio": 0.004739336492890996
+      },
+      "source": "CAMS"
+    },
+    "EDMOND": {
+      "active_years": [2016],
+      "activity": {
+        "antihelion_inside": 801,
+        "antihelion_outside": 2862,
+        "core_inside": 4,
+        "core_outside": 1,
+        "odds_ratio": 14.358845671267252,
+        "p": 0.00938538128173789,
+        "table": [[4, 797], [1, 2861]]
+      },
+      "independent": false,
+      "member_counts_by_year": {"2013": 1, "2014": 1, "2016": 2},
+      "members": 4,
+      "min_members_gate": 8,
+      "orbit": {
+        "members": 4,
+        "null_p": 0.0006,
+        "null_q01": 0.1086099662175319,
+        "observed": {
+          "median_d": 0.06053780938890371,
+          "medoid": [0.945308, 0.078842, 24.621737, 333.736786, 39.288521],
+          "q90_d": 0.09618439083659128
+        },
+        "passed": true,
+        "pool": 797,
+        "pool_kind": "same_time_antihelion_outside_core"
+      },
+      "passed": false,
+      "seasonal_valid_rows": 16005,
+      "shifted_windows": {
+        "control_q95": 0.0011663851512159562,
+        "control_windows": 48,
+        "empirical_p": 0.02040816326530612,
+        "observed_background": 801,
+        "observed_core": 4,
+        "observed_ratio": 0.004993757802746567
+      },
+      "source": "EDMOND"
+    },
+    "SonotaCo": {
+      "active_years": [2009, 2022],
+      "activity": {
+        "antihelion_inside": 1284,
+        "antihelion_outside": 4239,
+        "core_inside": 11,
+        "core_outside": 4,
+        "odds_ratio": 9.148664571877454,
+        "p": 5.4838036427042276e-05,
+        "table": [[11, 1273], [4, 4235]]
+      },
+      "independent": true,
+      "member_counts_by_year": {"2007": 1, "2009": 3, "2010": 1, "2013": 1, "2018": 1, "2020": 1, "2022": 2, "2023": 1},
+      "members": 11,
+      "min_members_gate": 8,
+      "orbit": {
+        "members": 11,
+        "null_p": 0.0001,
+        "null_q01": 0.18506632471956105,
+        "observed": {
+          "median_d": 0.02997685132088911,
+          "medoid": [0.9456, 0.081, 24.1019, 333.1311, 38.0223],
+          "q90_d": 0.05632443032431853
+        },
+        "passed": true,
+        "pool": 1273,
+        "pool_kind": "same_time_antihelion_outside_core"
+      },
+      "passed": true,
+      "seasonal_valid_rows": 52565,
+      "shifted_windows": {
+        "control_q95": 0.0018277643335815339,
+        "control_windows": 48,
+        "empirical_p": 0.02040816326530612,
+        "observed_background": 1284,
+        "observed_core": 11,
+        "observed_ratio": 0.008566978193146417
+      },
+      "source": "SonotaCo"
+    }
+  },
+  "stage": "complete_external_catalog_replication",
+  "verdict": "FROZEN_EXTERNAL_REPLICATION_PASSED_IN_SONOTACO"
+}

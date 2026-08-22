@@ -1,61 +1,89 @@
-# OrbitTrace
+# OrbitTrace reproducibility package
 
-OrbitTrace searches public meteor-trajectory catalogues for weak streams that may have been missed. A blind search of Global Meteor Network (GMN) data found a recurring late-April group with similar radiants, speeds, timing, and orbits in every year from 2022 through 2026.
+This repository reproduces the paper-facing OrbitTrace analyses from frozen, machine-readable outputs and one clean implementation of the final ACRF detector. It is intentionally a release package: development branches, abandoned detectors, exploratory notebooks, manuscript drafts, automation infrastructure, and historical implementation variants are not included.
 
-The fixed GMN solution was subsequently tested without refitting against the complete IAU MDC 2026 external catalogues. SonotaCo independently passed every preserved replication gate with 11 matching meteors across eight years. CAMS supplied nine additional coherent meteors across five years and passed every preserved gate except the project’s conservative 1% activity threshold. EDMOND supplied four supplementary matches.
-
-The analysis points to an **apparently uncatalogued meteor-stream candidate**. The open question is whether it is a distinct stream, a narrow branch of a known shower complex, or structure within the antihelion source.
-
-## Start here
-
-- [`candidate/EXPERT_REVIEW_PACKET.md`](candidate/EXPERT_REVIEW_PACKET.md): the quickest route for a reviewer.
-- [`candidate/CANDIDATE_DOSSIER.md`](candidate/CANDIDATE_DOSSIER.md): a short explanation of the candidate and the evidence.
-- [`RESULTS.md`](RESULTS.md): the main numerical results.
-- [`validation/full_external_replication/FULL_EXTERNAL_REPLICATION.md`](validation/full_external_replication/FULL_EXTERNAL_REPLICATION.md): complete CAMS, SonotaCo, and EDMOND replication report.
-- [`validation/methodology_novelty/METHODOLOGY_NOVELTY_AUDIT.md`](validation/methodology_novelty/METHODOLOGY_NOVELTY_AUDIT.md): literature-backed boundary on what is and is not methodologically novel.
-- [`validation/methodology_novelty/BENCHMARK_PROTOCOL.md`](validation/methodology_novelty/BENCHMARK_PROTOCOL.md): preregistered comparison needed before any methods-performance claim.
-- [`candidate/mdc/MANUSCRIPT_DRAFT.md`](candidate/mdc/MANUSCRIPT_DRAFT.md): the repository manuscript draft; the current submission manuscript is maintained separately in Google Drive.
-- [`candidate/mdc/OrbitTrace_April_95_GMN_lookup.csv`](candidate/mdc/OrbitTrace_April_95_GMN_lookup.csv): the 95-event GMN sample used for the draft mean solution.
-
-## Repository guide
-
-- `pipeline/` contains the discovery, validation, control, and external-catalogue code.
-- `candidate/` contains the scientific summary, supporting reports, event tables, and draft submission material.
-- `validation/` records the independent reruns, method checks, complete external-catalogue replication, and methodology-novelty audit.
-- `results/orbittrace_final_summary.json` records the original recovered package state; the complete external replication is preserved separately under `validation/full_external_replication/`.
-
-Some immutable historical workflow paths, artifact names, and checksums still contain the former project codename. They are retained only where changing them would break reproducibility or make an archived identifier inaccurate.
-
-## Main result
-
-The final GMN sample contains 95 meteors from five consecutive significant years:
-
-| Year | Members |
-|---:|---:|
-| 2022 | 10 |
-| 2023 | 8 |
-| 2024 | 14 |
-| 2025 | 34 |
-| 2026 | 29 |
-
-The same group appears in untouched years and remains compact under source-matched null tests, measurement-error simulations, geographic splits, clustered bootstrap resampling, and 81 nearby analysis settings. None of the 2,174 solutions in the checked IAU Meteor Data Center catalogue matched it under the fixed comparison rules.
-
-The strongest external result is now a fully passing frozen-template replication in SonotaCo. CAMS independently gives conventionally significant activity enrichment and highly significant orbital coherence, but its activity p-value of 0.0153 does not cross the pre-established 0.01 gate.
-
-## Methodology claim boundary
-
-OrbitTrace uses a prospectively frozen, multi-stage validation design. Density clustering, temporal holdout verification, false-positive modelling, and independent-network confirmation all have prior meteor-science precedents, so the project does **not** currently claim a new meteor-stream discovery method. A controlled benchmark is required before claiming that the integrated protocol reduces false discoveries better than existing workflows.
-
-## Check the repository
-
-The lightweight check covers the expected files, result metadata, Python syntax, and repository hygiene. The catalogue downloads and full search use the scripts under `pipeline/`.
+## Quick start
 
 ```bash
-python scripts/verify_repository.py
+python -m venv .venv
+./.venv/bin/python -m pip install -r requirements.txt
+./.venv/bin/python reproduce.py --all
 ```
 
-The analysis dependencies are listed in `requirements.txt`.
+`--all` validates the frozen derived tables and results, runs every paper analysis reporter, summarizes the fair benchmarks, and regenerates Figures 1–3 into a temporary output directory. It does not download third-party raw catalogues. The command prints the output directory; pass `--out /path/to/output` to choose it explicitly.
 
-## Use of AI
+To apply ACRF to a newly prepared, label-free panel:
 
-ChatGPT assisted with portions of the coding, troubleshooting, and writing. Brandon Li directed the project, evaluated the results, and made the final methodological and scientific decisions.
+```bash
+./.venv/bin/python -m acrf.application \
+  --panel /path/to/prepared_panel.csv \
+  --out /tmp/orbittrace_acrf_application.json
+./.venv/bin/python -m acrf.reveal \
+  --artifact /tmp/orbittrace_acrf_application.json \
+  --target data/derived/canonical_95.csv \
+  --out /tmp/orbittrace_acrf_reveal.json
+```
+
+The prepared-panel schema is documented in [`data/README.md`](data/README.md). The target table must only be opened after target-free generation and ranking when making a discovery claim.
+
+## What the package reproduces
+
+The frozen headline results are:
+
+| Result | Expected output |
+|---|---:|
+| ACRF tracked-family rank | 7 |
+| ACRF discovery family | 123 unique observation timestamps |
+| Canonical overlap | 95/95 |
+| Precision / recall / F1 | 0.7724 / 1.0000 / 0.8716 |
+| Canonical annual counts | 2022: 10; 2023: 8; 2024: 14; 2025: 34; 2026: 29 |
+| CAMS / SonotaCo / EDMOND matches | 9 / 11 / 4 |
+| Formal independent archive pass | SonotaCo |
+| Core robustness exact 95/95 | 37/153 settings |
+| Core robustness ≥90/95 | 49/153 settings |
+| Core robustness ≥80/95 | 60/153 settings |
+| Core robustness rank ≤100 | 83/153 settings |
+| MDC hard duplicates | 0 |
+| Nearest complete-orbit alternative | NOP-004, D_SH = 0.2344515 |
+
+The 123-member table represents unique observation timestamps. It retains all source trajectory identifiers in `trajectory_ids`; 129 trajectory rows collapse to 123 timestamps because six timestamps have multiple trajectories.
+
+## Paper-to-code map
+
+| Manuscript analysis | Public entry point | Frozen output |
+|---|---|---|
+| OrbitTrace discovery | `analysis/discovery.py`, `acrf/application.py` | `data/derived/acrf_discovery_family_123.csv` |
+| Earlier-year confirmation | `analysis/earlier_year_confirmation.py` | `data/derived/annual_membership.csv` |
+| Activity null | `analysis/activity_null.py` | `results/paper_headline_results.json` |
+| Orbital null | `analysis/orbital_null.py` | `results/paper_headline_results.json` |
+| Uncertainty clones | `analysis/uncertainty_clones.py` | `results/paper_headline_results.json` |
+| Hierarchical bootstrap | `analysis/hierarchical_bootstrap.py` | `results/paper_headline_results.json` |
+| Geographic replication | `analysis/geographic_replication.py` | `results/paper_headline_results.json` |
+| 81-setting validation sensitivity | `analysis/validation_sensitivity.py` | `results/paper_headline_results.json` |
+| External archive replication | `analysis/external_archive_replication.py` | `results/external_replication.json` |
+| Exhaustive MDC duplicate screen | `analysis/mdc_duplicate_screen.py` | `results/mdc_duplicate_screen.json` |
+| NOP-004 population comparison | `analysis/nop004_population_comparison.py` | `results/mdc_duplicate_screen.json` |
+| JPL parent-body screen | `analysis/jpl_parent_body_screen.py` | `results/paper_headline_results.json` |
+| 153-setting ACRF core robustness | `analysis/core_hyperparameter_robustness.py` | `results/acrf_core_hyperparameter_robustness.csv` |
+
+The fair comparisons are separated from ACRF under `benchmarks/`: Sugar, catalogue-HDBSCAN, a clean-room D-criterion implementation, and the three known-shower controls.
+
+## Repository layout
+
+- `acrf/` — the final ACRF implementation only.
+- `configs/` — frozen method, threshold, seed, external-replication, and robustness-grid settings.
+- `data/derived/` — canonical, discovery-family, annual, external-match, template, and audit tables.
+- `data/README.md` — exact source URLs, versions, freeze dates, hashes, and raw-download instructions.
+- `analysis/` — only the analyses reported in the paper.
+- `benchmarks/` — comparator registry, clean-room D-criterion code, and frozen benchmark/control outputs.
+- `results/` — frozen machine-readable paper outputs.
+- `figures/` — Figure 1–3 regeneration scripts.
+- `reproduce.py` — one entry point for the major paper stages.
+
+## Data policy
+
+Raw third-party files are deliberately excluded. Follow `data/README.md`, download the cited versions yourself, and preserve a local SHA-256 manifest. The derived tables in this repository are sufficient to reproduce the manuscript headline numbers and figures without redistributing source archives.
+
+## Claim boundary
+
+The package documents a recurring, apparently uncatalogued candidate and the exact analyses supporting that statement. It does not claim an official shower designation, a parent body, prospective unknown discovery, or state-of-the-art performance beyond the explicitly tested comparator panels.

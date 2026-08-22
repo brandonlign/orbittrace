@@ -1,2 +1,0 @@
-Frozen robustness run trigger: 2026-08-22
-PREREGISTRATION commit: ffe1074978621dde38d19b8efcab51b03c86dd0b

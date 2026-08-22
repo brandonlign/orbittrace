@@ -1,0 +1,9 @@
+{
+  "method": 20260822,
+  "calibration": 20260822,
+  "robustness_grid": 20260822,
+  "hierarchical_bootstrap": 20260801,
+  "uncertainty_clones": 20260801,
+  "external_orbit_null": 20260801,
+  "mdc_duplicate_screen": 20260814
+}

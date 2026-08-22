@@ -1,0 +1,33 @@
+{
+  "method": "ACRF",
+  "description": "Anchored cross-window recurrent fusion with leave-one-year-out robust membership and an orbital coherence gate.",
+  "representation": "periodic_physical6",
+  "feature_scales": {
+    "sun_centered_radiant_longitude_deg": 3.5,
+    "radiant_latitude_deg": 3.0,
+    "geocentric_speed_km_s": 2.5,
+    "solar_longitude_deg": 2.5
+  },
+  "hierarchy": {
+    "min_cluster_size": 8,
+    "min_samples": 4,
+    "global_anchor_count": 32,
+    "window_width_deg": 10.0,
+    "window_stride_deg": 5.0,
+    "fusion_jaccard": 0.8,
+    "maximum_seed_members": 300
+  },
+  "membership": {
+    "leave_one_year_out": true,
+    "core_tail_alpha": 0.01,
+    "finite_sample_inflation": 1.02,
+    "iterations": 2,
+    "solar_pair_background_shifts": 7,
+    "orbital_distance_gate": 0.15
+  },
+  "ranking": {
+    "seed_years": [2025, 2026],
+    "materialization_budget": 100,
+    "target_accessed_during_generation_or_ranking": false
+  }
+}

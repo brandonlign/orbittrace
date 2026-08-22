@@ -1,0 +1,29 @@
+{
+  "discovery": {
+    "rank": 7,
+    "reported_members": 123,
+    "canonical_overlap": "95/95",
+    "precision": 0.7723577235772358,
+    "recall": 1.0,
+    "f1": 0.8715596330275228
+  },
+  "annual_confirmation": {
+    "members": {"2022": 10, "2023": 8, "2024": 14, "2025": 34, "2026": 29},
+    "untouched_years": [2022, 2023]
+  },
+  "activity_null": {
+    "source_preserving_p": 1.857134041807409e-05,
+    "shifted_window_p": 0.017543859649122806,
+    "interpretation": "The shifted-window result is reported as a conservative control, not as a claim of absolute exposure calibration."
+  },
+  "orbital_null": {"source_matched_p": 0.0001},
+  "uncertainty_clones": {"trials": 1000, "passes": 1000, "pass_fraction": 1.0},
+  "hierarchical_bootstrap": {"replicates_per_analysis": 20000, "nights_resampled": 29, "right_ascension_drift_excludes_zero": true, "declination_drift_excludes_zero": true, "speed_drift_excludes_zero": false},
+  "geographic_replication": {"groups": {"Americas": 30, "Europe_WestAsia": 22, "Oceania_EastAsia_Africa": 44}, "groups_passing": 3, "maximum_cross_region_medoid_d": 0.040536830930146595},
+  "validation_sensitivity": {"cells": 81, "passing_cells": 81, "member_count_range": [29, 129]},
+  "external_archives": {"CAMS_members": 9, "SonotaCo_members": 11, "EDMOND_members": 4, "formal_independent_networks_passing": ["SonotaCo"]},
+  "mdc_screen": {"current_catalogue_rows": 2179, "previous_snapshot_rows": 2174, "hard_duplicates": 0, "nearest_complete_orbit": "NOP-004", "nearest_d_sh": 0.23445149980443522},
+  "nop004_population": {"bootstrap_draws": 100000, "bootstrap_exceedances": 0, "closest_orbittrace_nop_d_sh": 0.0929},
+  "jpl_parent_body_screen": {"valid_orbits": 729, "objects_at_d_le_0_15": 0, "nearest_object": "2023 HJ7", "nearest_d": 0.15939456567933025},
+  "core_hyperparameter_robustness": {"raw_design_cells": 154, "unique_parameter_settings": 153, "exact_95_fraction": 0.24183006535947713, "at_least_90_fraction": 0.3202614379084967, "at_least_80_fraction": 0.39215686274509803, "rank_le_100_fraction": 0.5424836601307189}
+}

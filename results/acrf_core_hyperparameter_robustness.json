@@ -1,0 +1,128 @@
+{
+  "annual_exact_overlap_cells": {
+    "2022": 51,
+    "2023": 60,
+    "2024": 52,
+    "2025": 39,
+    "2026": 41
+  },
+  "at_least_80_recovery_cells": 60,
+  "at_least_80_recovery_fraction": 0.39215686274509803,
+  "at_least_90_recovery_cells": 49,
+  "at_least_90_recovery_fraction": 0.3202614379084967,
+  "baseline_reproduced": true,
+  "exact_95_recovery_cells": 37,
+  "exact_95_recovery_fraction": 0.24183006535947713,
+  "executed_unique_cells": 153,
+  "final_f1_quantiles_top100": {
+    "0.0": 0.4961240310077519,
+    "0.25": 0.7375275938189845,
+    "0.5": 0.8,
+    "0.75": 0.8737864077669902,
+    "1.0": 0.924731182795699
+  },
+  "final_overlap_quantiles_all_cells": {
+    "0.0": 0.0,
+    "0.25": 0.0,
+    "0.5": 58.0,
+    "0.75": 94.0,
+    "1.0": 95.0
+  },
+  "grid_breakdown": {
+    "hdbscan_factorial": {
+      "at_least_80_fraction": 0.3333333333333333,
+      "at_least_90_fraction": 0.3333333333333333,
+      "cells": 9,
+      "exact_95_fraction": 0.3333333333333333,
+      "maximum_final_overlap": 95,
+      "median_final_overlap": 78.0,
+      "minimum_final_overlap": 0,
+      "rank_le_100_fraction": 0.7777777777777778
+    },
+    "joint_extreme_interactions": {
+      "at_least_80_fraction": 0.390625,
+      "at_least_90_fraction": 0.265625,
+      "cells": 64,
+      "exact_95_fraction": 0.140625,
+      "maximum_final_overlap": 95,
+      "median_final_overlap": 57.0,
+      "minimum_final_overlap": 0,
+      "rank_le_100_fraction": 0.546875
+    },
+    "scale_factorial": {
+      "at_least_80_fraction": 0.4074074074074074,
+      "at_least_90_fraction": 0.37037037037037035,
+      "cells": 81,
+      "exact_95_fraction": 0.32098765432098764,
+      "maximum_final_overlap": 95,
+      "median_final_overlap": 55.0,
+      "minimum_final_overlap": 0,
+      "rank_le_100_fraction": 0.5185185185185185
+    }
+  },
+  "interpretation_rule": "This is post-hoc robustness of the frozen ACRF method. Results do not authorize hyperparameter replacement or tuning.",
+  "member_count_range_top100": [
+    34,
+    267
+  ],
+  "min_median_max": {
+    "final_f1_all_cells": {
+      "max": 0.924731182795699,
+      "median": 0.5882352941176471,
+      "min": 0.0
+    },
+    "final_f1_top100": {
+      "max": 0.924731182795699,
+      "median": 0.8,
+      "min": 0.4961240310077519
+    },
+    "final_member_count_all_cells": {
+      "max": 267,
+      "median": 59.0,
+      "min": 0
+    },
+    "final_member_count_top100": {
+      "max": 267,
+      "median": 123.0,
+      "min": 34
+    },
+    "final_precision_all_cells": {
+      "max": 1.0,
+      "median": 0.4398148148148148,
+      "min": 0.0
+    },
+    "final_precision_top100": {
+      "max": 1.0,
+      "median": 0.7480314960629921,
+      "min": 0.352059925093633
+    },
+    "final_recall_all_cells": {
+      "max": 1.0,
+      "median": 0.6105263157894737,
+      "min": 0.0
+    },
+    "final_recall_top100": {
+      "max": 1.0,
+      "median": 0.9894736842105264,
+      "min": 0.3368421052631579
+    },
+    "rank_tracked": {
+      "max": 7860,
+      "median": 34.0,
+      "min": 3
+    }
+  },
+  "rank_le_100_cells": 83,
+  "rank_le_100_fraction": 0.5424836601307189,
+  "rank_quantiles_tracked": {
+    "0.0": 3.0,
+    "0.25": 10.0,
+    "0.5": 34.0,
+    "0.75": 518.0,
+    "1.0": 7860.0
+  },
+  "raw_design_cells": 154,
+  "stage": "acrf_frozen_core_hyperparameter_robustness",
+  "tracked_cells": 153,
+  "unique_parameter_settings": 153
+}

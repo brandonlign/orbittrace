@@ -1,0 +1,76 @@
+{
+  "stage": "paper_exhaustive_mdc_duplicate_screening",
+  "catalogue": {
+    "official_last_update": "2026-08-14T20:00:00Z",
+    "byte_count": 1545850,
+    "sha256": "418365d3f005bc6a2ead6e8bc0548dafdc4cc378843c8c2bf351f79af5293dbf",
+    "submitted_rows_screened": 2179,
+    "radiant_speed_epoch_complete_rows": 2150,
+    "complete_orbit_rows": 1888,
+    "incomplete_rows_audited_separately": 29
+  },
+  "fixed_rules": {
+    "candidate_activity_interval_solar_longitude_deg": [32.901963, 40.901963],
+    "mean_epoch_fallback_half_width_deg": 8.0,
+    "maximum_drifted_radiant_separation_deg": 5.0,
+    "maximum_drifted_speed_difference_km_s": 5.0,
+    "maximum_southworth_hawkins_d": 0.15,
+    "hard_match_requires_complete_orbit": true
+  },
+  "candidate_propagation": {
+    "reference_solar_longitude_deg": 36.901963,
+    "sun_centered_ecliptic_longitude_deg": 210.6236753,
+    "ecliptic_latitude_deg": 7.3230377,
+    "geocentric_speed_km_s": 37.641692,
+    "sun_centered_longitude_drift_deg_per_deg": -0.10295,
+    "latitude_drift_deg_per_deg": -0.02305,
+    "speed_drift_km_s_per_deg": -0.0293492
+  },
+  "hard_duplicate_matches": 0,
+  "radiant_speed_activity_near_matches": 0,
+  "plausible_matches_hidden_by_incomplete_fields": 0,
+  "incomplete_field_audit": {
+    "activity_compatible_rows": 1,
+    "only_activity_compatible_incomplete_solution": {
+      "iau_number": "00021",
+      "code": "AVB",
+      "solution": "003",
+      "name": "alpha-Virginids",
+      "mean_solar_longitude_deg": 32.5,
+      "missing": ["geocentric_speed"],
+      "drifted_radiant_separation_deg": 49.0942,
+      "fails_fixed_radiant_gate": true
+    }
+  },
+  "nearest_complete_orbit": {
+    "iau_number": "00149",
+    "code": "NOP",
+    "solution": "004",
+    "name": "Northern May Ophiuchids",
+    "activity_interval_solar_longitude_deg": [45.0, 75.0],
+    "drifted_radiant_separation_deg": 9.58783,
+    "speed_difference_km_s": 1.0048719724795987,
+    "d_sh": 0.23445149980443522,
+    "hard_duplicate": false
+  },
+  "population_followup": {
+    "official_nop_observational_rows": 567,
+    "public_complete_nop_orbits": 118,
+    "activity_gap_deg": 4.738,
+    "orbittrace_median_nop_radiant_residual_deg": 11.233,
+    "nop_maximum_radiant_residual_deg": 10.980,
+    "orbittrace_members_above_nop_99th_percentile_radiant_residual": 95,
+    "radiant_bootstrap_draws": 100000,
+    "radiant_bootstrap_exceedances": 0,
+    "nop_within_population_nn_dsh_99th_percentile": 0.0878,
+    "closest_orbittrace_nop_dsh": 0.0929,
+    "median_orbittrace_to_nop_dsh": 0.1569
+  },
+  "previous_snapshot_crosscheck": {
+    "snapshot": "2026-06-25",
+    "submitted_solutions": 2174,
+    "hard_duplicate_matches": 0,
+    "nearest_complete_orbit": "NOP-004"
+  },
+  "verdict": "NO_DUPLICATE_IN_CURRENT_2026_08_14_MDC_CATALOGUE"
+}

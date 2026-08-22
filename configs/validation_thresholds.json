@@ -1,0 +1,23 @@
+{
+  "canonical_sample_size": 95,
+  "baseline_reported_members": 123,
+  "baseline_rank": 7,
+  "baseline_precision_minimum": 0.75,
+  "baseline_recall_required": 1.0,
+  "baseline_f1_minimum": 0.85,
+  "annual_confirmation_years": [2022, 2023, 2024, 2025, 2026],
+  "orbit_member_d_max": 0.15,
+  "external_replication": {
+    "minimum_members": 8,
+    "minimum_active_years": 2,
+    "activity_p_max": 0.01,
+    "shifted_window_p_max": 0.05,
+    "orbit_null_p_max": 0.01
+  },
+  "mdc_duplicate_screen": {
+    "drifted_radiant_separation_deg_max": 5.0,
+    "speed_difference_km_s_max": 5.0,
+    "southworth_hawkins_d_max": 0.15,
+    "complete_orbit_required": true
+  }
+}

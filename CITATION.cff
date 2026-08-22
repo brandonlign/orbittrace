@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+title: "OrbitTrace reproducibility package"
+message: "If you use this code or derived data, please cite the paper and this software package. Add the Zenodo DOI to this file after archival release."
+type: software
+authors:
+  - family-names: Li
+    given-names: Brandon
+    affiliation: "John L. Miller Great Neck North High School"
+    email: brandon.li.gn@gmail.com
+license: MIT
+version: "1.0.0"
+date-released: 2026-08-22
+repository-code: "https://github.com/brandonlign/orbittrace"
+keywords:
+  - meteors
+  - meteor streams
+  - Global Meteor Network
+  - reproducibility
+references:
+  - type: generic
+    title: "An Uncatalogued Annual April Meteor-Stream Candidate in Global Meteor Network Data"
+    authors:
+      - family-names: Li
+        given-names: Brandon
+    year: 2026
+    notes: "Manuscript citation details should be updated when the journal version is accepted."
+# Zenodo DOI intentionally omitted until the archived release is minted.

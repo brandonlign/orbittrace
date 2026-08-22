@@ -1,0 +1,17 @@
+{
+  "candidate_template": {
+    "solar_longitude_center_deg": 36.901963,
+    "time_half_width_deg": 4.0,
+    "sun_centered_longitude": [-149.3763247, -0.1029483, 0.7369],
+    "ecliptic_latitude": [7.3230377, -0.0230546, 0.625],
+    "geocentric_speed": [37.641692, -0.0293492, 1.1596],
+    "refined_orbit": [0.946296, 0.079202, 24.709376, 333.493819, 37.937477]
+  },
+  "archives": {
+    "CAMS": {"release": "CAMS v3", "years": [2010, 2011, 2012, 2013, 2014, 2015, 2016]},
+    "SonotaCo": {"release": "IAU MDC annual SNMv3 archives", "years": [2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025]},
+    "EDMOND": {"release": "EDMOND annual archive", "years": [2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017]}
+  },
+  "refit_external_parameters": false,
+  "target_membership_used_for_selection": false
+}

@@ -1,0 +1,43 @@
+{
+  "name": "OrbitTrace late-April meteor-stream candidate",
+  "official_iau_designation": null,
+  "epoch": {
+    "solar_longitude_deg": 36.901963,
+    "approximate_calendar_timing": "late April"
+  },
+  "geocentric_radiant": {
+    "sun_centered_ecliptic_longitude_deg": -149.3763247,
+    "ecliptic_latitude_deg": 7.3230377,
+    "geocentric_speed_km_s": 37.641692
+  },
+  "drift_per_solar_longitude_degree": {
+    "sun_centered_ecliptic_longitude_deg": -0.1029483,
+    "ecliptic_latitude_deg": -0.0230546,
+    "geocentric_speed_km_s_fitted": -0.0293492,
+    "geocentric_speed_km_s_external_validation": 0.0
+  },
+  "residual_dispersion": {
+    "sun_centered_ecliptic_longitude_sigma_deg": 0.7369,
+    "ecliptic_latitude_sigma_deg": 0.625,
+    "geocentric_speed_sigma_km_s": 1.1596
+  },
+  "refined_orbit": {
+    "eccentricity": 0.946296,
+    "perihelion_distance_au": 0.079202,
+    "inclination_deg": 24.709376,
+    "argument_of_perihelion_deg": 333.493819,
+    "encounter_node_deg": 37.937477
+  },
+  "gmn_evidence": {
+    "canonical_members": 95,
+    "discovery_family_members": 123,
+    "significant_years": [2022, 2023, 2024, 2025, 2026],
+    "annual_canonical_members": {"2022": 10, "2023": 8, "2024": 14, "2025": 34, "2026": 29},
+    "untouched_confirmation_years": [2022, 2023],
+    "uncertainty_clone_trials": 1000,
+    "uncertainty_clone_passes": 1000,
+    "nearby_validation_cells": 81,
+    "nearby_validation_passes": 81
+  },
+  "claim_boundary": "This is a recurring uncatalogued candidate supported by the reported analyses; it is not an official shower designation or parent-body identification."
+}

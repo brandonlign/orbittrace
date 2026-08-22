@@ -1,0 +1,42 @@
+{
+  "status": "exploratory_not_fresh_held_out",
+  "method": "Periodic recurrent hierarchy detector v1",
+  "fair_literature_benchmark": {
+    "verdict": "PASS_PERIODIC_PHYSICAL6_RECURRENT_HIERARCHY_LITERATURE_4_OF_4",
+    "panels": [
+      {"route": "sugar", "year": 2013, "method_macro_f1": 0.39532302549736936, "literature_macro_f1": 0.27274487210578285, "method_recovered": 24, "literature_recovered": 17},
+      {"route": "sugar", "year": 2014, "method_macro_f1": 0.4159826387294258, "literature_macro_f1": 0.2937898653825594, "method_recovered": 23, "literature_recovered": 16},
+      {"route": "hdbscan", "year": 2013, "method_macro_f1": 0.2214159584587528, "literature_macro_f1": 0.2020644054110187, "method_recovered": 13, "literature_recovered": 12},
+      {"route": "hdbscan", "year": 2014, "method_macro_f1": 0.2407868936336027, "literature_macro_f1": 0.20960560272614628, "method_recovered": 13, "literature_recovered": 11}
+    ]
+  },
+  "known_shower_controls": {
+    "verdict": "CONTROL_GATE_PASS",
+    "recovered": 3,
+    "eligible": 3,
+    "largest_non_target_cluster_fraction": 0.1026793796391286,
+    "f1": {"Lyrids": 0.8934832947403241, "Eta_Aquariids": 0.9501572327044024, "Southern_Delta_Aquariids": 0.933050293925539}
+  },
+  "orbittrace": {
+    "target_accessed_during_clustering_screening_ranking_or_validation": false,
+    "april_screened_rank": 1,
+    "january_to_july_global_rank": 2,
+    "january_to_july_final_survivors": 4,
+    "pooled_2025_2026_member_rows": 51,
+    "pooled_2025_2026_unique_member_times": 45,
+    "validation_members": {"2022": 10, "2023": 8, "2024": 14},
+    "validation_null_p": {"2022": 0.002, "2023": 0.002, "2024": 0.002},
+    "uncertainty_clones_passing": 500,
+    "uncertainty_clones_total": 500,
+    "posthoc_five_year": {
+      "candidate_unique_times": 77,
+      "target_count": 95,
+      "target_overlap": 76,
+      "precision": 0.987012987012987,
+      "recall": 0.8,
+      "f1": 0.8837209302325582,
+      "annual_overlap": {"2022": "10/10", "2023": "7/8", "2024": "14/14", "2025": "27/34", "2026": "18/29"}
+    }
+  },
+  "selection_disclosure": "The representation and 8/4 configuration were selected exploratorily after comparing six inherited parameter pairs on the exposed SonotaCo benchmark; OrbitTrace had been viewed in earlier exploratory development."
+}

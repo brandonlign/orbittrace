@@ -12,7 +12,7 @@
   "peak_stream_count": 15,
   "pooled_odds_ratio": 4.162,
   "pooled_p_value": 6.51e-19,
-  "source": "candidate/ACTIVITY_PROFILE.md",
+  "source": "Frozen paper-stage activity output preserved in this package; see data/README.md.",
   "supported_interval_deg": [
     35.902,
     39.902

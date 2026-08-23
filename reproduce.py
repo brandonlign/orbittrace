@@ -66,15 +66,24 @@ def run_all(out: Path) -> None:
         subprocess.run([sys.executable, f"analysis/{name}.py", "--out", str(out / f"{name}.json")], cwd=ROOT, check=True)
     subprocess.run([sys.executable, "benchmarks/run_benchmarks.py", "--out", str(out / "benchmarks.json")], cwd=ROOT, check=True)
     subprocess.run([sys.executable, "figures/generate_figures.py", "--out", str(out / "figures")], cwd=ROOT, check=True)
+    frozen_paths = (
+        (ROOT / "requirements.txt",)
+        + tuple(sorted((ROOT / "configs").glob("*.json")))
+        + tuple(sorted((ROOT / "data/derived").glob("*")))
+        + tuple(sorted((ROOT / "results").glob("*")))
+        + tuple(sorted((ROOT / "benchmarks").glob("*.json")))
+    )
     manifest = {
         "package": "OrbitTrace reproducibility package",
         "validation": validation,
         "frozen_inputs": {
             str(path.relative_to(ROOT)): sha256(path)
-            for path in sorted((ROOT / "data/derived").glob("*")) + sorted((ROOT / "results").glob("*"))
+            for path in frozen_paths
             if path.is_file()
         },
-        "generated_outputs": sorted(path.name for path in out.iterdir()),
+        "generated_outputs": sorted(
+            str(path.relative_to(out)) for path in out.rglob("*") if path.is_file()
+        ),
     }
     (out / "reproduction_manifest.json").write_text(json.dumps(manifest, indent=2, sort_keys=True) + "\n")
     print(json.dumps({"status": "PASS", "output": str(out), "headline": validation["headline"]}, indent=2))

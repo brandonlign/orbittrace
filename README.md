@@ -62,7 +62,7 @@ The 123-member table represents unique observation timestamps. It retains all so
 | 81-setting validation sensitivity | `analysis/validation_sensitivity.py` | `results/paper_headline_results.json` |
 | External archive replication | `analysis/external_archive_replication.py` | `results/external_replication.json` |
 | Exhaustive MDC duplicate screen | `analysis/mdc_duplicate_screen.py` | `results/mdc_duplicate_screen.json` |
-| NOP-004 population comparison | `analysis/nop004_population_comparison.py` | `results/mdc_duplicate_screen.json` |
+| NOP-004 population comparison | `analysis/nop004_population_comparison.py` | `data/derived/nop004_comparison.json` |
 | JPL parent-body screen | `analysis/jpl_parent_body_screen.py` | `results/paper_headline_results.json` |
 | 153-setting ACRF core robustness | `analysis/core_hyperparameter_robustness.py` | `results/acrf_core_hyperparameter_robustness.csv` |
 
@@ -83,6 +83,8 @@ The fair comparisons are separated from ACRF under `benchmarks/`: Sugar, catalog
 ## Data policy
 
 Raw third-party files are deliberately excluded. Follow `data/README.md`, download the cited versions yourself, and preserve a local SHA-256 manifest. The derived tables in this repository are sufficient to reproduce the manuscript headline numbers and figures without redistributing source archives.
+
+OpenAI ChatGPT assisted with code development and language editing; the author independently reviewed and verified the repository and results.
 
 ## Claim boundary
 

@@ -2,23 +2,23 @@
   "figures": {
     "figure1_physical_detection": {
       "generated": {
-        "pdf": "1dc23f570dda714dd943f8c113247b6454673e584e75ffb02d588fe1ec8cc16b",
+        "pdf": "1ec19af936665b264c6cdf3f2a82ceb0fca05283503c376583a562b4f91b19d3",
         "png": "37a23c337b71177268f487caa9132e5ae740fceb8920717364db8dde35ad5042",
-        "svg": "f7dbdd1241d858a598911f73b5ee72b63c89f6ffdca75bcdcc4e005e8d9a8d2a"
+        "svg": "e14270ec072fc68d6ee9d9d6e2b882350d1b9fbfb4d51d36e2dc79a8efb23b5c"
       }
     },
     "figure2_robustness": {
       "generated": {
-        "pdf": "06373af6ba5f576c459a7d52bedb9fc9d23488bc8cbf1e4a5149c8b6464a9281",
+        "pdf": "2c3ee907b374f2c03926a2d3e092ffe7d25c9cc030b1cfc6e9c4b0621a64b6d4",
         "png": "87607b9209ef3fade2e21a50a6b06852aaccada1a16b1631c1ab2c653f4c07a1",
-        "svg": "923d15cc306a43c848377b28bb94338f507308d8a4bace12faa9daa066de4f6a"
+        "svg": "4f5874ab865029fa9952db62a023e4a87945ec07aeefb7a637b52c0493027532"
       }
     },
     "figure3_catalogue_evidence": {
       "generated": {
-        "pdf": "507f9979c0cb0f2a66fdfda903cb02f26d7f1f6b2908f79ecd342613e8f53441",
+        "pdf": "4492b247cca323fbe61502d456c7370b1925542feac693978f7b42f1fc94390e",
         "png": "a5483ee165d7870da361aa27bb9048f25dc4dca989a9c64780346e31f63af18d",
-        "svg": "a3a75d6b72b104bae28655b91d4e7ca309eb13c5ca5b30c8591ffdd2f2059f70"
+        "svg": "15b6345f44d227212ed35798912438ca21597cedef177db4710c6bdfba4772a7"
       }
     }
   },

@@ -23,7 +23,7 @@ def literature_comparator_registry() -> tuple[ComparatorSpec, ...]:
             family="DBSCAN / uncertainty clones",
             status="binding_archived",
             comparable_output="annual shower family catalogue",
-            source="Sugar et al. 2017; archived PR1356 exact source and result",
+            source="Sugar et al. 2017; archived comparator result",
             notes="Use the pinned source hash, pooled rows, fixed clone count, and equal temporal budget.",
         ),
         ComparatorSpec(
@@ -31,7 +31,7 @@ def literature_comparator_registry() -> tuple[ComparatorSpec, ...]:
             family="HDBSCAN GEO/ORBIT EOM",
             status="binding_archived",
             comparable_output="annual shower family catalogue",
-            source="Peña-Asensio & Ferrari 2025; archived PR1356 comparator adapter",
+            source="Peña-Asensio & Ferrari 2025; archived comparator adapter and result",
             notes="Keep GEO and ORBIT feature views, EOM/leaf choice, and Hungarian scoring explicit.",
         ),
         ComparatorSpec(

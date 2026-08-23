@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: "OrbitTrace: discovery of a recurrent late-April meteor-stream candidate in Global Meteor Network trajectories."
-message: "If you use this code or derived data, please cite the paper and this software package. Add the Zenodo DOI to this file after archival release."
+message: "If you use this code or derived data, please cite this software package and the associated paper when available."
 type: software
 authors:
   - family-names: Li
@@ -9,9 +9,14 @@ authors:
     email: brandon.li.gn@gmail.com
 license: MIT
 version: "1.0.0"
-date-released: 2026-08-22
+date-released: 2026-08-23
 repository-code: "https://github.com/brandonlign/orbittrace"
-doi: ""
+abstract: >-
+  OrbitTrace is a reproducibility package for the paper-facing analyses of a
+  recurrent late-April meteor-stream candidate in Global Meteor Network
+  trajectories. It includes the frozen derived data, final ACRF implementation,
+  comparator summaries, and figure-generation scripts; raw third-party archives
+  are intentionally excluded.
 keywords:
   - meteors
   - meteor streams
@@ -25,4 +30,3 @@ references:
         given-names: Brandon
     year: 2026
     notes: "Manuscript citation details should be updated when the journal version is accepted."
-# Zenodo DOI intentionally omitted until the archived release is minted.

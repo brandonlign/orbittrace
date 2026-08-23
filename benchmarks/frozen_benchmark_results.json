@@ -819,7 +819,7 @@
         "family": "DBSCAN / uncertainty clones",
         "name": "sugar_dbscan_uncertainty",
         "notes": "Use the pinned source hash, pooled rows, fixed clone count, and equal temporal budget.",
-        "source": "Sugar et al. 2017; archived PR1356 exact source and result",
+        "source": "Sugar et al. 2017; archived comparator result",
         "status": "binding_archived"
       },
       {
@@ -827,7 +827,7 @@
         "family": "HDBSCAN GEO/ORBIT EOM",
         "name": "hdbscan_geo_orbit_eom",
         "notes": "Keep GEO and ORBIT feature views, EOM/leaf choice, and Hungarian scoring explicit.",
-        "source": "Pe\u00f1a-Asensio & Ferrari 2025; archived PR1356 comparator adapter",
+        "source": "Pe\u00f1a-Asensio & Ferrari 2025; archived comparator adapter and result",
         "status": "binding_archived"
       },
       {

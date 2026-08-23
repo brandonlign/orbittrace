@@ -8,7 +8,7 @@ plots.
 | --- | --- | --- |
 | 1 | exposure-normalized activity, annual recurrence, radiant centroids, orbital coherence | `activity_profile_year_summary.csv`, `activity_profile_metadata.json`, `annual_recurrence_2019_2026.csv`, `gmn_radiant_centroids.csv`, `orbit_coherence.csv`, `orbit_coherence_metadata.json`, external match tables |
 | 2 | geographic replication, ACRF core robustness | `geographic_replication.csv`, `results/acrf_core_hyperparameter_robustness.csv` |
-| 3 | supported and observed activity intervals, radiant/speed separation, orbital population separation, external timeline | `nop004_comparison.json`, `mdc_duplicate_screen.json`, external match tables |
+| 3 | fixed activity interval, radiant/speed separation, orbital population separation, external timeline | `nop004_comparison.json` (derived from `results/mdc_duplicate_screen.json`), external match tables |
 
 The 81-setting validation result is retained in the frozen paper outputs and
 reported in the manuscript text rather than given a redundant all-green panel.
@@ -32,5 +32,5 @@ Regenerate the temporary reproduction outputs used by `reproduce.py`:
 python figures/generate_figures.py --out /tmp/orbittrace-figures
 ```
 
-The committed copies under `figures/generated/` are synchronized with the
-paper-facing copies in `orbittrace-raw/candidate/mdc/figures/`.
+The committed copies under `figures/generated/` are the release copies used by
+the paper.

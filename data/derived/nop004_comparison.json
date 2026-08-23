@@ -1,0 +1,18 @@
+{
+  "closest_orbittrace_nop_dsh": 0.0929,
+  "duplicate_radiant_gate_deg": 5.0,
+  "duplicate_speed_gate_km_s": 5.0,
+  "median_orbittrace_nop_dsh": 0.1569,
+  "nop004_interval_deg": [
+    45.0,
+    75.0
+  ],
+  "nop004_radiant_separation_deg": 9.58783,
+  "nop004_speed_difference_km_s": 1.0048719724795987,
+  "nop_population_nn_dsh_99th_percentile": 0.0878,
+  "orbittrace_interval_deg": [
+    35.902,
+    39.902
+  ],
+  "source": "figures/data/mdc_duplicate_screen.json"
+}

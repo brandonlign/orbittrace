@@ -1,0 +1,6 @@
+{
+  "external_values_are": "D_SH from each external matched orbit to the frozen GMN orbit",
+  "gmn_internal_median_d": 0.0439834,
+  "gmn_internal_q90_d": 0.0923211,
+  "source": "validation/exact_downstream/downstream_reproduction.json"
+}

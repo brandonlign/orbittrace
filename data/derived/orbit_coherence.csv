@@ -1,0 +1,26 @@
+source,identifier,orbit_d,sample,year
+GMN,canonical-95,0.0439834,internal median,2022-2026
+CAMS,6282,0.1143030032085289,external match to frozen GMN orbit,2011
+CAMS,6421,0.0414997093132319,external match to frozen GMN orbit,2011
+CAMS,57516,0.0465279594855369,external match to frozen GMN orbit,2012
+CAMS,57673,0.044182350655428,external match to frozen GMN orbit,2012
+CAMS,57714,0.0383479226862454,external match to frozen GMN orbit,2012
+CAMS,57839,0.0745351085911184,external match to frozen GMN orbit,2012
+CAMS,184661,0.0491865597222212,external match to frozen GMN orbit,2014
+CAMS,258420,0.0445881625128339,external match to frozen GMN orbit,2015
+CAMS,320515,0.0522574356691145,external match to frozen GMN orbit,2016
+SonotaCo,2444,0.0124344290390228,external match to frozen GMN orbit,2007
+SonotaCo,5868,0.0487503520223643,external match to frozen GMN orbit,2009
+SonotaCo,6126,0.0185838289267792,external match to frozen GMN orbit,2009
+SonotaCo,6228,0.0342234219796021,external match to frozen GMN orbit,2009
+SonotaCo,5639,0.0417360540761055,external match to frozen GMN orbit,2010
+SonotaCo,5566,0.0129050408779985,external match to frozen GMN orbit,2013
+SonotaCo,6479,0.0582666688918764,external match to frozen GMN orbit,2018
+SonotaCo,6579,0.0316490806782893,external match to frozen GMN orbit,2020
+SonotaCo,10170,0.0556479552916677,external match to frozen GMN orbit,2022
+SonotaCo,10257,0.0172305032154074,external match to frozen GMN orbit,2022
+SonotaCo,9668,0.0506947591215229,external match to frozen GMN orbit,2023
+EDMOND,4797,0.0453893700588818,external match to frozen GMN orbit,2013
+EDMOND,7793,0.0273654393170998,external match to frozen GMN orbit,2014
+EDMOND,1428,0.0489682928084893,external match to frozen GMN orbit,2016
+EDMOND,9595,0.1063751876940577,external match to frozen GMN orbit,2016

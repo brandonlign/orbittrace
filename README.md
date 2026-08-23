@@ -77,7 +77,7 @@ The fair comparisons are separated from ACRF under `benchmarks/`: Sugar, catalog
 - `analysis/` — only the analyses reported in the paper.
 - `benchmarks/` — comparator registry, clean-room D-criterion code, and frozen benchmark/control outputs.
 - `results/` — frozen machine-readable paper outputs.
-- `figures/` — Figure 1–3 regeneration scripts.
+- `figures/` — final Figure 1–3 regeneration scripts, synchronized PDF/PNG/SVG exports, and the panel-to-input map in `figures/README.md`.
 - `reproduce.py` — one entry point for the major paper stages.
 
 ## Data policy

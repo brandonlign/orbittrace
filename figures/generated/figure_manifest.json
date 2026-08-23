@@ -1,0 +1,27 @@
+{
+  "figures": {
+    "figure1_physical_detection": {
+      "generated": {
+        "pdf": "0026af70f37a8b9ffd98a9933210c979fcb9979ba0a44b365609bbf91b209dbc",
+        "png": "37a23c337b71177268f487caa9132e5ae740fceb8920717364db8dde35ad5042",
+        "svg": "7316ea208a4c554af6f2a7ab1b569ec5a521f0ca6a998c06e5587b0e9e8eb3e3"
+      }
+    },
+    "figure2_robustness": {
+      "generated": {
+        "pdf": "c92784b22b42809732606c6f47e380b47ef0667384a3c0619d4198bef69e2a2e",
+        "png": "f89cce84cc2856f13d31e1a491e7a06d0f0231c37ee8f9d9567b985450ec1dc8",
+        "svg": "1ca38a01cef616f5a78ddaf042aae520f8e50649b91a1a7d73c10f3257056862"
+      }
+    },
+    "figure3_catalogue_evidence": {
+      "generated": {
+        "pdf": "7709f4a3d98171131254e9b91f7f3f6d10ce098c849a0beb91993493ab005a86",
+        "png": "70ba9948001d91ac71b6177b594d2f17e6771385c54cce79c80d07134922360e",
+        "svg": "1ab23869edf3a187021c9222a4cb5e3b24fc399b859e8d993333c372a7e0bb72"
+      }
+    }
+  },
+  "script_entrypoint": "figures/generate_figures.py",
+  "source_data_directory": "data/derived/"
+}

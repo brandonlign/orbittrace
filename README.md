@@ -48,6 +48,8 @@ The headline results are:
 
 The 123-member table represents unique observation timestamps. It retains all source trajectory identifiers in `trajectory_ids`; 129 trajectory rows collapse to 123 timestamps because six timestamps have multiple trajectories.
 
+The 153-setting ACRF robustness analysis tracks the corresponding OrbitTrace core only after each setting's ranked candidate catalogue has been produced. Target information therefore does not affect candidate generation or rank; the fixed baseline remains the reported method.
+
 ## Paper-to-code map
 
 | Manuscript analysis | Public entry point | Output |
@@ -77,12 +79,14 @@ The fair comparisons are separated from ACRF under `benchmarks/`: Sugar, catalog
 - `analysis/` — only the analyses reported in the paper.
 - `benchmarks/` — comparator registry, independent D-criterion implementation, and benchmark/control outputs.
 - `results/` — machine-readable paper outputs.
-- `figures/` — final Figure 1–3 regeneration scripts, synchronized PDF/PNG/SVG exports, and the panel-to-input map in `figures/README.md`.
+- `figures/` — final Figure 1–3 regeneration scripts, reference PDF/PNG/SVG exports, and the panel-to-input map in `figures/README.md`. Regenerate the exports from the release commit before a tagged archival release.
 - `reproduce.py` — one entry point for the major paper stages.
 
 ## Data policy
 
 The package uses derived tables from the public GMN, CAMS, SonotaCo, EDMOND, and MDC sources. Follow `data/README.md` to download the cited source versions and record a local SHA-256 manifest; the source archives themselves are not redistributed here.
+
+Figure 1D uses vector-form `D_v` for both the internal GMN compactness summary and external matched-orbit distances to the fixed GMN reference orbit. Southworth–Hawkins `D_SH` is a separate metric used for the MDC/NOP catalogue comparisons; the two are not interchangeable.
 
 OpenAI ChatGPT assisted with code development and language editing; the author independently reviewed and verified the repository and results.
 

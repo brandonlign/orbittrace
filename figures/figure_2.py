@@ -28,7 +28,7 @@ def panel_geographic(ax: plt.Axes) -> None:
     ax.set_yticks(y, labels)
     ax.invert_yaxis()
     ax.set_xlim(0, 53)
-    ax.set_xlabel("Canonical members")
+    ax.set_xlabel("Region-selected members")
     ax.set_title("Geographic replication", loc="left")
     clean_axes(ax)
 
@@ -76,7 +76,7 @@ def panel_core_robustness(ax: plt.Axes) -> None:
 
     ax.set_xlim(-3, 155)
     ax.set_ylim(0, 110)
-    ax.set_xlabel("Parameter-setting index")
+    ax.set_xlabel("Frozen parameter-setting index")
     ax.set_ylabel("Canonical overlap (%)")
     ax.set_title("ACRF core robustness", loc="left")
     ax.legend(loc="lower left", bbox_to_anchor=(0, 0.02), ncol=2, fontsize=6.0, handletextpad=0.3, columnspacing=0.6)

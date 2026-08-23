@@ -1,0 +1,77 @@
+name: Regenerate paper figures
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "figures/figure_1.py"
+      - "figures/figure_2.py"
+      - "figures/figure_3.py"
+      - "figures/plot_style.py"
+      - "figures/README.md"
+      - "data/derived/**"
+      - "results/acrf_core_hyperparameter_robustness.csv"
+      - ".github/workflows/regenerate-figures.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  regenerate:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out release tree
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install plotting dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Regenerate figures
+        run: |
+          python figures/figure_1.py
+          python figures/figure_2.py
+          python figures/figure_3.py
+
+      - name: Refresh figure manifest
+        run: |
+          python - <<'PY'
+          import hashlib
+          import json
+          from pathlib import Path
+
+          out = Path("figures/generated")
+          figures = {}
+          for stem in ("figure1_physical_detection", "figure2_robustness", "figure3_catalogue_evidence"):
+              generated = {}
+              for suffix in ("pdf", "png", "svg"):
+                  path = out / f"{stem}.{suffix}"
+                  generated[suffix] = hashlib.sha256(path.read_bytes()).hexdigest()
+              figures[stem] = {"generated": generated}
+          manifest = {
+              "figures": figures,
+              "script_entrypoint": "figures/generate_figures.py",
+              "source_data_directory": "data/derived/",
+          }
+          (out / "figure_manifest.json").write_text(
+              json.dumps(manifest, indent=2, sort_keys=True) + "\n"
+          )
+          PY
+
+      - name: Commit synchronized exports
+        run: |
+          if git diff --quiet -- figures/generated; then
+            echo "Generated figures already synchronized."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add figures/generated
+          git commit -m "Regenerate paper figures"
+          git push

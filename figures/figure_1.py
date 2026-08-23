@@ -120,12 +120,15 @@ def panel_orbit(ax: plt.Axes) -> None:
     ax.errorbar(gmn, metadata["gmn_internal_median_d"],
                 yerr=[[0], [metadata["gmn_internal_q90_d"] - metadata["gmn_internal_median_d"]]],
                 fmt="o", color=COLORS["blue"], ms=5, capsize=3, lw=1.2, label="GMN median–q90")
+    # `orbit_d` is the vector-form D_v used by the paper's membership and
+    # external-archive coherence tests. It is not the Southworth–Hawkins
+    # D_SH used later for MDC/NOP catalogue comparisons.
     ax.axhline(0.15, color=COLORS["red"], ls=(0, (3, 2)), lw=0.8)
     ax.text(3.98, 0.152, "0.15", ha="right", va="bottom", fontsize=6.2, color=COLORS["red"])
     ax.set_xticks(range(len(sources)), sources)
     ax.set_ylim(0, 0.27)
-    ax.set_ylabel(r"Southworth–Hawkins $D_{\rm SH}$")
-    ax.set_title(r"Orbital $D_{\rm SH}$ comparison", loc="left")
+    ax.set_ylabel(r"Vector-form $D_v$")
+    ax.set_title(r"Orbital $D_v$ comparison", loc="left")
     clean_axes(ax)
 
 

@@ -19,17 +19,18 @@ OUT = ROOT / "figures" / "generated"
 
 def panel_interval(ax: plt.Axes, comparison: dict) -> None:
     bars = [
-        ("OrbitTrace", comparison["orbittrace_interval_deg"], COLORS["blue"]),
+        ("OT supported", comparison["orbittrace_interval_deg"], COLORS["blue"]),
+        ("OT observed", comparison["orbittrace_observed_span_deg"], COLORS["muted"]),
         ("NOP-004", comparison["nop004_interval_deg"], COLORS["gray"]),
     ]
-    for y, (label, bounds, color) in enumerate(bars):
+    for y, (label, bounds, color) in zip([2, 1, 0], bars):
         lo, hi = bounds
         ax.plot([lo, hi], [y, y], color=color, lw=5, solid_capstyle="butt")
         ax.plot([lo, hi], [y, y], color=COLORS["ink"], lw=0.55, solid_capstyle="butt")
         ax.text((lo + hi) / 2, y + 0.16, f"{lo:.2f}-{hi:.2f}°", ha="center", va="bottom", fontsize=7, color=COLORS["ink"])
-    ax.set_yticks([0, 1], ["OrbitTrace", "NOP-004"])
+    ax.set_yticks([0, 1, 2], ["NOP-004", "OT observed", "OT supported"])
     ax.set_xlim(30, 80)
-    ax.set_ylim(-0.55, 1.5)
+    ax.set_ylim(-0.55, 2.55)
     ax.set_xlabel("Activity interval in solar longitude, λ⊙ (deg)")
     ax.set_title("Activity intervals", loc="left")
     clean_axes(ax, grid=False)
@@ -86,7 +87,13 @@ def panel_timeline(ax: plt.Axes) -> None:
         table = pd.read_csv(path)
         rng = np.random.default_rng(20260822 + y_positions[source])
         y = y_positions[source] + rng.normal(0, 0.045, len(table))
-        ax.scatter(table["year"], y, color=color, marker=marker, s=28, edgecolor="white", linewidth=0.45)
+        years = table["year"].astype(float).to_numpy()
+        x = years.copy()
+        for year in np.unique(years):
+            indices = np.flatnonzero(years == year)
+            if len(indices) > 1:
+                x[indices] += np.linspace(-0.18, 0.18, len(indices))
+        ax.scatter(x, y, color=color, marker=marker, s=28, edgecolor="white", linewidth=0.45)
     ax.set_yticks([0, 1, 2], ["EDMOND (4)", "SonotaCo (11)", "CAMS (9)"])
     ax.set_xlim(2005, 2027)
     ax.set_xticks([2005, 2010, 2015, 2020, 2025])

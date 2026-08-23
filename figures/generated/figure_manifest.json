@@ -2,23 +2,23 @@
   "figures": {
     "figure1_physical_detection": {
       "generated": {
-        "pdf": "0026af70f37a8b9ffd98a9933210c979fcb9979ba0a44b365609bbf91b209dbc",
+        "pdf": "1dc23f570dda714dd943f8c113247b6454673e584e75ffb02d588fe1ec8cc16b",
         "png": "37a23c337b71177268f487caa9132e5ae740fceb8920717364db8dde35ad5042",
-        "svg": "7316ea208a4c554af6f2a7ab1b569ec5a521f0ca6a998c06e5587b0e9e8eb3e3"
+        "svg": "f7dbdd1241d858a598911f73b5ee72b63c89f6ffdca75bcdcc4e005e8d9a8d2a"
       }
     },
     "figure2_robustness": {
       "generated": {
-        "pdf": "c92784b22b42809732606c6f47e380b47ef0667384a3c0619d4198bef69e2a2e",
-        "png": "f89cce84cc2856f13d31e1a491e7a06d0f0231c37ee8f9d9567b985450ec1dc8",
-        "svg": "1ca38a01cef616f5a78ddaf042aae520f8e50649b91a1a7d73c10f3257056862"
+        "pdf": "06373af6ba5f576c459a7d52bedb9fc9d23488bc8cbf1e4a5149c8b6464a9281",
+        "png": "87607b9209ef3fade2e21a50a6b06852aaccada1a16b1631c1ab2c653f4c07a1",
+        "svg": "923d15cc306a43c848377b28bb94338f507308d8a4bace12faa9daa066de4f6a"
       }
     },
     "figure3_catalogue_evidence": {
       "generated": {
-        "pdf": "7709f4a3d98171131254e9b91f7f3f6d10ce098c849a0beb91993493ab005a86",
-        "png": "70ba9948001d91ac71b6177b594d2f17e6771385c54cce79c80d07134922360e",
-        "svg": "1ab23869edf3a187021c9222a4cb5e3b24fc399b859e8d993333c372a7e0bb72"
+        "pdf": "507f9979c0cb0f2a66fdfda903cb02f26d7f1f6b2908f79ecd342613e8f53441",
+        "png": "a5483ee165d7870da361aa27bb9048f25dc4dca989a9c64780346e31f63af18d",
+        "svg": "a3a75d6b72b104bae28655b91d4e7ca309eb13c5ca5b30c8591ffdd2f2059f70"
       }
     }
   },

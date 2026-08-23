@@ -76,7 +76,7 @@ Frozen derived-file SHA-256 values:
 | `gmn_radiant_centroids.csv` | `457368110e71b89b933dc4db43ec299ca9ca0e1173859a99fae663f704e9fef2` |
 | `gmn_orbit_template.json` | `aa6e8a3a65fe5a4700a6efd57f261df038195bbbfea8bf6c37d1e74e13b7ab2f` |
 | `mdc_duplicate_screen.json` | `7425dc64b1a31375bb7847195be3ced6b23ee7e686eaad1aa252e996b356f11f` |
-| `nop004_comparison.json` | `219d5aa82f3bf02c1da2ec01a0d509e077113a701bdd071ab5903560edb660ae` |
+| `nop004_comparison.json` | `bbd13b64727f4a92f3cbbce74551e0f5371ca117a9a46b57166ecbdf7da3c10e` |
 | `orbit_coherence.csv` | `9b1669650e4ac290e53576ee87cfd2a48a201bdc0689b0f97f342404479b4c8f` |
 | `orbit_coherence_metadata.json` | `b63c650d8752cd58d67d55278d92292e64dd34aaac6b19152cb583d4a1afad0f` |
 | `sonotaco_match_table.csv` | `3e70d02fdea51e0da476f3bc32bb70febf5b362088cf5e31bc0a2801980c390b` |

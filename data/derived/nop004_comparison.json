@@ -14,5 +14,9 @@
     35.902,
     39.902
   ],
-  "source": "figures/data/mdc_duplicate_screen.json"
+  "orbittrace_observed_span_deg": [
+    32.95845,
+    40.269068
+  ],
+  "source": "data/derived/mdc_duplicate_screen.json"
 }

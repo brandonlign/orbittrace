@@ -35,6 +35,11 @@ def panel_geographic(ax: plt.Axes) -> None:
 
 def panel_core_robustness(ax: plt.Axes) -> None:
     data = pd.read_csv(RESULTS / "acrf_core_hyperparameter_robustness.csv")
+    target_counts = data["target_count"].astype(int).unique()
+    if len(target_counts) != 1 or target_counts[0] != 95:
+        raise ValueError(f"expected one frozen 95-member target, found {target_counts.tolist()}")
+    target_count = int(target_counts[0])
+    data["overlap_percent"] = 100.0 * data["final_overlap"] / target_count
     materialized = data["within_top100"].astype(bool).to_numpy()
     data["group"] = data["grid_sources"].map({
         "joint_extreme_interactions": "joint extremes",
@@ -57,20 +62,20 @@ def panel_core_robustness(ax: plt.Axes) -> None:
     for group, subset in data.groupby("group", sort=False):
         color = palette.get(group, COLORS["gray"])
         selected = subset[subset["within_top100"].astype(bool)]
-        ax.scatter(selected["setting_index"], selected["final_overlap"], s=20,
+        ax.scatter(selected["setting_index"], selected["overlap_percent"], s=20,
                    color=color, alpha=0.86, marker=markers.get(group, "o"),
                    edgecolor="white", linewidth=0.3, label=group)
     baseline = data[data["setting_index"] == 76].iloc[0]
-    ax.scatter([baseline["setting_index"]], [baseline["final_overlap"]], s=70, marker="*", facecolor="white",
+    ax.scatter([baseline["setting_index"]], [baseline["overlap_percent"]], s=70, marker="*", facecolor="white",
                edgecolor=COLORS["ink"], linewidth=0.9, zorder=5)
-    ax.axhline(95, color=COLORS["muted"], ls=(0, (3, 2)), lw=0.7)
-    ax.text(152.5, 95.0, "95/95", ha="right", va="bottom", fontsize=6.7, color=COLORS["muted"])
-    ax.text(152.5, 100.5,
+    ax.axhline(100.0, color=COLORS["muted"], ls=(0, (3, 2)), lw=0.7)
+    ax.text(152.5, 100.0, "100% (95/95)", ha="right", va="bottom", fontsize=6.7, color=COLORS["muted"])
+    ax.text(152.5, 106.0,
             f"core 153/153 · top-100 {int(materialized.sum())}/153 · validation 81/81",
             ha="right", va="bottom", fontsize=6.2, color=COLORS["ink"])
 
     ax.set_xlim(-3, 155)
-    ax.set_ylim(0, 103)
+    ax.set_ylim(0, 110)
     ax.set_xlabel("Frozen parameter-setting index")
     ax.set_ylabel("Canonical overlap (%)")
     ax.set_title("ACRF core robustness", loc="left")

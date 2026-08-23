@@ -48,19 +48,25 @@ def configure() -> None:
 
 
 def clean_axes(ax, *, grid: bool = True) -> None:
-    ax.spines["top"].set_visible(False)
-    ax.spines["right"].set_visible(False)
-    ax.tick_params(direction="out", length=3.0, width=0.7)
+    # MNRAS requires quantitative plots to have borders and fiducial marks
+    # on every side. Keep labels on the conventional left/bottom axes.
+    for spine in ("top", "right", "bottom", "left"):
+        ax.spines[spine].set_visible(True)
+        ax.spines[spine].set_linewidth(0.75)
+        ax.spines[spine].set_color(COLORS["ink"])
+    ax.tick_params(direction="in", length=3.0, width=0.7,
+                   top=True, right=True, labeltop=False, labelright=False)
     if grid:
         ax.grid(True, color=COLORS["grid"], linewidth=0.45, alpha=0.6)
         ax.set_axisbelow(True)
 
 
 def panel_label(ax, label: str) -> None:
+    normalized = label.strip().lower().strip("()")
     ax.text(
         -0.12,
         1.04,
-        label,
+        f"({normalized})",
         transform=ax.transAxes,
         fontsize=10,
         fontweight="bold",

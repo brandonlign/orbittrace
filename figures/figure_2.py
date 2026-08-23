@@ -13,6 +13,7 @@ from plot_style import COLORS, clean_axes, configure, panel_label, save_figure
 
 ROOT = Path(__file__).resolve().parents[1]
 DATA = ROOT / "data" / "derived"
+RESULTS = ROOT / "results"
 OUT = ROOT / "figures" / "generated"
 
 
@@ -33,7 +34,7 @@ def panel_geographic(ax: plt.Axes) -> None:
 
 
 def panel_core_robustness(ax: plt.Axes) -> None:
-    data = pd.read_csv(DATA / "core_hyperparameter_robustness_153.csv")
+    data = pd.read_csv(RESULTS / "acrf_core_hyperparameter_robustness.csv")
     materialized = data["within_top100"].astype(bool).to_numpy()
     data["group"] = data["grid_sources"].map({
         "joint_extreme_interactions": "joint extremes",

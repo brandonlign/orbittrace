@@ -69,7 +69,6 @@ Frozen derived-file SHA-256 values:
 | `annual_membership.csv` | `1ef6ba524c6a5b05bf6a86983138198d6b23bf04f68c43b095c228a2339090f2` |
 | `cams_match_table.csv` | `90745f1cec82986365b3bccbe975ad11bedc3b211f71b7bf382e23d4e25b893e` |
 | `canonical_95.csv` | `0f021d95df56901ba119114d9b7c3816abbb3c86354638f23a69eed71b1aa6d3` |
-| `core_hyperparameter_robustness_153.csv` | `7516e47ecafda8a01ee71f43e087a651960a193660c8080d9f1be63d1a2e23e9` |
 | `edmond_match_table.csv` | `6708cc0dba5cfc978fe39baa905cb65ba8197f068da0bddbb11ccb5c8c948751` |
 | `external_replication_summary.json` | `b6b4376d1890baaab8d22aa7c59c6ba2180a56a573359b94c15b1d45223032a2` |
 | `external_zero_speed_table.csv` | `15ba2baa8751f33ffce6e1dec78249f9bbe2acd8d16b4be609b54d9acbb68e62` |

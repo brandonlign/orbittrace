@@ -79,7 +79,7 @@ def panel_core_robustness(ax: plt.Axes) -> None:
     ax.set_xlabel("Frozen parameter-setting index")
     ax.set_ylabel("Canonical overlap (%)")
     ax.set_title("ACRF core robustness", loc="left")
-    ax.legend(loc="lower left", bbox_to_anchor=(0, 0.02), ncol=2, fontsize=6.0, handletextpad=0.3, columnspacing=0.6)
+    ax.legend(loc="lower left", bbox_to_anchor=(0, 0.02), ncol=2, fontsize=6.5, handletextpad=0.3, columnspacing=0.6)
     clean_axes(ax)
 
 

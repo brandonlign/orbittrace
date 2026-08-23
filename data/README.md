@@ -79,7 +79,7 @@ Reference `data/derived/` SHA-256 values:
 | `gmn_orbit_template.json` | `aa6e8a3a65fe5a4700a6efd57f261df038195bbbfea8bf6c37d1e74e13b7ab2f` |
 | `nop004_comparison.json` | `b59eecd843a67fde8854c5a223006ba3d67e0f9e9ed63397fedafad04c3365d6` |
 | `orbit_coherence.csv` | `eabebefc39d5087033d61de951e1fced814e86eeb78eccb689bd37fb2962fb8e` |
-| `orbit_coherence_metadata.json` | `9976ea7b779f05124e745a9118c0a94f8a92fa7e66050d72d9ebfe1084c745d1` |
+| `orbit_coherence_metadata.json` | `a7b3737480258df828775550b75babd5fc6aa9f91458f28301cf8d2c38241528` |
 | `sonotaco_match_table.csv` | `3e70d02fdea51e0da476f3bc32bb70febf5b362088cf5e31bc0a2801980c390b` |
 
 Reference `results/` SHA-256 values:

@@ -1,6 +1,6 @@
 # OrbitTrace reproducibility package
 
-This repository reproduces the OrbitTrace analyses from versioned, machine-readable outputs and the final ACRF implementation. It contains the code, configurations, derived tables, results, and figures used in the paper.
+This repository reproduces the OrbitTrace analyses from versioned, machine-readable outputs and the final ACRF implementation. It contains the code, configurations, derived tables, results, and figure-generation source used in the paper.
 
 ## Quick start
 
@@ -79,7 +79,7 @@ The fair comparisons are separated from ACRF under `benchmarks/`: Sugar, catalog
 - `analysis/` — only the analyses reported in the paper.
 - `benchmarks/` — comparator registry, independent D-criterion implementation, and benchmark/control outputs.
 - `results/` — machine-readable paper outputs.
-- `figures/` — final Figure 1–3 regeneration scripts, reference PDF/PNG/SVG exports, and the panel-to-input map in `figures/README.md`. Regenerate the exports from the release commit before a tagged archival release.
+- `figures/` — final Figure 1–3 regeneration scripts and the panel-to-input map in `figures/README.md`; `figures/generated/` documents the generated-output contract but does not retain stale rendered binaries.
 - `reproduce.py` — one entry point for the major paper stages.
 
 ## Data policy

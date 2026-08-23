@@ -70,9 +70,9 @@ def panel_core_robustness(ax: plt.Axes) -> None:
                edgecolor=COLORS["ink"], linewidth=0.9, zorder=5)
     ax.axhline(100.0, color=COLORS["muted"], ls=(0, (3, 2)), lw=0.7)
     ax.text(152.5, 100.0, "100% (95/95)", ha="right", va="bottom", fontsize=6.7, color=COLORS["muted"])
-    ax.text(152.5, 106.0,
-            f"post-ranking: 153/153 tracked · {int(materialized.sum())}/153 top-100 · 81/81 validation",
-            ha="right", va="bottom", fontsize=5.5, color=COLORS["ink"])
+    ax.text(88, 20.0,
+            f"post-ranking: 153/153 tracked\n{int(materialized.sum())}/153 top-100; 81/81 validation",
+            ha="left", va="bottom", fontsize=6.5, color=COLORS["ink"])
 
     ax.set_xlim(-3, 155)
     ax.set_ylim(0, 110)

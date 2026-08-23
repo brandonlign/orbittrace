@@ -530,7 +530,7 @@ def build_multiscale_catalogue(
     expansion_limit: int | None = None,
     seed_years: Sequence[int] | None = None,
 ) -> tuple[list[dict[str, Any]], dict[str, Any]]:
-    """Run the frozen ACRF ranking and shared final-membership rule."""
+    """Run the ACRF ranking and shared final-membership rule."""
 
     config = config or ACRFConfig()
     values = np.asarray(matrix, dtype=float)
@@ -592,7 +592,7 @@ def build_multiscale_catalogue(
         "application_events": int(len(values)),
         "materialized_final_memberships": int(limit),
         "expansion_limit": None if expansion_limit is None else int(expansion_limit),
-        "ranking_frozen_before_membership_expansion": True,
+        "ranking_fixed_before_membership_expansion": True,
         "membership_pipeline": "global recurrent anchors report hierarchy core; fused refinements use leave-one-year-out robust halo with solar-pair permutation q diagnostics then Dmax0.15",
         "orbit_gate_available": bool(orbit_matrix is not None),
     }

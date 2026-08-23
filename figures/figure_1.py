@@ -30,8 +30,8 @@ def panel_activity(ax: plt.Axes) -> None:
     for color, marker, line_style, offset, (_, row) in zip(colors, markers, line_styles, offsets, activity.iterrows()):
         outside = float(row["outside_rate_per_1000"])
         inside = float(row["inside_rate_per_1000"])
-        # The frozen activity output preserves interval aggregates, not the
-        # unrecovered half-degree bins. Paired points show only those measured
+        # The activity table contains interval aggregates, not the
+        # unrecovered half-degree bins. Paired points show the measured
         # aggregates; the line connects the two windows within each year.
         ax.plot([x_outside + offset, x_inside + offset], [outside, inside],
                 color=color, lw=0.85, ls=line_style, alpha=0.72,

@@ -1,4 +1,4 @@
-"""Report the frozen trajectory-uncertainty clone audit."""
+"""Report the trajectory-uncertainty clone audit."""
 from __future__ import annotations
 import argparse
 from pathlib import Path

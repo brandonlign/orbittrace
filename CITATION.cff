@@ -12,11 +12,11 @@ version: "1.0.0"
 date-released: 2026-08-23
 repository-code: "https://github.com/brandonlign/orbittrace"
 abstract: >-
-  OrbitTrace is a reproducibility package for the paper-facing analyses of a
+  OrbitTrace is a reproducibility package for the analyses of a
   recurrent late-April meteor-stream candidate in Global Meteor Network
-  trajectories. It includes the frozen derived data, final ACRF implementation,
-  comparator summaries, and figure-generation scripts; raw third-party archives
-  are intentionally excluded.
+  trajectories. It includes the versioned derived data, final ACRF
+  implementation, comparator summaries, and figure-generation scripts. Source
+  archive locations and acquisition details are documented separately.
 keywords:
   - meteors
   - meteor streams
@@ -29,4 +29,4 @@ references:
       - family-names: Li
         given-names: Brandon
     year: 2026
-    notes: "Manuscript citation details should be updated when the journal version is accepted."
+    notes: "The paper citation will be added when publication details are available."

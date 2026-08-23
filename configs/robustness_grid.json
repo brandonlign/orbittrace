@@ -22,5 +22,5 @@
     "hdbscan_corners": [[6, 2], [6, 6], [12, 2], [12, 6]],
     "cells": 64
   },
-  "acceptance": "Run all cells without post-hoc retuning; report sensitivity rather than selecting a replacement setting."
+  "acceptance": "Evaluate all cells with the paper settings and report the complete sensitivity grid."
 }

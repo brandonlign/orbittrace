@@ -1,4 +1,4 @@
-"""Run the major paper-stage reporters and regenerate the three figures."""
+"""Run the major analysis reporters and regenerate the three figures."""
 from __future__ import annotations
 
 import argparse
@@ -32,7 +32,7 @@ def sha256(path: Path) -> str:
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def validate_frozen_outputs() -> dict[str, object]:
+def validate_reference_outputs() -> dict[str, object]:
     import pandas as pd
 
     canonical = pd.read_csv(ROOT / "data/derived/canonical_95.csv")
@@ -55,18 +55,18 @@ def validate_frozen_outputs() -> dict[str, object]:
         "robustness_baseline": summary["baseline_reproduced"] is True,
     }
     if not all(checks.values()):
-        raise RuntimeError(f"frozen-output validation failed: {checks}")
+        raise RuntimeError(f"reference-output validation failed: {checks}")
     return {"checks": checks, "headline": meta}
 
 
 def run_all(out: Path) -> None:
     out.mkdir(parents=True, exist_ok=True)
-    validation = validate_frozen_outputs()
+    validation = validate_reference_outputs()
     for name in ANALYSES:
         subprocess.run([sys.executable, f"analysis/{name}.py", "--out", str(out / f"{name}.json")], cwd=ROOT, check=True)
     subprocess.run([sys.executable, "benchmarks/run_benchmarks.py", "--out", str(out / "benchmarks.json")], cwd=ROOT, check=True)
     subprocess.run([sys.executable, "figures/generate_figures.py", "--out", str(out / "figures")], cwd=ROOT, check=True)
-    frozen_paths = (
+    reference_paths = (
         (ROOT / "requirements.txt",)
         + tuple(sorted((ROOT / "configs").glob("*.json")))
         + tuple(sorted((ROOT / "data/derived").glob("*")))
@@ -76,9 +76,9 @@ def run_all(out: Path) -> None:
     manifest = {
         "package": "OrbitTrace reproducibility package",
         "validation": validation,
-        "frozen_inputs": {
+        "reference_inputs": {
             str(path.relative_to(ROOT)): sha256(path)
-            for path in frozen_paths
+            for path in reference_paths
             if path.is_file()
         },
         "generated_outputs": sorted(
@@ -91,7 +91,7 @@ def run_all(out: Path) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--all", action="store_true", help="run all paper-stage reporters and figures")
+    parser.add_argument("--all", action="store_true", help="run all analysis reporters and figures")
     parser.add_argument("--out", type=Path, help="output directory; defaults to a temporary directory")
     args = parser.parse_args()
     if not args.all:

@@ -1,6 +1,6 @@
 {
-  "external_values_are": "D_SH from each external matched orbit to the frozen GMN orbit",
+  "external_values_are": "D_SH from each external matched orbit to the reference GMN orbit",
   "gmn_internal_median_d": 0.0439834,
   "gmn_internal_q90_d": 0.0923211,
-  "source": "Frozen orbit-coherence output preserved in this package; see figures/README.md."
+  "source": "Orbit-coherence output from the paper analysis; see figures/README.md."
 }

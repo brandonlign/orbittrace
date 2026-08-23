@@ -1,14 +1,14 @@
 # Data and provenance
 
-This repository contains derived tables only. Raw GMN, CAMS, SonotaCo, EDMOND, and MDC files are not redistributed because their hosting and catalogue terms vary. Download the frozen source versions below, record the downloaded file hashes, and then prepare the panel schema documented in `acrf/application.py`.
+This repository contains the derived tables used by the paper. The source archives are available from the providers listed below; their locations, versions, and checksums are recorded here instead of redistributing the archives. Download the listed source versions, record the downloaded file hashes, and prepare the panel schema documented in `acrf/application.py`.
 
 ## GMN
 
 - Source: [GMN trajectory summary data](https://globalmeteornetwork.org/data/traj_summary_data/)
 - Access method: monthly trajectory-summary files; the optional `gmn-python-api==0.0.13` client may be used separately to acquire them. It is not required by the reproducibility environment because its legacy pandas constraint conflicts with the pinned analysis stack.
 - Analysis slice: April 2022, 2023, 2024, 2025, and 2026; quality filtering and sporadic-only selection are part of the preparation step.
-- Acquisition/freeze date: 2026-08-22.
-- The public derived outputs are `canonical_95.csv`, `acrf_discovery_family_123.csv`, and `annual_membership.csv`. The paper figures additionally use the frozen activity, recurrence, radiant-centroid, and orbit-coherence tables listed in `figures/README.md`.
+- Acquisition date: 2026-08-22.
+- The public derived outputs are `canonical_95.csv`, `acrf_discovery_family_123.csv`, and `annual_membership.csv`. The paper figures additionally use the activity, recurrence, radiant-centroid, and orbit-coherence tables listed in `figures/README.md`.
 
 For a raw rerun, download the five monthly files from the GMN monthly directory, preserve their original bytes, and convert them to the prepared-panel columns required by `acrf/application.py`: `event_id`, `year`, `sol_lon_deg`, `lamgeo_deg`, `betgeo_deg`, `vgeo_km_s`, `e`, `q`, `inc`, `peri`, and `node`.
 
@@ -16,27 +16,27 @@ For a raw rerun, download the five monthly files from the GMN monthly directory,
 
 - Source/version: CAMS v3 as distributed through [IAU MDC Version 2026](https://ceresiaumdc.ta3.sk/).
 - Coverage used: 2010–2016; the selected comparison rows are in `cams_match_table.csv`.
-- Freeze date: 2026-08-01 result package.
-- Do not commit the raw CAMS archive. Re-download the release, preserve its archive hash locally, and apply `configs/external_replication.json` without refitting the GMN template.
+- Reference date: 2026-08-01 result package.
+- Keep the raw CAMS archive outside this repository, record its archive hash locally, and apply `configs/external_replication.json` without refitting the GMN template.
 
 ## SonotaCo
 
 - Primary annual source: `https://www.astro.sk/iaumdcDB/public/data/SNMv3/{yy:03d}a.zip`.
 - Video-offline mirror used by the recovered analysis: `https://ceres.ta3.sk/iaumdcdb/dataDBs/video_offline/iaumdcSNMv3_S{yy:02d}.csv.zip`.
 - Coverage used: 2007–2025, with the selected comparison rows in `sonotaco_match_table.csv`.
-- Freeze date: 2026-08-01 result package.
+- Reference date: 2026-08-01 result package.
 
 Download only the needed annual archives, retain the original ZIP files outside this repository, and record SHA-256 hashes before parsing. The parser must preserve the published event identifiers and apply the fixed template in `configs/external_replication.json`.
 
 ## EDMOND
 
 - Source page: [EDMOND database](https://meteornews.net/edmond/).
-- Frozen archive pattern: `https://meteornews.net/assets/2025-03-29-edmond-database/U2_{year}_EDM.zip`.
+- Archive pattern: `https://meteornews.net/assets/2025-03-29-edmond-database/U2_{year}_EDM.zip`.
 - Coverage used: 2001–2017; the selected supplementary rows are in `edmond_match_table.csv`.
-- Freeze date: 2026-08-01 result package.
-- The linked 2024 archive was unavailable in the frozen acquisition; this is recorded as a provenance limitation, not silently filled from another source.
+- Reference date: 2026-08-01 result package.
+- The linked 2024 archive was not available in the source set used here; coverage follows the listed source releases.
 
-The EDMOND archive is supplementary and may share upstream observations with other networks. Do not interpret it as a fully independent third network.
+EDMOND is treated as supplementary because it may share upstream observations with other networks.
 
 ## MDC duplicate screen
 
@@ -58,12 +58,12 @@ shasum -a 256 data/derived/* results/*
 
 On Linux, use `sha256sum` in the same command.
 
-Frozen `data/derived/` SHA-256 values:
+Reference `data/derived/` SHA-256 values:
 
 | File | SHA-256 |
 | --- | --- |
-| `acrf_baseline_metadata.json` | `cd01ee8be549c851422c025196b56f0ca8199345b3c92d9b32fd5d2c6889cdf9` |
-| `activity_profile_metadata.json` | `be7356ef578638cb973890af7c3f8af92b9ffe6e8a03360c2aa5d08af06e32e0` |
+| `acrf_baseline_metadata.json` | `461b58fad4ff9487dcb08b013043ad52feb6cc2a38b7b28e4aff1903cc071b11` |
+| `activity_profile_metadata.json` | `c1c236daf13809aecd7dce06510a3c094619284f72db29461e765032db12cae7` |
 | `activity_profile_year_summary.csv` | `56375ba90f8dc6e53e62c3f979daca7c49766227ad1bfc11d6a4cb4a93b59bbd` |
 | `acrf_discovery_family_123.csv` | `c54b465115031847789628ae5b1941924aaaef61f5df1fe0be7d8a5b754c2c69` |
 | `annual_recurrence_2019_2026.csv` | `fb64df02664442989f3662863124a1954c1ed0b562f8c006b17f93471c78f61a` |
@@ -72,28 +72,28 @@ Frozen `data/derived/` SHA-256 values:
 | `cams_match_table.csv` | `90745f1cec82986365b3bccbe975ad11bedc3b211f71b7bf382e23d4e25b893e` |
 | `canonical_95.csv` | `0f021d95df56901ba119114d9b7c3816abbb3c86354638f23a69eed71b1aa6d3` |
 | `edmond_match_table.csv` | `6708cc0dba5cfc978fe39baa905cb65ba8197f068da0bddbb11ccb5c8c948751` |
-| `external_replication_summary.json` | `b6b4376d1890baaab8d22aa7c59c6ba2180a56a573359b94c15b1d45223032a2` |
+| `external_replication_summary.json` | `8f69d5dc60904860572aaaff53357cd8c66bf6f57845e2c1f9daf6a8c0646079` |
 | `external_zero_speed_table.csv` | `15ba2baa8751f33ffce6e1dec78249f9bbe2acd8d16b4be609b54d9acbb68e62` |
 | `geographic_replication.csv` | `62296b1381cd1491a3b6078f5e75512d7fe476dbe859b66cfdb5b2bc257c5729` |
 | `gmn_radiant_centroids.csv` | `457368110e71b89b933dc4db43ec299ca9ca0e1173859a99fae663f704e9fef2` |
 | `gmn_orbit_template.json` | `aa6e8a3a65fe5a4700a6efd57f261df038195bbbfea8bf6c37d1e74e13b7ab2f` |
 | `nop004_comparison.json` | `b59eecd843a67fde8854c5a223006ba3d67e0f9e9ed63397fedafad04c3365d6` |
-| `orbit_coherence.csv` | `9b1669650e4ac290e53576ee87cfd2a48a201bdc0689b0f97f342404479b4c8f` |
-| `orbit_coherence_metadata.json` | `af0dd33d6f1b5314ba077cb359678a2b47d60a016763f8784efcc6336f4f9949` |
+| `orbit_coherence.csv` | `eabebefc39d5087033d61de951e1fced814e86eeb78eccb689bd37fb2962fb8e` |
+| `orbit_coherence_metadata.json` | `9976ea7b779f05124e745a9118c0a94f8a92fa7e66050d72d9ebfe1084c745d1` |
 | `sonotaco_match_table.csv` | `3e70d02fdea51e0da476f3bc32bb70febf5b362088cf5e31bc0a2801980c390b` |
 
-Frozen `results/` SHA-256 values:
+Reference `results/` SHA-256 values:
 
 | File | SHA-256 |
 | --- | --- |
 | `acrf_core_hyperparameter_robustness.csv` | `7516e47ecafda8a01ee71f43e087a651960a193660c8080d9f1be63d1a2e23e9` |
-| `acrf_core_hyperparameter_robustness.json` | `6a911063437a45601c22c26ba94470a1bd5c8bd265eaf52adb992c1fe8ab9872` |
-| `acrf_core_hyperparameter_robustness.md` | `060f3a591c61fdf0bc3a368c53aed648bdbea38e060f246110ba193c43231102` |
-| `external_replication.json` | `b0b6378a3ca642ecb468ebcfad53a6a10ccba89d1c6cba2820963929eba31853` |
+| `acrf_core_hyperparameter_robustness.json` | `e47efc5ccc6950621b5983d0e8ea8d8a3650e78fb09a6062b8b53309b6376f98` |
+| `acrf_core_hyperparameter_robustness.md` | `37092d39f8922ac9d8d5b2d6255007c75a3ad343a35233247f48ae7d43513af1` |
+| `external_replication.json` | `2df3f79427142838483ee775daeac84f685e21ba9316fdea4245dae409454c66` |
 | `mdc_duplicate_screen.json` | `7425dc64b1a31375bb7847195be3ced6b23ee7e686eaad1aa252e996b356f11f` |
-| `mdc_duplicate_screen.md` | `b9ca15c2c63ce7e0c7677131a563b9937c10ca01b3e2b43fc743bf479ae877a3` |
-| `paper_headline_results.json` | `0a4bd6e4fe4e14599fd5552e75c07dc76e83da18889f69e119d9ebd5f548b05a` |
+| `mdc_duplicate_screen.md` | `d47a39bde5efb97f79af935600ccbc741c28ed32134654c47df65df1eb4acb69` |
+| `paper_headline_results.json` | `41fbd18a4c9ebeb4712a37ec43454e31530f08c53376335ab1e1fc059013228b` |
 
-The raw GMN and external-archive hashes are acquisition-specific and must be recorded in the local reproduction manifest when downloaded. The MDC hash above is the exact frozen catalogue used by the duplicate screen.
+The raw GMN and external-archive hashes are acquisition-specific and should be recorded in the local reproduction manifest when downloaded. The MDC hash above identifies the catalogue used by the duplicate screen.
 
-The paper-facing result JSONs record the frozen settings and headline numbers; every reproduction run should retain a separate manifest of the raw downloads used.
+The result JSONs record the settings and headline numbers; every reproduction run should retain a separate manifest of the raw downloads used.

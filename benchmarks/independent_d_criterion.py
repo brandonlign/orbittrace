@@ -1,7 +1,7 @@
 """Label-free EDMOND-style D-criterion comparator.
 
-This is a clean-room adapter of Rudawska et al. (2015), not the authors'
-original implementation.  It uses their published D_SH=0.05 seed grouping,
+This is an independent implementation of Rudawska et al. (2015), not the
+authors' original implementation. It uses their published D_SH=0.05 seed grouping,
 geocentric D_x=0.15 merging, and five-member catalogue threshold.
 """
 from __future__ import annotations
@@ -299,7 +299,7 @@ def edmond_d_criterion_candidates(
         candidates.append(
             {
                 "family_id": family_id,
-                "hierarchy_method": "edmond_dsh_dx_clean_room_adapter",
+                "hierarchy_method": "edmond_dsh_dx_independent_implementation",
                 "event_ids": ids,
                 "member_count": int(len(ids)),
                 "orbit_mean": [float(value) for value in group["orbit_mean"]],
@@ -313,7 +313,7 @@ def edmond_d_criterion_candidates(
     for rank, candidate in enumerate(candidates, start=1):
         candidate["rank"] = rank
     return candidates, {
-        "method": "Rudawska_et_al_EDMOND_clean_room_adapter",
+        "method": "Rudawska_et_al_EDMOND_independent_implementation",
         "truth_accessed": False,
         "input_rows": int(len(rows)),
         "usable_rows": int(len(usable_rows)),
@@ -327,7 +327,7 @@ def edmond_d_criterion_candidates(
         "dx_merge_iterations": int(merge_iterations),
         "catalogue_candidates": int(len(candidates)),
         "ranking": "member_count_desc_then_density_weight_sum_desc",
-        "implementation_status": "clean_room_reimplementation_not_authors_code",
+        "implementation_status": "independent_reimplementation_not_authors_code",
     }
 
 

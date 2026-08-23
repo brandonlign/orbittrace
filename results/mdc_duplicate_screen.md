@@ -1,12 +1,13 @@
 # Exhaustive IAU MDC duplicate-screening audit for OrbitTrace
 
-This paper-facing audit resolves the duplicate-screening concern without changing the OrbitTrace candidate, validation thresholds, or ACRF method.
+This report compares the OrbitTrace candidate with the current IAU MDC
+catalogue using the rules below.
 
 ## Current catalogue and all-solution screen
 
 The official IAU Meteor Data Center text catalogue reports **Last update: 2026-08-14 20:00 UTC**. The downloaded file is 1,545,850 bytes with SHA-256 `418365d3f005bc6a2ead6e8bc0548dafdc4cc378843c8c2bf351f79af5293dbf` and contains **2,179 submitted solution rows**.
 
-The duplicate rules were held fixed from the earlier audit:
+The comparison uses the following rules:
 
 - OrbitTrace activity interval: solar longitude 32.901963°–40.901963°;
 - if a solution lacks a published activity interval, mean-epoch compatibility uses a fixed ±8° fallback;
@@ -21,7 +22,11 @@ The candidate radiant and speed are propagated to each catalogue solution's mean
 
 Of the 2,179 submitted rows, **2,150** contain solar longitude, Sun-centred radiant longitude, radiant latitude and geocentric speed and therefore permit the complete timing/radiant/speed screen. **1,888** of these also contain a complete five-element orbit for `D_SH`.
 
-The remaining 29 rows were inspected separately rather than silently discarded. Only one is timing-compatible with OrbitTrace: alpha-Virginids solution AVB-003 at mean solar longitude 32.5°. It lacks a geocentric speed, but its drifted radiant is **49.09°** from OrbitTrace, so it fails the fixed 5° radiant condition by a wide margin regardless of the missing speed/orbit fields. None of the other incomplete rows is activity-compatible.
+The remaining 29 rows were checked separately. One is timing-compatible with
+OrbitTrace: alpha-Virginids solution AVB-003 at mean solar longitude 32.5°.
+It lacks a geocentric speed, and its drifted radiant is **49.09°** from
+OrbitTrace, outside the 5° radiant condition. None of the other incomplete rows
+is activity-compatible.
 
 ## Result
 
@@ -31,7 +36,7 @@ Across the **entire 2,179-row current catalogue**:
 - timing/radiant/speed near matches among parameter-complete rows: **0**;
 - plausible matches hidden by incomplete fields: **0**.
 
-The result is unchanged from the earlier 2026-06-25 audit even though the catalogue has since been updated.
+The result agrees with the 2026-06-25 catalogue snapshot.
 
 ## Nearest complete-orbit alternatives
 
@@ -54,4 +59,6 @@ No complete-orbit alternative is inside the fixed `D_SH ≤ 0.15` boundary. The 
 
 The fixed supported OrbitTrace interval shown in Figure 3A is 35.902°–39.902°. The official NOP-004 observational lookup contains 567 rows. The population-level comparison instead uses the observed canonical span 32.958°–40.269° and NOP-004 45.007°–74.869°, leaving a 4.738° gap; this population-span calculation is distinct from the supported interval shown in the panel. The median OrbitTrace residual from the fitted NOP radiant trend is 11.233°, above the maximum residual within the NOP sample; all 95 OrbitTrace meteors exceed the NOP 99th-percentile radiant residual. In 100,000 bootstrap draws, none reached the observed separation. Among 118 publicly recoverable complete NOP orbits, the within-NOP 99th-percentile nearest-neighbour `D_SH` is 0.0878, while the closest OrbitTrace–NOP pair is 0.0929 and the median OrbitTrace-to-NOP distance is 0.1569.
 
-Therefore the current exhaustive catalogue screen and the dedicated population-level test agree: **OrbitTrace is not a duplicate of any solution in the 2026-08-14 MDC catalogue.** This does not exclude a broader dynamical relationship to a known complex.
+The catalogue screen and population comparison both identify OrbitTrace as
+distinct from the solutions in the 2026-08-14 MDC catalogue. A broader
+dynamical relationship to a known complex is outside this catalogue test.

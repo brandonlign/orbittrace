@@ -1,4 +1,4 @@
-"""Report the frozen source-matched orbital null."""
+"""Report the source-matched orbital null."""
 from __future__ import annotations
 import argparse
 from pathlib import Path

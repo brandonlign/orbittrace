@@ -1,4 +1,4 @@
-"""Report the frozen JPL parent-body screen."""
+"""Report the JPL parent-body screen."""
 from __future__ import annotations
 import argparse
 from pathlib import Path

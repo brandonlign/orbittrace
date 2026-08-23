@@ -37,7 +37,7 @@ def panel_core_robustness(ax: plt.Axes) -> None:
     data = pd.read_csv(RESULTS / "acrf_core_hyperparameter_robustness.csv")
     target_counts = data["target_count"].astype(int).unique()
     if len(target_counts) != 1 or target_counts[0] != 95:
-        raise ValueError(f"expected one frozen 95-member target, found {target_counts.tolist()}")
+        raise ValueError(f"expected one 95-member reference target, found {target_counts.tolist()}")
     target_count = int(target_counts[0])
     data["overlap_percent"] = 100.0 * data["final_overlap"] / target_count
     materialized = data["within_top100"].astype(bool).to_numpy()
@@ -76,7 +76,7 @@ def panel_core_robustness(ax: plt.Axes) -> None:
 
     ax.set_xlim(-3, 155)
     ax.set_ylim(0, 110)
-    ax.set_xlabel("Frozen parameter-setting index")
+    ax.set_xlabel("Parameter-setting index")
     ax.set_ylabel("Canonical overlap (%)")
     ax.set_title("ACRF core robustness", loc="left")
     ax.legend(loc="lower left", bbox_to_anchor=(0, 0.02), ncol=2, fontsize=6.0, handletextpad=0.3, columnspacing=0.6)

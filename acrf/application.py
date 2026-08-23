@@ -1,4 +1,4 @@
-"""Apply the frozen ACRF method to a prepared, label-free trajectory panel."""
+"""Apply the ACRF method to a prepared, label-free trajectory panel."""
 from __future__ import annotations
 
 import argparse
@@ -71,7 +71,7 @@ def run(
         expansion_limit=int(expansion_limit), seed_years=seed_years,
     )
     return {
-        "stage": "acrf_frozen_target_free_application",
+        "stage": "acrf_target_free_application",
         "method": "ACRF",
         "years": sorted(set(int(year) for year in years)),
         "seed_years": list(seed_years),

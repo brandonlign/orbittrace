@@ -14,7 +14,7 @@
   "activity_null": {
     "source_preserving_p": 1.857134041807409e-05,
     "shifted_window_p": 0.017543859649122806,
-    "interpretation": "The shifted-window result is reported as a conservative control, not as a claim of absolute exposure calibration."
+    "interpretation": "The shifted-window result is included as a control; it does not estimate absolute exposure calibration."
   },
   "orbital_null": {"source_matched_p": 0.0001},
   "uncertainty_clones": {"trials": 1000, "passes": 1000, "pass_fraction": 1.0},

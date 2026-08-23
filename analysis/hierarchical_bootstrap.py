@@ -1,4 +1,4 @@
-"""Report the frozen year/night hierarchical bootstrap."""
+"""Report the year/night hierarchical bootstrap."""
 from __future__ import annotations
 import argparse
 from pathlib import Path

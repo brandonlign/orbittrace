@@ -60,7 +60,7 @@
       "rank_le_100_fraction": 0.5185185185185185
     }
   },
-  "interpretation_rule": "This is post-hoc robustness of the frozen ACRF method. Results do not authorize hyperparameter replacement or tuning.",
+  "interpretation_rule": "This grid describes variation around the reference ACRF method; the paper setting remains the reported baseline.",
   "member_count_range_top100": [
     34,
     267
@@ -122,7 +122,7 @@
     "1.0": 7860.0
   },
   "raw_design_cells": 154,
-  "stage": "acrf_frozen_core_hyperparameter_robustness",
+  "stage": "acrf_core_hyperparameter_robustness",
   "tracked_cells": 153,
   "unique_parameter_settings": 153
 }

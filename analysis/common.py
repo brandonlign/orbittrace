@@ -1,4 +1,4 @@
-"""Shared helpers for the paper-only frozen-result analyses."""
+"""Shared helpers for the paper-result analyses."""
 from __future__ import annotations
 
 import hashlib

@@ -1,4 +1,4 @@
-"""Generate Figures 1--3 from the frozen plotted data tables."""
+"""Generate Figures 1--3 from the versioned plotted data tables."""
 from __future__ import annotations
 import argparse
 import subprocess

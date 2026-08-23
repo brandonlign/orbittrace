@@ -1,4 +1,4 @@
-"""Summarize the frozen 81-setting nearby validation sensitivity."""
+"""Summarize the 81-setting nearby validation sensitivity."""
 from __future__ import annotations
 import argparse
 from pathlib import Path

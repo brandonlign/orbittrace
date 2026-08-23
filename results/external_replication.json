@@ -1,5 +1,5 @@
 {
-  "candidate_frozen_from_gmn": true,
+  "candidate_source": "GMN",
   "catalog_coverage": {
     "CAMS": {
       "release": "CAMS v3",
@@ -14,7 +14,7 @@
     }
   },
   "catalog_release": "IAU MDC Version 2026",
-  "frozen_template": {
+  "reference_template": {
     "core_radius_squared": 9.0,
     "ecliptic_latitude": [7.3230377, -0.0230546, 0.625],
     "geocentric_speed": [37.641692, -0.0293492, 1.1596],
@@ -25,7 +25,7 @@
     "time_half_width_deg": 4.0
   },
   "independent_networks_passing": ["SonotaCo"],
-  "note": "This public copy preserves the scientific result, frozen parameters, archive coverage, selected members, and data provenance without bundling raw third-party archives.",
+  "note": "This result records the method parameters, archive coverage, selected members, and data provenance; source archives are listed in data/README.md.",
   "software": {
     "numpy": "2.5.1",
     "pandas": "3.0.5",
@@ -154,5 +154,5 @@
     }
   },
   "stage": "complete_external_catalog_replication",
-  "verdict": "FROZEN_EXTERNAL_REPLICATION_PASSED_IN_SONOTACO"
+  "verdict": "EXTERNAL_REPLICATION_PASSED_IN_SONOTACO"
 }

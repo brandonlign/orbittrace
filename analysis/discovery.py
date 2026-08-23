@@ -1,4 +1,4 @@
-"""Validate the frozen target-free ACRF discovery result."""
+"""Validate the target-free ACRF discovery result."""
 from __future__ import annotations
 import argparse
 from pathlib import Path
@@ -13,7 +13,7 @@ def main() -> int:
     write_stage(args.out, "orbittrace_discovery", [
         "data/derived/acrf_discovery_family_123.csv",
         "data/derived/acrf_baseline_metadata.json",
-        "configs/frozen_method.json",
+        "configs/method.json",
     ], {"rank": meta["rank"], "reported_members": meta["reported_members"], "target_overlap": meta["target_overlap"], "precision": meta["precision"], "recall": meta["recall"], "f1": meta["f1"]})
     return 0
 

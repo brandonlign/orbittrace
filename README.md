@@ -1,6 +1,6 @@
 # OrbitTrace reproducibility package
 
-This repository reproduces the paper-facing OrbitTrace analyses from frozen, machine-readable outputs and one clean implementation of the final ACRF detector. It is intentionally a release package: development branches, abandoned detectors, exploratory notebooks, manuscript drafts, automation infrastructure, and historical implementation variants are not included.
+This repository reproduces the OrbitTrace analyses from versioned, machine-readable outputs and the final ACRF implementation. It contains the code, configurations, derived tables, results, and figures used in the paper.
 
 ## Quick start
 
@@ -10,7 +10,7 @@ python -m venv .venv
 ./.venv/bin/python reproduce.py --all
 ```
 
-`--all` validates the frozen derived and results files, emits the paper-stage reports, summarizes the frozen benchmark and control outputs, and regenerates Figures 1–3 into a temporary output directory. It does not recompute every upstream analysis from raw data or download third-party raw catalogues. The command prints the output directory; pass `--out /path/to/output` to choose it explicitly.
+`--all` checks the versioned derived and result files, emits the analysis reports, summarizes the benchmark and control outputs, and regenerates Figures 1–3 into a temporary output directory. It uses the derived tables in the repository rather than downloading third-party catalogues or rerunning their upstream preparation. The command prints the output directory; pass `--out /path/to/output` to choose it explicitly.
 
 To apply ACRF to a newly prepared, label-free panel:
 
@@ -24,11 +24,11 @@ To apply ACRF to a newly prepared, label-free panel:
   --out /tmp/orbittrace_acrf_reveal.json
 ```
 
-The prepared-panel schema is documented in [`data/README.md`](data/README.md). The target table must only be opened after target-free generation and ranking when making a discovery claim.
+The prepared-panel schema is documented in [`data/README.md`](data/README.md). For discovery work, generate and rank candidates before comparing them with `canonical_95.csv`.
 
 ## What the package reproduces
 
-The frozen headline results are:
+The headline results are:
 
 | Result | Expected output |
 |---|---:|
@@ -50,7 +50,7 @@ The 123-member table represents unique observation timestamps. It retains all so
 
 ## Paper-to-code map
 
-| Manuscript analysis | Public entry point | Frozen output |
+| Manuscript analysis | Public entry point | Output |
 |---|---|---|
 | OrbitTrace discovery | `analysis/discovery.py`, `acrf/application.py` | `data/derived/acrf_discovery_family_123.csv` |
 | Earlier-year confirmation | `analysis/earlier_year_confirmation.py` | `data/derived/annual_membership.csv` |
@@ -66,26 +66,26 @@ The 123-member table represents unique observation timestamps. It retains all so
 | JPL parent-body screen | `analysis/jpl_parent_body_screen.py` | `results/paper_headline_results.json` |
 | 153-setting ACRF core robustness | `analysis/core_hyperparameter_robustness.py` | `results/acrf_core_hyperparameter_robustness.csv` |
 
-The fair comparisons are separated from ACRF under `benchmarks/`: Sugar, catalogue-HDBSCAN, a clean-room D-criterion implementation, and the three known-shower controls.
+The fair comparisons are separated from ACRF under `benchmarks/`: Sugar, catalogue-HDBSCAN, an independent D-criterion implementation, and the three known-shower controls.
 
 ## Repository layout
 
 - `acrf/` — the final ACRF implementation only.
-- `configs/` — frozen method, threshold, seed, external-replication, and robustness-grid settings.
+- `configs/` — method, threshold, seed, external-replication, and robustness-grid settings.
 - `data/derived/` — canonical, discovery-family, annual, external-match, template, and audit tables.
-- `data/README.md` — exact source URLs, versions, freeze dates, hashes, and raw-download instructions.
+- `data/README.md` — source URLs, versions, acquisition dates, hashes, and raw-download instructions.
 - `analysis/` — only the analyses reported in the paper.
-- `benchmarks/` — comparator registry, clean-room D-criterion code, and frozen benchmark/control outputs.
-- `results/` — frozen machine-readable paper outputs.
+- `benchmarks/` — comparator registry, independent D-criterion implementation, and benchmark/control outputs.
+- `results/` — machine-readable paper outputs.
 - `figures/` — final Figure 1–3 regeneration scripts, synchronized PDF/PNG/SVG exports, and the panel-to-input map in `figures/README.md`.
 - `reproduce.py` — one entry point for the major paper stages.
 
 ## Data policy
 
-Raw third-party files are deliberately excluded. Follow `data/README.md`, download the cited versions yourself, and preserve a local SHA-256 manifest. The derived tables in this repository are sufficient to reproduce the manuscript headline numbers and figures without redistributing source archives.
+The package uses derived tables from the public GMN, CAMS, SonotaCo, EDMOND, and MDC sources. Follow `data/README.md` to download the cited source versions and record a local SHA-256 manifest; the source archives themselves are not redistributed here.
 
 OpenAI ChatGPT assisted with code development and language editing; the author independently reviewed and verified the repository and results.
 
-## Claim boundary
+## Scope
 
-The package documents ACRF as the OrbitTrace discovery method and the recurring, apparently uncatalogued candidate it identifies. It does not claim an official shower designation or an identified parent body, and performance claims are limited to the explicitly tested comparator panels.
+ACRF is the OrbitTrace discovery method, and the analysis identifies a recurring candidate that is not present in the catalogues tested here. The paper does not assign an official shower designation or parent body; performance comparisons cover the comparator panels listed in `benchmarks/`.

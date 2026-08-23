@@ -70,7 +70,7 @@ def expand_candidate(
     inflate the corresponding scale when supplied.  The density p/q-values are
     reported as a local-background diagnostic; the default gate is the
     cross-fitted core-conformity envelope, because a formal FDR claim requires
-    a separately frozen null generator.
+    a separately specified null generator.
     """
 
     config = config or ACRFConfig()

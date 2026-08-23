@@ -1,4 +1,4 @@
-"""Report the complete frozen 153-setting ACRF robustness grid."""
+"""Report the complete 153-setting ACRF robustness grid."""
 from __future__ import annotations
 import argparse
 from pathlib import Path

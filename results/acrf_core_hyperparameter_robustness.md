@@ -1,6 +1,8 @@
 # ACRF core-hyperparameter robustness
 
-This is a frozen post-hoc sensitivity analysis. It does not select or retune the paper method.
+This sensitivity analysis evaluates the paper settings across the complete
+154-cell design (153 unique settings). The reported baseline remains the paper
+setting; the grid summarizes how the result changes across the tested values.
 
 - Raw design cells: **154**
 - Unique parameter settings executed: **153**
@@ -48,4 +50,3 @@ Final metrics are reported for cells whose selected family was within the prereg
 - >=90/95: 26.6%
 - >=80/95: 39.1%
 - Final overlap median/range: 57.0 / 0-95
-

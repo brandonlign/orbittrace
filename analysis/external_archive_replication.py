@@ -1,4 +1,4 @@
-"""Report the frozen CAMS, SonotaCo, and EDMOND archive comparisons."""
+"""Report the CAMS, SonotaCo, and EDMOND archive comparisons."""
 from __future__ import annotations
 import argparse
 from pathlib import Path

@@ -1,4 +1,4 @@
-"""Compare a frozen target-free ACRF artifact with a canonical target table."""
+"""Compare a target-free ACRF artifact with a canonical target table."""
 from __future__ import annotations
 
 import argparse

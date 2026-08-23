@@ -27,7 +27,7 @@ def periodic_physical6_from_raw(
 
     Solar longitude and radiant longitude are represented by sine/cosine
     pairs.  This removes the artificial seam at 0/360 degrees while retaining
-    the frozen physical scales used by the paper method.
+    the physical scales specified by the paper method.
     """
 
     values = np.asarray(raw, dtype=float)

@@ -1,4 +1,4 @@
-"""Frozen configuration for the public ACRF implementation."""
+"""Configuration for the public ACRF implementation."""
 from __future__ import annotations
 
 from dataclasses import dataclass

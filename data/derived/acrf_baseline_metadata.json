@@ -32,7 +32,7 @@
     "min_samples": 4
   },
   "setting_index": 76,
-  "source_execution": "frozen seed-ranked baseline extraction with the public ACRF implementation",
+  "source_execution": "Reference seed-ranked baseline extraction with the public ACRF implementation",
   "stage": "acrf_accepted_seed_ranked_baseline_extraction",
   "target_count": 95,
   "target_overlap": 95,

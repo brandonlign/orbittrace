@@ -1,5 +1,6 @@
 {
-  "external_values_are": "D_SH from each external matched orbit to the reference GMN orbit",
+  "metric": "vector-form D_v",
+  "external_values_are": "D_v from each external matched orbit to the fixed GMN medoid/reference orbit",
   "gmn_internal_median_d": 0.0439834,
   "gmn_internal_q90_d": 0.0923211,
   "source": "Orbit-coherence output from the paper analysis; see figures/README.md."

@@ -81,6 +81,12 @@ class InputValidationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "event_id must be unique"):
             load_panel(self._write(frame))
 
+    def test_load_panel_rejects_missing_event_id(self) -> None:
+        frame = self._panel()
+        frame.loc[0, "event_id"] = None
+        with self.assertRaisesRegex(ValueError, "event_id cannot be missing"):
+            load_panel(self._write(frame))
+
     def test_load_panel_rejects_nonfinite_values(self) -> None:
         frame = self._panel()
         frame.loc[0, "vgeo_km_s"] = np.nan
@@ -104,6 +110,10 @@ class RevealGuardTests(unittest.TestCase):
                     "target_accessed_during_generation_ranking_or_membership": True,
                 }
             )
+
+    def test_ambiguous_flag_is_rejected(self) -> None:
+        with self.assertRaisesRegex(ValueError, "does not certify"):
+            _certify_target_free({"target_accessed_during_generation_or_ranking": None})
 
 
 if __name__ == "__main__":

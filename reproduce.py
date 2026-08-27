@@ -128,6 +128,12 @@ def validate_reference_outputs() -> dict[str, object]:
 
 def run_all(out: Path) -> None:
     out.mkdir(parents=True, exist_ok=True)
+
+    subprocess.run(
+        [sys.executable, "-m", "unittest", "discover", "-s", "tests", "-v"],
+        cwd=ROOT,
+        check=True,
+    )
     validation = validate_reference_outputs()
 
     for name in ANALYSES:
@@ -157,7 +163,7 @@ def run_all(out: Path) -> None:
     )
     manifest = {
         "package": "OrbitTrace",
-        "verification_scope": "archived derived data, archived results, benchmark summaries, and figure regeneration",
+        "verification_scope": "core tests, archived derived data, archived results, benchmark summaries, and figure regeneration",
         "validation": validation,
         "reference_inputs": {
             str(path.relative_to(ROOT)): sha256(path)
@@ -181,7 +187,7 @@ def run_all(out: Path) -> None:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--all", action="store_true", help="verify archived results and regenerate all three figures")
+    parser.add_argument("--all", action="store_true", help="test code, verify archived results, and regenerate all three figures")
     parser.add_argument("--out", type=Path, help="output directory; defaults to a temporary directory")
     args = parser.parse_args()
     if not args.all:

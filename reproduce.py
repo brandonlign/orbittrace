@@ -59,10 +59,25 @@ def validate_reference_outputs() -> dict[str, object]:
     _require(len(discovery) == 123, "discovery_rows", checks)
     _require(len(robustness) == 153, "robustness_rows", checks)
 
-    if "event_id" in canonical.columns:
-        _require(canonical["event_id"].astype(str).is_unique, "canonical_event_ids_unique", checks)
+    canonical_id_column = "event_id" if "event_id" in canonical.columns else "CurNum"
+    canonical_time_column = "Tobs" if "Tobs" in canonical.columns else None
+    _require(
+        canonical[canonical_id_column].astype(str).is_unique,
+        "canonical_ids_unique",
+        checks,
+    )
+    if canonical_time_column:
+        _require(
+            canonical[canonical_time_column].astype(str).is_unique,
+            "canonical_times_unique",
+            checks,
+        )
     if "timestamp_key" in discovery.columns:
-        _require(discovery["timestamp_key"].astype(str).is_unique, "discovery_timestamps_unique", checks)
+        _require(
+            discovery["timestamp_key"].astype(str).is_unique,
+            "discovery_timestamps_unique",
+            checks,
+        )
     if "canonical_target_member" in discovery.columns:
         target = discovery["canonical_target_member"].astype(str).str.lower().eq("true")
         _require(int(target.sum()) == 95, "discovery_contains_95_canonical_members", checks)

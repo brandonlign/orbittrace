@@ -62,7 +62,7 @@ One terminology note: the internal compactness analyses use the paper's vector-f
 
 Citation metadata are in [`CITATION.cff`](CITATION.cff). Once this version is archived, cite the Zenodo DOI for the software/data release and add the paper citation when it is available.
 
-The source code is MIT licensed. GMN level-3 trajectory data are released by GMN under CC BY 4.0, so the GMN-derived rows here retain that attribution requirement. Other source catalogues and derived excerpts remain subject to their providers' terms and citation requests; details are in [`data/README.md`](data/README.md).
+The source code is MIT licensed. The repository is a mixed-license archive because some derived tables come from external catalogues; [`NOTICE.md`](NOTICE.md) gives the short rights summary and [`data/README.md`](data/README.md) records the source-specific attribution. When archiving the full repository on Zenodo, use its mixed-license support rather than applying MIT to every file.
 
 OrbitTrace is a meteor-stream candidate, not an official IAU shower designation, and no parent body is assigned here.
 

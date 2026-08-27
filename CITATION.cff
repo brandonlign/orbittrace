@@ -7,6 +7,7 @@ authors:
     given-names: Brandon
     affiliation: "John L. Miller Great Neck North High School"
 version: "1.0.0"
+doi: "10.5281/zenodo.22119925"
 repository-code: "https://github.com/brandonlign/orbittrace"
 abstract: >-
   Code and derived data for OrbitTrace, a recurrent late-April meteor-stream

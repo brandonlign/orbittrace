@@ -9,7 +9,6 @@ authors:
     email: brandon.li.gn@gmail.com
 license: MIT
 version: "1.0.0"
-date-released: 2026-08-26
 repository-code: "https://github.com/brandonlign/orbittrace"
 abstract: >-
   Code and derived data for OrbitTrace, a recurrent late-April meteor-stream
@@ -23,11 +22,3 @@ keywords:
   - meteor streams
   - Global Meteor Network
   - reproducibility
-references:
-  - type: generic
-    title: "OrbitTrace: discovery of a recurrent late-April meteor-stream candidate in Global Meteor Network trajectories"
-    authors:
-      - family-names: Li
-        given-names: Brandon
-    year: 2026
-    notes: "Add the journal citation when publication details are available."

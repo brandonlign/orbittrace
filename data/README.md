@@ -111,10 +111,10 @@ On Linux, use `sha256sum` instead.
 | --- | --- |
 | `acrf_core_hyperparameter_robustness.csv` | `7516e47ecafda8a01ee71f43e087a651960a193660c8080d9f1be63d1a2e23e9` |
 | `acrf_core_hyperparameter_robustness.json` | `e47efc5ccc6950621b5983d0e8ea8d8a3650e78fb09a6062b8b53309b6376f98` |
-| `acrf_core_hyperparameter_robustness.md` | `37092d39f8922ac9d8d5b2d6255007c75a3ad343a35233247f48ae7d43513af1` |
+| `acrf_core_hyperparameter_robustness.md` | `e13e904f7f5f7626ea8f01addc11b85437b2daa21e65d5ba1c0ddacb851ae62c` |
 | `external_replication.json` | `2df3f79427142838483ee775daeac84f685e21ba9316fdea4245dae409454c66` |
 | `mdc_duplicate_screen.json` | `7425dc64b1a31375bb7847195be3ced6b23ee7e686eaad1aa252e996b356f11f` |
-| `mdc_duplicate_screen.md` | `d47a39bde5efb97f79af935600ccbc741c28ed32134654c47df65df1eb4acb69` |
+| `mdc_duplicate_screen.md` | `05585344f99e0ce9c7eda756c3dda90963e7c74045487bc5250b534e35cdd245` |
 | `paper_headline_results.json` | `41fbd18a4c9ebeb4712a37ec43454e31530f08c53376335ab1e1fc059013228b` |
 
 For a raw-data reconstruction, keep a separate manifest of the downloaded source files and their hashes. The MDC hash above is the exact catalogue used for the duplicate screen; the other raw-source hashes depend on the files downloaded from each provider.

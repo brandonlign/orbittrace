@@ -7,7 +7,6 @@ authors:
     given-names: Brandon
     affiliation: "John L. Miller Great Neck North High School"
     email: brandon.li.gn@gmail.com
-license: MIT
 version: "1.0.0"
 repository-code: "https://github.com/brandonlign/orbittrace"
 abstract: >-

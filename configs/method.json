@@ -11,18 +11,33 @@
   "hierarchy": {
     "min_cluster_size": 8,
     "min_samples": 4,
+    "core_dist_n_jobs": 1,
+    "maximum_rows_per_year": 30000,
+    "sampling_seed": 20260822,
     "global_anchor_count": 32,
     "window_width_deg": 10.0,
     "window_stride_deg": 5.0,
     "fusion_jaccard": 0.8,
-    "maximum_seed_members": 300
+    "maximum_seed_members": 300,
+    "recurrence_quantile": 0.25,
+    "minimum_year_support_fraction": 0.6,
+    "minimum_events_per_supported_year": 1
+  },
+  "calibration": {
+    "permutations": 9999,
+    "seed": 20260822,
+    "multiple_testing_correction": "benjamini_yekutieli"
   },
   "membership": {
     "leave_one_year_out": true,
     "core_tail_alpha": 0.01,
     "finite_sample_inflation": 1.02,
     "iterations": 2,
+    "scale_floor": 0.05,
+    "minimum_training_members": 8,
     "solar_pair_background_shifts": 7,
+    "background_fdr_threshold": 0.1,
+    "background_fdr_enforced": false,
     "orbital_distance_gate": 0.15
   },
   "ranking": {

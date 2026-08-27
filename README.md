@@ -94,7 +94,7 @@ The package uses derived tables from public GMN, CAMS, SonotaCo, EDMOND, JPL, an
 
 Citation metadata are in [`CITATION.cff`](CITATION.cff). After a Zenodo release is created, the DOI should be cited for the archived software/data release and the paper citation added when available.
 
-The code is released under the MIT License. Third-party source catalogues remain subject to their original providers' terms.
+The source code is released under the MIT License. GMN level-3 trajectory data are published by GMN under CC BY 4.0, so GMN-derived rows in this repository retain that attribution requirement; the GMN source and requested citations are listed in [`data/README.md`](data/README.md). Other source catalogues and derived excerpts remain subject to their providers' terms and citation requests.
 
 ## Scope
 

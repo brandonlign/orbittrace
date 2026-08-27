@@ -43,6 +43,9 @@ def load_panel(path: Path) -> pd.DataFrame:
         raise ValueError(f"prepared panel is missing columns: {missing}")
 
     data = data.loc[:, REQUIRED_COLUMNS].copy()
+    if data["event_id"].isna().any():
+        raise ValueError("event_id cannot be missing")
+
     for column in NUMERIC_COLUMNS:
         data[column] = pd.to_numeric(data[column], errors="raise")
 

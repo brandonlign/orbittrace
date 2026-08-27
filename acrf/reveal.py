@@ -52,7 +52,7 @@ def _certify_target_free(payload: dict[str, Any]) -> None:
     present = [payload[field] for field in TARGET_FREE_FIELDS if field in payload]
     if not present:
         raise ValueError("artifact does not contain a target-access certification field")
-    if any(value is True for value in present) or not any(value is False for value in present):
+    if any(value is not False for value in present):
         raise ValueError("artifact does not certify target-free generation")
 
 

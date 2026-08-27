@@ -1,6 +1,6 @@
 cff-version: 1.2.0
-title: "OrbitTrace: discovery of a recurrent late-April meteor-stream candidate in Global Meteor Network trajectories."
-message: "If you use this code or derived data, please cite this software package and the associated paper when available."
+title: "OrbitTrace: discovery of a recurrent late-April meteor-stream candidate in Global Meteor Network trajectories"
+message: "If you use this repository, please cite the archived software/data release and the associated paper when available."
 type: software
 authors:
   - family-names: Li
@@ -9,14 +9,15 @@ authors:
     email: brandon.li.gn@gmail.com
 license: MIT
 version: "1.0.0"
-date-released: 2026-08-23
+date-released: 2026-08-26
 repository-code: "https://github.com/brandonlign/orbittrace"
 abstract: >-
-  OrbitTrace is a reproducibility package for the analyses of a
-  recurrent late-April meteor-stream candidate in Global Meteor Network
-  trajectories. It includes the versioned derived data, final ACRF
-  implementation, comparator summaries, and figure-generation scripts. Source
-  archive locations and acquisition details are documented separately.
+  Code and derived data for OrbitTrace, a recurrent late-April meteor-stream
+  candidate found in Global Meteor Network trajectories. The release includes
+  the ACRF implementation, versioned analysis tables and results, benchmark
+  summaries, and scripts for the paper figures. Source catalogues are not
+  redistributed; their locations and acquisition details are documented in the
+  repository.
 keywords:
   - meteors
   - meteor streams
@@ -24,9 +25,9 @@ keywords:
   - reproducibility
 references:
   - type: generic
-    title: "OrbitTrace: discovery of a recurrent late-April meteor-stream candidate in Global Meteor Network trajectories."
+    title: "OrbitTrace: discovery of a recurrent late-April meteor-stream candidate in Global Meteor Network trajectories"
     authors:
       - family-names: Li
         given-names: Brandon
     year: 2026
-    notes: "The paper citation will be added when publication details are available."
+    notes: "Add the journal citation when publication details are available."

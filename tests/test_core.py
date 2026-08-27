@@ -30,7 +30,9 @@ class FeatureTests(unittest.TestCase):
     def test_southworth_hawkins_is_zero_for_same_orbit(self) -> None:
         orbit = np.array([[0.94, 0.08, 24.0, 333.0, 37.0]])
         result = southworth_hawkins_pairs(orbit, np.array([[0, 0]]))
-        np.testing.assert_allclose(result, np.array([0.0]), atol=1e-12)
+        # Trigonometric roundoff in arccos can leave a residual of order 1e-8
+        # for an identical orbit on some NumPy/Python builds.
+        np.testing.assert_allclose(result, np.array([0.0]), atol=5e-8)
 
     def test_southworth_hawkins_is_symmetric(self) -> None:
         orbits = np.array(

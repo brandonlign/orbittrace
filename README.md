@@ -1,12 +1,12 @@
 # OrbitTrace
 
-Code and derived data for the OrbitTrace late-April meteor-stream candidate.
+Code and derived data for a recurrent late-April meteor-stream candidate found in Global Meteor Network (GMN) trajectories.
 
-This repository contains the ACRF implementation used for the search, the versioned tables and result files used in the paper, the benchmark summaries, and the scripts that regenerate Figures 1–3. The original third-party catalogues are not redistributed here; their sources and acquisition details are listed in [`data/README.md`](data/README.md).
+The repository includes the ACRF search code, the tables and result files used in the paper, benchmark summaries, and the scripts for Figures 1–3. I do not redistribute the original third-party catalogues here. Their sources, coverage, preparation notes, and checksums are in [`data/README.md`](data/README.md).
 
-## Reproduce the archived results
+## Run the release check
 
-Use Python 3.12 or newer. The release environment is pinned in `requirements.txt`.
+Use Python 3.12 or newer.
 
 ```bash
 python -m venv .venv
@@ -15,13 +15,21 @@ python -m venv .venv
 ./.venv/bin/python reproduce.py --all
 ```
 
-The command checks the archived headline results and key table invariants, writes a small report for each analysis, summarizes the benchmark/control files, and regenerates Figures 1–3 from the plotted data tables. By default it writes to a temporary directory; use `--out /path/to/output` to keep the generated files.
+That command runs the core tests, checks the archived headline results and table invariants, summarizes the benchmark/control files, and regenerates the three paper figures. It uses a temporary output directory unless `--out` is supplied.
 
-This is a derived-data reproduction, not a raw-data download pipeline. Repeating the analysis from the original GMN, CAMS, SonotaCo, EDMOND, or MDC archives first requires downloading and preparing those catalogues as described in [`data/README.md`](data/README.md).
+This is a **derived-data reproduction**. It verifies the released analysis products, but it does not automatically redownload and rebuild every source catalogue from scratch. The raw-data sources and the GMN filtering/deduplication rules are documented in [`data/README.md`](data/README.md).
+
+## Main result
+
+ACRF ranked OrbitTrace-April-36.9 seventh in the April search. The discovery family contains 123 unique observation times and includes all 95 meteors in the canonical 2022–2026 sample. The annual canonical counts are 10, 8, 14, 34, and 29. SonotaCo independently passes the fixed external-replication criteria with 11 matches across eight observing years; CAMS and EDMOND contain 9 and 4 compatible matches. The full 2,179-row IAU MDC screen finds no hard duplicate.
+
+The broader ACRF sensitivity sweep contains 153 unique settings. A corresponding OrbitTrace core can be tracked after ranking in every setting, but only 83 place it within the fixed top-100 candidate budget. The target is not used to generate or rank candidates.
+
+The main machine-readable summary is [`results/paper_headline_results.json`](results/paper_headline_results.json). The full robustness table is [`results/acrf_core_hyperparameter_robustness.csv`](results/acrf_core_hyperparameter_robustness.csv).
 
 ## Apply ACRF to a prepared panel
 
-A prepared panel must follow the schema documented in [`data/README.md`](data/README.md). Candidate generation is run before any comparison with the OrbitTrace target table.
+The prepared-panel schema is listed in [`data/README.md`](data/README.md).
 
 ```bash
 ./.venv/bin/python -m acrf.application \
@@ -34,70 +42,28 @@ A prepared panel must follow the schema documented in [`data/README.md`](data/RE
   --out /tmp/orbittrace_reveal.json
 ```
 
-## Main results in the archive
+`acrf.application` generates and ranks the candidate catalogue without opening the target table. `acrf.reveal` is the separate post-hoc comparison step.
 
-| Result | Archived value |
-|---|---:|
-| ACRF candidate rank | 7 |
-| Discovery family | 123 unique observation times |
-| Canonical overlap | 95/95 |
-| Precision / recall / F1 | 0.7724 / 1.0000 / 0.8716 |
-| Annual counts, 2022–2026 | 10 / 8 / 14 / 34 / 29 |
-| CAMS / SonotaCo / EDMOND matches | 9 / 11 / 4 |
-| Independent archive passing the fixed replication criteria | SonotaCo |
-| 153-setting sweep: exact 95/95 recovery | 37/153 |
-| 153-setting sweep: rank ≤100 | 83/153 |
-| MDC hard duplicates | 0 |
-| Nearest complete-orbit MDC alternative | NOP-004, `D_SH = 0.2344515` |
+## Files
 
-The discovery table has 123 unique observation timestamps. Six timestamps have more than one source trajectory, so the 129 source trajectory rows collapse to 123 observations while the source IDs are retained in `trajectory_ids`.
-
-The 153-setting ACRF sweep tracks the corresponding OrbitTrace core only after each setting has already produced its ranked candidate catalogue. The target therefore does not affect candidate generation or rank.
-
-## Where each paper result lives
-
-| Analysis | Entry point | Archived output |
-|---|---|---|
-| Discovery | `analysis/discovery.py`, `acrf/application.py` | `data/derived/acrf_discovery_family_123.csv` |
-| Earlier-year confirmation | `analysis/earlier_year_confirmation.py` | `data/derived/annual_membership.csv` |
-| Activity and orbital nulls | `analysis/activity_null.py`, `analysis/orbital_null.py` | `results/paper_headline_results.json` |
-| Uncertainty clones | `analysis/uncertainty_clones.py` | `results/paper_headline_results.json` |
-| Hierarchical bootstrap | `analysis/hierarchical_bootstrap.py` | `results/paper_headline_results.json` |
-| Geographic replication | `analysis/geographic_replication.py` | `data/derived/geographic_replication.csv` |
-| 81-setting validation grid | `analysis/validation_sensitivity.py` | `results/paper_headline_results.json` |
-| External archives | `analysis/external_archive_replication.py` | `results/external_replication.json` |
-| MDC duplicate screen | `analysis/mdc_duplicate_screen.py` | `results/mdc_duplicate_screen.json` |
-| NOP-004 comparison | `analysis/nop004_population_comparison.py` | `data/derived/nop004_comparison.json` |
-| Parent-body screen | `analysis/jpl_parent_body_screen.py` | `results/paper_headline_results.json` |
-| 153-setting ACRF sweep | `analysis/core_hyperparameter_robustness.py` | `results/acrf_core_hyperparameter_robustness.csv` |
-
-The benchmark files under `benchmarks/` contain the matched comparisons with Sugar, catalogue-HDBSCAN, an independent D-criterion implementation, and the three known-shower controls.
-
-## Repository layout
-
-- `acrf/` — ACRF search and membership code
-- `analysis/` — reporters/checks for the analyses used in the paper
+- `acrf/` — ACRF implementation
+- `analysis/` — checks/reporters for the analyses used in the paper
 - `benchmarks/` — comparator code and archived benchmark/control results
-- `configs/` — fixed method, threshold, seed, and robustness settings
-- `data/derived/` — versioned tables used by the analyses and figures
-- `results/` — machine-readable headline and robustness results
-- `figures/` — Figure 1–3 scripts and plotted-data map
-- `reproduce.py` — release-level verification and figure regeneration
+- `configs/` — released method, threshold, seed, and robustness settings
+- `data/derived/` — versioned analysis tables
+- `results/` — machine-readable results
+- `figures/` — figure scripts and input map
+- `tests/` — small regression tests for the public code path
+- `reproduce.py` — release check and figure regeneration
 
-## Data and metrics
-
-The package uses derived tables from public GMN, CAMS, SonotaCo, EDMOND, JPL, and IAU MDC sources. Source URLs, coverage, acquisition notes, and archived-file checksums are in [`data/README.md`](data/README.md).
-
-`D_v` is used for the OrbitTrace internal compactness and matched-orbit analyses. Southworth–Hawkins `D_SH` is used separately for the MDC/NOP catalogue comparison; the two distances should not be interchanged.
+One terminology note: the internal compactness analyses use the paper's vector-form `D_v`. The IAU MDC/NOP catalogue comparison uses Southworth–Hawkins `D_SH`. They are different metrics.
 
 ## Citation and license
 
-Citation metadata are in [`CITATION.cff`](CITATION.cff). After a Zenodo release is created, the DOI should be cited for the archived software/data release and the paper citation added when available.
+Citation metadata are in [`CITATION.cff`](CITATION.cff). Once this version is archived, cite the Zenodo DOI for the software/data release and add the paper citation when it is available.
 
-The source code is released under the MIT License. GMN level-3 trajectory data are published by GMN under CC BY 4.0, so GMN-derived rows in this repository retain that attribution requirement; the GMN source and requested citations are listed in [`data/README.md`](data/README.md). Other source catalogues and derived excerpts remain subject to their providers' terms and citation requests.
+The source code is MIT licensed. GMN level-3 trajectory data are released by GMN under CC BY 4.0, so the GMN-derived rows here retain that attribution requirement. Other source catalogues and derived excerpts remain subject to their providers' terms and citation requests; details are in [`data/README.md`](data/README.md).
 
-## Scope
+OrbitTrace is a meteor-stream candidate, not an official IAU shower designation, and no parent body is assigned here.
 
-OrbitTrace is reported as a recurrent meteor-stream candidate, not an official IAU shower designation. No parent body is assigned. The performance claims in the paper are limited to the benchmark panels included in this repository.
-
-OpenAI ChatGPT was used during code development and language editing; all released code, data products, and reported results were reviewed by the author.
+OpenAI ChatGPT was used during code development and language editing. The released code, data products, and reported results were reviewed by the author.

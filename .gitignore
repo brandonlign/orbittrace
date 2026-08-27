@@ -10,5 +10,11 @@ __pycache__/
 venv/
 env/
 
+# Regenerated outputs
+.reproduction/
+figures/generated/*.png
+figures/generated/*.pdf
+figures/generated/*.svg
+
 # macOS metadata
 .DS_Store

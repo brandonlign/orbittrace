@@ -4,6 +4,8 @@ Code and derived data for a recurrent late-April meteor-stream candidate found i
 
 The repository includes the ACRF search code, the tables and result files used in the paper, benchmark summaries, and the scripts for Figures 1–3. I do not redistribute the original third-party catalogues here. Their sources, coverage, preparation notes, and checksums are in [`data/README.md`](data/README.md). A short record of the frozen computations and exact-reproduction checks is in [`PROVENANCE.md`](PROVENANCE.md).
 
+The archived v1.0.0 release is available on Zenodo: **DOI 10.5281/zenodo.22119925**.
+
 ## Run the release check
 
 Use Python 3.12 or newer.
@@ -60,9 +62,9 @@ One terminology note: the internal compactness analyses use the paper's vector-f
 
 ## Citation and license
 
-Citation metadata are in [`CITATION.cff`](CITATION.cff). Once this version is archived, cite the Zenodo DOI for the software/data release and add the paper citation when it is available.
+Cite the archived v1.0.0 software/data release as **DOI 10.5281/zenodo.22119925**. Citation metadata are also in [`CITATION.cff`](CITATION.cff). Add the paper citation when it is available.
 
-The source code is MIT licensed. The repository is a mixed-license archive because some derived tables come from external catalogues; [`NOTICE.md`](NOTICE.md) gives the short rights summary and [`data/README.md`](data/README.md) records the source-specific attribution. When archiving the full repository on Zenodo, use its mixed-license support rather than applying MIT to every file.
+The source code is MIT licensed. The repository is a mixed-license archive because some derived tables come from external catalogues; [`NOTICE.md`](NOTICE.md) gives the short rights summary and [`data/README.md`](data/README.md) records the source-specific attribution.
 
 OrbitTrace is a meteor-stream candidate, not an official IAU shower designation, and no parent body is assigned here.
 

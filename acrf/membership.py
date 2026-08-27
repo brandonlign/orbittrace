@@ -1,4 +1,4 @@
-"""Cross-fitted ACRF membership with a deterministic permutation background."""
+"""Cross-fitted ACRF membership with a deterministic background diagnostic."""
 from __future__ import annotations
 
 import hashlib
@@ -12,7 +12,6 @@ from .crossfit_membership import (
     _membership_pvalues,
     _robust_center_scale,
 )
-
 from .config import ACRFConfig
 
 
@@ -24,10 +23,14 @@ def _permutation_background_pvalues(
     event_ids: np.ndarray,
     shifts: int,
 ) -> np.ndarray:
-    """Break solar/radiant alignment while preserving all feature marginals."""
+    """Break the solar/radiant pairing while keeping the feature marginals fixed."""
+    if held_values.ndim != 2 or held_values.shape[1] != 6:
+        raise ValueError("permutation background requires the six-component ACRF feature matrix")
+    if len(held_values) != len(scores) or len(event_ids) != len(scores):
+        raise ValueError("held-out values, scores, and event_ids must align")
+    if shifts < 1:
+        raise ValueError("shifts must be positive")
 
-    if held_values.shape[1] != 6:
-        raise ValueError("ACRF permutation membership requires periodic_physical6")
     order = np.asarray(
         sorted(
             range(len(event_ids)),
@@ -54,20 +57,26 @@ def expand_candidate(
     event_ids: np.ndarray,
     config: ACRFConfig,
 ) -> dict[str, Any]:
-    """Expand a seed using held-out years and permutation-background FDR."""
-
+    """Expand a seed with leave-one-year-out robust envelopes."""
     values = np.asarray(matrix, dtype=float)
     year_array = np.asarray(years, dtype=np.int64)
     ids = np.asarray(event_ids, dtype=str)
     members = np.unique(np.asarray(candidate.get("members", ()), dtype=int))
+
     if values.ndim != 2 or values.shape[0] != len(year_array) or len(ids) != len(values):
         raise ValueError("matrix, years, and event_ids must align")
+    if not np.isfinite(values).all():
+        raise ValueError("membership feature matrix must be finite")
+    if members.ndim != 1 or np.any(members < 0) or np.any(members >= len(values)):
+        raise ValueError("candidate members must be valid row indices")
     if len(members) < config.halo_min_training_members:
         raise ValueError("candidate has too few core members")
+
     expanded = {int(value) for value in members}
     iteration_folds = []
     for _iteration in range(int(config.halo_iterations)):
         snapshot = np.asarray(sorted(expanded), dtype=int)
+        snapshot_set = set(snapshot.tolist())
         additions: set[int] = set()
         folds: dict[str, Any] = {}
         for year in sorted(int(value) for value in np.unique(year_array)):
@@ -80,6 +89,7 @@ def expand_candidate(
                     "heldout_events": int(len(heldout)),
                 }
                 continue
+
             center, scale = _robust_center_scale(values[training], config.halo_scale_floor)
             core_scores = _distances(values[training], center, scale, None)
             cutoff = float(
@@ -97,11 +107,12 @@ def expand_candidate(
                 int(config.halo_background_shifts),
             )
             background_q = _bh_qvalues(background_p)
+
             accepted_mask = scores <= cutoff
             if config.halo_enforce_density_fdr:
                 accepted_mask &= background_q <= config.halo_density_fdr
             accepted = heldout[accepted_mask]
-            new = {int(value) for value in accepted if int(value) not in snapshot}
+            new = {int(value) for value in accepted if int(value) not in snapshot_set}
             additions.update(new)
             folds[str(year)] = {
                 "skipped": False,
@@ -121,6 +132,7 @@ def expand_candidate(
         iteration_folds.append(folds)
         if not additions:
             break
+
     expanded_indices = np.asarray(sorted(expanded), dtype=int)
     result = dict(candidate)
     result["core_members"] = [int(value) for value in members.tolist()]
@@ -129,7 +141,8 @@ def expand_candidate(
     result["expanded_member_count"] = int(len(expanded_indices))
     result["halo_added_count"] = int(len(expanded_indices) - len(members))
     result["crossfit_halo"] = {
-        "method": "leave-one-year-out robust envelope plus solar-pair permutation-background FDR",
+        "method": "leave-one-year-out robust envelope",
+        "background_diagnostic": "deterministic solar-pair permutation",
         "background_shifts": int(config.halo_background_shifts),
         "density_fdr": float(config.halo_density_fdr),
         "density_fdr_enforced": bool(config.halo_enforce_density_fdr),

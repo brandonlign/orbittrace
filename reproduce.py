@@ -80,7 +80,12 @@ def validate_reference_outputs() -> dict[str, object]:
     _require(abs(float(meta["recall"]) - 1.0) < 1e-12, "baseline_recall", checks)
 
     _require(headline["discovery"]["rank"] == 7, "headline_rank", checks)
-    _require(headline["annual_confirmation"]["members"] == {str(k): v for k, v in EXPECTED_ANNUAL.items()}, "headline_annual_counts", checks)
+    _require(
+        headline["annual_confirmation"]["members"]
+        == {str(k): v for k, v in EXPECTED_ANNUAL.items()},
+        "headline_annual_counts",
+        checks,
+    )
     _require(headline["validation_sensitivity"]["cells"] == 81, "validation_grid_cells", checks)
     _require(headline["validation_sensitivity"]["passing_cells"] == 81, "validation_grid_passes", checks)
     _require(headline["uncertainty_clones"]["passes"] == 1000, "uncertainty_clone_passes", checks)
@@ -96,8 +101,9 @@ def validate_reference_outputs() -> dict[str, object]:
     _require(external["independent_networks_passing"] == ["SonotaCo"], "external_formal_pass", checks)
 
     _require(mdc["hard_duplicate_matches"] == 0, "mdc_hard_duplicates", checks)
+    _require(mdc["catalogue"]["submitted_rows_screened"] == 2179, "mdc_rows", checks)
     _require(mdc["nearest_complete_orbit"]["code"] == "NOP", "mdc_nearest_code", checks)
-    _require(int(mdc.get("catalogue_rows", mdc.get("current_catalogue_rows", 2179))) == 2179, "mdc_rows", checks)
+    _require(mdc["nearest_complete_orbit"]["solution"] == "004", "mdc_nearest_solution", checks)
 
     failed = [name for name, passed in checks.items() if not passed]
     if failed:

@@ -1,52 +1,22 @@
-# ACRF core-hyperparameter robustness
+# ACRF hyperparameter sensitivity
 
-This sensitivity analysis evaluates the paper settings across the complete
-154-cell design (153 unique settings). The reported baseline remains the paper
-setting; the grid summarizes how the result changes across the tested values.
+The released sweep contains 154 design cells and 153 unique parameter settings; the baseline appears twice in the raw design. The baseline reproduces the paper result exactly.
 
-- Raw design cells: **154**
-- Unique parameter settings executed: **153**
-- Baseline reproduced exactly: **True**
-- Tracked family within rank 100: **83/153 (54.2%)**
-- Exact 95/95 recovery: **37/153 (24.2%)**
-- At least 90/95 recovery: **49/153 (32.0%)**
-- At least 80/95 recovery: **60/153 (39.2%)**
+A corresponding OrbitTrace core can be tracked after ranking in all 153 settings. Rank is much less stable than the existence of the core itself: 83 settings place it within the fixed top-100 candidate budget.
 
-## Min/median/max metrics
+- rank ≤ 100: **83/153 (54.2%)**
+- exact 95/95 canonical recovery: **37/153 (24.2%)**
+- at least 90/95 recovery: **49/153 (32.0%)**
+- at least 80/95 recovery: **60/153 (39.2%)**
 
-Final metrics are reported for cells whose selected family was within the preregistered top-100 materialization budget; all-cell values are also retained in the JSON summary.
+For settings inside the top-100 budget, final recall ranges from 0.337 to 1.000 (median 0.989), precision from 0.352 to 1.000 (median 0.748), F1 from 0.496 to 0.925 (median 0.800), and reported membership from 34 to 267 (median 123). Across all settings, the tracked rank ranges from 3 to 7,860 with a median of 34.
 
-- Rank (tracked), min / median / max: **3 / 34.0 / 7860**
-- Final recall (top-100), min / median / max: **0.3368421052631579 / 0.9894736842105264 / 1.0**
-- Final precision (top-100), min / median / max: **0.352059925093633 / 0.7480314960629921 / 1.0**
-- Final F1 (top-100), min / median / max: **0.4961240310077519 / 0.8 / 0.924731182795699**
-- Final member count (top-100), min / median / max: **34 / 123.0 / 267**
+## By part of the sweep
 
-## Grid-specific results
+| Grid | Cells | Rank ≤ 100 | Exact 95/95 | ≥90/95 | ≥80/95 | Median final overlap |
+|---|---:|---:|---:|---:|---:|---:|
+| Physical-scale factorial | 81 | 51.9% | 32.1% | 37.0% | 40.7% | 55 |
+| HDBSCAN factorial | 9 | 77.8% | 33.3% | 33.3% | 33.3% | 78 |
+| Joint extreme interactions | 64 | 54.7% | 14.1% | 26.6% | 39.1% | 57 |
 
-### scale_factorial
-
-- Cells: 81
-- Rank <= 100: 51.9%
-- Exact 95/95: 32.1%
-- >=90/95: 37.0%
-- >=80/95: 40.7%
-- Final overlap median/range: 55.0 / 0-95
-
-### hdbscan_factorial
-
-- Cells: 9
-- Rank <= 100: 77.8%
-- Exact 95/95: 33.3%
-- >=90/95: 33.3%
-- >=80/95: 33.3%
-- Final overlap median/range: 78.0 / 0-95
-
-### joint_extreme_interactions
-
-- Cells: 64
-- Rank <= 100: 54.7%
-- Exact 95/95: 14.1%
-- >=90/95: 26.6%
-- >=80/95: 39.1%
-- Final overlap median/range: 57.0 / 0-95
+The target is opened only after each setting has produced its ranked candidate catalogue, so target tracking does not affect candidate generation or rank. The full cell-level results are in `acrf_core_hyperparameter_robustness.csv`; the JSON file contains the same sweep summarized for machine use.

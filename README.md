@@ -2,7 +2,7 @@
 
 Code and derived data for a recurrent late-April meteor-stream candidate found in Global Meteor Network (GMN) trajectories.
 
-The repository includes the ACRF search code, the tables and result files used in the paper, benchmark summaries, and the scripts for Figures 1–3. I do not redistribute the original third-party catalogues here. Their sources, coverage, preparation notes, and checksums are in [`data/README.md`](data/README.md).
+The repository includes the ACRF search code, the tables and result files used in the paper, benchmark summaries, and the scripts for Figures 1–3. I do not redistribute the original third-party catalogues here. Their sources, coverage, preparation notes, and checksums are in [`data/README.md`](data/README.md). A short record of the frozen computations and exact-reproduction checks is in [`PROVENANCE.md`](PROVENANCE.md).
 
 ## Run the release check
 
